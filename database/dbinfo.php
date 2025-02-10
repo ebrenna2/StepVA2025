@@ -17,9 +17,9 @@
 
 function connect() {
     $host = "localhost"; 
-    $database = "odhsmd";
-    $user = "odhsmd";
-    $pass = "odhsmd";
+    $database = "stepvadb";
+    $user = "stepvadb";
+    $pass = "stepvadb";
     if ($_SERVER['SERVER_NAME'] == 'jenniferp130.sg-host.com') {
         $user = 'uphzj2ozla5mg';
         $database = 'dbeq5aamznytup';
