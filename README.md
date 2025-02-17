@@ -13,6 +13,8 @@ The Gwyneth's Gifts VMS code was modified in the Fall of 2023, revamping the cod
 
 The ODHS Medicine Tracker code was modified in the Fall of 2024, changing the code to the present Step VA Volunteer Management System code. Many existing database tables were reused or renamed, and some others were added. Some files and portions of the software's functionality were reused from ODHS Medicine Tracker, while other functions were created to fill the needs of Step VA Volunteer Management. The team which made changes and new addtions consisted of Ava Donley, Thomas Held, Madison McCarty, Noah Stafford, Jayden Wynes, Gary Young, and Imaad Qureshi.
 
+Spring 2025 Contributors - Brandon Howar, Emma Brennan, James Collier, Tamarcus Daniel, Sullivan Smith, Maxwell Von Vort.
+
 ## User Types
 There are two types of users (also referred to as 'roles') within Step VA.
 * Admins
