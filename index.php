@@ -48,7 +48,7 @@
                 <div class="happy-toast">Volunteer registered successfully!</div>
             <?php endif ?>
             <p>Welcome back, <?php echo $person->get_first_name() ?>!</p>
-            <p>Today's Date is <?php echo date('l, F j, Y'); ?>.</p>
+            <p>Today is <?php echo date('l, F j, Y'); ?>.</p>
             <div id="dashboard">
                 <?php
                     require_once('database/dbMessages.php');
