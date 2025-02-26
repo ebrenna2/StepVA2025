@@ -128,6 +128,22 @@
                 <input type="radio" id="r" name="role" value="r" required><label for="role">Restricted</label>
             </div>
                 </fieldset>
+            <fieldset>
+                <label for="recurring"> * Is this event recurring? </label>
+            <div class="radio-group">
+                <input type="radio" id="y" name="recurring" value="y" required><label for="recurring">Yes</label>
+                <input type="radio" id="n" name="recurring" value="n" required><label for="recurring">No</label>
+            </div>
+                </fieldset>
+                <label for="recurrence">Recurrence Frequency</label>
+            <select id="recurrence" name="recurrence">
+                <option value="">Daily</option>
+                <option value="Weekly" <?php if (isset($status) && $status == 'Weekly') echo 'selected' ?>>Weekly</option>
+                <option value="Biweekly" <?php if (isset($status) && $status == 'Biweekly') echo 'selected' ?>>Biweekly</option>
+                <option value="Monthly" <?php if (isset($status) && $status == 'Monthly') echo 'selected' ?>>Monthly</option>
+            </select>
+                <label for="name">* End Date </label>
+                <input type="date" id="date" name="date" <?php if ($date) echo 'value="' . $date . '"'; ?> min="<?php echo date('Y-m-d'); ?>" required>
                 <label for="name">* Description </label>
                 <input type="text" id="description" name="description" required placeholder="Enter description">
                 <label for="name">Location </label>
