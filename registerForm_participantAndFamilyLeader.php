@@ -20,7 +20,7 @@
 
             <div id="num_family_members-section" style="display: none;" >
                 <label for="numFamilyMembers">Number of Family Members:</label>
-                <input type="number" id="numFamilyMembers" name="num_family_members" min=1 value=0 required>
+                <input type="number" id="numFamilyMembers" name="num_family_members" min=1 value=0>
             </div>
 
             <script>
