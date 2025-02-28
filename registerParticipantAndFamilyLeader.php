@@ -12,7 +12,7 @@
 <html>
 <head>
     <?php require_once('universal.inc'); ?>
-    <title>Step VA | Register</title>
+    <title>Step VA | Registration</title>
 </head>
 <body>
     <?php
@@ -235,7 +235,7 @@
                 /*}*/
             }
         } else {
-            require_once('registrationForm.php'); 
+            require_once('registerForm_participantAndFamilyLeader.php'); 
         }
     ?>
 </body>

@@ -11,9 +11,52 @@
             <p>The following information will help us identify you within our system.</p>
             <label><em>* </em>Will you be signing up as a Family?</label>
             <div class="radio-group">
-                <input type="radio" id="v" name="volunteer_or_participant" value="v" required><label for="volunteer_or_participant">Yes</label>
-                <input type="radio" id="p" name="volunteer_or_participant" value="p" required><label for="volunteer_or_participant">No</label>
+                <input type="radio" id="yes" name="family_or_individual" value="y" required>
+                <label for="yes">Yes</label>
+
+                <input type="radio" id="no" name="family_or_individual" value="n" required>
+                <label for="no">No</label>
             </div>
+
+            <div id="num_family_members-section" style="display: none;" >
+                <label for="numFamilyMembers">Number of Family Members:</label>
+                <input type="number" id="numFamilyMembers" name="num_family_members" min=1 value=0 required>
+            </div>
+
+            <script>
+                // Function to toggle the visibility of the training section based on volunteer or participant selection
+                function toggleNumFamilyMembersSection() {
+                    // Get the value of the hidden input field
+                    const familyRadios = document.querySelectorAll('input[name="family_or_individual"]');
+                    const numFamilyMembersSection = document.getElementById('num_family_members-section'); // Entire training section
+                    let isFamily = false;
+                    
+                    familyRadios.forEach(radio => {
+                        if (radio.checked && radio.value === 'y') {
+                            isFamily = true;
+                        }
+                    });
+
+                    // Show the entire training section only if the user is a volunteer
+                    if (isFamily) {
+                        numFamilyMembersSection.style.display = 'block';
+                    } else {
+                        numFamilyMembersSection.style.display = 'none';
+                    }
+
+                }
+
+                // Event listeners for changes in volunteer/participant selection and the complete statuses
+                document.querySelectorAll('input[name="family_or_individual"]').forEach(radio => {
+                    radio.addEventListener('change', toggleNumFamilyMembersSection);
+                });
+
+                // Initial check on page load
+                document.addEventListener('DOMContentLoaded', () => {
+                    toggleNumFamilyMembersSection(); // Toggle the input box for number of family members
+                });
+            </script>
+            
             <!-- Default value for volunteer_or_participant -->
             <input type="hidden" name="volunteer_or_participant" value="v">
             <label for="first_name"><em>* </em>First Name</label>
