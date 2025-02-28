@@ -468,7 +468,11 @@ CREATE TABLE `dbpersons` (
   `orientation_complete` int(11) NOT NULL DEFAULT 0,
   `orientation_date` text NOT NULL,
   `background_complete` int(11) NOT NULL DEFAULT 0,
-  `background_date` text NOT NULL
+  `background_date` text NOT NULL,
+  'skills' text,
+  'network' text,
+  'history' text,
+  'personal_ways_to_contribute' text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
