@@ -368,7 +368,7 @@
                 <label for="no-preference">No preference</label>
             </div>
 
-            <label>What are your hobbies? Are there any specific skills/interests you have that you believe could be useful for volunteering at StepVA?</label>
+            <label>What are your hobbies? </label>
             <input type="text" id="hobbies" name="hobbies" value="<?php echo hsc($person->get_hobbies()); ?>" placeholder="">
 
             <label>Do you have any other experience with volunteering?</label>
@@ -377,6 +377,14 @@
             <label>Are there any accomodations you may need? Anything we should keep in mind?</label>
             <input type="text" id="disability_accomodation_needs" name="disability_accomodation_needs" value="<?php echo hsc($person->get_disability_accomodation_needs()); ?>" placeholder="">
 
+            <label>Are there any specific skills/interests you have that you believe could be useful for volunteering at StepVA? </label>
+            <input type="text" id="skills" name="skills" value="<?php //echo hsc($person->get_skills()); ?>" placeholder="">
+
+            <label>Do you have connections to any local businesses or organizations that might be interested in sponsoring or supporting our programs? </label>
+            <input type="text" id="networks" name="networks" value="<?php //echo hsc($person->get_networks()); ?>" placeholder="">
+
+            <label>Do you have any additional ways you can contribute to STEPVA? </label>
+            <input type="text" id="personal_contributions" name="personal_contributions" value="<?php //echo hsc($person->get_contributions()); ?>" placeholder="">
         </fieldset>
 
         <p></p>
