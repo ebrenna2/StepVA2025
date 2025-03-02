@@ -41,6 +41,20 @@
                         //This is where can add the fields associated with the family members
                         section.className = 'section';
                         section.textContent = `Section ${i}`;
+                        
+                        section.innerHTML = `
+                            <div>
+                                <label>
+                                    Family Member ${i} Information
+                                </label>
+
+                                <label for="age">
+                                    Number of Family Members:
+                                </label>
+
+                                <input type="number" id="age" name="family_mem_age" min=1 value=0>
+                            </div>
+                        `;
 
                         //Add this section to the container
                         container.appendChild(section);
@@ -71,6 +85,7 @@
                     // Get the value of the hidden input field
                     const familyRadios = document.querySelectorAll('input[name="family_or_individual"]');
                     const numFamilyMembersSection = document.getElementById('num_family_members-section'); // Entire training section
+                    
                     let isFamily = false;
                     
                     familyRadios.forEach(radio => {
@@ -83,6 +98,9 @@
                     if (isFamily) {
                         numFamilyMembersSection.style.display = 'block';
                     } else {
+                        const numFamilyMembersInput = document.getElementById('numFamilyMembers')
+                        numFamilyMembersInput.value = 0;
+                        updateFamilyMemberSections();
                         numFamilyMembersSection.style.display = 'none';
                     }
 
