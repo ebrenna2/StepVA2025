@@ -31,11 +31,11 @@
         </nav></header><h1>Step VA New Account Sign Up</h1>
 <main class="signup-form">
     <form class="signup-form" method="post"> </form>
-    <form action="register.php" method="get">
+    <form action="registerVolunteer.php" method="get">
         <button type="submit">Volunteer</button>
     </form>
     <br>
-    <form action="register2.php" method="get">
+    <form action="registerParticipantAndFamilyLeader.php" method="get">
         <button type="submit">Participant</button>
     </form>
 </main>

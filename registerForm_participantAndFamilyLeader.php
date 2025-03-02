@@ -23,6 +23,48 @@
                 <input type="number" id="numFamilyMembers" name="num_family_members" min=1 value=0>
             </div>
 
+            <div id="family_member_info_section" style="display: none;" ></div>
+
+            <script>
+                const input = document.getElementById('numFamilyMembers');
+                const container = document.getElementById('family_member_info_section');
+
+                function updateFamilyMemberSections() {
+                    const count = parseInt(input.value) || 0;
+            
+                    // Clear existing sections
+                    container.innerHTML = '';
+
+                    // Create new sections based on input
+                    for (let i = 1; i <= count; i++) {
+                        const section = document.createElement('div');
+                        //This is where can add the fields associated with the family members
+                        section.className = 'section';
+                        section.textContent = `Section ${i}`;
+
+                        //Add this section to the container
+                        container.appendChild(section);
+                    }
+                    
+                    const family_member_info_section = document.getElementById('family_member_info_section'); // Entire training section
+                    if (count === 0){
+                        family_member_info_section.style.display = "none";
+                    } else {
+                        family_member_info_section.style.display = "block";
+                    }
+
+                }
+
+                // Add event listener to the input (not using querySelectorAll)
+                input.addEventListener('input', updateFamilyMemberSections)
+
+                // Initial check on page load
+                document.addEventListener('DOMContentLoaded', () => {
+                    updateFamilyMemberSections(); // Toggle the input section for info of family members
+                });
+
+            </script>
+
             <script>
                 // Function to toggle the visibility of the training section based on volunteer or participant selection
                 function toggleNumFamilyMembersSection() {
@@ -46,6 +88,7 @@
 
                 }
 
+
                 // Event listeners for changes in volunteer/participant selection and the complete statuses
                 document.querySelectorAll('input[name="family_or_individual"]').forEach(radio => {
                     radio.addEventListener('change', toggleNumFamilyMembersSection);
@@ -55,6 +98,7 @@
                 document.addEventListener('DOMContentLoaded', () => {
                     toggleNumFamilyMembersSection(); // Toggle the input box for number of family members
                 });
+
             </script>
             
             <!-- Default value for volunteer_or_participant -->
