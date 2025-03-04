@@ -554,8 +554,8 @@ function create_event($event) {
     //$animal = $event["animal"];
     $completed = "no";
     $query = "
-        insert into dbevents (name, date, startTime, endTime, restricted_signup, description, capacity, completed, location)
-        values ('$name', '$date', '$startTime', '$endTime', $restricted, '$description', $capacity, '$completed', '$location')
+        insert into dbevents (name, date, startTime, endTime, restricted_signup, description, capacity, completed, location, event_type)
+        values ('$name', '$date', '$startTime', '$endTime', $restricted, '$description', $capacity, '$completed', '$location', 'New')
     ";
     $result = mysqli_query($connection, $query);
     if (!$result) {
