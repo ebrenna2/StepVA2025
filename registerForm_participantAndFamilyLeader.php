@@ -20,7 +20,7 @@
 
             <div id="num_family_members-section" style="display: none;" >
                 <label for="numFamilyMembers">Number of Family Members:</label>
-                <input type="number" id="numFamilyMembers" name="num_family_members" min=1 value=0>
+                <input type="number" id="numFamilyMembers" name="num_family_members" min=1 max=100 value=0>
             </div>
 
             <div id="family_member_info_section" style="display: none;" ></div>
@@ -35,30 +35,48 @@
                     // Clear existing sections
                     container.innerHTML = '';
 
-                    // Create new sections based on input
-                    for (let i = 1; i <= count; i++) {
+                    if (count >= 100){
                         const section = document.createElement('div');
                         //This is where can add the fields associated with the family members
                         section.className = 'section';
-                        section.textContent = `Section ${i}`;
                         
                         section.innerHTML = `
                             <div>
-                                <label>
-                                    Family Member ${i} Information
+                                <label style="color: red;">
+                                    Please enter a number less than 100.
                                 </label>
 
-                                <label for="age">
-                                    Number of Family Members:
-                                </label>
-
-                                <input type="number" id="age" name="family_mem_age" min=1 value=0>
                             </div>
                         `;
 
                         //Add this section to the container
                         container.appendChild(section);
-                    }
+                    } else {
+                        const section = document.createElement('div');
+                        // Create new sections based on input
+                        for (let i = 1; i <= count; i++) {
+
+                            //Label for getting family member age
+                            const labelAge = document.createElement('label');
+                            labelAge.htmlFor = `age${i}`;
+                            labelAge.textContent = `Member ${i} Age`;
+                            //Adding the label to the section
+                            section.appendChild(labelAge);
+                            //Input for getting family member age
+                            const inputAge = document.createElement('input');
+                            inputAge.type = 'number';
+                            inputAge.id = `age${i}`;
+                            inputAge.name = `family_mem_age${i}`;
+                            inputAge.min = '1';
+                            inputAge.max = '120';
+                            inputAge.value = '0';
+                            //Adding input age to the section
+                            section.appendChild(inputAge);
+                            
+                        }
+                        //Add this section to the container
+                        container.appendChild(section);
+                    }   
                     
                     const family_member_info_section = document.getElementById('family_member_info_section'); // Entire training section
                     if (count === 0){
