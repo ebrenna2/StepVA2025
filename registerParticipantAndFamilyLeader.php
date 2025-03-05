@@ -37,7 +37,7 @@
                 'emergency_contact_last_name',
                 'emergency_contact_relation', 'emergency_contact_phone', 'tshirt_size',
                 'school_affiliation', 'username', 'password',
-                'volunteer_or_participant', 'photo_release', 'photo_release_notes'
+                'photo_release', 'photo_release_notes'
             );
 
             
@@ -56,8 +56,11 @@
             }
             echo '</table>';
 
+
             if ($family_or_individual === "y"){
                 //This means they are signing up as a family
+                $type = 'familyLeader';
+
                 //Need to get other family member details from args list
                 $num_family_members = isset($_POST['num_family_members']) ? $_POST['num_family_members'] : null;
                 if (!is_null($num_family_members) && $num_family_members > 0){
@@ -68,10 +71,11 @@
                     }
                 }
 
-                //while (1) {}
+                //Here need to add each of the family members individually using person constructor
+
             } else {
                 //Just signing up as a participant
-
+                $type = 'participant';
             }
             
 
@@ -153,13 +157,6 @@
                 echo 'bad photo release type';
             }
             $photo_release_notes = $args['photo_release_notes'];
-
-            $volunteer_or_participant = $args['volunteer_or_participant'];
-            if ($volunteer_or_participant == 'v') {
-                $type = 'volunteer';
-            } else {
-                $type = 'participant';
-            }
 
             $archived = 0;
 
