@@ -61,6 +61,11 @@ class Person {
     private $professional_experience;
     private $disability_accomodation_needs;
 
+	// More Optional
+	private $skills;
+	private $networks;
+	private $contributions;
+
 	/*
 	 * This is a temporary mini constructor for testing purposes. It will be expanded later.
 	 */
@@ -71,7 +76,7 @@ class Person {
 						$emergency_contact_relation, $tshirt_size, $school_affiliation, $photo_release, $photo_release_notes, $type, $status, $archived,
 						$how_you_heard_of_stepva, $preferred_feedback_method, $hobbies, $professional_experience, $disability_accomodation_needs, 
 						$training_complete, $training_date, $orientation_complete,
-						$orientation_date, $background_complete, $background_date
+						$orientation_date, $background_complete, $background_date, $skills, $networks, $contributions
 						) {
 		$this->id = $id; // (username)
 		$this->password = $password;
@@ -109,6 +114,9 @@ class Person {
         $this->orientation_date = $orientation_date;
 		$this->background_complete = $background_complete;
         $this->background_date = $background_date;
+		$this->skills = $skills;
+		$this->networks = $networks;
+		$this->contributions = $contributions;
 
 		// access_level = 1 for users, and = 3 for admin
 		if ($id == 'vmsroot') {
@@ -268,4 +276,13 @@ class Person {
 		return $this->background_date;
 	}
 
+	function get_skills(){
+		return $this->skills;
+	}
+	function get_networks(){
+		return $this->networks;
+	}
+	function get_contributions(){
+		return $this->contributions;
+	}
 }

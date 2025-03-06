@@ -81,7 +81,12 @@ function add_person($person) {
             $person->get_orientation_complete() . '","' .
             $person->get_orientation_date() . '","' .
             $person->get_background_complete() . '","' .
-            $person->get_background_date() . '");'
+            $person->get_background_date() . '","' .
+            $person->get_skills() . '","' .
+            $person->get_networks() . '","' .
+            $person->get_contributions() . '");'
+            
+            
         );
         mysqli_close($con);
         return true;
@@ -421,7 +426,10 @@ function make_a_person($result_row) {
         $result_row['orientation_complete'],
         $result_row['orientation_date'],
         $result_row['background_complete'],
-        $result_row['background_date']
+        $result_row['background_date'],
+        $result_row['skills'],
+        $result_row['networks'],
+        $result_row['contributions']
     );
 
     return $thePerson;
@@ -639,7 +647,7 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         $school_affiliation, $tshirt_size, $how_you_heard_of_stepva,
         $preferred_feedback_method, $hobbies, $professional_experience,
         $disability_accomodation_needs, $training_complete, $training_date, $orientation_complete,
-        $orientation_date, $background_complete, $background_date, $photo_release, $photo_release_notes
+        $orientation_date, $background_complete, $background_date,$skills, $networks, $contributions, $photo_release, $photo_release_notes
     ) {
         $query = "update dbpersons set 
             first_name='$first_name', last_name='$last_name', birthday='$birthday',
@@ -656,6 +664,9 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
             disability_accomodation_needs='$disability_accomodation_needs',
             training_complete='$training_complete', training_date='$training_date', orientation_complete='$orientation_complete',
             orientation_date='$orientation_date', background_complete='$background_complete', background_date='$background_date',
+            skills='$skills',
+            networks='$networks',
+            contributions='$contributions',
             photo_release='$photo_release',
             photo_release_notes='$photo_release_notes'
             where id='$id'";

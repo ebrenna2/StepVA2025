@@ -150,6 +150,13 @@
         $disability_accomodation_needs = $args['disability_accomodation_needs'];
         $training_complete = isset($args['training_complete']) ? $args['training_complete'] : 0;
         $training_date = validateDate($args['training_date']);
+
+        $skills = $args['skills'];
+        $networks = $args['networks'];
+        $contributions = $args['contributions'];
+
+
+
         if (!$training_date) {
             $errors = true;
             // echo 'training date';
@@ -181,7 +188,7 @@
             $preferred_feedback_method, $hobbies, $professional_experience,
             $disability_accomodation_needs, $training_complete, $training_date,
             $orientation_complete, $orientation_date, $background_complete,
-            $background_date, $photo_release, $photo_release_notes
+            $background_date, $skills, $networks, $contributions, $photo_release, $photo_release_notes
         );
         if ($result) {
             if ($editingSelf) {
