@@ -26,95 +26,119 @@
             <div id="family_member_info_section" style="display: none;" ></div>
 
             <script>
+                const input = document.getElementById('numFamilyMembers');
+                const container = document.getElementById('family_member_info_section');
+
+                function updateFamilyMemberSections() {
+                    const count = parseInt(input.value) || 0;
+            
+                    // Clear existing sections
+                    container.innerHTML = '';
+
+                    if (count >= 12){
+                        const section = document.createElement('div');
+                        //This is where can add the fields associated with the family members
+                        section.className = 'section';
+                        
+                        section.innerHTML = `
+                            <div>
+                                <label style="color: red;">
+                                    Please enter a number less than 12.
+                                </label>
+
+                            </div>
+                        `;
+
+                        //Add this section to the container
+                        container.appendChild(section);
+                    } else {
+                        const section = document.createElement('div');
+                        // Create new sections based on input
+                        for (let i = 1; i <= count; i++) {
+
+                            //Label for getting family member age
+                            const labelAge = document.createElement('label');
+                            labelAge.htmlFor = `age${i}`;
+                            labelAge.textContent = `Member ${i} Age`;
+                            //Adding the label to the section
+                            section.appendChild(labelAge);
+                            //Input for getting family member age
+                            const inputAge = document.createElement('input');
+                            inputAge.type = 'number';
+                            inputAge.id = `age${i}`;
+                            inputAge.name = `family_mem_age${i}`;
+                            inputAge.min = '1';
+                            inputAge.max = '120';
+                            inputAge.value = '0';
+                            //Adding input age to the section
+                            section.appendChild(inputAge);
+                            
+                        }
+                        //Add this section to the container
+                        container.appendChild(section);
+                    }   
+                    
+                    const family_member_info_section = document.getElementById('family_member_info_section'); // Entire training section
+                    if (count === 0){
+                        family_member_info_section.style.display = "none";
+                    } else {
+                        family_member_info_section.style.display = "block";
+                    }
+
+                }
+
+                // Add event listener to the input (not using querySelectorAll)
+                input.addEventListener('input', updateFamilyMemberSections)
+
+                // Initial check on page load
                 document.addEventListener('DOMContentLoaded', () => {
-    toggleNumFamilyMembersSection();
-    updateFamilyMemberSections();
-});
+                    updateFamilyMemberSections(); // Toggle the input section for info of family members
+                });
 
-const numFamilyInput = document.getElementById('numFamilyMembers');
-const familyInfoContainer = document.getElementById('family_member_info_section');
+            </script>
 
-function updateFamilyMemberSections() {
-    const count = parseInt(numFamilyInput.value) || 0;
-    familyInfoContainer.innerHTML = '';
-    familyInfoContainer.style.display = count > 0 ? 'block' : 'none';
+            <script>
+                // Function to toggle the visibility of the training section based on volunteer or participant selection
+                function toggleNumFamilyMembersSection() {
+                    // Get the value of the hidden input field
+                    const familyRadios = document.querySelectorAll('input[name="family_or_individual"]');
+                    const numFamilyMembersSection = document.getElementById('num_family_members-section'); // Entire training section
+                    
+                    let isFamily = false;
+                    
+                    familyRadios.forEach(radio => {
+                        if (radio.checked && radio.value === 'y') {
+                            isFamily = true;
+                        }
+                    });
 
-    if (count >= 12) {
-        familyInfoContainer.innerHTML = `
-            <div class="section">
-                <label style="color: red;">Please enter a number less than 12.</label>
-            </div>
-        `;
-    } else if (count > 0) {
-        for (let i = 1; i <= count; i++) {
-            const section = document.createElement('fieldset');
-            section.className = 'section-box family-member-section';
-            section.innerHTML = `
-                <legend>Family Member ${i} Information</legend>
-                
-                <label for="family_first_name_${i}"><em>* </em>First Name</label>
-                <input type="text" id="family_first_name_${i}" name="family[${i}][first_name]" required placeholder="Enter first name">
-                
-                <label for="family_last_name_${i}"><em>* </em>Last Name</label>
-                <input type="text" id="family_last_name_${i}" name="family[${i}][last_name]" required placeholder="Enter last name">
-                
-                <label for="family_birthdate_${i}"><em>* </em>Date of Birth</label>
-                <input type="date" id="family_birthdate_${i}" name="family[${i}][birthdate]" required max="${new Date().toISOString().split('T')[0]}">
-                
-                <label for="family_tshirt_size_${i}"><em>* </em>T-Shirt Size</label>
-                <div class="radio-group">
-                    <input type="radio" id="family_xs_${i}" name="family[${i}][tshirt_size]" value="xs" required><label for="family_xs_${i}">XS</label>
-                    <input type="radio" id="family_s_${i}" name="family[${i}][tshirt_size]" value="s"><label for="family_s_${i}">S</label>
-                    <input type="radio" id="family_m_${i}" name="family[${i}][tshirt_size]" value="m"><label for="family_m_${i}">M</label>
-                    <input type="radio" id="family_l_${i}" name="family[${i}][tshirt_size]" value="l"><label for="family_l_${i}">L</label>
-                    <input type="radio" id="family_xl_${i}" name="family[${i}][tshirt_size]" value="xl"><label for="family_xl_${i}">XL</label>
-                </div>
-                
-                <label for="family_photo_release_${i}"><em>* </em>Photo Release Restrictions</label>
-                <div class="radio-group">
-                    <input type="radio" id="family_restricted_${i}" name="family[${i}][photo_release]" value="Restricted" required><label for="family_restricted_${i}">Restricted</label>
-                    <input type="radio" id="family_not_restricted_${i}" name="family[${i}][photo_release]" value="Not Restricted"><label for="family_not_restricted_${i}">Not Restricted</label>
-                </div>
-                
-                <label for="family_photo_notes_${i}"><em>* </em>Photo Release Notes</label>
-                <input type="text" id="family_photo_notes_${i}" name="family[${i}][photo_release_notes]" required placeholder="Photo release notes or N/A">
-            `;
-            familyInfoContainer.appendChild(section);
-        }
-    }
-}
+                    // Show the entire training section only if the user is a volunteer
+                    if (isFamily) {
+                        numFamilyMembersSection.style.display = 'block';
+                    } else {
+                        const numFamilyMembersInput = document.getElementById('numFamilyMembers')
+                        numFamilyMembersInput.value = 0;
+                        updateFamilyMemberSections();
+                        numFamilyMembersSection.style.display = 'none';
+                    }
 
-function toggleNumFamilyMembersSection() {
-    const familyRadios = document.querySelectorAll('input[name="family_or_individual"]');
-    const numFamilySection = document.getElementById('num_family_members-section');
-    let isFamily = false;
+                }
 
-    familyRadios.forEach(radio => {
-        if (radio.checked && radio.value === 'y') isFamily = true;
-    });
 
-    if (isFamily) {
-        numFamilySection.style.display = 'block';
-    } else {
-        numFamilyInput.value = 0;
-        numFamilySection.style.display = 'none';
-        updateFamilyMemberSections();
-    }
-}
+                // Event listeners for changes in volunteer/participant selection and the complete statuses
+                document.querySelectorAll('input[name="family_or_individual"]').forEach(radio => {
+                    radio.addEventListener('change', toggleNumFamilyMembersSection);
+                });
 
-numFamilyInput.addEventListener('input', () => {
-    if (numFamilyInput.value < 0) numFamilyInput.value = 0;
-    if (numFamilyInput.value > 12) numFamilyInput.value = 12;
-    updateFamilyMemberSections();
-});
+                // Initial check on page load
+                document.addEventListener('DOMContentLoaded', () => {
+                    toggleNumFamilyMembersSection(); // Toggle the input box for number of family members
+                });
 
-document.querySelectorAll('input[name="family_or_individual"]').forEach(radio => {
-    radio.addEventListener('change', toggleNumFamilyMembersSection);
-});
             </script>
             
             <!-- Default value for volunteer_or_participant -->
-            <input type="hidden" name="volunteer_or_participant" value="p">
+            <input type="hidden" name="volunteer_or_participant" value="v">
             <label for="first_name"><em>* </em>First Name</label>
             <input type="text" id="first_name" name="first_name" required placeholder="Enter your first name">
 
