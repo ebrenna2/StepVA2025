@@ -12,7 +12,7 @@
 <html>
 <head>
     <?php require_once('universal.inc'); ?>
-    <title>Step VA | Register</title>
+    <title>Step VA | Registration</title>
 </head>
 <body>
     <?php
@@ -31,34 +31,51 @@
 
             // required fields
             $required = array(
-                'first_name', 'last_name', 'birthdate',
+                'family_or_individual', 'first_name', 'last_name', 'birthdate',
                 'street_address', 'city', 'state', 'zip', 
                 'email', 'phone', 'phone_type', 'emergency_contact_first_name',
                 'emergency_contact_last_name',
                 'emergency_contact_relation', 'emergency_contact_phone', 'tshirt_size',
                 'school_affiliation', 'username', 'password',
-                'volunteer_or_participant', 'photo_release', 'photo_release_notes'
+                'photo_release', 'photo_release_notes'
             );
-            
-            // Capture the volunteer_or_participant value from the form
-            $volunteer_or_participant = isset($_POST['volunteer_or_participant']) ? $_POST['volunteer_or_participant'] : null;  
 
             
-            if ($volunteer_or_participant == 'v') {
-                // Check for the training_complete and training_date fields
-                if (empty($_POST['training_complete']) || empty($_POST['training_date'])) {
-                    $errors[] = "Training complete and training date are required for volunteers.";
+            $family_or_individual = isset($_POST['family_or_individual']) ? $_POST['family_or_individual'] : null;  
+
+            echo '<table>';
+            foreach ($_POST as $key => $value) {
+                echo "<tr>";
+                echo "<td>";
+                echo $key;
+                echo "</td>";
+                echo "<td>";
+                echo $value;
+                echo "</td>";
+                echo "</tr>";
+            }
+            echo '</table>';
+
+
+            if ($family_or_individual === "y"){
+                //This means they are signing up as a family
+                $type = 'familyLeader';
+
+                //Need to get other family member details from args list
+                $num_family_members = isset($_POST['num_family_members']) ? $_POST['num_family_members'] : null;
+                if (!is_null($num_family_members) && $num_family_members > 0){
+                    echo 'There are: ' . $num_family_members . ' family members.';
+                    for ($i = 1; $i <= $num_family_members; $i++){
+                        $age = isset($_POST['family_mem_age' . $i]) ? $_POST['family_mem_age' . $i] : null;
+                        echo 'Fam member ' . $i . ' age: ' . $age;
+                    }
                 }
 
-                // Check for the orientation_complete and orientation_date fields
-                if (empty($_POST['orientation_complete']) || empty($_POST['orientation_date'])) {
-                    $errors[] = "Orientation complete and orientation date are required for volunteers.";
-                }
-                
-                // Check for the background_complete and background_date fields
-                if (empty($_POST['background_complete']) || empty($_POST['background_date'])) {
-                    $errors[] = "Background check complete and background check date are required for volunteers.";
-                }
+                //Here need to add each of the family members individually using person constructor
+
+            } else {
+                //Just signing up as a participant
+                $type = 'participant';
             }
             
 
@@ -141,13 +158,6 @@
             }
             $photo_release_notes = $args['photo_release_notes'];
 
-            $volunteer_or_participant = $args['volunteer_or_participant'];
-            if ($volunteer_or_participant == 'v') {
-                $type = 'volunteer';
-            } else {
-                $type = 'participant';
-            }
-
             $archived = 0;
 
             $id = $args['username'];
@@ -224,6 +234,8 @@
                 $background_date
             );
 
+            //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
+
             $result = add_person($newperson);
             if (!$result) {
                 echo '<p>That username is already in use.</p>';
@@ -231,11 +243,11 @@
                 /*if ($loggedIn) {
                     echo '<script>document.location = "index.php?registerSuccess";</script>';
                 } else {*/
-                    echo '<script>document.location = "login.php?registerSuccess";</script>';
+                    //echo '<script>document.location = "login.php?registerSuccess";</script>';
                 /*}*/
             }
         } else {
-            require_once('registrationForm.php'); 
+            require_once('registerForm_participantAndFamilyLeader.php'); 
         }
     ?>
 </body>

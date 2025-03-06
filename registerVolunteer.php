@@ -12,7 +12,7 @@
 <html>
 <head>
     <?php require_once('universal.inc'); ?>
-    <title>Step VA | Registration</title>
+    <title>Step VA | Register</title>
 </head>
 <body>
     <?php
@@ -37,30 +37,25 @@
                 'emergency_contact_last_name',
                 'emergency_contact_relation', 'emergency_contact_phone', 'tshirt_size',
                 'school_affiliation', 'username', 'password',
-                'volunteer_or_participant', 'photo_release', 'photo_release_notes'
-            );
-            
-            // Capture the volunteer_or_participant value from the form
-            $volunteer_or_participant = isset($_POST['volunteer_or_participant']) ? $_POST['volunteer_or_participant'] : null;  
+                'photo_release', 'photo_release_notes'
+            ); 
 
             
-            if ($volunteer_or_participant == 'v') {
-                // Check for the training_complete and training_date fields
-                if (empty($_POST['training_complete']) || empty($_POST['training_date'])) {
-                    $errors[] = "Training complete and training date are required for volunteers.";
-                }
 
-                // Check for the orientation_complete and orientation_date fields
-                if (empty($_POST['orientation_complete']) || empty($_POST['orientation_date'])) {
-                    $errors[] = "Orientation complete and orientation date are required for volunteers.";
-                }
-                
-                // Check for the background_complete and background_date fields
-                if (empty($_POST['background_complete']) || empty($_POST['background_date'])) {
-                    $errors[] = "Background check complete and background check date are required for volunteers.";
-                }
+            // Check for the training_complete and training_date fields
+            if (empty($_POST['training_complete']) || empty($_POST['training_date'])) {
+                $errors[] = "Training complete and training date are required for volunteers.";
             }
-            
+
+            // Check for the orientation_complete and orientation_date fields
+            if (empty($_POST['orientation_complete']) || empty($_POST['orientation_date'])) {
+                $errors[] = "Orientation complete and orientation date are required for volunteers.";
+            }
+                
+            // Check for the background_complete and background_date fields
+            if (empty($_POST['background_complete']) || empty($_POST['background_date'])) {
+                $errors[] = "Background check complete and background check date are required for volunteers.";
+            }
 
             $optional = array(
                 'how_you_heard_of_stepva', 'preferred_feedback_method', 'hobbies',
@@ -141,12 +136,7 @@
             }
             $photo_release_notes = $args['photo_release_notes'];
 
-            $volunteer_or_participant = $args['volunteer_or_participant'];
-            if ($volunteer_or_participant == 'v') {
-                $type = 'volunteer';
-            } else {
-                $type = 'participant';
-            }
+            $type = 'volunteer';
 
             $archived = 0;
 
@@ -235,7 +225,7 @@
                 /*}*/
             }
         } else {
-            require_once('registrationForm2.php'); 
+            require_once('registerForm_volunteer.php'); 
         }
     ?>
 </body>
