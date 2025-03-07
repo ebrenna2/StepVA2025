@@ -104,7 +104,7 @@
                     '', // Photo Release
                     '', // Photo Release Notes
                     '', // Type of Account
-                    '777_m@xw311$_1_$ub3r_2_C001_3_P@$$w0rb_4_1$_5_$ub3r_6_$3cvr3_777', // Status (Access Magic occurs here)
+                    'Admin', // Status (Access Magic occurs here)
                     '', // Archived
                     '', // How you heard of stepva
                     '', // Prefered feedback method
@@ -122,6 +122,8 @@
                     'N/A'  // Contributions
                 );
     
+
+
                 $result = add_person($newperson);
 
                 //$person = Array();

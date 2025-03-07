@@ -121,7 +121,7 @@ class Person {
 		// access_level = 1 for users, and = 3 for admin
 		if ($id == 'vmsroot') {
 			$this->access_level = 3;
-		} else if ($status == '777_m@xw311$_1_$ub3r_2_C001_3_P@$$w0rb_4_1$_5_$ub3r_6_$3cvr3_777') { // Password that gives admin access rights
+		} else if ($status == 'Admin') { // Password that gives admin access rights
 			$this->access_level = 3; // Only available for new admin creation
 		} else {
 			$this->access_level = 1;
