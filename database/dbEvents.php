@@ -568,7 +568,7 @@ function create_event($event) {
     return $id;
 }
 
-/* function set_recurring($event) {
+function set_recurring($event) {
     $recurring = $event["recurring"];
     $recurrence = isset($event["recurrence"]) ? $event["recurrence"] : "Daily";  // Default to "Daily"
     $startDate = $event["date"];
@@ -607,20 +607,24 @@ function create_event($event) {
     while ($currentDate <= $endDate && $occurrenceCount < 100) {  // Limit to 100 occurrences to prevent infinite loops
         switch ($recurrence) {
             case "Daily":
-                // Ensure we're moving forward in time (i.e., adding 1 day)
-                $currentDate = strtotime("+1 day", $currentDate);  // Add 1 day for daily recurrence
+                // Add 1 day for daily recurrence
+                $currentDate = strtotime("+1 day", $currentDate);
+                break;
+            case "Weekly":
+                // Add 7 days for weekly recurrence
+                $currentDate = strtotime("+1 week", $currentDate);  // Add 7 days
                 break;
             case "Biweekly":
-                // Ensure we're moving forward in time (i.e., adding 2 weeks)
-                $currentDate = strtotime("+2 weeks", $currentDate);  // Add 2 weeks for biweekly recurrence
+                // Add 2 weeks for biweekly recurrence
+                $currentDate = strtotime("+2 weeks", $currentDate);
                 break;
             case "Monthly":
-                // Ensure we're moving forward in time (i.e., adding 1 month)
-                $currentDate = strtotime("+1 month", $currentDate);  // Add 1 month for monthly recurrence
+                // Add 1 month for monthly recurrence
+                $currentDate = strtotime("+1 month", $currentDate);
                 break;
         }
 
-        // Ensure the next event date doesn't exceed the end date
+        // Ensure we're not creating an event on the same day more than once
         if ($currentDate > $endDate) break;
 
         // Increment occurrence count
@@ -628,12 +632,15 @@ function create_event($event) {
 
         // Create the recurring event with the new date
         $event["date"] = date("Y-m-d", $currentDate);
-        create_event($event);
+
+        // You may want to ensure that the event creation logic isn't accidentally looping
+        $event_id = create_event($event);
     }
 
     // Return the ID of the first created event
     return $event_id;
-} */
+}
+
 
 function add_services_to_event($eventID, $serviceIDs) {
     $connection = connect();
