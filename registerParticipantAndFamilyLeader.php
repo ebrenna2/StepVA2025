@@ -302,6 +302,10 @@
                         $member_type = 'participant';
 
                         $member_archived = 0;
+
+                        $member_skills = '';
+                        $member_networks = '';
+                        $member_contributions = '';
             
                         $newperson = new Person(
                             $member_username, // (id = username)
@@ -339,7 +343,10 @@
                             $member_orientation_complete,
                             $member_orientation_date,
                             $member_background_complete,
-                            $member_background_date
+                            $member_background_date,
+                            $member_skills,
+                            $member_networks,
+                            $member_contributions
                         );
 
                         //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
@@ -360,6 +367,9 @@
 
             $status = "Active";
             
+            $skills = '';
+            $networks = '';
+            $contributions = '';
             
             $newperson = new Person(
                 $id, // (id = username)
@@ -397,7 +407,10 @@
                 $orientation_complete,
                 $orientation_date,
                 $background_complete,
-                $background_date
+                $background_date,
+                $skills,
+                $networks,
+                $contributions
             );
 
             //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
