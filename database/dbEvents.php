@@ -568,6 +568,73 @@ function create_event($event) {
     return $id;
 }
 
+/* function set_recurring($event) {
+    $recurring = $event["recurring"];
+    $recurrence = isset($event["recurrence"]) ? $event["recurrence"] : "Daily";  // Default to "Daily"
+    $startDate = $event["date"];
+    $endDate = $event["end-date"];
+
+    // Check if startDate and endDate are valid before using strtotime
+    if (empty($startDate) || empty($endDate)) {
+        echo 'Invalid start or end date';
+        die();  // Exit if dates are invalid
+    }
+
+    // Convert startDate and endDate to timestamps
+    $startDate = strtotime($startDate);
+    $endDate = strtotime($endDate);
+
+    // Check if strtotime failed to convert the dates
+    if ($startDate === false || $endDate === false) {
+        echo 'Invalid start or end date';
+        die();  // Exit if date conversion failed
+    }
+
+    // Create the first event on the start date
+    $event["date"] = date("Y-m-d", $startDate);  // Set the first event date
+    $event_id = create_event($event);
+
+    // If recurrence is not enabled, just return the event ID
+    if ($recurring == 'n') {
+        return $event_id;
+    }
+
+    // Calculate next occurrences based on the frequency
+    $currentDate = $startDate;
+    $occurrenceCount = 0;
+
+    // Only continue if the current date is within the range of the end date
+    while ($currentDate <= $endDate && $occurrenceCount < 100) {  // Limit to 100 occurrences to prevent infinite loops
+        switch ($recurrence) {
+            case "Daily":
+                // Ensure we're moving forward in time (i.e., adding 1 day)
+                $currentDate = strtotime("+1 day", $currentDate);  // Add 1 day for daily recurrence
+                break;
+            case "Biweekly":
+                // Ensure we're moving forward in time (i.e., adding 2 weeks)
+                $currentDate = strtotime("+2 weeks", $currentDate);  // Add 2 weeks for biweekly recurrence
+                break;
+            case "Monthly":
+                // Ensure we're moving forward in time (i.e., adding 1 month)
+                $currentDate = strtotime("+1 month", $currentDate);  // Add 1 month for monthly recurrence
+                break;
+        }
+
+        // Ensure the next event date doesn't exceed the end date
+        if ($currentDate > $endDate) break;
+
+        // Increment occurrence count
+        $occurrenceCount++;
+
+        // Create the recurring event with the new date
+        $event["date"] = date("Y-m-d", $currentDate);
+        create_event($event);
+    }
+
+    // Return the ID of the first created event
+    return $event_id;
+} */
+
 function add_services_to_event($eventID, $serviceIDs) {
     $connection = connect();
     foreach($serviceIDs as $serviceID) {
