@@ -304,6 +304,22 @@
                     <label>Photo Release Notes</label>
                     <p><?php echo ucfirst($user->get_photo_release_notes() ?: "Not specified") ?></p>
                 </div>
+
+                <div class="field-pair">
+                    <label>Skills</label>
+                    <p><?php echo ucfirst($user->get_skills() ?: "Not specified") ?></p>
+
+                </div>
+                <div class="field-pair">
+                    <label>Connections</label>
+                    <p><?php echo ucfirst($user->get_networks() ?: "Not specified") ?></p>
+
+                </div>
+                <div class="field-pair">
+                    <label>Personal Contributions</label>
+                    <p><?php echo ucfirst($user->get_contributions() ?: "Not specified") ?></p>
+
+                </div>
             </fieldset>
 
             <fieldset class="section-box">
