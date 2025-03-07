@@ -44,6 +44,8 @@
             $startTime = $args['start-time'] = $validated[0];
             $endTime = $args['end-time'] = $validated[1];
             $date = $args['date'] = validateDate($args["date"]);
+            $recurrence = isset($args['recurrence']) ? $args['recurrence'] : null;
+            $endDate = isset($args['end-date']) ? $args['end-date'] : null;
             //$capacity = intval($args["capacity"]);
             //$abbrevLength = strlen($args['abbrev-name']);
             //if (!$startTime || !$date || $abbrevLength > 11){
@@ -51,6 +53,39 @@
                 echo 'bad args';
                 die();
             }
+
+            // If event is recurring, call the set_recurring function
+            if (isset($args['recurring']) && $args['recurring'] == 'y') {
+                $args['end-date'] = $endDate;
+                $args['recurrence'] = $recurrence;
+                $args['date'] = $date;
+                $args['start-time'] = $startTime;
+                $args['end-time'] = $endTime;
+                $args['role'] = $restricted_signup;
+
+
+                // Call set_recurring function
+                $createdEventIds = set_recurring($args);
+
+
+            if ($createdEventIds) {
+                header('Location: eventSuccess.php');
+                exit();
+            } else {
+                echo 'Error creating recurring events.';
+                die();
+            }
+            } else {
+            // Create a single event if not recurring
+                $id = create_event($args);
+                if (!$id) {
+                    echo 'Error creating event';
+                    die();
+                } else {
+                    header('Location: eventSuccess.php');
+                    exit();
+                }
+
             //var_dump($args);
             $id = create_event($args);
             if(!$id){
@@ -74,6 +109,7 @@
             //die();
         }
     }
+}
     $date = null;
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
@@ -137,13 +173,14 @@
                 </fieldset>
                 <label for="recurrence">Recurrence Frequency</label>
             <select id="recurrence" name="recurrence">
-                <option value="">Daily</option>
+                <option value="">None</option>
+                <option value="Daily" <?php if (isset($status) && $status == 'Daily') echo 'selected' ?>>Daily</option>
                 <option value="Weekly" <?php if (isset($status) && $status == 'Weekly') echo 'selected' ?>>Weekly</option>
                 <option value="Biweekly" <?php if (isset($status) && $status == 'Biweekly') echo 'selected' ?>>Biweekly</option>
                 <option value="Monthly" <?php if (isset($status) && $status == 'Monthly') echo 'selected' ?>>Monthly</option>
             </select>
-                <label for="name">* End Date </label>
-                <input type="date" id="date" name="date" <?php if ($date) echo 'value="' . $date . '"'; ?> min="<?php echo date('Y-m-d'); ?>" required>
+                <label for="end-date">* End Date </label>
+                <input type="date" id="end-date" name="end-date" <?php if ($date) echo 'value="' . $date . '"'; ?> min="<?php echo date('Y-m-d'); ?>" required>
                 <label for="name">* Description </label>
                 <input type="text" id="description" name="description" required placeholder="Enter description">
                 <label for="name">Location </label>
