@@ -39,8 +39,7 @@ function add_person($person) {
         );*/
         mysqli_query($con, 'INSERT INTO dbpersons VALUES ("' .
             $person->get_id() . '","' .
-            $person->get_start_date() . '","' .
-            "n/a" . '","' . /* ("venue", we don't use this) */
+            $person->get_start_date() . '","' ."n/a" . '","' . /* ("venue", we don't use this) */
             $person->get_first_name() . '","' .
             $person->get_last_name() . '","' .
             $person->get_street_address() . '","' .

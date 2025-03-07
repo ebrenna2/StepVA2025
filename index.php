@@ -102,13 +102,17 @@
                         <img src="images/person-search.svg">
                         <span>Find Volunteer</span>
                     </div>
-                    <div class="dashboard-item" data-link="adminViewingEvents.php">
-                        <i class="fa-solid fa-list"></i>
-                        <span>View Events</span>
-                    </div>
                     <div class="dashboard-item" data-link="register.php">
                         <img src="images/add-person.svg">
                         <span>Register Volunteer</span>
+                    </div>
+                    <div class="dashboard-item" data-link="registerAdmin.php">
+                        <img src="images/add-person.svg">
+                        <span>Add Admin</span>
+                    </div>
+                    <div class="dashboard-item" data-link="adminViewingEvents.php">
+                        <i class="fa-solid fa-list"></i>
+                        <span>View Events</span>
                     </div>
                     <div class="dashboard-item" data-link="editHours.php">
                         <i class="fa-regular fa-clock"></i>

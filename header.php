@@ -113,6 +113,7 @@
         $permission_array['settimes.php'] = 1;
         $permission_array['eventfailurebaddeparturetime.php'] = 1;
         
+        $permission_array['registeradmin.php'] = 2;
         // LOWERCASE
 
 
