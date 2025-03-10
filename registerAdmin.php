@@ -105,21 +105,21 @@
                     '', // Photo Release Notes
                     '', // Type of Account
                     'Admin', // Status (Access Magic occurs here)
-                    '', // Archived
+                    0, // Archived
                     '', // How you heard of stepva
                     '', // Prefered feedback method
                     '', // Hobbies
                     '', // Professional Expereince
                     '', // Disability Accomodation needs
-                    '', // Training Complete
+                    0, // Training Complete
                     '', // Training Date
-                    '', // Orientation Complete
+                    0, // Orientation Complete
                     '', // Orientation Date
-                    '', // Background Complete 
+                    0, // Background Complete 
                     '', // Background date
-                    'N/A', // Skills
-                    'N/A', // Networks
-                    'N/A'  // Contributions
+                    '', // Skills
+                    '', // Networks
+                    ''  // Contributions
                 );
     
 

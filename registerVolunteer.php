@@ -211,7 +211,10 @@
                 $orientation_complete,
                 $orientation_date,
                 $background_complete,
-                $background_date
+                $background_date,
+                '',
+                '',
+                ''
             );
 
             $result = add_person($newperson);
