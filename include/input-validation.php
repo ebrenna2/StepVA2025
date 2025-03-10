@@ -8,10 +8,25 @@
      * from the string, then returns the resulting string
      */
     function _sanitize($connection, $input) {
+        //echo $connection;
         if (is_array($input)) {
             $length = count($input);
-            for ($i = 0; $i < $length; $i++) {
-                 $input[$i] = trim($input[$i]);
+            foreach($input as $key => $value) {
+
+                if (is_array($value)){
+                    foreach($input[$key] as $keykey => $valval) {
+                        if (is_array($valval)){
+                            foreach($input[$key][$keykey] as $keykeykey => $valvalval){
+                                $input[$key][$keykey][$keykeykey] = trim($input[$key][$keykey][$keykeykey]);
+                            }
+                        } else {
+                            $input[$key][$keykey] = trim($input[$key][$keykey]);
+                        }
+                    }
+                } else {
+                    $input[$key] = trim($input[$key]);
+                }
+                
 
                 // This should be removed, with htmlspecialchars being
                 // called prior to OUTPUT. I will try to change this later.
