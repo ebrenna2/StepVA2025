@@ -647,7 +647,7 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         $school_affiliation, $tshirt_size, $how_you_heard_of_stepva,
         $preferred_feedback_method, $hobbies, $professional_experience,
         $disability_accomodation_needs, $training_complete, $training_date, $orientation_complete,
-        $orientation_date, $background_complete, $background_date,$skills, $networks, $contributions, $photo_release, $photo_release_notes
+        $orientation_date, $background_complete, $background_date, $skills, $networks, $contributions, $photo_release, $photo_release_notes
     ) {
         $query = "update dbpersons set 
             first_name='$first_name', last_name='$last_name', birthday='$birthday',

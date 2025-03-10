@@ -173,7 +173,6 @@
                 </fieldset>
                 <label for="recurrence">Recurrence Frequency</label>
             <select id="recurrence" name="recurrence">
-                <option value="">None</option>
                 <option value="Daily" <?php if (isset($status) && $status == 'Daily') echo 'selected' ?>>Daily</option>
                 <option value="Weekly" <?php if (isset($status) && $status == 'Weekly') echo 'selected' ?>>Weekly</option>
                 <option value="Biweekly" <?php if (isset($status) && $status == 'Biweekly') echo 'selected' ?>>Biweekly</option>
