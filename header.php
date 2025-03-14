@@ -163,7 +163,7 @@
         echo('<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Volunteers</a>');
         echo('<div class="dropdown-menu">');
         echo('<a class="dropdown-item" href="' . $path . 'personSearch.php">Search</a>
-            <a class="dropdown-item" href="registerVolunteer.php">Add</a>');
+            <a class="dropdown-item" href="registerVolunteerBar.php">Add</a>');
         echo('</div>');
         echo('</li>');
         }

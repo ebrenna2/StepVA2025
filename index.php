@@ -102,7 +102,7 @@
                         <img src="images/person-search.svg">
                         <span>Find Volunteer</span>
                     </div>
-                    <div class="dashboard-item" data-link="registerVolunteer.php">
+                    <div class="dashboard-item" data-link="registerVolunteerBar.php">
                         <img src="images/add-person.svg">
                         <span>Register Volunteer</span>
                     </div>
