@@ -70,12 +70,12 @@
 <html>
     <head>
         <?php require_once('universal.inc') ?>
-        <title>Step VA Volunteer System | Log In</title>
+        <title>Step VA System | Log In</title>
     </head>
     <body>
         <?php require_once('header.php') ?>
         <main class="login">
-            <h1>Step VA Volunteer System Login</h1>
+            <h1>Step VA System Login</h1>
             <?php if (isset($_GET['registerSuccess'])): ?>
                 <div class="happy-toast">
                     Your registration was successful! Please log in below.

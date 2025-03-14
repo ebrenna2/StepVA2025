@@ -26,7 +26,7 @@
     <head>
         <?php require('universal.inc'); ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <title>Step VA Volunteer System | Dashboard</title>
+        <title>Step VA System | Dashboard</title>
     </head>
     <body>
         <?php require('header.php'); ?>
@@ -102,7 +102,7 @@
                         <img src="images/person-search.svg">
                         <span>Find Volunteer</span>
                     </div>
-                    <div class="dashboard-item" data-link="register.php">
+                    <div class="dashboard-item" data-link="registerVolunteer.php">
                         <img src="images/add-person.svg">
                         <span>Register Volunteer</span>
                     </div>
