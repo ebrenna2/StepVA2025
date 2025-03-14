@@ -609,3 +609,20 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+/* This sets up the connections for family member stuff in the database */
+ALTER TABLE dbpersons
+ADD COLUMN familyid INT;
+
+CREATE TABLE dbfamilyleader (
+    familyid INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    FOREIGN KEY (username) REFERENCES dbpersons(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE dbfamilymember (
+    username VARCHAR(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    familyid INT NOT NULL,
+    FOREIGN KEY (username) REFERENCES dbpersons(id) ON DELETE CASCADE,
+    FOREIGN KEY (familyid) REFERENCES dbfamilyleader(familyid) ON DELETE CASCADE
+) ENGINE=InnoDB;
