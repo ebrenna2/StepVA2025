@@ -122,6 +122,10 @@
                         <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         <span><center>Upload Resources</center></span>
                     </div>
+                    <div class="dashboard-item" data-link="reportsPage.php">
+                        <img src="images/create-report.svg">
+                        <span><center>Reports Page</center></span>
+                    </div>
                 <?php endif ?>
 
                 <!-- FOR VOLUNTEERS AND PARTICIPANTS ONLY -->
