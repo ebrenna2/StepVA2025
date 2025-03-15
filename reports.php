@@ -1,84 +1,31 @@
-<?php
-/*
- * Copyright 2013 by Jerrick Hoang, Ivy Xing, Sam Roberts, James Cook, 
- * Johnny Coster, Judy Yang, Jackson Moniaga, Oliver Radwan, 
- * Maxwell Palmer, Nolan McNair, Taylor Talmage, and Allen Tucker. 
- * This program is part of RMH Homebase, which is free software.  It comes with 
- * absolutely no warranty. You can redistribute and/or modify it under the terms 
- * of the GNU General Public License as published by the Free Software Foundation
- * (see <http://www.gnu.org/licenses/ for more information).
- * 
- */
+<?php 
+  session_cache_expire(30);
+  session_start();
+  ini_set("display_errors",1);
+  error_reporting(E_ALL);
+  $loggedIn = false;
+  $accessLevel = 0;
+  $userID = null;
+  if (isset($_SESSION['_id'])) {
+      $loggedIn = true;
+      // 0 = not logged in, 1 = standard user, 2 = manager (Admin), 3 super admin (TBI)
+      $accessLevel = $_SESSION['access_level'];
+      $userID = $_SESSION['_id'];
+  }
+  require_once('include/input-validation.php');
+  require_once('database/dbPersons.php');
 
-/*
- * reports page for RMH homebase.
- * @author Jerrick Hoang
- * @version 11/5/2013
- */
-session_cache_expire(30);
-session_start();
+  if ($accessLevel < 2) {
+    header('Location: index.php');
+    die();
+  }
 
-include_once('database/dbinfo.php');
-include_once('database/dbPersons.php');
-include_once('domain/Person.php');
-include_once('database/dbEvents.php');
-
-include_once('database/dbShifts.php');
-include_once('domain/Shift.php');
 ?>
-
+<!DOCTYPE html>
 <html>
-<head>
-<!-- <link rel="stylesheet" href="lib\bootstrap\css\bootstrap.css" type="text/css" /> -->
-<!-- <link rel="stylesheet" href="styles.css" type="text/css" /> -->
-<!-- <link rel="stylesheet" href="lib/jquery-ui.css" /> -->
-<script type="text/javascript" src="lib/jquery-1.9.1.js"></script>
-<script src="lib/jquery-ui.js"></script>
-<script>
-$(function() {
-	$( "#from" ).datepicker({dateFormat: 'y-mm-dd',changeMonth:true,changeYear:true});
-	$( "#to" ).datepicker({dateFormat: 'y-mm-dd',changeMonth:true,changeYear:true});
-
-	$(document).on("keyup", ".volunteer-name", function() {
-		var str = $(this).val();
-		var target = $(this);
-		$.ajax({
-			type: 'get',
-			url: 'reportsCompute.php?q='+str,
-			success: function (response) {
-				var suggestions = $.parseJSON(response);
-				console.log(target);
-				target.autocomplete({
-					source: suggestions
-				});
-			}
-		});
-	});
-
-	$("input[name='date']").change(function() {
-		if ($("input[name='date']:checked").val() == 'date-range') {
-			$("#fromto").show();
-		} else {
-			$("#fromto").hide();
-		}
-	});
-
-	$("#report-submit").on('click', function (e) {
-		e.preventDefault();
-		$.ajax({
-			type: 'post',
-			url: 'reportsCompute.php',
-			data: $('#search-fields').serialize(),
-			success: function (response) {
-				$("#outputs").html(response);
-			}
-		});
-	} );
-	
-});
-</script>
-	<?php require_once('universal.inc') ?>
-        <title>Step VA | Reports</title>
+    <head>
+        <?php require_once('universal.inc') ?>
+        <title>Step VA Reports</title>
         <style>
             .report_select{
                 display: flex;
@@ -88,26 +35,185 @@ $(function() {
             }
             @media only screen and (min-width: 1024px) {
                 .report_select {
-                    width: 50%;
-                }
-                main.reportSelection {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
+                    /* width: 40%; */
+                    width: 35rem;
+            }
+            main.report {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+	    .column {
+		padding: 0 4rem 0 0;
+		width: 50%;
+	    }
+	    .row{
+          	display: flex;
+            }
+	    }
+	    .hide {
+  		display: none;
+	    }
+
+	    .myDIV:hover + .hide {
+		display: block;
+  		color: red;
+	    }
+        </style>
+    </head>
+    <body>
+        <?php require_once('header.php');?>
+	<h1>Generate Reports</h1>
+
+    <main class="report">
+	<?php
+        //following if statement is triggered on submit as far as I can tell
+        //this first one is triggered if ALL fields have been filled
+	    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_click"]) 
+        && isset($_POST["report_type"]) && isset($_POST["date_from"]) && 
+        isset($_POST["date_to"]) && isset($_POST['lname_start']) && isset($_POST['lname_end']) 
+        && isset($_POST['name']) && isset($_POST['statusFilter'])) 
+        {
+		    $args = sanitize($_POST);
+		    $report = $args['report_type'];
+		    $name = $args['name'];
+		    $dFrom = $_POST['date_from'];
+        	$dTo = $_POST['date_to'];
+		    if ($dTo > $dFrom) 
+            {
+		        echo "<b>Please enter a date after the Date Range Start.</b><br>";	
+		    }
+        	$lastFrom = $_POST['lname_start'];
+        	$lastTo = $_POST['lname_end'];
+		    if (strcmp(strtoupper($lastTo),strtoupper($lastFrom)) > 0) {
+		        echo "<b>Please enter a letter after the Last Name Range Start.</b><br>";
+		    }
+
+        	    $status = $_POST['statusFilter'];
+
+		    if ($report=="indiv_vol_hours" && $name == NULL) 
+            {
+			    echo "<b>Please enter a volunteer's first and/or last name.</b><br>";
+		    }
+
+            if ($report == "email_volunteer_list")
+            {
+                if ($lastFrom != NULL || $lastTo != NULL || $dFrom != NULL || $dTo != NULL)
+                {
+                    echo "<b>Please leave the date range and name range empty for this kind of report.</b><br>";
                 }
             }
-        </style>
-</head>
-<body>
- 	<?php require_once('header.php');
-	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["go_to_reports_page"]) && isset($_POST["report_types"])) {
-		$type = $_POST['report_type'];
-		header("Location: /gwyneth/reportsPage.php?report_type=$type");
-	}
+            
+            //Date range isn't needed for missing paperwork report, so don't allow user to select it
+            if($report=="missing_paperwork" && $dFrom != NULL && $dTo != NULL)
+            {
+                echo "<b>Please do not use a date range with this report type.</b><br>";
+            }
+	    	elseif ($report=="indiv_vol_hours" && $name != NULL) 
+            {
+			    echo "<h3>Search Results</h3>";
+			    $persons = find_user_names($name);
+                require_once('include/output.php');
+                if (count($persons) > 0) 
+                {
+                    echo '
+                        <div class="table-wrapper">
+                        <table class="general">
+                            <thead>
+                                <tr>
+                                    <th>First</th>
+                                    <th>Last</th>
+					            <th>Email</th>
+					            <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="standout">';
+                    foreach ($persons as $person) 
+                    {
+                        echo '
+                            <tr>
+                            <td>' . $person->get_first_name() . '</td>
+                            <td>' . $person->get_last_name() . '</td>
+ 					        <td><a href="mailto:' . $person->get_id() . '">' . $person->get_id() . '</a></td>
+				            <td><a href="reportsPage.php?report_type='. $report .'&date_from='. $dFrom .'&date_to='. $dTo .'&lname_start='. $lastFrom .'&lname_end='. $lastTo .'&name='. $name .'&indivID='. $person->get_id().' &role='. $person->get_type()[0] .' &statusFilter=' . $status . '">Run Report</a></td>
+				            </tr>';
+                    }
+                    echo '
+                        </tbody>
+                        </table>
+                        </div>';
+                } 
+                else 
+                {
+                    echo '<div class="error-toast">Your search returned no results.</div>';
+                }
+            }
+	    	else 
+            {
+			// header("Location: /gwyneth/reportsPage.php?report_type=$report&date_from=$dFrom&date_to=$dTo&lname_start=$lastFrom&lname_end=$lastTo&name=$name&statusFilter=$status");
+                // NOT IDEAL. Can be broken by browsers with JS disabled.
+                echo "<script>window.location.href = 'reportsPage.php?report_type=$report&date_from=$dFrom&date_to=$dTo&lname_start=$lastFrom&lname_end=$lastTo&name=$name&statusFilter=$status';</script>";
+	    	}
+	    } 
+            // $alphabet = range('a', 'z');
+            // foreach ($alphabet as $letter) {
+            //     echo $letter . " ";
+            // }
+	    ?>
+	<h2>Generate Volunteer Report</h2>
+	<br>
+        <form class="report_select" method="post">
+	<div>
+        <label for="report_type">Select Report Type</label><span><i><font size="3"> *For Emails After Selection Just Hit Submit</font></i></span>
+        <select name="report_type" id="report_type">
+			<option value = "indiv_vol_hours">Individual Volunteer Hours</option>
+            <option value = "accommodations">Participant Accommodations / Disabilities</option>
+            <option value = "top_perform">Event Attendance</option>
+        </select>
+	</div>
+	<div>
+	 <label>Status </label> <span><i><font size="3">
+     <br>
+	<?php
+        // Set filter on status of volunteers to return in the report result
+        echo "<br>";
+            echo '<input type="radio" name="statusFilter" id = "allStatus" value="All" checked>&nbspAll&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+            echo '<input type="radio" name="statusFilter" id = "isActive" value="Active" >&nbspActive&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+            echo '<input type="radio" name="statusFilter" id = "isInactive" value="Inactive">&nbspInactive&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
 	?>
-        <h1>Business and Operational Reports</h1>
-        <main class="reportSelection">
-            <form class="report_select" method="post">
-        <?php include('footer.inc'); ?>
+	</div>
+	<br>
+	<div class="row">
+	<div class="column">
+	    <label for="date_from">Date Range Start</label>
+            <input name = "date_from" type="date" id="date_from" placeholder="yyyy-mm-dd">
+        </div>
+	<div class="column">
+	    <label for="date_to">Date Range End</label>
+            <input name = "date_to" type="date" id="date_to" placeholder="yyyy-mm-dd">
+        </div>
+	</div>
+	<br>
+	<div class="row">
+	<div class="column">
+	    <label for="lname_start">Last Name Range Start</label>
+            <input name = "lname_start" type="text" id="lname_start" placeholder="A-Z">
+        </div>
+	<div class="column">
+	    <label for="lname_end">Last Name Range End</label>
+            <input name = "lname_end" type="text" id="lname_end" placeholder="A-Z">
+	</div>
+	</div>
+	<div>
+	    <label for="name">Name</label> <span><i><font size="3">*Individual Hours Report Only</font></i></span>
+            <input type="text" id="name" name="name" value="" placeholder="Enter a volunteer's first and/or last name">
+	</div>
+            <input type="submit" name="submit_click">
+	
+        </form>
 
-</body>
+    </main>
+
+    </body>
+
+</html>
