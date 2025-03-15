@@ -167,10 +167,8 @@
         <label for="report_type">Select Report Type</label><span><i><font size="3"> *For Emails After Selection Just Hit Submit</font></i></span>
         <select name="report_type" id="report_type">
             <option value = "indiv_vol_hours">Individual Volunteer Hours</option>
-            <option value = "top_perform">Top Performers</option>
-            <option value = "email_volunteer_list">Volunteer's Email Adresses</option>
-            <option value = "completed_training">Volunteers Who Completed Training</option>
-            <option value = "missing_paperwork">Volunteer Missing Paperwork</option>
+            <option value = "accommodations">Participant Accommodations / Disabilities</option>
+            <option value = "top_perform">Event Attendance</option>
         </select>
 	</div>
 	<div>
