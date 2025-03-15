@@ -1093,9 +1093,7 @@ function getBetweenDates($startDate, $endDate)
         }
     }
 
-    // ------------------------------------------------------------------------------------------
-    // 6) REPORT: Email Volunteer List
-    // ------------------------------------------------------------------------------------------
+
     if ($type == "email_volunteer_list") {
         $con = connect();
         if ($stats != "All") {

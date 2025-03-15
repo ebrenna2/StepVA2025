@@ -150,8 +150,7 @@
             }
 	    	else 
             {
-			// header("Location: /gwyneth/reportsPage.php?report_type=$report&date_from=$dFrom&date_to=$dTo&lname_start=$lastFrom&lname_end=$lastTo&name=$name&statusFilter=$status");
-                // NOT IDEAL. Can be broken by browsers with JS disabled.
+
                 echo "<script>window.location.href = 'reportsPage.php?report_type=$report&date_from=$dFrom&date_to=$dTo&lname_start=$lastFrom&lname_end=$lastTo&name=$name&statusFilter=$status';</script>";
 	    	}
 	    } 
@@ -167,8 +166,8 @@
         <label for="report_type">Select Report Type</label><span><i><font size="3"> *For Emails After Selection Just Hit Submit</font></i></span>
         <select name="report_type" id="report_type">
 			<option value = "indiv_vol_hours">Individual Volunteer Hours</option>
-            <option value = "accommodations">Participant Accommodations / Disabilities</option>
-            <option value = "top_perform">Event Attendance</option>
+            <option value = "accommodations_dis">Participant Accommodations / Disabilities</option>
+            <option value = "event_attendance">Event Attendance</option>
         </select>
 	</div>
 	<div>
