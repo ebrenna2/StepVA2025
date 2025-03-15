@@ -1,10 +1,4 @@
 <?php 
-/**
- * @version April 6, 2023
- * @author Alip Yalikun
- */
-
-
   session_cache_expire(30);
   session_start();
   ini_set("display_errors",1);
@@ -18,260 +12,210 @@
       $accessLevel = $_SESSION['access_level'];
       $userID = $_SESSION['_id'];
   }
-
   require_once('include/input-validation.php');
   require_once('database/dbPersons.php');
-  require_once('database/dbEvents.php');
-  require_once('include/output.php');
-  require_once('database/dbinfo.php');
-  
-  
 
-  if(isset($_GET['animal'])){
-    $selected_animal_name = $_GET['animal'];
-    $connection = connect();
-    $query = "select * from dbAnimals where name = '$selected_animal_name'";
-    $result = mysqli_query($connection, $query);
-    $animal_info = mysqli_fetch_assoc($result);
-} else {
-    echo "No animal selected!";
-}
-  
-  // Is user authorized to view this page?
   if ($accessLevel < 2) {
-      header('Location: index.php');
-      die();
+    header('Location: index.php');
+    die();
   }
-  
 
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <?php require_once('universal.inc') ?>
-        <title>Step VA | Report Result</title>
+        <title>Step VA | Reports</title>
         <style>
-            table {
-                margin-top: 1rem;
-                margin-left: auto;
-                margin-right: auto;
-                border-collapse: collapse;
-                width: 80%;
-            }
-            td {
-                border: 1px solid #333333;
-                text-align: left;
-                padding: 8px;
-            }
-            th {
-                background-color: var(--main-color);
-                color: var(--button-font-color);
-                border: 1px solid #333333;
-                text-align: left;
-                padding: 8px;
-		        font-weight: 500;
-            }
-          
-            tr:nth-child(even) {
-                background-color: #f0f0f0;
-                /* color:var(--button-font-color); */
-		
-            }
-
-            @media print {
-                tr:nth-child(even) {
-                    background-color: white;
-                }
-
-                button, header {
-                    display: none;
-                }
-
-                :root {
-                    font-size: 10pt;
-                }
-
-                label {
-                    color: black;
-                }
-
-                table {
-                    width: 100%;
-                }
-
-                a {
-                    color: black;
-                }
-            }
-
-            .theB{
-                width: auto;
-                font-size: 15px;
-            }
-	        .center_a {
-                margin-top: 0;
-		        margin-bottom: 3rem;
-                margin-left:auto;
-                margin-right:auto;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: .8rem;
-            }
-            .center_b {
-                margin-top: 3rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-		        gap: .8rem;
-            }
-            #back-to-top-btn {
-                bottom: 20px;
-            }
-            .back-to-top:visited {
-                color: white; /* sets the color of the link when visited */  
-            }
-            .back-to-top {
-                color: white; /* sets the color of the link when visited */  
-            }
-	    .intro {
+            .report_select{
                 display: flex;
                 flex-direction: column;
                 gap: .5rem;
-                padding: 0 0 0 0;
+                padding: 0 0 4rem 0;
             }
-	    @media only screen and (min-width: 1024px) {
-                .intro{
-                    width: 80%;
-                }
-                main.report {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
+            @media only screen and (min-width: 1024px) {
+                .report_select {
+                    /* width: 40%; */
+                    width: 35rem;
             }
-        footer {
-            margin-bottom: 2rem;
-        }
-    </style>
+            main.report {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+	    .column {
+		padding: 0 4rem 0 0;
+		width: 50%;
+	    }
+	    .row{
+          	display: flex;
+            }
+	    }
+	    .hide {
+  		display: none;
+	    }
 
+	    .myDIV:hover + .hide {
+		display: block;
+  		color: red;
+	    }
+        </style>
     </head>
     <body>
-  	<?php require_once('header.php') ?>
-    <?php
-        $animal_name = $animal_info['name'];
-        $animal_breed = $animal_info['breed'];
-        $animal_age = $animal_info['age'];
-        $animal_id = $animal_info['odhs_id'];
-        $animal_gender = $animal_info['gender'];
-        $animal_spay_neuter = $animal_info['spay_neuter_done'];
-        $animal_microchip = $animal_info['microchip_done'];
-        $animal_rabies = (($animal_info['rabies_given_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['rabies_given_date'])) : "");            
-        $animal_rabies_due = (($animal_info['rabies_due_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['rabies_due_date'])) : "");            
-        $animal_heartworm = (($animal_info['heartworm_given_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['heartworm_given_date'])) : "");            
-        $animal_heartworm_due = (($animal_info['heartworm_due_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['heartworm_due_date'])) : "");            
-        $animal_distemper1 = (($animal_info['distemper1_given_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['distemper1_given_date'])) : "");
-        $animal_distemper1_due = (($animal_info['distemper1_due_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['distemper1_due_date'])) : "");
-        $animal_distemper2 = (($animal_info['distemper2_given_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['distemper2_given_date'])) : "");
-        $animal_distemper2_due = (($animal_info['distemper2_due_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['distemper2_due_date'])) : "");
-        $animal_distemper3 = (($animal_info['distemper3_given_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['distemper3_given_date'])) : "");
-        $animal_distemper3_due = (($animal_info['distemper3_due_date'] != "0000-00-00") ? date('F j, Y', strtotime($animal_info['distemper3_due_date'])) : "");
-        $animal_notes = $animal_info['notes'];
-            ?> 
-        <h1>Report Result</h1>
-        <main class="report">
-	   <div class="intro">
-        <div>
-            <label>Animal Name:</label>
-            <span>
-            <?php echo $animal_name; ?>
-            </span>
-            <label>Animal Age:</label>
-            <span>
-            <?php echo $animal_age; ?>
-            </span>
-            <label>Animal Breed:</label>
-            <span>
-            <?php echo $animal_breed; ?>
-            </span>
-            <label>Animal Gender:</label>
-            <span>
-            <?php echo $animal_gender; ?>
-            </span>
-            <label>Animal Notes:</label>
-            <span>
-            <?php echo $animal_notes; ?>
-            </span>
-        </div>
+        <?php require_once('header.php');?>
+	<h1>Step VA Reports</h1>
 
+    <main class="report">
+	<?php
+        //following if statement is triggered on submit as far as I can tell
+        //this first one is triggered if ALL fields have been filled
+	    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_click"]) 
+        && isset($_POST["report_type"]) && isset($_POST["date_from"]) && 
+        isset($_POST["date_to"]) && isset($_POST['lname_start']) && isset($_POST['lname_end']) 
+        && isset($_POST['name']) && isset($_POST['statusFilter'])) 
+        {
+		    $args = sanitize($_POST);
+		    $report = $args['report_type'];
+		    $name = $args['name'];
+		    $dFrom = $_POST['date_from'];
+        	$dTo = $_POST['date_to'];
+		    if ($dTo > $dFrom) 
+            {
+		        echo "<b>Please enter a date after the Date Range Start.</b><br>";	
+		    }
+        	$lastFrom = $_POST['lname_start'];
+        	$lastTo = $_POST['lname_end'];
+		    if (strcmp(strtoupper($lastTo),strtoupper($lastFrom)) > 0) {
+		        echo "<b>Please enter a letter after the Last Name Range Start.</b><br>";
+		    }
+
+        	    $status = $_POST['statusFilter'];
+
+		    if ($report=="indiv_vol_hours" && $name == NULL) 
+            {
+			    echo "<b>Please enter a volunteer's first and/or last name.</b><br>";
+		    }
+
+            if ($report == "email_volunteer_list")
+            {
+                if ($lastFrom != NULL || $lastTo != NULL || $dFrom != NULL || $dTo != NULL)
+                {
+                    echo "<b>Please leave the date range and name range empty for this kind of report.</b><br>";
+                }
+            }
+            
+            //Date range isn't needed for missing paperwork report, so don't allow user to select it
+            if($report=="missing_paperwork" && $dFrom != NULL && $dTo != NULL)
+            {
+                echo "<b>Please do not use a date range with this report type.</b><br>";
+            }
+	    	elseif ($report=="indiv_vol_hours" && $name != NULL) 
+            {
+			    echo "<h3>Search Results</h3>";
+			    $persons = find_user_names($name);
+                require_once('include/output.php');
+                if (count($persons) > 0) 
+                {
+                    echo '
+                        <div class="table-wrapper">
+                        <table class="general">
+                            <thead>
+                                <tr>
+                                    <th>First</th>
+                                    <th>Last</th>
+					            <th>Email</th>
+					            <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="standout">';
+                    foreach ($persons as $person) 
+                    {
+                        echo '
+                            <tr>
+                            <td>' . $person->get_first_name() . '</td>
+                            <td>' . $person->get_last_name() . '</td>
+ 					        <td><a href="mailto:' . $person->get_id() . '">' . $person->get_id() . '</a></td>
+				            <td><a href="reportsPage.php?report_type='. $report .'&date_from='. $dFrom .'&date_to='. $dTo .'&lname_start='. $lastFrom .'&lname_end='. $lastTo .'&name='. $name .'&indivID='. $person->get_id().' &role='. $person->get_type()[0] .' &statusFilter=' . $status . '">Run Report</a></td>
+				            </tr>';
+                    }
+                    echo '
+                        </tbody>
+                        </table>
+                        </div>';
+                } 
+                else 
+                {
+                    echo '<div class="error-toast">Your search returned no results.</div>';
+                }
+            }
+	    	else 
+            {
+			// header("Location: /gwyneth/reportsPage.php?report_type=$report&date_from=$dFrom&date_to=$dTo&lname_start=$lastFrom&lname_end=$lastTo&name=$name&statusFilter=$status");
+                // NOT IDEAL. Can be broken by browsers with JS disabled.
+                echo "<script>window.location.href = 'reportsPage.php?report_type=$report&date_from=$dFrom&date_to=$dTo&lname_start=$lastFrom&lname_end=$lastTo&name=$name&statusFilter=$status';</script>";
+	    	}
+	    } 
+            // $alphabet = range('a', 'z');
+            // foreach ($alphabet as $letter) {
+            //     echo $letter . " ";
+            // }
+	    ?>
+	<h2>Generate Reports</h2>
+	<br>
+        <form class="report_select" method="post">
 	<div>
-             <label>Medical:</label>
-             <span>
-             <table align = 'left'>
-             <tbody>
-                    <tr>	
-                        <td class="label">Spayed/Neutered </td>
-                        <td><?php echo $animal_spay_neuter?></td>     		
-                    </tr>
-                    <tr>	
-                        <td class="label">Microchipped </td>
-                        <td><?php echo $animal_microchip?></td>
-                    </tr>
-                    <tr>	
-                        <td class="label">Rabies given </td>
-                        <td><?php echo $animal_rabies?></td>
-                    </tr>
-                    <tr>
-                    <td class="label">Rabies due </td>
-                    <td><?php echo $animal_rabies_due?></td>
-                    </tr>
-                    <tr>	
-                        <td class="label">Heartworm test given</td>
-                        <td><?php echo $animal_heartworm?></td>
-                    </tr>
-                    <tr>
-                        <td class="label">Heartworm due</td>
-                        <td><?php echo $animal_heartworm_due?></td>
-                    </tr>
-                    <tr>	
-                        <td class="label">Distemper 1 given </td>
-                        <td><?php echo $animal_distemper1?></td>
-                    </tr>
-                    <tr>
-                        <td class="label">Distemper 1 due </td>
-                        <td><?php echo $animal_distemper1_due?></td>
-                    </tr>
-                    <tr>	
-                        <td class="label">Distemper 2 given </td>
-                        <td><?php echo $animal_distemper2?></td>
-                    </tr>
-                    <tr>
-                        <td class="label">Distemper 2 due </td>
-                        <td><?php echo $animal_distemper2_due?></td>
-                    </tr>
-                    <tr>	
-                        <td class="label">Distemper 3 given </td>
-                        <td><?php echo $animal_distemper3?></td>
-                    </tr>
-                    <tr>
-                        <td class="label">Distemper 3 due </td>
-                        <td><?php echo $animal_distemper3_due?></td>
-                    </tr>
-                    </tbody>
-            </table>   
-             </span>
-         </div>
-
-	
-    </main>
-	<div class="center_a">
-                <a href="report.php">
-                <button class = "theB">New Report</button>
-                </a>
-                <a href="index.php">
-                <button class = "theB">Home Page</button>
-                </a>
+        <label for="report_type">Select Report Type</label><span><i><font size="3"> *For Emails After Selection Just Hit Submit</font></i></span>
+        <select name="report_type" id="report_type">
+            <option value = "indiv_vol_hours">Individual Volunteer Hours</option>
+            <option value = "top_perform">Top Performers</option>
+            <option value = "email_volunteer_list">Volunteer's Email Adresses</option>
+            <option value = "completed_training">Volunteers Who Completed Training</option>
+            <option value = "missing_paperwork">Volunteer Missing Paperwork</option>
+        </select>
 	</div>
-        </main>
+	<div>
+	 <label>Status </label> <span><i><font size="3">
+     <br>
+	<?php
+        // Set filter on status of volunteers to return in the report result
+        echo "<br>";
+            echo '<input type="radio" name="statusFilter" id = "allStatus" value="All" checked>&nbspAll&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+            echo '<input type="radio" name="statusFilter" id = "isActive" value="Active" >&nbspActive&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+            echo '<input type="radio" name="statusFilter" id = "isInactive" value="Inactive">&nbspInactive&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp';
+	?>
+	</div>
+	<br>
+	<div class="row">
+	<div class="column">
+	    <label for="date_from">Date Range Start</label>
+            <input name = "date_from" type="date" id="date_from" placeholder="yyyy-mm-dd">
+        </div>
+	<div class="column">
+	    <label for="date_to">Date Range End</label>
+            <input name = "date_to" type="date" id="date_to" placeholder="yyyy-mm-dd">
+        </div>
+	</div>
+	<br>
+	<div class="row">
+	<div class="column">
+	    <label for="lname_start">Last Name Range Start</label>
+            <input name = "lname_start" type="text" id="lname_start" placeholder="A-Z">
+        </div>
+	<div class="column">
+	    <label for="lname_end">Last Name Range End</label>
+            <input name = "lname_end" type="text" id="lname_end" placeholder="A-Z">
+	</div>
+	</div>
+	<div>
+	    <label for="name">Name</label> <span><i><font size="3">*Individual Hours Report Only</font></i></span>
+            <input type="text" id="name" name="name" value="" placeholder="Enter a volunteer's first and/or last name">
+	</div>
+            <input type="submit" name="submit_click">
+	
+        </form>
+
+    </main>
+
     </body>
+
 </html>
