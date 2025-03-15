@@ -122,6 +122,10 @@
                         <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         <span><center>Upload Resources</center></span>
                     </div>
+                    <div class="dashboard-item" data-link="viewVideos.php">
+                        <i class="fa-solid fa-video"></i>
+                        <span><center>View Videos</center></span>
+                    </div>
                 <?php endif ?>
 
                 <!-- FOR VOLUNTEERS AND PARTICIPANTS ONLY -->
