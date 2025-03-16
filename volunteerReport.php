@@ -109,7 +109,7 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
     $pdf->Cell(0, 10, 'Admin Signature: ______________________________________ Date: ' . date('m/d/Y'), 0, 1);
     $pdf->Cell(0, 10, 'Print Admin Name: _____________________________________', 0, 1);
 
-    // Output the PDF (to the browser)
+    // Output the PDF
     $pdf->Output('I', 'Volunteer_History_Report.pdf');
     exit;
 }
@@ -129,27 +129,32 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
         <?php if (!$volunteer): ?>
             <p class="error-toast">That volunteer does not exist!</p>
         <?php else: ?>
+            <!-- DATE RANGE FILTER FORM -->
             <form method="GET" class="no-print" style="margin-bottom: 1rem;">
                 <?php if ($isAdmin && isset($id)): ?>
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
                 <?php endif; ?>
                 <label for="date_from">Start Date:</label>
-                <input type="date" id="date_from" name="date_from" value="<?php echo $dateFrom ? htmlspecialchars($dateFrom) : ''; ?>">
+                <input type="date" id="date_from" name="date_from" 
+                       value="<?php echo $dateFrom ? htmlspecialchars($dateFrom) : ''; ?>">
+                
                 <label for="date_to">End Date:</label>
-                <input type="date" id="date_to" name="date_to" value="<?php echo $dateTo ? htmlspecialchars($dateTo) : ''; ?>">
+                <input type="date" id="date_to" name="date_to" 
+                       value="<?php echo $dateTo ? htmlspecialchars($dateTo) : ''; ?>">
+                
                 <button type="submit">Filter</button>
-            </form>
-            <form method="GET" class="no-print">
-                <input type="hidden" name="generate_pdf" value="true">
-                <button type="submit">Generate PDF</button>
             </form>
 
             <?php if ($viewingSelf): ?>
                 <h2 class="no-print">Your Volunteer Hours</h2>
             <?php else: ?>
-                <h2 class="no-print">Hours Volunteered by <?php echo $volunteer->get_first_name() . ' ' . $volunteer->get_last_name(); ?></h2>
+                <h2 class="no-print">
+                    Hours Volunteered by <?php echo $volunteer->get_first_name() . ' ' . $volunteer->get_last_name(); ?>
+                </h2>
             <?php endif; ?>
-            <h2 class="print-only">Hours Volunteered by <?php echo $volunteer->get_first_name() . ' ' . $volunteer->get_last_name(); ?></h2>
+            <h2 class="print-only">
+                Hours Volunteered by <?php echo $volunteer->get_first_name() . ' ' . $volunteer->get_last_name(); ?>
+            </h2>
 
             <?php if (count($events) > 0): ?>
                 <div class="table-wrapper">
@@ -176,25 +181,31 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
                                     $dateFmt = date('m/d/Y', strtotime($event['date']));
                                     echo '<tr>
                                             <td>' . $dateFmt . '</td>
-                                            <td>' . $event["name"] . '</td>
+                                            <td>' . htmlspecialchars($event["name"]) . '</td>
                                             <td></td>
                                             <td class="align-right">' . floatPrecision($hours, 2) . '</td>
                                           </tr>';
                                 }
-                                echo "<tr class='total-hours'>
-                                        <td></td>
-                                        <td></td>
-                                        <td class='total-hours'>Total Hours</td>
-                                        <td class='align-right'>" . floatPrecision($total_hours, 2) . "</td>
-                                      </tr>";
                             ?>
+                            <tr class='total-hours'>
+                                <td></td>
+                                <td></td>
+                                <td class='total-hours'>Total Hours</td>
+                                <td class='align-right'><?php echo floatPrecision($total_hours, 2); ?></td>
+                            </tr>
                         </tbody>
                     </table>
-                    <p class="print-only">I hereby certify that this volunteer has contributed the above volunteer hours to the Step VA organization.</p>
+                    <p class="print-only">
+                        I hereby certify that this volunteer has contributed the above volunteer hours 
+                        to the Step VA organization.
+                    </p>
                     <table id="signature-table" class="print-only">
                         <tbody>
                             <tr>
-                                <td>Admin Signature: ______________________________________ Date: <?php echo date('m/d/Y'); ?></td>
+                                <td>
+                                    Admin Signature: ______________________________________ 
+                                    Date: <?php echo date('m/d/Y'); ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Print Admin Name: _____________________________________</td>
@@ -202,14 +213,38 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
                         </tbody>
                     </table>
                 </div>
-                <button class="no-print" onclick="window.print()" style="margin-bottom: -.5rem">Print</button>
+
+                <?php if ($total_hours >= 0): ?>
+                    <form method="GET" class="no-print" style="margin-top: 1rem;">
+                        <input type="hidden" name="generate_pdf" value="true">
+                        <?php if ($isAdmin && isset($id)): ?>
+                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+                        <?php endif; ?>
+                        <?php if ($dateFrom): ?>
+                            <input type="hidden" name="date_from" value="<?php echo htmlspecialchars($dateFrom); ?>">
+                        <?php endif; ?>
+                        <?php if ($dateTo): ?>
+                            <input type="hidden" name="date_to" value="<?php echo htmlspecialchars($dateTo); ?>">
+                        <?php endif; ?>
+                        <button type="submit">Generate PDF</button>
+                    </form>
+                <?php else: ?>
+                    <p class="no-print" style="margin-top: 1rem; color: gray;">
+                        No volunteer hours to generate a PDF.
+                    </p>
+                <?php endif; ?>
+
             <?php else: ?>
-                <p>There are no volunteer hours to report <?php if ($dateFrom || $dateTo) echo "in this date range"; ?>.</p>
+                <p>There are no volunteer hours to report 
+                   <?php if ($dateFrom || $dateTo) echo "in this date range"; ?>.</p>
             <?php endif; ?>
+
             <?php if ($viewingSelf): ?>
                 <a class="button cancel no-print" href="viewProfile.php">Return to Profile</a>
             <?php else: ?>
-                <a class="button cancel no-print" href="viewProfile.php?id=<?php echo htmlspecialchars($id); ?>">Return to Profile</a>
+                <a class="button cancel no-print" href="viewProfile.php?id=<?php echo htmlspecialchars($id); ?>">
+                    Return to Profile
+                </a>
             <?php endif; ?>
         <?php endif; ?>
     </main>

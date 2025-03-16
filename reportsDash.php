@@ -66,12 +66,12 @@
                         <span><center>Participant Accomodations</center></span>
                     </div>
 
-                    <div class="dashboard-item" data-link="reportsDash.php">
+                    <div class="dashboard-item" data-link="eventAttendanceForm.php">
                         <img src="images/create-report.svg">
                         <span><center>Event Attendance</center></span>
                     </div>
 
-                    <div class="dashboard-item" data-link="reportsDash.php">
+                    <div class="dashboard-item" data-link="volunteerReport.php">
                         <img src="images/create-report.svg">
                         <span><center>Volunteer Hours</center></span>
                     </div>
