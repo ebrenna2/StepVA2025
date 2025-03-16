@@ -1,9 +1,12 @@
 <?php
-require_once __DIR__ . '/include/fpdf.php';
+require_once '/Applications/XAMPP/xamppfiles/htdocs/StepVA2025/include/fpdf.php';
 
 // Make session information accessible, allowing us to associate data with the logged-in user.
 session_cache_expire(30);
 session_start();
+$id = null;          
+$volunteer = null;  
+$events = [];
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 $loggedIn = false;
@@ -24,15 +27,13 @@ if (!$loggedIn) {
 
 $isAdmin = $accessLevel >= 2;
 require_once('database/dbPersons.php');
-if ($isAdmin && isset($_GET['id'])) {
+if (isset($_GET['id']) && !empty($_GET['id'])) {
     require_once('include/input-validation.php');
     $args = sanitize($_GET);
     $id = $args['id'];
-    $viewingSelf = $id == $userID;
-} else {
-    $id = $_SESSION['_id'];
-    $viewingSelf = true;
+    $viewingSelf = ($id == $userID);
 }
+
 
 $dateFrom = (isset($_GET['date_from']) && $_GET['date_from'] != '') ? $_GET['date_from'] : null;
 $dateTo = (isset($_GET['date_to']) && $_GET['date_to'] != '') ? $_GET['date_to'] : null;
@@ -125,11 +126,21 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
 <body>
     <?php require_once('header.php'); ?>
     <h1>Volunteer History Report</h1>
+    <form method="GET" class="no-print" style="margin-bottom: 1rem;">
+                <label for="search_id">Search by User ID:</label>
+                <input type="text" id="search_id" name="id" 
+                    placeholder="Enter User ID" value="<?php echo isset($_GET['id']) ? htmlspecialchars($_GET['id']) : ''; ?>">
+                <button type="submit">Search</button>
+            </form>
     <main class="hours-report">
-        <?php if (!$volunteer): ?>
-            <p class="error-toast">That volunteer does not exist!</p>
-        <?php else: ?>
-            <!-- DATE RANGE FILTER FORM -->
+    <?php if ($id === null): ?>
+
+<p>Please enter a User ID above to search.</p>
+
+<?php elseif (!$volunteer): ?>
+
+<p class="error-toast">That volunteer does not exist!</p>
+<?php else: ?>
             <form method="GET" class="no-print" style="margin-bottom: 1rem;">
                 <?php if ($isAdmin && isset($id)): ?>
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">

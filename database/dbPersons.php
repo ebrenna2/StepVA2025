@@ -723,6 +723,7 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         return $thePersons;
     }
 
+
     function find_users($name, $id, $phone, $zip, $type, $status, $photo_release) {
         $where = 'where ';
         if (!($name || $id || $phone || $zip || $type || $status || $photo_release)) {

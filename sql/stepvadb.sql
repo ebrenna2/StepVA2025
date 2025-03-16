@@ -420,6 +420,17 @@ INSERT INTO `dbpersonhours` (`personID`, `eventID`, `start_time`, `end_time`) VA
 
 -- --------------------------------------------------------
 
+-- Table Structure for 'dbvideos'
+CREATE TABLE dbvideos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(2083) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    synopsis TEXT,
+    type INT
+);
+
+----------------------------------------------------------
+
 --
 -- Table structure for table `dbpersons`
 --
