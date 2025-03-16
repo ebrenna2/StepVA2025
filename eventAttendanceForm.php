@@ -76,6 +76,10 @@ $notRoot = $person->get_id() != 'vmsroot';
         ";
 
         $stmt = $conn->prepare($sqlAttendees);
+if (!$stmt) {
+    die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+}
+
         $stmt->bind_param("i", $eventId);
         $stmt->execute();
         $attendeesResult = $stmt->get_result();
