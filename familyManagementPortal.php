@@ -30,23 +30,23 @@
         require_once('header.php');
         $isAdmin = $_SESSION['access_level'] >= 2;
 
-        $familyMemNames = get_family_member_names($person->get_id());      
+        $familyMemIDs = get_family_member_ids($person->get_id());      
 
         echo '<fieldset class="section-box">';
         echo '<legend>Family Members</legend>';
         //Now make a table with all of the family members tied to this account
         echo '<table>';
-        for ($i = 0; $i<count($familyMemNames); $i++){
+        for ($i = 0; $i<count($familyMemIDs); $i++){
             echo '<tr>';
 
             //Display the family member name
             echo '<td>';
-            echo $familyMemNames[$i];
+            echo get_name_from_id($familyMemIDs[$i]);
             echo '</td>';
 
             //Display the family member edit button
             echo '<td>';
-            echo '<a href="editchildprofile.php"><button type="button" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Edit Child Profile</button></a>';
+            echo '<a href="editchildprofile.php?childID=' . $familyMemIDs[$i] .  '"><button type="button" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Edit Child Profile</button></a>';
             echo '</td>';
 
         }

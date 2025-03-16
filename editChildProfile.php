@@ -179,25 +179,30 @@
             $updateSuccess = false;
         }
         
-        $result = update_person_required(
-            $id, $first_name, $last_name, $birthday, $street_address, $city, $state,
-            $zip_code, $email, $phone1, $phone1type, $emergency_contact_first_name,
-            $emergency_contact_last_name, $emergency_contact_phone,
-            $emergency_contact_phone_type, $emergency_contact_relation, $type,
-            $school_affiliation, $tshirt_size, $how_you_heard_of_stepva,
-            $preferred_feedback_method, $hobbies, $professional_experience,
-            $disability_accomodation_needs, $training_complete, $training_date,
-            $orientation_complete, $orientation_date, $background_complete,
-            $background_date, $skills, $networks, $contributions, $photo_release, $photo_release_notes
-        );
-        if ($result) {
-            if ($editingSelf) {
-                header('Location: viewProfile.php?editSuccess');
-            } else {
-                header('Location: viewProfile.php?editSuccess&id='. $id);
+        if (isset($args['childID'])) {
+            $id = $args['childID'];
+            $result = update_person_required(
+                $id, $first_name, $last_name, $birthday, $street_address, $city, $state,
+                $zip_code, $email, $phone1, $phone1type, $emergency_contact_first_name,
+                $emergency_contact_last_name, $emergency_contact_phone,
+                $emergency_contact_phone_type, $emergency_contact_relation, $type,
+                $school_affiliation, $tshirt_size, $how_you_heard_of_stepva,
+                $preferred_feedback_method, $hobbies, $professional_experience,
+                $disability_accomodation_needs, $training_complete, $training_date,
+                $orientation_complete, $orientation_date, $background_complete,
+                $background_date, $skills, $networks, $contributions, $photo_release, $photo_release_notes
+            );
+            if ($result) {
+                if ($editingSelf) {
+                    header('Location: viewProfile.php?editSuccess');
+                } else {
+                    header('Location: viewProfile.php?editSuccess&id='. $id);
+                }
+                die();
             }
-            die();
         }
+
+        
 
     }
 ?>
@@ -211,7 +216,7 @@
     <?php
         require_once('header.php');
         $isAdmin = $_SESSION['access_level'] >= 2;
-        require_once('profileEditForm.php');
+        require_once('profileEditChildForm.php');
     ?>
 </body>
 </html>
