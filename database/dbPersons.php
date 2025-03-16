@@ -82,10 +82,10 @@ function add_person($person) {
             '{$person->get_orientation_date()}',
             '{$person->get_background_complete()}',
             '{$person->get_background_date()}',
+            '{$person->get_familyId()}',
             '{$person->get_skills()}',
             '{$person->get_networks()}',
-            '{$person->get_contributions()}',
-            '{$person->get_familyId()}'
+            '{$person->get_contributions()}'
         )");
         mysqli_close($con);
         return true;
