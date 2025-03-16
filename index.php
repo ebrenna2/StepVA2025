@@ -20,14 +20,13 @@
         $person = retrieve_person($_SESSION['_id']);
     }
     $notRoot = $person->get_id() != 'vmsroot';
-
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <?php require('universal.inc'); ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <title>Step VA Volunteer System | Dashboard</title>
+        <title>Step VA System | Dashboard</title>
     </head>
     <body>
         <?php require('header.php'); ?>
@@ -61,6 +60,13 @@
                     
                 ?>
                 
+                <!-- VMSROOT ONLY -->
+                 <?php if ($_SESSION['access_level'] >= 4): ?>
+                <div class="dashboard-item" data-link="registerAdmin.php">
+                        <img src="images/add-person.svg">
+                        <span>Add Admin</span>
+                    </div>
+                <?php endif ?>
                 <!-- Everyone's Dashboard -->
                 <div class="dashboard-item" data-link="inbox.php">
                     <img src="images/<?php echo $inboxIcon ?>">
@@ -106,10 +112,6 @@
                         <img src="images/add-person.svg">
                         <span>Register Volunteer</span>
                     </div>
-                    <div class="dashboard-item" data-link="registerAdmin.php">
-                        <img src="images/add-person.svg">
-                        <span>Add Admin</span>
-                    </div>
                     <div class="dashboard-item" data-link="adminViewingEvents.php">
                         <i class="fa-solid fa-list"></i>
                         <span>View Events</span>
@@ -125,7 +127,7 @@
                 <?php endif ?>
 
                 <!-- FOR VOLUNTEERS ONLY -->
-                <?php if ($notRoot) : ?>
+                <?php if ($_SESSION['access_level'] >= 1): ?>
                     <div class="dashboard-item" data-link="viewProfile.php">
                         <img src="images/view-profile.svg">
                         <span>View Profile</span>
@@ -139,7 +141,7 @@
                         <span>My Upcoming Events</span>
                     </div>
                 <?php endif ?>
-                <?php if ($notRoot) : ?>
+                <?php if ($_SESSION['access_level'] >= 1): ?>
                     <div class="dashboard-item" data-link="volunteerReport.php">
                         <img src="images/volunteer-history.svg">
                         <span><center>View Volunteering Report</center></span>
@@ -149,23 +151,22 @@
                         <span><center>View & Change My Event Hours</center></span>
                     </div>
                 <?php endif ?>
-                <div class="dashboard-item" data-link="changePassword.php">
-                    <img src="images/change-password.svg">
-                    <span>Change Password</span>
-                </div>
-
                 <!-- For Participants Only -->
 
                 <!-- FOR FAMILY LEADERS ONLY -->
                 <?php if (is_family_leader($person->get_id())) : ?>
+                    <?php if ($_SESSION['access_level'] == 0): ?>
                     <div class="dashboard-item" data-link="familyManagementPortal.php">
                         <img src="images/people.svg">
                         <span>Manage Family</span>
                     </div>
                 <?php endif ?>
+                <?php endif ?>
 
-
-
+                <div class="dashboard-item" data-link="changePassword.php">
+                    <img src="images/change-password.svg">
+                    <span>Change Password</span>
+                </div>
                 <div class="dashboard-item" data-link="logout.php">
                     <img src="images/logout.svg">
                     <span>Log out</span>

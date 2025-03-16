@@ -127,8 +127,10 @@ class Person {
 			$this->access_level = 4;
 		} else if ($status == 'Admin') { // Password that gives admin access rights
 			$this->access_level = 3; // Only available for new admin creation
-		} else {
+		} else if($status == 'Volunteer'){
 			$this->access_level = 1;
+		} else {
+			$this->access_level = 0;
 		}
 	}
 
