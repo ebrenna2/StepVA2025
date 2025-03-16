@@ -82,10 +82,10 @@ function add_person($person) {
             '{$person->get_orientation_date()}',
             '{$person->get_background_complete()}',
             '{$person->get_background_date()}',
+            '{$person->get_familyId()}',
             '{$person->get_skills()}',
             '{$person->get_networks()}',
-            '{$person->get_contributions()}',
-            '{$person->get_familyId()}'
+            '{$person->get_contributions()}'
         )");
         mysqli_close($con);
         return true;
@@ -1262,4 +1262,87 @@ function find_user_names($name) {
         mysqli_stmt_close($stmt);
         mysqli_close($con);
         return $rows_affected; // Returns 1 if successful, 0 if failed
+    }
+
+    function is_family_leader($username) {
+        $con = connect();
+        $query = "SELECT username FROM dbfamilyleader WHERE username = ?";
+        $stmt = mysqli_prepare($con, $query);
+        if (!$stmt) {
+            mysqli_close($con);
+            return false; // Failed to prepare statement
+        }
+        mysqli_stmt_bind_param($stmt, "s", $username);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        $is_leader = mysqli_stmt_num_rows($stmt) > 0;
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+        return $is_leader; // True if username is a family leader, false otherwise
+    }
+
+    function get_family_member_names($leader_username) {
+        $con = connect();
+        
+        // Step 1: Get the familyid from dbfamilyleader using the leader's username
+        $query_leader = "SELECT familyid FROM dbfamilyleader WHERE username = ?";
+        $stmt_leader = mysqli_prepare($con, $query_leader);
+        if (!$stmt_leader) {
+            mysqli_close($con);
+            return [];
+        }
+        mysqli_stmt_bind_param($stmt_leader, "s", $leader_username);
+        mysqli_stmt_execute($stmt_leader);
+        mysqli_stmt_bind_result($stmt_leader, $familyid);
+        $found = mysqli_stmt_fetch($stmt_leader);
+        mysqli_stmt_close($stmt_leader);
+    
+        if (!$found) {
+            mysqli_close($con);
+            return [];
+        }
+    
+        // Step 2: Get all family member usernames from dbfamilymember using familyid
+        $query_members = "SELECT username FROM dbfamilymember WHERE familyid = ?";
+        $stmt_members = mysqli_prepare($con, $query_members);
+        if (!$stmt_members) {
+            mysqli_close($con);
+            return [];
+        }
+        mysqli_stmt_bind_param($stmt_members, "i", $familyid);
+        mysqli_stmt_execute($stmt_members);
+        $result = mysqli_stmt_get_result($stmt_members);
+        $usernames = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $usernames[] = $row['username'];
+        }
+        mysqli_stmt_close($stmt_members);
+    
+        if (empty($usernames)) {
+            mysqli_close($con);
+            return [];
+        }
+    
+        // Step 3: Get names from dbpersons for each username
+        $names = [];
+        $query_names = "SELECT first_name, last_name FROM dbpersons WHERE id = ?";
+        $stmt_names = mysqli_prepare($con, $query_names);
+        if (!$stmt_names) {
+            mysqli_close($con);
+            return $names; // Return what we have if preparation fails
+        }
+        foreach ($usernames as $username) {
+            mysqli_stmt_bind_param($stmt_names, "s", $username);
+            mysqli_stmt_execute($stmt_names);
+            mysqli_stmt_bind_result($stmt_names, $first_name, $last_name);
+            if (mysqli_stmt_fetch($stmt_names)) {
+                $names[] = "$first_name $last_name";
+            }
+            mysqli_stmt_free_result($stmt_names);
+        }
+    
+        mysqli_stmt_close($stmt_names);
+        mysqli_close($con);
+    
+        return $names; // Array of full names (e.g., ["John Doe", "Jane Smith"])
     }

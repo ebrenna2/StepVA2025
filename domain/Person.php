@@ -124,11 +124,13 @@ class Person {
 
 		// access_level = 1 for users, and = 3 for admin
 		if ($id == 'vmsroot') {
-			$this->access_level = 3;
-		} else if ($status == 'Admin') { // Password that gives admin access rights
+			$this->access_level = 4;
+		} else if ($type == 'Admin') { // Password that gives admin access rights
 			$this->access_level = 3; // Only available for new admin creation
-		} else {
+		} else if($type == 'Volunteer' || $status == 'Active'){
 			$this->access_level = 1;
+		} else {
+			$this->access_level = 0;
 		}
 	}
 

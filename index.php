@@ -4,10 +4,19 @@
 
     date_default_timezone_set("America/New_York");
     
+    ini_set("display_errors", 1);
+    error_reporting(E_ALL);
+
+    // Debug: Log session state
+    error_log("index.php: Session['_id'] = " . (isset($_SESSION['_id']) ? $_SESSION['_id'] : 'not set'));
+    error_log("index.php: Session['access_level'] = " . (isset($_SESSION['access_level']) ? $_SESSION['access_level'] : 'not set'));
+
     if (!isset($_SESSION['access_level']) || $_SESSION['access_level'] < 1) {
         if (isset($_SESSION['change-password'])) {
+            error_log("index.php: Redirecting to changePassword.php due to change-password flag");
             header('Location: changePassword.php');
         } else {
+            error_log("index.php: Redirecting to login.php because access_level is invalid or not set");
             header('Location: login.php');
         }
         die();
@@ -60,6 +69,14 @@
                     
                 ?>
                 
+                <!-- VMSROOT ONLY -->
+                 <?php if ($_SESSION['access_level'] >= 4): ?>
+                <div class="dashboard-item" data-link="registerAdmin.php">
+                        <img src="images/add-person.svg">
+                        <span>Add Admin</span>
+                    </div>
+                <?php endif ?>
+                <!-- Everyone's Dashboard -->
                 <div class="dashboard-item" data-link="inbox.php">
                     <img src="images/<?php echo $inboxIcon ?>">
                     <span>Notifications<?php 
@@ -68,12 +85,10 @@
                         }
                     ?></span>
                 </div>
-                
                 <div class="dashboard-item" data-link="calendar.php">
                     <img src="images/view-calendar.svg">
                     <span>View Calendar</span>
                 </div>
-
                 <div class="dashboard-item" data-link="viewAllEvents.php">
                     <img src="images/new-event.svg">
                     <span>Sign-Up for Event</span>
@@ -106,10 +121,6 @@
                         <img src="images/add-person.svg">
                         <span>Register Volunteer</span>
                     </div>
-                    <div class="dashboard-item" data-link="registerAdmin.php">
-                        <img src="images/add-person.svg">
-                        <span>Add Admin</span>
-                    </div>
                     <div class="dashboard-item" data-link="adminViewingEvents.php">
                         <i class="fa-solid fa-list"></i>
                         <span>View Events</span>
@@ -128,13 +139,8 @@
                         <span><center>Reports Page</center></span>
                     </div>
                 <?php endif ?>
-
-                <!-- FOR VOLUNTEERS AND PARTICIPANTS ONLY -->
-                <?php if ($notRoot) : ?>
-                    <div class="dashboard-item" data-link="viewVideos.php">
-                        <i class="fa-solid fa-video"></i>
-                        <span><center>View Videos</center></span>
-                    </div>
+                <!-- FOR VOLUNTEERS ONLY -->
+                <?php if ($_SESSION['access_level'] >= 1): ?>
                     <div class="dashboard-item" data-link="viewProfile.php">
                         <img src="images/view-profile.svg">
                         <span>View Profile</span>
@@ -148,7 +154,7 @@
                         <span>My Upcoming Events</span>
                     </div>
                 <?php endif ?>
-                <?php if ($notRoot) : ?>
+                <?php if ($_SESSION['access_level'] >= 1): ?>
                     <div class="dashboard-item" data-link="volunteerReport.php">
                         <img src="images/volunteer-history.svg">
                         <span><center>View Volunteering Report</center></span>
@@ -158,6 +164,16 @@
                         <span><center>View & Change My Event Hours</center></span>
                     </div>
                 <?php endif ?>
+                <!-- For Participants Only -->
+
+                <!-- FOR FAMILY LEADERS ONLY -->
+                <?php if (is_family_leader($person->get_id())) : ?>
+                        <div class="dashboard-item" data-link="familyManagementPortal.php">
+                            <img src="images/people.svg">
+                            <span>Manage Family</span>
+                        </div>
+                <?php endif ?>
+
                 <div class="dashboard-item" data-link="changePassword.php">
                     <img src="images/change-password.svg">
                     <span>Change Password</span>
@@ -167,7 +183,6 @@
                     <img src="images/logout.svg">
                     <span>Log out</span>
                 </div>
-                
                 <!-- autoredirects home as volunteer currently -->
                 <!-- <div class="dashboard-item" data-link="editHours.php">
                         <img src="images/add-person.svg">

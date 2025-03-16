@@ -44,7 +44,7 @@
                 
                 // hard code root privileges
                 if ($user->get_id() == 'vmsroot') {
-                    $_SESSION['access_level'] = 3;
+                    $_SESSION['access_level'] = 4;
                     header('Location: index.php');
                 }
                 //if ($changePassword) {
