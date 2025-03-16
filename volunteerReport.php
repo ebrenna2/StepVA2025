@@ -1,5 +1,5 @@
 <?php
-require_once '/Applications/XAMPP/xamppfiles/htdocs/StepVA2025/include/fpdf.php';
+require_once __DIR__ . '/include/fpdf.php';
 
 // Make session information accessible, allowing us to associate data with the logged-in user.
 session_cache_expire(30);
