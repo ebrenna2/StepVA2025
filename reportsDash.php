@@ -61,7 +61,7 @@
 
                 <!-- ADMIN ONLY -->
                 <?php if ($_SESSION['access_level'] >= 2): ?>
-                    <div class="dashboard-item" data-link="reportsDash.php">
+                    <div class="dashboard-item" data-link="participantReport.php">
                         <img src="images/create-report.svg">
                         <span><center>Participant Accomodations</center></span>
                     </div>
