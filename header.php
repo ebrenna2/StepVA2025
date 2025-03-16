@@ -72,6 +72,7 @@
         $permission_array['viewmyupcomingevents.php'] = 1;
         //pages only managers can view
         $permission_array['viewallevents.php'] = 0;
+        $permission_array['reportsdash.php'] = 2; // Or whatever permission level is appropriate
         $permission_array['personsearch.php'] = 2;
         $permission_array['personedit.php'] = 0; // changed to 0 so that applicants can apply
         $permission_array['viewschedule.php'] = 2;
