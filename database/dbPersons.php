@@ -1346,3 +1346,23 @@ function find_user_names($name) {
     
         return $ids; // Array of IDs (e.g., ["123", "456"])
     }
+
+    function delete_family_member($id) {
+        $con = connect();
+        
+        $query = "DELETE FROM dbfamilymember WHERE username = ?";
+        $stmt = mysqli_prepare($con, $query);
+        
+        if (!$stmt) {
+            mysqli_close($con);
+            return false;
+        }
+        
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        $success = mysqli_stmt_execute($stmt);
+        
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+        
+        return $success;
+    }

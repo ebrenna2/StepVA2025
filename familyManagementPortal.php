@@ -26,7 +26,12 @@
     <title>Step VA | Manage Profile</title>
 </head>
 <body>
+    
     <?php
+        if (isset($_GET['message']) && $_GET['message'] === 'deleted') {
+            echo '<p style="color: green;">Family member deleted successfully</p>';
+        }
+
         require_once('header.php');
         $isAdmin = $_SESSION['access_level'] >= 2;
 
@@ -47,6 +52,11 @@
             //Display the family member edit button
             echo '<td>';
             echo '<a href="editchildprofile.php?childID=' . $familyMemIDs[$i] .  '"><button type="button" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Edit Child Profile</button></a>';
+            echo '</td>';
+
+            //Display the delete family member button
+            echo '<td>';
+            echo '<a href="deletefamilymember.php?childID=' . $familyMemIDs[$i] . '" onclick="return confirm(\'Are you sure you want to delete this family member?\');"><button type="button" style="padding: 10px 20px; background-color: #ff4444; color: white; border: none; cursor: pointer;">Delete Family Member</button></a>';
             echo '</td>';
 
         }
