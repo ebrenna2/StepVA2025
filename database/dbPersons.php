@@ -94,6 +94,14 @@ function add_person($person) {
     return false;
 }
 
+function get_sensory_sensitivities($sensory_sensitivities) {
+    return $sensory_sensitivities;
+}
+
+function get_disability_accommodation_needs($get_disability_accommodation_needs) {
+    return $get_disability_accommodation_needs;
+}
+
 /*
  * remove a person from dbPersons table.  If already there, return false
  */
@@ -677,6 +685,8 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         return $result;
     }
 
+    
+
     /**
      * Searches the database and returns an array of all volunteers
      * that are eligible to attend the given event that have not yet
@@ -685,6 +695,8 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
      * Eligibility criteria: availability falls within event start/end time
      * and start date falls before or on the volunteer's start date.
      */
+
+
     function get_unassigned_available_volunteers($eventID) {
         $connection = connect();
         $query = "select * from dbEvents where id='$eventID'";
@@ -1366,3 +1378,4 @@ function find_user_names($name) {
         
         return $success;
     }
+    

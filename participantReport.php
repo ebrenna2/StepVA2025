@@ -147,8 +147,8 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
         <?php else: ?>
 
             <?php
-                $sensorySensitivities = $volunteer->get_sensory_sensitivities();
-                $disabilityNeeds      = $volunteer->get_disability_accommodation_needs();
+                $sensorySensitivities = $volunteer->get_sensory_sensitivities($id);
+                $disabilityNeeds      = $volunteer->get_disability_accommodation_needs($id);
             ?>
 
             <h2>
