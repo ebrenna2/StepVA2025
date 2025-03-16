@@ -20,6 +20,7 @@
         $person = retrieve_person($_SESSION['_id']);
     }
     $notRoot = $person->get_id() != 'vmsroot';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,6 +61,7 @@
                     
                 ?>
                 
+                <!-- Everyone's Dashboard -->
                 <div class="dashboard-item" data-link="inbox.php">
                     <img src="images/<?php echo $inboxIcon ?>">
                     <span>Notifications<?php 
@@ -68,12 +70,10 @@
                         }
                     ?></span>
                 </div>
-                
                 <div class="dashboard-item" data-link="calendar.php">
                     <img src="images/view-calendar.svg">
                     <span>View Calendar</span>
                 </div>
-
                 <div class="dashboard-item" data-link="viewAllEvents.php">
                     <img src="images/new-event.svg">
                     <span>Sign-Up for Event</span>
@@ -124,7 +124,7 @@
                     </div>
                 <?php endif ?>
 
-                <!-- FOR VOLUNTEERS AND PARTICIPANTS ONLY -->
+                <!-- FOR VOLUNTEERS ONLY -->
                 <?php if ($notRoot) : ?>
                     <div class="dashboard-item" data-link="viewProfile.php">
                         <img src="images/view-profile.svg">
@@ -153,10 +153,25 @@
                     <img src="images/change-password.svg">
                     <span>Change Password</span>
                 </div>
+
+                <!-- For Participants Only -->
+
+                <!-- FOR FAMILY LEADERS ONLY -->
+                <?php if (is_family_leader($person->get_id())) : ?>
+                    <div class="dashboard-item" data-link="familyManagementPortal.php">
+                        <img src="images/people.svg">
+                        <span>Manage Family</span>
+                    </div>
+                <?php endif ?>
+
+
+
                 <div class="dashboard-item" data-link="logout.php">
                     <img src="images/logout.svg">
                     <span>Log out</span>
                 </div>
+
+                
                 <!-- autoredirects home as volunteer currently -->
                 <!-- <div class="dashboard-item" data-link="editHours.php">
                         <img src="images/add-person.svg">

@@ -112,6 +112,9 @@
         $permission_array['requestfailed.php'] = 1;
         $permission_array['settimes.php'] = 1;
         $permission_array['eventfailurebaddeparturetime.php'] = 1;
+
+        //For family leaders to view
+        $permission_array['familymanagementportal.php'] = 1;
         
         $permission_array['registeradmin.php'] = 2;
         // LOWERCASE
