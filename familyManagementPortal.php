@@ -69,7 +69,7 @@ if (isset($_SESSION['_id'])) {
             margin-right: 10px;
             display: inline-block;
             font-size: 0.9em; /* Keeping smaller font */
-            width: 180px; /* Added specific width to reduce button size */
+            width: 200px; /* Added specific width to reduce button size */
             text-align: center; /* Center the text within the button */
         }
         .edit-button {
