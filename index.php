@@ -155,12 +155,10 @@
 
                 <!-- FOR FAMILY LEADERS ONLY -->
                 <?php if (is_family_leader($person->get_id())) : ?>
-                    <?php if ($_SESSION['access_level'] == 0): ?>
-                    <div class="dashboard-item" data-link="familyManagementPortal.php">
-                        <img src="images/people.svg">
-                        <span>Manage Family</span>
-                    </div>
-                <?php endif ?>
+                        <div class="dashboard-item" data-link="familyManagementPortal.php">
+                            <img src="images/people.svg">
+                            <span>Manage Family</span>
+                        </div>
                 <?php endif ?>
 
                 <div class="dashboard-item" data-link="changePassword.php">
