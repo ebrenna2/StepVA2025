@@ -149,6 +149,10 @@
                         <img src="images/manage-account.svg">
                         <span>Edit Profile</span>
                     </div>
+                    <div class="dashboard-item" data-link="viewVideos.php">
+                        <img src="images/camera.svg">
+                        <span>Training Videos</span>
+                    </div>
                     <div class="dashboard-item" data-link="viewMyUpcomingEvents.php">
                         <i class="fa-solid fa-list"></i>
                         <span>My Upcoming Events</span>
