@@ -71,7 +71,7 @@
                         <span><center>Event Attendance</center></span>
                     </div>
 
-                    <div class="dashboard-item" data-link="volunteerReport.php">
+                    <div class="dashboard-item" data-link="volunteerReportWithSearch.php">
                         <img src="images/create-report.svg">
                         <span><center>Volunteer Hours</center></span>
                     </div>
