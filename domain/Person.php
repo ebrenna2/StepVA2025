@@ -66,6 +66,9 @@ class Person {
 	private $networks;
 	private $contributions;
 
+	// Family member stuff
+	private $familyId;
+
 	/*
 	 * This is a temporary mini constructor for testing purposes. It will be expanded later.
 	 */
@@ -76,7 +79,7 @@ class Person {
 						$emergency_contact_relation, $tshirt_size, $school_affiliation, $photo_release, $photo_release_notes, $type, $status, $archived,
 						$how_you_heard_of_stepva, $preferred_feedback_method, $hobbies, $professional_experience, $disability_accomodation_needs, 
 						$training_complete, $training_date, $orientation_complete,
-						$orientation_date, $background_complete, $background_date, $skills, $networks, $contributions
+						$orientation_date, $background_complete, $background_date, $skills, $networks, $contributions, $familyId
 						) {
 		$this->id = $id; // (username)
 		$this->password = $password;
@@ -117,6 +120,7 @@ class Person {
 		$this->skills = $skills;
 		$this->networks = $networks;
 		$this->contributions = $contributions;
+		$this->familyId = $familyId;
 
 		// access_level = 1 for users, and = 3 for admin
 		if ($id == 'vmsroot') {
@@ -286,5 +290,8 @@ class Person {
 	}
 	function get_contributions(){
 		return $this->contributions;
+	}
+	function get_familyId(){
+		return $this->familyId;
 	}
 }

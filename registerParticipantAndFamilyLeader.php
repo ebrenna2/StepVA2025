@@ -157,15 +157,84 @@
                 die();
             }
 
+            $status = "Active";
+            
+            $skills = '';
+            $networks = '';
+            $contributions = '';
 
+            $type = 'participant';
+            
+            $newperson = new Person(
+                $id, // (id = username)
+                $password,
+                date("Y-m-d"),
+                $first_name,
+                $last_name,
+                $birthday,
+                $street_address,
+                $city,
+                $state,
+                $zip_code,
+                $phone1,
+                $phone1type,
+                $email,
+                $emergency_contact_first_name,
+                $emergency_contact_last_name,
+                $emergency_contact_phone,
+                $emergency_contact_phone_type,
+                $emergency_contact_relation,
+                $tshirt_size,
+                $school_affiliation,
+                $photo_release,
+                $photo_release_notes,
+                $type, // admin or volunteer or participant...
+                $status,
+                $archived,
+                $how_you_heard_of_stepva,
+                $preferred_feedback_method,
+                $hobbies,
+                $professional_experience,
+                $disability_accomodation_needs,
+                $training_complete,
+                $training_date,
+                $orientation_complete,
+                $orientation_date,
+                $background_complete,
+                $background_date,
+                $skills,
+                $networks,
+                $contributions,
+                $familyId=-1 //Default to negative one indicating not a family leader, but will update in a second if so
+            );
+
+            //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
+
+            $result = add_person($newperson);
+            if (!$result) {
+                echo '<p>That username is already in use.</p>';
+            }
+
+            // Store the family leader in the family leader table and store
+
+            //Family member stuff
             if ($family_or_individual === "y"){
                 //This means they are signing up as a family
-                $type = 'familyLeader';
+                $type = '';
 
                 //Need to get other family member details from args list
                 $num_family_members = isset($_POST['num_family_members']) ? $_POST['num_family_members'] : null;
                 if (!is_null($num_family_members) && $num_family_members > 0){
                     echo 'There are: ' . $num_family_members . ' family members.';
+
+                    //At this point, they are a family leader and can be inserted into the table
+
+                    $familyId = add_family_leader($id);
+
+                    if (update_person_familyid($id, $familyId) != 1){
+                        echo 'There was an issue updating the family member id';
+                    }
+
                     $family_members = isset($_POST['family']) ? $_POST['family'] : null;
 
                     $member_required = array(
@@ -346,7 +415,8 @@
                             $member_background_date,
                             $member_skills,
                             $member_networks,
-                            $member_contributions
+                            $member_contributions,
+                            $familyId
                         );
 
                         //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
@@ -354,6 +424,10 @@
 
                         if (!$result) {
                             echo '<p>That username is already in use.</p>';
+                        }
+
+                        if (add_family_member($member_username, $familyId) != 1){
+                            echo 'There was an issue adding ' . $username . ' to the family member table';
                         }
                     }
                 }
@@ -365,69 +439,17 @@
                 $type = 'participant';
             }
 
-            $status = "Active";
-            
-            $skills = '';
-            $networks = '';
-            $contributions = '';
-            
-            $newperson = new Person(
-                $id, // (id = username)
-                $password,
-                date("Y-m-d"),
-                $first_name,
-                $last_name,
-                $birthday,
-                $street_address,
-                $city,
-                $state,
-                $zip_code,
-                $phone1,
-                $phone1type,
-                $email,
-                $emergency_contact_first_name,
-                $emergency_contact_last_name,
-                $emergency_contact_phone,
-                $emergency_contact_phone_type,
-                $emergency_contact_relation,
-                $tshirt_size,
-                $school_affiliation,
-                $photo_release,
-                $photo_release_notes,
-                $type, // admin or volunteer or participant...
-                $status,
-                $archived,
-                $how_you_heard_of_stepva,
-                $preferred_feedback_method,
-                $hobbies,
-                $professional_experience,
-                $disability_accomodation_needs,
-                $training_complete,
-                $training_date,
-                $orientation_complete,
-                $orientation_date,
-                $background_complete,
-                $background_date,
-                $skills,
-                $networks,
-                $contributions
-            );
-
-            //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
-
-            $result = add_person($newperson);
-            if (!$result) {
-                echo '<p>That username is already in use.</p>';
-            } else {
                 /*if ($loggedIn) {
                     echo '<script>document.location = "index.php?registerSuccess";</script>';
                 } else {*/
                     echo '<script>document.location = "login.php?registerSuccess";</script>';
                 /*}*/
-            }
         } else {
+            //Redirect to the register form
             require_once('registerForm_participantAndFamilyLeader.php'); 
         }
+        
+
     ?>
 </body>
 </html>
