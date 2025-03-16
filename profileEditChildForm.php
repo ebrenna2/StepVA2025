@@ -13,7 +13,11 @@
         $id = $_SESSION['_id'];
     }
 
-    $person = retrieve_person($id);
+    if (isset($args['childID'])){
+        $childID = $args['childID'];
+        $person = retrieve_person($childID);
+    }
+
     if (!$person) {
         echo '<main class="signup-form"><p class="error-toast">That user does not exist.</p></main></body></html>';
         die();
@@ -385,6 +389,8 @@
 
             <label>Do you have any additional ways you can contribute to STEPVA? </label>
             <input type="text" id="contributions" name="contributions" value="<?php echo hsc($person->get_contributions()); ?>" placeholder="">
+
+            <input type="hidden" id="childID" name="childID" value="<?php echo $childID ?>"> 
         </fieldset>
 
         <p></p>

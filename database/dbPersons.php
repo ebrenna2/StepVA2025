@@ -1281,7 +1281,7 @@ function find_user_names($name) {
         return $is_leader; // True if username is a family leader, false otherwise
     }
 
-    function get_family_member_names($leader_username) {
+    function get_family_member_ids($leader_username) {
         $con = connect();
         
         // Step 1: Get the familyid from dbfamilyleader using the leader's username
@@ -1323,26 +1323,46 @@ function find_user_names($name) {
             return [];
         }
     
-        // Step 3: Get names from dbpersons for each username
-        $names = [];
-        $query_names = "SELECT first_name, last_name FROM dbpersons WHERE id = ?";
-        $stmt_names = mysqli_prepare($con, $query_names);
-        if (!$stmt_names) {
+        // Step 3: Get IDs from dbpersons for each username
+        $ids = [];
+        $query_ids = "SELECT id FROM dbpersons WHERE id = ?";
+        $stmt_ids = mysqli_prepare($con, $query_ids);
+        if (!$stmt_ids) {
             mysqli_close($con);
-            return $names; // Return what we have if preparation fails
+            return $ids; // Return what we have if preparation fails
         }
         foreach ($usernames as $username) {
-            mysqli_stmt_bind_param($stmt_names, "s", $username);
-            mysqli_stmt_execute($stmt_names);
-            mysqli_stmt_bind_result($stmt_names, $first_name, $last_name);
-            if (mysqli_stmt_fetch($stmt_names)) {
-                $names[] = "$first_name $last_name";
+            mysqli_stmt_bind_param($stmt_ids, "s", $username);
+            mysqli_stmt_execute($stmt_ids);
+            mysqli_stmt_bind_result($stmt_ids, $id);
+            if (mysqli_stmt_fetch($stmt_ids)) {
+                $ids[] = $id;
             }
-            mysqli_stmt_free_result($stmt_names);
+            mysqli_stmt_free_result($stmt_ids);
         }
     
-        mysqli_stmt_close($stmt_names);
+        mysqli_stmt_close($stmt_ids);
         mysqli_close($con);
     
-        return $names; // Array of full names (e.g., ["John Doe", "Jane Smith"])
+        return $ids; // Array of IDs (e.g., ["123", "456"])
+    }
+
+    function delete_family_member($id) {
+        $con = connect();
+        
+        $query = "DELETE FROM dbfamilymember WHERE username = ?";
+        $stmt = mysqli_prepare($con, $query);
+        
+        if (!$stmt) {
+            mysqli_close($con);
+            return false;
+        }
+        
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        $success = mysqli_stmt_execute($stmt);
+        
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+        
+        return $success;
     }

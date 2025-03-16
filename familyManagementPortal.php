@@ -84,44 +84,40 @@ if (isset($_SESSION['_id'])) {
     </style>
 </head>
 <body>
-    <?php require_once('header.php'); ?>
     
-    <div class="main-content">
-        <?php
+    <?php
+        if (isset($_GET['message']) && $_GET['message'] === 'deleted') {
+            echo '<p style="color: green;">Family member deleted successfully</p>';
+        }
+
+        require_once('header.php');
         $isAdmin = $_SESSION['access_level'] >= 2;
-        
-        $familyMemNames = get_family_member_names($person->get_id());
-        
+
+        $familyMemIDs = get_family_member_ids($person->get_id());      
+
         echo '<fieldset class="section-box">';
         echo '<legend>Family Members</legend>';
-        
-        if (count($familyMemNames) > 0) {
-            echo '<table class="family-table">';
-            for ($i = 0; $i < count($familyMemNames); $i++) {
-                echo '<tr>';
-                
-                // Family member name with wider column
-                echo '<td class="name-column">';
-                echo htmlspecialchars($familyMemNames[$i]);
-                echo '</td>';
-                
-                // Buttons cell
-                echo '<td class="button-column">';
-                // Edit Child Profile button
-                echo '<a href="editchildprofile.php">';
-                echo '<button type="button" class="edit-button">Edit Child Profile</button>';
-                echo '</a>';
-                // Register Child for Event button
-                echo '<a href="viewAllEvents.php">';
-                echo '<button type="button" class="register-button">Register Child for Event</button>';
-                echo '</a>';
-                echo '</td>';
-                
-                echo '</tr>';
-            }
-            echo '</table>';
-        } else {
-            echo '<p style="text-align: center;">No family members found.</p>';
+        //Now make a table with all of the family members tied to this account
+        echo '<table>';
+        for ($i = 0; $i<count($familyMemIDs); $i++){
+            echo '<tr>';
+
+            //Display the family member name
+            echo '<td>';
+            echo get_name_from_id($familyMemIDs[$i]);
+            echo '</td>';
+
+            //Display the family member edit button
+            echo '<td>';
+            echo '<a href="editchildprofile.php?childID=' . $familyMemIDs[$i] .  '"><button type="button" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Edit Child Profile</button></a>';
+            echo '</td>';
+
+            //Display the delete family member button
+            echo '<td>';
+            echo '<a href="deletefamilymember.php?childID=' . $familyMemIDs[$i] . '" onclick="return confirm(\'Are you sure you want to delete this family member?\');"><button type="button" style="padding: 10px 20px; background-color: #ff4444; color: white; border: none; cursor: pointer;">Delete Family Member</button></a>';
+            echo '</td>';
+
+
         }
         
         echo '</fieldset>';
