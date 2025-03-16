@@ -1263,18 +1263,6 @@ function find_user_names($name) {
         return $rows_affected; // Returns 1 if successful, 0 if failed
     }
 
-    function isFamilyLeader($username, $familyid) {
-        $con = connect();
-        $query = "INSERT INTO dbfamilymember (username, familyid) VALUES (?, ?)";
-        $stmt = mysqli_prepare($con, $query);
-        mysqli_stmt_bind_param($stmt, "si", $username, $familyid); // "s" for string, "i" for int
-        mysqli_stmt_execute($stmt);
-        $rows_affected = mysqli_stmt_affected_rows($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($con);
-        return $rows_affected; // Returns 1 if successful, 0 if failed
-    }
-
     function is_family_leader($username) {
         $con = connect();
         $query = "SELECT username FROM dbfamilyleader WHERE username = ?";

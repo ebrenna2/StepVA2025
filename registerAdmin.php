@@ -119,7 +119,8 @@
                     '', // Background date
                     '', // Skills
                     '', // Networks
-                    ''  // Contributions
+                    '',  // Contributions
+                    0
                 );
     
 

@@ -4,10 +4,19 @@
 
     date_default_timezone_set("America/New_York");
     
+    ini_set("display_errors", 1);
+    error_reporting(E_ALL);
+
+    // Debug: Log session state
+    error_log("index.php: Session['_id'] = " . (isset($_SESSION['_id']) ? $_SESSION['_id'] : 'not set'));
+    error_log("index.php: Session['access_level'] = " . (isset($_SESSION['access_level']) ? $_SESSION['access_level'] : 'not set'));
+
     if (!isset($_SESSION['access_level']) || $_SESSION['access_level'] < 1) {
         if (isset($_SESSION['change-password'])) {
+            error_log("index.php: Redirecting to changePassword.php due to change-password flag");
             header('Location: changePassword.php');
         } else {
+            error_log("index.php: Redirecting to login.php because access_level is invalid or not set");
             header('Location: login.php');
         }
         die();
