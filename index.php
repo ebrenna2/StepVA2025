@@ -122,10 +122,7 @@
                         <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         <span><center>Upload Resources</center></span>
                     </div>
-                    <div class="dashboard-item" data-link="viewVideos.php">
-                        <i class="fa-solid fa-video"></i>
-                        <span><center>View Videos</center></span>
-                    </div>
+                    
                     <div class="dashboard-item" data-link="reportsDash.php">
                         <img src="images/create-report.svg">
                         <span><center>Reports Page</center></span>
@@ -134,6 +131,10 @@
 
                 <!-- FOR VOLUNTEERS AND PARTICIPANTS ONLY -->
                 <?php if ($notRoot) : ?>
+                    <div class="dashboard-item" data-link="viewVideos.php">
+                        <i class="fa-solid fa-video"></i>
+                        <span><center>View Videos</center></span>
+                    </div>
                     <div class="dashboard-item" data-link="viewProfile.php">
                         <img src="images/view-profile.svg">
                         <span>View Profile</span>
@@ -161,10 +162,12 @@
                     <img src="images/change-password.svg">
                     <span>Change Password</span>
                 </div>
+                
                 <div class="dashboard-item" data-link="logout.php">
                     <img src="images/logout.svg">
                     <span>Log out</span>
                 </div>
+                
                 <!-- autoredirects home as volunteer currently -->
                 <!-- <div class="dashboard-item" data-link="editHours.php">
                         <img src="images/add-person.svg">
