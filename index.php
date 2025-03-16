@@ -126,6 +126,10 @@
                         <i class="fa-solid fa-video"></i>
                         <span><center>View Videos</center></span>
                     </div>
+                    <div class="dashboard-item" data-link="reportsDash.php">
+                        <img src="images/create-report.svg">
+                        <span><center>Reports Page</center></span>
+                    </div>
                 <?php endif ?>
 
                 <!-- FOR VOLUNTEERS AND PARTICIPANTS ONLY -->
