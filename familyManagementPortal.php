@@ -28,7 +28,7 @@ if (isset($_SESSION['_id'])) {
     <title>Step VA | Manage Profile</title>
     <style>
         .main-content {
-            max-width: 1200px; /* Increased from 1000px to provide more space */
+            max-width: 1200px; /* Keeping increased width */
             margin: 20px auto;
             padding: 20px;
         }
@@ -54,11 +54,11 @@ if (isset($_SESSION['_id'])) {
         }
         .family-table .button-column {
             width: 60%;
-            min-width: 200px;
+            min-width: 300px;
             white-space: nowrap;
             padding-right: 40px; /* Increased padding to push buttons away from border */
         }
-        .edit-button, .register-button {
+        .edit-button, .register-button, .delete-button {
             padding: 6px 6px; /* Keeping smaller padding */
             background-color: #007bff;
             color: white;
@@ -72,8 +72,14 @@ if (isset($_SESSION['_id'])) {
             width: 200px; /* Added specific width to reduce button size */
             text-align: center; /* Center the text within the button */
         }
-        .edit-button:hover, .register-button:hover {
-            background-color: #0056b3;
+        .edit-button {
+            background-color: #4CAF50; /* Green for Edit */
+        }
+        .delete-button {
+            background-color: #ff4444; /* Red for Delete */
+        }
+        .edit-button:hover, .register-button:hover, .delete-button:hover {
+            background-color: #0056b3; /* Consistent hover color */
         }
         legend {
             text-align: center;
@@ -84,8 +90,8 @@ if (isset($_SESSION['_id'])) {
     </style>
 </head>
 <body>
-    
-    <?php
+    <div class="main-content">
+        <?php
         if (isset($_GET['message']) && $_GET['message'] === 'deleted') {
             echo '<p style="color: green;">Family member deleted successfully</p>';
         }
@@ -97,29 +103,36 @@ if (isset($_SESSION['_id'])) {
 
         echo '<fieldset class="section-box">';
         echo '<legend>Family Members</legend>';
-        //Now make a table with all of the family members tied to this account
-        echo '<table>';
-        for ($i = 0; $i<count($familyMemIDs); $i++){
+        // Now make a table with all of the family members tied to this account
+        echo '<table class="family-table">';
+        for ($i = 0; $i < count($familyMemIDs); $i++) {
             echo '<tr>';
 
-            //Display the family member name
-            echo '<td>';
-            echo get_name_from_id($familyMemIDs[$i]);
+            // Display the family member name
+            echo '<td class="name-column">';
+            echo htmlspecialchars(get_name_from_id($familyMemIDs[$i]));
             echo '</td>';
 
-            //Display the family member edit button
-            echo '<td>';
-            echo '<a href="editchildprofile.php?childID=' . $familyMemIDs[$i] .  '"><button type="button" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Edit Child Profile</button></a>';
+            // Display the family member edit button
+            echo '<td class="button-column">';
+            echo '<a href="editchildprofile.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '">';
+            echo '<button type="button" class="edit-button">Edit Child Profile</button>';
+            echo '</a>';
+
+            // Display the register button
+            echo '<a href="viewAllEvents.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '">';
+            echo '<button type="button" class="register-button">Register Child for Event</button>';
+            echo '</a>';
+
+            // Display the delete family member button
+            echo '<a href="deletefamilymember.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '" onclick="return confirm(\'Are you sure you want to delete this family member?\');">';
+            echo '<button type="button" class="delete-button">Delete Family Member</button>';
+            echo '</a>';
             echo '</td>';
 
-            //Display the delete family member button
-            echo '<td>';
-            echo '<a href="deletefamilymember.php?childID=' . $familyMemIDs[$i] . '" onclick="return confirm(\'Are you sure you want to delete this family member?\');"><button type="button" style="padding: 10px 20px; background-color: #ff4444; color: white; border: none; cursor: pointer;">Delete Family Member</button></a>';
-            echo '</td>';
-
-
+            echo '</tr>';
         }
-        
+        echo '</table>';
         echo '</fieldset>';
         ?>
     </div>

@@ -1,9 +1,9 @@
 <?php
-// deletefamilymember.php
+require_once('database/dbinfo.php');
 
 if (isset($_GET['childID'])) {
     $id = $_GET['childID'];
-    $con = connect();
+    $con=connect();
     
     $query = "DELETE FROM dbfamilymember WHERE username = ?";
     $stmt = mysqli_prepare($con, $query);
