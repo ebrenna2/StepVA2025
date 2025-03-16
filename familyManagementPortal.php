@@ -46,15 +46,8 @@
 
             //Display the family member edit button
             echo '<td>';
-            
+            echo '<a href="editchildprofile.php"><button type="button" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Edit Child Profile</button></a>';
             echo '</td>';
-
-            //Display the family member delete button
-            echo '<td>';
-
-            echo '</td>';
-
-            echo '</tr>';
 
         }
         echo '</table>';
