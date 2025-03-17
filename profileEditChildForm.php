@@ -209,11 +209,14 @@
             <label><em>* </em>Tshirt Size</label>
             <div class="radio-group">
                 <?php $size = $person->get_tshirt_size(); ?>
+                <input type="radio" id="tshirt-size-xxs" name="tshirt_size" value="xxs" <?php if ($size == 'xxs') echo 'checked'; ?> required><label for="tshirt-size-xxs">XXS</label>
                 <input type="radio" id="tshirt-size-xs" name="tshirt_size" value="xs" <?php if ($size == 'xs') echo 'checked'; ?> required><label for="tshirt-size-xs">XS</label>
                 <input type="radio" id="tshirt-size-s" name="tshirt_size" value="s" <?php if ($size == 's') echo 'checked'; ?> required><label for="tshirt-size-s">S</label>
                 <input type="radio" id="tshirt-size-m" name="tshirt_size" value="m" <?php if ($size == 'm') echo 'checked'; ?> required><label for="tshirt-size-m">M</label>
                 <input type="radio" id="tshirt-size-l" name="tshirt_size" value="l" <?php if ($size == 'l') echo 'checked'; ?> required><label for="tshirt-size-l">L</label>
                 <input type="radio" id="tshirt-size-xl" name="tshirt_size" value="xl" <?php if ($size == 'xl') echo 'checked'; ?> required><label for="tshirt-size-xl">XL</label>
+                <input type="radio" id="tshirt-size-xxl" name="tshirt_size" value="xxl" <?php if ($size == 'xxl') echo 'checked'; ?> required><label for="tshirt-size-xxl">XXL</label>
+
             </div>
 
             <label for="photo_release"><em>* </em>Photo Release Restrictions: Can your photo be taken and used on our website and social media?</label>
