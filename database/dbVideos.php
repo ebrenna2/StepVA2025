@@ -34,3 +34,25 @@ function remove_video($id) {
     mysqli_close($con);
     return true;
 }
+
+function retrieve_all_videos() {
+    $con = connect(); // Ensure a connection is established
+    if (!$con) {
+        die("Database connection error: " . mysqli_connect_error());
+    }
+
+    $query = "SELECT id, title, url, synopsis FROM dbvideos ORDER BY title ASC";
+    $result = mysqli_query($con, $query);
+
+    if (!$result) {
+        die("Query failed: " . mysqli_error($con));
+    }
+
+    $videos = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $videos[] = $row;
+    }
+
+    mysqli_close($con);
+    return $videos;
+}
