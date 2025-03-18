@@ -41,7 +41,7 @@ function retrieve_all_videos() {
         die("Database connection error: " . mysqli_connect_error());
     }
 
-    $query = "SELECT id, title, url, synopsis FROM dbvideos ORDER BY title ASC";
+    $query = "SELECT id, title, url, synopsis, type FROM dbvideos ORDER BY title ASC";
     $result = mysqli_query($con, $query);
 
     if (!$result) {

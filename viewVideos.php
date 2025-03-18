@@ -1,4 +1,7 @@
 <?php
+// Volunteer = 0
+// Participant = 1
+// All = 2
     session_cache_expire(30);
     session_start();
 
@@ -41,6 +44,23 @@
         }
         exit();
     }
+    $allowed_type = null; // Default to an invalid type
+    $allowed_type = $person->get_type();
+    //echo($allowed_type);
+
+    // Based on account type lets you view different videos
+
+    if ($allowed_type == 'admin') {
+        $allowed_type = 2; // Admin can see all
+    } elseif ($allowed_type == 'participant') {
+        $allowed_type = 1; // Participants see type=1 videos
+    } elseif ($allowed_type == 'v' || $allowed_type == 'volunteer') {
+        $allowed_type = 0; // Volunteers see type=0 videos
+    }
+    else{
+        $allowed_type = 2;
+    }
+    //echo($allowed_type);
 
 ?>
 <!DOCTYPE html>
@@ -69,8 +89,12 @@
             <select id="videoSelect" onchange="loadVideo(this.value)">
                 <option value="">-- Choose a Video --</option>
                 <?php foreach ($videos as $video) {
-                  echo "<option value='{$video['id']}'>{$video['title']}</option>";
-              } ?>
+                    // Filters videos based on account type
+                    if ($video['type'] == $allowed_type || $allowed_type == 2) {
+                        echo "<option value='{$video['id']}'>{$video['title']}</option>";
+                    }
+                    
+                    } ?>
             </select>
         </div>
 
