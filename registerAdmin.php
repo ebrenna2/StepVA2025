@@ -103,8 +103,8 @@
                     '', // School Affiliation 
                     '', // Photo Release
                     '', // Photo Release Notes
-                    '', // Type of Account
-                    'Admin', // Status (Access Magic occurs here)
+                    'Admin', // Type of Account
+                    '', // Status (Access Magic occurs here)
                     0, // Archived
                     '', // How you heard of stepva
                     '', // Prefered feedback method
@@ -124,9 +124,6 @@
                 );
     
 
-
-                $result = add_person($newperson);
-
                 //$person = Array();
                 //$person['status'] = 'N/A';
                 //$person['hours'] = 'N/A';
@@ -144,11 +141,20 @@
                     //$person[$day . 'days_end'] = '';
                 //}
 
-                if ($result) {
-                    echo 'NEW ADMIN CREATION SUCCESS';
-                } else {
-                    echo 'USER ALREADY EXISTS';
-                }
+                error_log("DEBUG: Trying to insert new admin: " . print_r($newperson, true));
+
+                    $result = add_person($newperson);
+
+                    if ($result) {
+                        error_log("DEBUG: Admin successfully added to the database.");
+                        echo 'NEW ADMIN CREATION SUCCESS';
+                        exit();
+                    } else {
+                        error_log("ERROR: Admin insertion failed. Username might already exist.");
+                        echo 'USER ALREADY EXISTS';
+                        exit();
+                    }
+
                 
                 if (!$result) {
                     echo '<p>That username is already in use.</p>';
