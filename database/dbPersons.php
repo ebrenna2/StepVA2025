@@ -37,62 +37,69 @@ function add_person($person) {
             $person->get_email() . '","' .
             $person->get_password() . '");'
         );*/
-        mysqli_query($con, 'INSERT INTO dbpersons VALUES ("' .
-            $person->get_id() . '","' .
-            $person->get_start_date() . '","' .
-            "n/a" . '","' . /* ("venue", we don't use this) */
-            $person->get_first_name() . '","' .
-            $person->get_last_name() . '","' .
-            $person->get_street_address() . '","' .
-            $person->get_city() . '","' .
-            $person->get_state() . '","' .
-            $person->get_zip_code() . '","' .
-            $person->get_phone1() . '","' .
-            $person->get_phone1type() . '","' .
-            $person->get_emergency_contact_phone() . '","' .
-            $person->get_emergency_contact_phone_type() . '","' .
-            $person->get_birthday() . '","' .
-            $person->get_email() . '","' .
-            $person->get_emergency_contact_first_name() . '","' .
-            'n/a' . '","' . /* ("contact_num", we don't use this) */
-            $person->get_emergency_contact_relation() . '","' .
-            'n/a' . '","' . /* ("contact_method", we don't use this) */
-            $person->get_type() . '","' .
-            $person->get_status() . '","' .
-            'n/a' . '","' . /* ("notes", we don't use this) */
-            $person->get_password() . '","' .
-            'n/a' . '","' . /* ("profile_pic", we don't use this) */
-            'gender' . '","' .
-            $person->get_tshirt_size() . '","' .
-            $person->get_how_you_heard_of_stepva() . '","' .
-            'sensory_sensitivities' . '","' .
-            $person->get_disability_accomodation_needs() . '","' .
-            $person->get_school_affiliation() . '","' .
-            'race' . '","' .
-            $person->get_preferred_feedback_method() . '","' .
-            $person->get_hobbies() . '","' .
-            $person->get_professional_experience() . '","' .
-            $person->get_archived() . '","' .
-            $person->get_emergency_contact_last_name() . '","' .
-            $person->get_photo_release() . '","' .
-            $person->get_photo_release_notes() . '","' .
-            $person->get_training_complete() . '","' .
-            $person->get_training_date() . '","' .
-            $person->get_orientation_complete() . '","' .
-            $person->get_orientation_date() . '","' .
-            $person->get_background_complete() . '","' .
-            $person->get_background_date() . '","' .
-            $person->get_skills() . '","' .
-            $person->get_networks() . '","' .
-            $person->get_contributions() . '");'
-            
-            
-        );
+        mysqli_query($con, "INSERT INTO dbpersons VALUES (
+            '{$person->get_id()}',
+            '{$person->get_start_date()}',
+            'n/a', /* venue */
+            '{$person->get_first_name()}',
+            '{$person->get_last_name()}',
+            '{$person->get_street_address()}',
+            '{$person->get_city()}',
+            '{$person->get_state()}',
+            '{$person->get_zip_code()}',
+            '{$person->get_phone1()}',
+            '{$person->get_phone1type()}',
+            '{$person->get_emergency_contact_phone()}',
+            '{$person->get_emergency_contact_phone_type()}',
+            '{$person->get_birthday()}',
+            '{$person->get_email()}',
+            '{$person->get_emergency_contact_first_name()}',
+            'n/a', /* contact_num */
+            '{$person->get_emergency_contact_relation()}',
+            'n/a', /* contact_method */
+            '{$person->get_type()}',
+            '{$person->get_status()}',
+            'n/a', /* notes */
+            '{$person->get_password()}',
+            'n/a', /* profile_pic */
+            'gender',
+            '{$person->get_tshirt_size()}',
+            '{$person->get_how_you_heard_of_stepva()}',
+            'sensory_sensitivities',
+            '{$person->get_disability_accomodation_needs()}',
+            '{$person->get_school_affiliation()}',
+            'race',
+            '{$person->get_preferred_feedback_method()}',
+            '{$person->get_hobbies()}',
+            '{$person->get_professional_experience()}',
+            '{$person->get_archived()}',
+            '{$person->get_emergency_contact_last_name()}',
+            '{$person->get_photo_release()}',
+            '{$person->get_photo_release_notes()}',
+            '{$person->get_training_complete()}',
+            '{$person->get_training_date()}',
+            '{$person->get_orientation_complete()}',
+            '{$person->get_orientation_date()}',
+            '{$person->get_background_complete()}',
+            '{$person->get_background_date()}',
+            '{$person->get_skills()}',
+            '{$person->get_networks()}',
+            '{$person->get_contributions()}',
+            '{$person->get_familyId()}'
+        )");
         mysqli_close($con);
         return true;
     }
     mysqli_close($con);
     return false;
+}
+
+function get_sensory_sensitivities($sensory_sensitivities) {
+    return $sensory_sensitivities;
+}
+
+function get_disability_accommodation_needs($get_disability_accommodation_needs) {
+    return $get_disability_accommodation_needs;
 }
 
 /*
@@ -429,7 +436,8 @@ function make_a_person($result_row) {
         $result_row['background_date'],
         $result_row['skills'],
         $result_row['networks'],
-        $result_row['contributions']
+        $result_row['contributions'],
+        0
     );
 
     return $thePerson;
@@ -647,7 +655,7 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         $school_affiliation, $tshirt_size, $how_you_heard_of_stepva,
         $preferred_feedback_method, $hobbies, $professional_experience,
         $disability_accomodation_needs, $training_complete, $training_date, $orientation_complete,
-        $orientation_date, $background_complete, $background_date,$skills, $networks, $contributions, $photo_release, $photo_release_notes
+        $orientation_date, $background_complete, $background_date, $skills, $networks, $contributions, $photo_release, $photo_release_notes
     ) {
         $query = "update dbpersons set 
             first_name='$first_name', last_name='$last_name', birthday='$birthday',
@@ -677,6 +685,8 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         return $result;
     }
 
+    
+
     /**
      * Searches the database and returns an array of all volunteers
      * that are eligible to attend the given event that have not yet
@@ -685,6 +695,8 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
      * Eligibility criteria: availability falls within event start/end time
      * and start date falls before or on the volunteer's start date.
      */
+
+
     function get_unassigned_available_volunteers($eventID) {
         $connection = connect();
         $query = "select * from dbEvents where id='$eventID'";
@@ -722,6 +734,7 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         mysqli_close($connection);
         return $thePersons;
     }
+
 
     function find_users($name, $id, $phone, $zip, $type, $status, $photo_release) {
         $where = 'where ';
@@ -1226,3 +1239,143 @@ function find_user_names($name) {
         mysqli_close($connection);
         return $row['first_name'] . ' ' . $row['last_name'];
     }
+
+    function add_family_leader($username) { 
+        $con = connect();
+        $query = "INSERT INTO dbfamilyleader (username) VALUES (?)";
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt, "s", $username);
+        mysqli_stmt_execute($stmt);
+        $new_id = mysqli_insert_id($con); // Get the auto-incremented familyid
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+        return $new_id;
+    }
+
+    function update_person_familyid($id, $familyId) {
+        $con = connect();
+        $query = "UPDATE dbpersons SET familyid = ? WHERE id = ?";
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt, "is", $familyId, $id); // "i" for int, "s" for string
+        mysqli_stmt_execute($stmt);
+        $rows_affected = mysqli_stmt_affected_rows($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+        return $rows_affected; // Returns number of rows updated (should be 1 if successful)
+    }
+
+    function add_family_member($username, $familyid) {
+        $con = connect();
+        $query = "INSERT INTO dbfamilymember (username, familyid) VALUES (?, ?)";
+        $stmt = mysqli_prepare($con, $query);
+        mysqli_stmt_bind_param($stmt, "si", $username, $familyid); // "s" for string, "i" for int
+        mysqli_stmt_execute($stmt);
+        $rows_affected = mysqli_stmt_affected_rows($stmt);
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+        return $rows_affected; // Returns 1 if successful, 0 if failed
+    }
+
+    function is_family_leader($username) {
+        $con = connect();
+        $query = "SELECT username FROM dbfamilyleader WHERE username = ?";
+        $stmt = mysqli_prepare($con, $query);
+        if (!$stmt) {
+            mysqli_close($con);
+            return false; // Failed to prepare statement
+        }
+        mysqli_stmt_bind_param($stmt, "s", $username);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        $is_leader = mysqli_stmt_num_rows($stmt) > 0;
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+        return $is_leader; // True if username is a family leader, false otherwise
+    }
+
+    function get_family_member_ids($leader_username) {
+        $con = connect();
+        
+        // Step 1: Get the familyid from dbfamilyleader using the leader's username
+        $query_leader = "SELECT familyid FROM dbfamilyleader WHERE username = ?";
+        $stmt_leader = mysqli_prepare($con, $query_leader);
+        if (!$stmt_leader) {
+            mysqli_close($con);
+            return [];
+        }
+        mysqli_stmt_bind_param($stmt_leader, "s", $leader_username);
+        mysqli_stmt_execute($stmt_leader);
+        mysqli_stmt_bind_result($stmt_leader, $familyid);
+        $found = mysqli_stmt_fetch($stmt_leader);
+        mysqli_stmt_close($stmt_leader);
+    
+        if (!$found) {
+            mysqli_close($con);
+            return [];
+        }
+    
+        // Step 2: Get all family member usernames from dbfamilymember using familyid
+        $query_members = "SELECT username FROM dbfamilymember WHERE familyid = ?";
+        $stmt_members = mysqli_prepare($con, $query_members);
+        if (!$stmt_members) {
+            mysqli_close($con);
+            return [];
+        }
+        mysqli_stmt_bind_param($stmt_members, "i", $familyid);
+        mysqli_stmt_execute($stmt_members);
+        $result = mysqli_stmt_get_result($stmt_members);
+        $usernames = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $usernames[] = $row['username'];
+        }
+        mysqli_stmt_close($stmt_members);
+    
+        if (empty($usernames)) {
+            mysqli_close($con);
+            return [];
+        }
+    
+        // Step 3: Get IDs from dbpersons for each username
+        $ids = [];
+        $query_ids = "SELECT id FROM dbpersons WHERE id = ?";
+        $stmt_ids = mysqli_prepare($con, $query_ids);
+        if (!$stmt_ids) {
+            mysqli_close($con);
+            return $ids; // Return what we have if preparation fails
+        }
+        foreach ($usernames as $username) {
+            mysqli_stmt_bind_param($stmt_ids, "s", $username);
+            mysqli_stmt_execute($stmt_ids);
+            mysqli_stmt_bind_result($stmt_ids, $id);
+            if (mysqli_stmt_fetch($stmt_ids)) {
+                $ids[] = $id;
+            }
+            mysqli_stmt_free_result($stmt_ids);
+        }
+    
+        mysqli_stmt_close($stmt_ids);
+        mysqli_close($con);
+    
+        return $ids; // Array of IDs (e.g., ["123", "456"])
+    }
+
+    function delete_family_member($id) {
+        $con = connect();
+        
+        $query = "DELETE FROM dbfamilymember WHERE username = ?";
+        $stmt = mysqli_prepare($con, $query);
+        
+        if (!$stmt) {
+            mysqli_close($con);
+            return false;
+        }
+        
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        $success = mysqli_stmt_execute($stmt);
+        
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+        
+        return $success;
+    }
+    

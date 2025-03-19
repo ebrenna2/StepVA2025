@@ -264,11 +264,13 @@
            
             <label><em>* </em>T-Shirt Size</label>
             <div class="radio-group">
+            <input type="radio" id="xxs" name="tshirt_size" value="xxs" required><label for="tshirt_size">XXS</label>
                 <input type="radio" id="xs" name="tshirt_size" value="xs" required><label for="tshirt_size">XS</label>
                 <input type="radio" id="s" name="tshirt_size" value="s" required><label for="tshirt_size">S</label>
                 <input type="radio" id="m" name="tshirt_size" value="m" required><label for="tshirt_size">M</label>
                 <input type="radio" id="l" name="tshirt_size" value="l" required><label for="tshirt_size">L</label>
                 <input type="radio" id="xl" name="tshirt_size" value="xl" required><label for="tshirt_size">XL</label>
+                <input type="radio" id="xxl" name="tshirt_size" value="xxl" required><label for="tshirt_size">XXL</label>
             </div>
 
             <label for="school_affiliation"><em>* </em>School Affiliation (or N/A)</label>

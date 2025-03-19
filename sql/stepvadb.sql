@@ -420,6 +420,17 @@ INSERT INTO `dbpersonhours` (`personID`, `eventID`, `start_time`, `end_time`) VA
 
 -- --------------------------------------------------------
 
+-- Table Structure for 'dbvideos'
+CREATE TABLE dbvideos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(2083) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    synopsis TEXT,
+    type INT
+);
+
+----------------------------------------------------------
+
 --
 -- Table structure for table `dbpersons`
 --
@@ -471,7 +482,8 @@ CREATE TABLE `dbpersons` (
   `background_date` text NOT NULL,
   'skills' text,
   'networks' text,
-  'contributions' text
+  'contributions' text,
+  'personal_ways_to_contribute' text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -608,3 +620,20 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+/* This sets up the connections for family member stuff in the database */
+ALTER TABLE dbpersons
+ADD COLUMN familyid INT;
+
+CREATE TABLE dbfamilyleader (
+    familyid INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    FOREIGN KEY (username) REFERENCES dbpersons(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE dbfamilymember (
+    username VARCHAR(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    familyid INT NOT NULL,
+    FOREIGN KEY (username) REFERENCES dbpersons(id) ON DELETE CASCADE,
+    FOREIGN KEY (familyid) REFERENCES dbfamilyleader(familyid) ON DELETE CASCADE
+) ENGINE=InnoDB;

@@ -7,7 +7,7 @@
 
     require_once('include/input-validation.php');
 ?>
-
+<header>
 <!DOCTYPE html>
 <html>
 <head>
@@ -214,8 +214,7 @@
                 $background_date,
                 '',
                 '',
-                '',
-                -1 // This indicates not part of a family
+                ''
             );
 
             $result = add_person($newperson);

@@ -115,12 +115,18 @@
     /**
      * Credit: https://www.codexworld.com/how-to/validate-date-input-string-in-php/
      */
-    function validateDate($date, $format = 'Y-m-d'){
-        $d = DateTime::createFromFormat($format, $date);
-        if ($d && $d->format($format) === $date) {
-            return $date;
+    function validateDate($date) {
+        if (empty($date)) {
+            return false; // You can return false or a default value, depending on your requirements
         }
-        return false;
+    
+        $dateObj = DateTime::createFromFormat('Y-m-d', $date);
+    
+        if (!$dateObj) {
+            return false; // If the date format is incorrect, return false
+        }
+    
+        return $dateObj->format('Y-m-d'); // Return a valid date format
     }
 
     function validate24hTimeRange($start, $end) {

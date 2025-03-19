@@ -28,7 +28,7 @@
             <span id="nav-top">
                 <span class="logo">
                     <img src="images/stepvalogo.png">
-                    <span id="vms-logo"> Step VA Volunteer Management </span>
+                    <span id="vms-logo"> Step VA Management </span>
                 </span>
                 <img id="menu-toggle" src="images/menu.png">
             </span>
@@ -72,12 +72,15 @@
         $permission_array['viewmyupcomingevents.php'] = 1;
         //pages only managers can view
         $permission_array['viewallevents.php'] = 0;
+        $permission_array['reportsdash.php'] = 2; // Or whatever permission level is appropriate
         $permission_array['personsearch.php'] = 2;
         $permission_array['personedit.php'] = 0; // changed to 0 so that applicants can apply
         $permission_array['viewschedule.php'] = 2;
+        $permission_array['volunteerreportwithsearch.php'] = 2;
         $permission_array['addweek.php'] = 2;
         $permission_array['log.php'] = 2;
         $permission_array['reports.php'] = 2;
+        $permission_array['participantreport.php'] = 2;
         $permission_array['eventedit.php'] = 2;
         $permission_array['modifyuserrole.php'] = 2;
         $permission_array['addevent.php'] = 2;
@@ -112,8 +115,15 @@
         $permission_array['signuppending.php'] = 1;
         $permission_array['requestfailed.php'] = 1;
         $permission_array['settimes.php'] = 1;
+        $permission_array['eventattendanceform.php'] = 2;
         $permission_array['eventfailurebaddeparturetime.php'] = 1;
+
+        //For family leaders to view
+        $permission_array['familymanagementportal.php'] = 1;
+        $permission_array['editchildprofile.php'] = 1;
         
+        $permission_array['registeradmin.php'] = 2;
+        $permission_array['viewvideos.php'] = 1;
         // LOWERCASE
 
 
@@ -137,7 +147,7 @@
         //they're logged in and session variables are set.
         echo('<nav>');
         echo('<span id="nav-top"><span class="logo"><a class="navbar-brand" href="' . $path . 'index.php"><img src="images/stepvalogo.png"></a>');
-        echo('<a class="navbar-brand" id="vms-logo"> Step VA Volunteer </a></span><img id="menu-toggle" src="images/menu.png"></span>');
+        echo('<a class="navbar-brand" id="vms-logo"> Step VA System </a></span><img id="menu-toggle" src="images/menu.png"></span>');
         echo('<ul>');
         //echo " <br><b>"."Gwyneth's Gift Homebase"."</b>|"; //changed: 'Homebase' to 'Gwyneth's Gift Homebase'
 
@@ -163,7 +173,7 @@
         echo('<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Volunteers</a>');
         echo('<div class="dropdown-menu">');
         echo('<a class="dropdown-item" href="' . $path . 'personSearch.php">Search</a>
-            <a class="dropdown-item" href="register.php">Add</a>');
+            <a class="dropdown-item" href="registerVolunteerBar.php">Add</a>');
         echo('</div>');
         echo('</li>');
         }

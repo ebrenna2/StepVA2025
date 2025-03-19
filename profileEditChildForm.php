@@ -13,7 +13,11 @@
         $id = $_SESSION['_id'];
     }
 
-    $person = retrieve_person($id);
+    if (isset($args['childID'])){
+        $childID = $args['childID'];
+        $person = retrieve_person($childID);
+    }
+
     if (!$person) {
         echo '<main class="signup-form"><p class="error-toast">That user does not exist.</p></main></body></html>';
         die();
@@ -212,6 +216,7 @@
                 <input type="radio" id="tshirt-size-l" name="tshirt_size" value="l" <?php if ($size == 'l') echo 'checked'; ?> required><label for="tshirt-size-l">L</label>
                 <input type="radio" id="tshirt-size-xl" name="tshirt_size" value="xl" <?php if ($size == 'xl') echo 'checked'; ?> required><label for="tshirt-size-xl">XL</label>
                 <input type="radio" id="tshirt-size-xxl" name="tshirt_size" value="xxl" <?php if ($size == 'xxl') echo 'checked'; ?> required><label for="tshirt-size-xxl">XXL</label>
+
             </div>
 
             <label for="photo_release"><em>* </em>Photo Release Restrictions: Can your photo be taken and used on our website and social media?</label>
@@ -387,6 +392,8 @@
 
             <label>Do you have any additional ways you can contribute to STEPVA? </label>
             <input type="text" id="contributions" name="contributions" value="<?php echo hsc($person->get_contributions()); ?>" placeholder="">
+
+            <input type="hidden" id="childID" name="childID" value="<?php echo $childID ?>"> 
         </fieldset>
 
         <p></p>

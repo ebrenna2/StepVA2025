@@ -10,11 +10,10 @@
     ini_set("display_errors",1);
     error_reporting(E_ALL);
 
-    // redirect to index if already logged in
-    if (isset($_SESSION['_id'])) {
-        header('Location: index.php');
-        die();
-    }
+    // redirect to index if already logged
+   
+    
+    
     $badLogin = false;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once('include/input-validation.php');
@@ -44,7 +43,7 @@
                 
                 // hard code root privileges
                 if ($user->get_id() == 'vmsroot') {
-                    $_SESSION['access_level'] = 3;
+                    $_SESSION['access_level'] = 4;
                     header('Location: index.php');
                 }
                 //if ($changePassword) {
@@ -70,12 +69,12 @@
 <html>
     <head>
         <?php require_once('universal.inc') ?>
-        <title>Step VA Volunteer System | Log In</title>
+        <title>Step VA System | Log In</title>
     </head>
     <body>
         <?php require_once('header.php') ?>
         <main class="login">
-            <h1>Step VA Volunteer System Login</h1>
+            <h1>Step VA System Login</h1>
             <?php if (isset($_GET['registerSuccess'])): ?>
                 <div class="happy-toast">
                     Your registration was successful! Please log in below.
