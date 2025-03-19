@@ -15,7 +15,7 @@
         }
         die();
     }
-        
+    include_once('database/dbVideos.php');
     include_once('database/dbPersons.php');
     include_once('domain/Person.php');
     // Get date?
@@ -44,53 +44,42 @@
         }
         exit();
     }
+    $allowed_type = null; // Default to an invalid type
+    $allowed_type = $person->get_type();
+    //echo($allowed_type);
+
+    // Based on account type lets you view different videos
+
+    if ($allowed_type == 'admin') {
+        $allowed_type = 2; // Admin can see all
+    } elseif ($allowed_type == 'participant') {
+        $allowed_type = 1; // Participants see type=1 videos
+    } elseif ($allowed_type == 'v' || $allowed_type == 'volunteer') {
+        $allowed_type = 0; // Volunteers see type=0 videos
+    }
+    else{
+        $allowed_type = 2;
+    }
+    //echo($allowed_type);
+    // Need to create a file to manage videos, remove, update, add
 
 ?>
 <!DOCTYPE html>
 <html>
-    <style>
-
-        /* Formatting logic */
-        .left{
-            float: left;
-        }
-        .right {
-            float: right;
-        }
-        .middle{
-            text-align: center;
-        }
-
-        /* Video display logic */
-        iframe{
-            display: block;
-            margin: 0 auto;
-            width: 40%;
-            height: 300px;
-            overflow: auto;
-        }
-
-        /* Additional video links logic */
-        .dropdown-content {
-            display: block;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        .dropdown-content a {
-            padding: 12px 16px;
-            color: black;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-        }
-
-    </style>
+    
     <head>
         <?php require('universal.inc'); ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <title>Step VA System | Dashboard</title>
+        <title>Step VA System | Available Videos</title>
+        <style>
+            iframe {
+                display: block;
+                margin: 0 auto;
+                width: 40%;
+                height: 500px;
+                overflow: auto;
+            }
+        </style>
     </head>
     <body>
         <?php require('header.php'); ?>
@@ -101,21 +90,38 @@
             <select id="videoSelect" onchange="loadVideo(this.value)">
                 <option value="">-- Choose a Video --</option>
                 <?php foreach ($videos as $video) {
-                  echo "<option value='{$video['id']}'>{$video['title']}</option>";
-              } ?>
+                    // Filters videos based on account type
+                    if ($video['type'] == $allowed_type || $allowed_type == 2) {
+                        echo "<option value='{$video['id']}'>{$video['title']}</option>";
+                    }
+                    
+                    } ?>
             </select>
         </div>
 
-            <!-- Here is where we display any additional videos by pulling from the database. -->
-            <div>
-                <button disabled>Additional Videos:</button>
-                <div class='dropdown-content'>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link 1</a>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link 2</a>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link 3</a>
-                </div>
-            </div>
-        </main>
+        <div>
+            <iframe id="videoFrame" src="" title="Selected Video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <h2 id="videoTitle"></h2>
+            <p id="videoDescription"></p>
+        </div>
+
+        <script>
+        function loadVideo(videoId) {
+            if (videoId) {
+                fetch(`viewVideos.php?id=${videoId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error('Error:', data.error);
+                        } else {
+                            document.getElementById("videoFrame").src = data.url;
+                            document.getElementById("videoTitle").innerText = data.title;
+                            document.getElementById("videoDescription").innerText = data.synopsis;
+                        }
+                    })
+                    .catch(error => console.error('Error fetching video:', error));
+            }
+        }
+        </script>
     </body>
 </html>
-
