@@ -106,7 +106,7 @@
                         <i class="fa-solid fa-list"></i>
                         <span>View Events</span>
                     </div>
-                    <div class="dashboard-item" data-link="register.php">
+                    <div class="dashboard-item" data-link="adminRegisterVolunteer.php">
                         <img src="images/add-person.svg">
                         <span>Register Volunteer</span>
                     </div>
