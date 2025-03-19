@@ -61,6 +61,7 @@
         $allowed_type = 2;
     }
     //echo($allowed_type);
+    // Need to create a file to manage videos, remove, update, add
 
 ?>
 <!DOCTYPE html>
@@ -124,3 +125,4 @@
         </script>
     </body>
 </html>
+
