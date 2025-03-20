@@ -376,19 +376,15 @@
             <a href="viewAllEvents.php" class="button cancel">Return to All Events</a>
 
             <!-- Sign Up for Event Button -->
-            <?
-            if ($event_capacity > count(getvolunteers_byevent($event['id']))) {
-              if ($event['restricted_signup'] == 1) {
-                $restricted = "Yes";
-                } else {
-                    $restricted = "No";
-                }
-                echo "<a href='eventSignUp.php?event_name=" . urlencode($event_name) . "&restricted=" . $restricted . "' class='button signup'>Sign Up for Event</a>";
-            } else {
-                echo "<a class='button danger'>Sign-ups Closed!</a>";
+            <?php
+                    if ($event_capacity > count(getvolunteers_byevent($event_info['id']))) {
+                        $restricted = ($event_info['restricted_signup'] == 1) ? "Yes" : "No";
+                        echo "<a href='eventSignUp.php?event_name=" . urlencode($event_name) . "&restricted=" . $restricted . "' class='button signup'>Sign Up for Event</a>";
+                    } else {
+                        echo "<a class='button danger'>Sign-ups Closed!</a>";
+                    }
+?>
 
-            }
-            ?>
             
         </div>
 
