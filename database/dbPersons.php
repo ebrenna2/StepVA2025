@@ -443,6 +443,26 @@ function make_a_person($result_row) {
     return $thePerson;
 }
 
+function get_participants_with_accommodations() {
+    $con = connect();
+    $query = "SELECT id, first_name, last_name, disability_accomodation_needs 
+              FROM dbpersons 
+              WHERE type='Participant' 
+              AND disability_accomodation_needs IS NOT NULL 
+              AND disability_accomodation_needs != '' AND disability_accomodation_needs NOT LIKE 'No%'";
+              
+    $result = mysqli_query($con, $query);
+    
+    $participants = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $participants[] = $row;
+    }
+    
+    mysqli_close($con);
+    return $participants;
+}
+
+
 function getall_names($status, $type, $venue) {
     $con=connect();
     $result = mysqli_query($con,"SELECT id,first_name,last_name,type FROM dbPersons " .
