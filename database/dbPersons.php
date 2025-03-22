@@ -449,7 +449,7 @@ function get_participants_with_accommodations() {
               FROM dbpersons 
               WHERE type='Participant' 
               AND disability_accomodation_needs IS NOT NULL 
-              AND disability_accomodation_needs != '' AND disability_accomodation_needs NOT LIKE 'No%'";
+              AND TRIM(disability_accomodation_needs) NOT IN ('', 'No', 'None', 'no', 'none')";
               
     $result = mysqli_query($con, $query);
     
