@@ -53,7 +53,7 @@
             }
 
             
-            $name = htmlspecialchars_decode($args['name']);
+            //$name = htmlspecialchars_decode($args['name']);
             $account_name = htmlspecialchars_decode($args['account-name']);
             $role = $args['role'];
             $notes = "Skills: " . $args['skills'] . " | Dietary restrictions: " . $args['restrictions'] . " | Disabilities: " . $args['disabilities'] . " | Materials: " . $args['materials'];
