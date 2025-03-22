@@ -148,7 +148,7 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
 
     </table>
 
-    <a class="button cancel no-print" href="dashboard.php">Return to Dashboard</a>
+    <a class="button cancel no-print" href="index.php">Return to Dashboard</a>
 
 </body>
 </html>
