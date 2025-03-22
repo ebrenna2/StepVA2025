@@ -1061,4 +1061,117 @@ function update_animal2($animal) {
     return $id;
 }
 
-//There was a question mark followed by a > here
+
+function check_if_pending_sign_up($eventID, $userID) {
+    $connection = connect();
+    
+    if (!$connection) {
+        return false;
+    }
+    
+    $stmt = $connection->prepare(
+        "SELECT COUNT(*) FROM dbpendingsignups WHERE eventname = ? AND username = ?"
+    );
+    $stmt->bind_param("ss", $eventID, $userID);
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    
+    $stmt->close();
+    $connection->close();
+    
+    return $count > 0;
+}
+
+// In database/dbEvents.php
+function get_event_name_by_id($eventId) {
+    try {
+        $con = connect(); // Using your existing connect() function
+        $query = "SELECT name FROM dbevents WHERE id = ?";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("s", $eventId); // Using bind_param instead of execute with array
+        $stmt->execute();
+        $stmt->bind_result($name); // Bind the result to a variable
+        $stmt->fetch();
+        $stmt->close();
+        $con->close();
+        return $name ? $name : '';
+    } catch (Exception $e) {
+        return '';
+    }
+}
+
+function sign_up_for_event_by_id($eventId, $account_name, $role, $notes) {
+    try {
+        $con = connect();
+        $query = "INSERT INTO dbeventpersons (eventID, userID, position, notes) VALUES (?, ?, ?, ?)";
+        $stmt = $con->prepare($query);
+        if (!$stmt) {
+            error_log("Prepare failed in sign_up_for_event_by_id: " . $con->error);
+            $con->close();
+            return false;
+        }
+        // Use "isss" for int eventID, string userID, string position, string notes
+        $eventId = (int)$eventId;
+        $stmt->bind_param("isss", $eventId, $account_name, $role, $notes);
+        $success = $stmt->execute();
+        if (!$success) {
+            error_log("Execute failed in sign_up_for_event_by_id: " . $stmt->error . " | Params: eventId=$eventId, userID=$account_name, position=$role, notes=$notes");
+        }
+        $insertId = $success ? $con->insert_id : false;
+        $stmt->close();
+        $con->close();
+        return $insertId;
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
+function request_event_signup_by_id($eventId, $account_name, $role, $notes) {
+    try {
+        $con = connect();
+        
+        // Get the event name from the event ID
+        $eventName = get_event_name_by_id($eventId);
+        if (empty($eventName)) {
+            error_log("No event name found for eventId=$eventId in request_event_signup_by_id");
+            $con->close();
+            return false;
+        }
+
+        // Check for existing pending signup
+        $checkQuery = "SELECT COUNT(*) FROM dbpendingsignups WHERE username = ? AND eventname = ?";
+        $checkStmt = $con->prepare($checkQuery);
+        $checkStmt->bind_param("ss", $account_name, $eventId);
+        $checkStmt->execute();
+        $checkStmt->bind_result($count);
+        $checkStmt->fetch();
+        $checkStmt->close();
+        
+        if ($count > 0) {
+            error_log("User $account_name already has pending signup for event $eventName (ID: $eventId)");
+            $con->close();
+            return false;
+        }
+
+        $query = "INSERT INTO dbpendingsignups (username, eventname, role, notes) VALUES (?, ?, ?, ?)";
+        $stmt = $con->prepare($query);
+        if (!$stmt) {
+            error_log("Prepare failed in request_event_signup_by_id: " . $con->error);
+            $con->close();
+            return false;
+        }
+        $stmt->bind_param("ssss", $account_name, $eventId, $role, $notes); // All strings: "ssss"
+        $success = $stmt->execute();
+        if (!$success) {
+            error_log("Execute failed in request_event_signup_by_id: " . $stmt->error . " | Params: username=$account_name, eventname=$eventName, role=$role, notes=$notes");
+        }
+        $insertId = $success ? $con->insert_id : false;
+        $stmt->close();
+        $con->close();
+        return $insertId;
+    } catch (Exception $e) {
+        error_log("Exception in request_event_signup_by_id: " . $e->getMessage());
+        return false;
+    }
+}

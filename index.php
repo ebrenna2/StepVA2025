@@ -117,14 +117,17 @@
                         <img src="images/person-search.svg">
                         <span>Find Volunteer</span>
                     </div>
-                    <div class="dashboard-item" data-link="registerVolunteerBar.php">
-                        <img src="images/add-person.svg">
-                        <span>Register Volunteer</span>
-                    </div>
+
                     <div class="dashboard-item" data-link="adminViewingEvents.php">
                         <i class="fa-solid fa-list"></i>
                         <span>View Events</span>
                     </div>
+              
+                    <div class="dashboard-item" data-link="adminRegisterVolunteer.php">
+                        <img src="images/add-person.svg">
+                        <span>Register Volunteer</span>
+                    </div>
+
                     <div class="dashboard-item" data-link="editHours.php">
                         <i class="fa-regular fa-clock"></i>
                         <span><center>View & Change Event Hours</center></span>
