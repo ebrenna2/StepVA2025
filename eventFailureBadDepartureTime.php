@@ -1,13 +1,7 @@
 <?php
     session_cache_expire(30);
     session_start();
-    
-    // Set the redirect header based on childID presence
-    $redirectUrl = "viewAllEvents.php";
-    if (isset($_GET['childID'])) {
-        $redirectUrl .= "?childID=" . urlencode($_GET['childID']);
-    }
-    header("Refresh: 2; url=" . $redirectUrl);
+    header("refresh:2; url=index.php"); 
 ?>
     <!DOCTYPE html>
     <html>

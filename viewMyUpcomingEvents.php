@@ -25,11 +25,6 @@ error_reporting(E_ALL);
 
 $user_id = $_SESSION['_id']; // Store user ID from session
 
-//Check if parent viewing child events
-if (isset($_GET['childID'])){
-    $user_id = $_GET['childID'];
-}
-
 // Handle cancellation of events
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $event_id = $_POST['event_id'] ?? null;
