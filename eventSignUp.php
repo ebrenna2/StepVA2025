@@ -64,9 +64,13 @@
             } else {
                 header("Location: eventFailureBadDepartureTime.php");
             }
+            die();
+        }
 
-            
-            $name = htmlspecialchars_decode($args['name']);
+        $eventId = $args['event-id'];
+        if (isset($_GET['childID'])) {
+            $account_name = $_GET['childID'];
+        } else {
             $account_name = htmlspecialchars_decode($args['account-name']);
         }
     
