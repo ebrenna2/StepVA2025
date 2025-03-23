@@ -1101,6 +1101,8 @@ function get_event_name_by_id($eventId) {
     }
 }
 
+//Needed for git stuff
+
 function sign_up_for_event_by_id($eventId, $account_name, $role, $notes) {
     try {
         $con = connect();
