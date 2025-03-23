@@ -108,9 +108,10 @@ function send_message($from, $to, $title, $body) {
     $connection = connect();
     $title = mysqli_real_escape_string($connection, $title);
     $body = mysqli_real_escape_string($connection, $body);
+    $id = 0;
     $query = "insert into dbmessages
-        (senderID, recipientID, title, body, time)
-        values ('$from', '$to', '$title', '$body', '$time')";
+        (id, senderID, recipientID, title, body, time)
+         values ('$id', '$from', '$to', '$title', '$body', '$time')";
     $result = mysqli_query($connection, $query);
     if (!$result) {
         mysqli_close($connection);

@@ -14,6 +14,12 @@
         // 0 = not logged in, 1 = standard user, 2 = manager (Admin), 3 super admin (TBI)
         $accessLevel = $_SESSION['access_level'];
         $userID = $_SESSION['_id'];
+
+        //Check to see if this is the family leader trying to sign up a child for an event
+        if (isset($_GET['childID'])){
+            //Change the userID for this page to be the child ID
+            $userID = $_GET['childID'];
+        }
     }  
     include 'database/dbEvents.php';
     
@@ -93,6 +99,8 @@
                                     $numSignups = count($signups); // Number of people signed up
                                     // Check if the user is signed up for this event
                                     $isSignedUp = check_if_signed_up($eventID, $userID);
+                                    //Check if the user has a pending sign up for the event
+                                    $isPendingSignUp = check_if_pending_sign_up($eventID, $userID);
 
                                     echo "
                                     <tr data-event-id='$eventID'>
@@ -102,17 +110,27 @@
                                         <td>$numSignups / $capacity</td>";
                                     
                                     // Display Sign Up or Cancel button based on user sign-up status
-                                        if ($isSignedUp) {
-                                            echo "
-                                            <td>
-                                            <a class='button cancel' href='viewMyUpcomingEvents.php' >Already Signed Up!</a>
-                                            </td>";
-                                        } elseif($numSignups >= $capacity) {
-                                            echo "
-                                                <td><a class='button sign-up' style='background-color:#c73d06'>Sign Ups Closed!</a></td>";
+                                    if ($isSignedUp) {
+                                        if (isset($_GET['childID'])) {
+                                            echo "<td><a class='button cancel' href='viewMyUpcomingEvents.php?childID=" . urlencode($userID) . "'>Already Signed Up!</a></td>";
                                         } else {
-                                        echo "<td><a class='button sign-up' href='eventSignUp.php?event_name=" . urlencode($title) . "&restricted=" . urlencode($restricted_signup) . "'>Sign Up</a></td>";
+                                            echo "<td><a class='button cancel' href='viewMyUpcomingEvents.php'>Already Signed Up!</a></td>";
                                         }
+                                    } elseif ($isPendingSignUp) {
+                                        if (isset($_GET['childID'])) {
+                                            echo "<td><a class='button cancel' href='viewMyUpcomingEvents.php?childID=" . urlencode($userID) . "'>Already Pending Sign Up!</a></td>";
+                                        } else {
+                                            echo "<td><a class='button cancel' href='viewMyUpcomingEvents.php'>Already Pending Sign Up!</a></td>";
+                                        }
+                                    } elseif ($numSignups >= $capacity) {
+                                        echo "<td><a class='button sign-up' style='background-color:#c73d06'>Sign Ups Closed!</a></td>";
+                                    } else {
+                                        if (isset($_GET['childID'])) {
+                                            echo "<td><a class='button sign-up' href='eventSignUp.php?event_id=" . urlencode($eventID) . "&restricted=" . urlencode($restricted_signup) . "&childID=" . urlencode($userID) . "'>Sign Up</a></td>";
+                                        } else {
+                                            echo "<td><a class='button sign-up' href='eventSignUp.php?event_id=" . urlencode($eventID) . "&restricted=" . urlencode($restricted_signup) . "'>Sign Up</a></td>";
+                                        }
+                                    }
                                     echo "</tr>";
                                     
                                     /*echo "
@@ -210,9 +228,16 @@
                                             <td>$restricted_signup</td>
                                             <td><a href='event.php?id=$eventID'>$title</a></td>
                                             <td>$date</td>
-                                            <td>$numSignups / $capacity</td>
-                                            <td><a class='button sign-up' href='eventSignUp.php?event_name=" . urlencode($title) . '&restricted=' . urlencode($restricted_signup) . "'>Sign Up</a></td>
-                                        </tr>";
+                                            <td>$numSignups / $capacity</td>";
+                                        
+                                        //Check if this is a family leader signing up a child for an account and pass it to the arg if so
+                                        if (isset($_GET['childID'])) {
+                                            echo "<td><a class='button sign-up' href='eventSignUp.php?event_id=" . urlencode($eventID) . "&restricted=" . urlencode($restricted_signup) . "&childID=" . urlencode($userID) . "'>Sign Up</a></td>";
+                                        } else {
+                                            echo "<td><a class='button sign-up' href='eventSignUp.php?event_id=" . urlencode($eventID) . "&restricted=" . urlencode($restricted_signup) . "'>Sign Up</a></td>";
+                                        }
+                                        echo "</tr>";
+
                                     //} else {
                                         /*echo "
                                         <tr data-event-id='$eventID'>
