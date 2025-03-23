@@ -118,6 +118,8 @@
         $permission_array['eventattendanceform.php'] = 2;
         $permission_array['eventfailurebaddeparturetime.php'] = 1;
 
+        $permission_array['videouploadmanager.php'] = 2;
+        $permission_array['videodeletionmanager.php'] = 2;
         //For family leaders to view
         $permission_array['familymanagementportal.php'] = 1;
         $permission_array['editchildprofile.php'] = 1;
@@ -125,7 +127,15 @@
         $permission_array['registeradmin.php'] = 2;
         $permission_array['viewvideos.php'] = 1;
         // LOWERCASE
-
+        $permission_array['vmsdash.php'] = 2;
+        $permission_array['volunteerportal.php'] = 1;
+        $permission_array['participantportal.php'] = 0;
+        $permission_array['adminportal.php'] = 2;
+        $permission_array['eventsettings.php'] = 2;
+        $permission_array['admindash.php'] = 2;
+        $permission_array['viewall.php'] = 2;
+        $permission_array['registervolunteerbar.php'] = 2;
+        // NEW UI
 
 
         //Check if they're at a valid page for their access level.

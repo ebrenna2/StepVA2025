@@ -445,11 +445,11 @@ function make_a_person($result_row) {
 
 function get_participants_with_accommodations() {
     $con = connect();
-    $query = "SELECT id, first_name, last_name, disability_accomodation_needs 
+    $query = "SELECT id, first_name, last_name, disability_accomodation_needs, birthday
               FROM dbpersons 
               WHERE type='Participant' 
               AND disability_accomodation_needs IS NOT NULL 
-              AND disability_accomodation_needs != '' AND disability_accomodation_needs NOT LIKE 'No%'";
+              AND TRIM(disability_accomodation_needs) NOT IN ('', 'No', 'None', 'no', 'none')";
               
     $result = mysqli_query($con, $query);
     

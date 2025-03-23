@@ -1177,3 +1177,4 @@ function request_event_signup_by_id($eventId, $account_name, $role, $notes) {
         return false;
     }
 }
+
