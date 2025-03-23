@@ -1,6 +1,6 @@
 <?php
 
-Class Video {
+class Video {
     //private $access_level;
     private $id;
     private $url;
@@ -9,29 +9,29 @@ Class Video {
     private $type;
 
 
-    function __construct(
-        $id, $url, $title, $synopsis, $type){
-            $this->id = $id;
-            $this->url = $url;
-            $this->title = $title;
-            $this->synopsis = $synopsis;
-            $this->type = $type;
+    public function __construct($id, $url, $title, $synopsis, $type) {
+        $this->id = $id;
+        $this->url = $url;
+        $this->title = $title;
+        $this->synopsis = $synopsis;
+        $this->type = $type;
+    }
 
-        }
-    function get_id() {
+    public function get_id() {
         return $this->id;
     }
-    function get_url(){
+    public function get_url(){
         return $this->url;
     }
-    function get_title(){
+    public function get_title(){
         return $this->title;
     }
-    function get_synopsis(){
+    public function get_synopsis(){
         return $this->synopsis;
     }
-    function get_type(){
+    public function get_type(){
         return $this->type;
     }
 
 }
+?>

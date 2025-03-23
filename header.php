@@ -103,6 +103,7 @@
         $permission_array['vieweventsignups.php'] = 2;
         $permission_array['viewalleventsignups.php'] = 2;
         $permission_array['resources.php'] = 2;
+        $permission_array['adminregistervolunteer.php'] = 2;
 
         $permission_array['edithours.php'] = 2;
         $permission_array['eventlist.php'] = 1;
@@ -117,6 +118,8 @@
         $permission_array['eventattendanceform.php'] = 2;
         $permission_array['eventfailurebaddeparturetime.php'] = 1;
 
+        $permission_array['videouploadmanager.php'] = 2;
+        $permission_array['videodeletionmanager.php'] = 2;
         //For family leaders to view
         $permission_array['familymanagementportal.php'] = 1;
         $permission_array['editchildprofile.php'] = 1;
