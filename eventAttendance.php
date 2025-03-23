@@ -1,4 +1,5 @@
 <?php
+
     session_cache_expire(30);
     session_start();
 
@@ -44,7 +45,7 @@
                     include_once('database/dbPersons.php');
                     $conn = connect();
 
-                    $personId = $_SESSION['_id']; // Assuming this is the person's ID
+                    $personId = $_SESSION['_id']; 
                     // Query to fetch courses based on the person's ID from dbcoursesignup
                     $sql = "SELECT name FROM dbCourses;";
                     $result = $conn->query($sql);
