@@ -15,9 +15,12 @@
         }
         die();
     }
-    include_once('database/dbVideos.php');
-    include_once('database/dbPersons.php');
-    include_once('domain/Person.php');
+
+    include_once('database\dbVideos.php');
+    include_once('database\dbPersons.php');
+    include_once('domain\Person.php');
+    include_once('domain\Video.php');
+
     // Get date?
     if (isset($_SESSION['_id'])) {
         $person = retrieve_person($_SESSION['_id']);
@@ -46,7 +49,7 @@
     }
     $allowed_type = null; // Default to an invalid type
     $allowed_type = $person->get_type();
-    //echo($allowed_type);
+    
 
     // Based on account type lets you view different videos
 
@@ -60,8 +63,6 @@
     else{
         $allowed_type = 2;
     }
-    //echo($allowed_type);
-    // Need to create a file to manage videos, remove, update, add
 
 ?>
 <!DOCTYPE html>
@@ -79,15 +80,28 @@
                 height: 500px;
                 overflow: auto;
             }
+
+            form {
+                width: 50%;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            label {
+                margin: 0 auto;
+                text-align: center;
+            }
+
+
         </style>
     </head>
     <body>
         <?php require('header.php'); ?>
-        <h1>Available Videos</h1>
+        <h1>Video Deletion</h1>
         
         <div>
             <label for="videoSelect">Select a Video:</label>
-            <select id="videoSelect" onchange="loadVideo(this.value)">
+            <select id="videoSelect" onchange="loadVideo(this.value); setHiddenVideoVariable();">
                 <option value="">-- Choose a Video --</option>
                 <?php foreach ($videos as $video) {
                     // Filters videos based on account type
@@ -95,7 +109,7 @@
                         echo "<option value='{$video['id']}'>{$video['title']}</option>";
                     }
                     
-                    } ?>
+                } ?>
             </select>
         </div>
 
@@ -110,22 +124,53 @@
         </div>
 
         <script>
-        function loadVideo(videoId) {
-            if (videoId) {
-                fetch(`viewVideos.php?id=${videoId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.error) {
-                            console.error('Error:', data.error);
-                        } else {
-                            document.getElementById("videoFrame").src = data.url;
-                            document.getElementById("videoTitle").innerText = data.title;
-                            document.getElementById("videoDescription").innerText = data.synopsis;
-                        }
-                    })
-                    .catch(error => console.error('Error fetching video:', error));
+            var selectedVideo = '';
+
+            function deleteVideo(){
+                var videoSelectDropdown = document.getElementById("videoSelect").value;
+                alert('In Delete Video!')
+                window.location.href = 'videoDeletionHelper.php?id=' + encodeURIComponent(videoSelectionDropdown);
             }
-        }
+
+            function getSelectedVideoVariable() {
+                return selectedVideo;
+            }
+
+            function setHiddenVideoVariable() {
+                var selectedVideo = document.getElementById("videoSelect").value;
+            }
+
+            function getSelectedVideo() {
+                var videoSelectDropdown = document.getElementById("videoSelect");
+                var selectedValue = videoSelectDropdown.value;
+                return selectedValue;
+            }
+        
+            function loadVideo(videoId) {
+                if (videoId) {
+                    fetch(`viewVideos.php?id=${videoId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                console.error('Error:', data.error);
+                            } else {
+                                document.getElementById("videoFrame").src = data.url;
+                                document.getElementById("videoTitle").innerText = data.title;
+                                document.getElementById("videoDescription").innerText = data.synopsis;
+                            }
+                        })
+                        .catch(error => console.error('Error fetching video:', error));
+                }
+            }
+
         </script>
+
+        <form action="videoDeletionManager.php" id="deleteVideoForm" method="POST" onsubmit="deleteVideo()">
+            <input type="hidden" id="deletedVideoId" name="deletedVideoId" value=selectedVideo>
+            <button type="submit">Delete</button>
+        </form>
+        <br>
+
     </body>
+
 </html>

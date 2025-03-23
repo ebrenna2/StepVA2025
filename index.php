@@ -133,7 +133,14 @@
                         <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         <span><center>Upload Resources</center></span>
                     </div>
-                    
+                    <div class="dashboard-item" data-link="videoUploadManager.php">
+                        <i class="fa-solid fa-upload"></i>
+                        <span><center>Upload Videos</center></span>
+                    </div>
+                    <div class="dashboard-item" data-link="videoDeletionManager.php">
+                        <i class="fa-solid fa-trash-can"></i>
+                        <span><center>Delete Videos</center></span>
+                    </div>
                     <div class="dashboard-item" data-link="reportsDash.php">
                         <img src="images/create-report.svg">
                         <span><center>Reports Page</center></span>
