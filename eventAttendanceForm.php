@@ -20,10 +20,20 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] === 'true') {
     if (empty($eventID)) {
         die('No event chosen for PDF generation.');
     }
+    $sqlEventName = "SELECT name FROM dbEvents WHERE id = ?";
+    $stmtEventName = $conn->prepare($sqlEventName);
+    $stmtEventName->bind_param("i", $eventID);
+    $stmtEventName->execute();
+    $resultEventName = $stmtEventName->get_result();
+    $eventName = '';
+    if ($eventRow = $resultEventName->fetch_assoc()) {
+        $eventName = $eventRow['name']; // Store the event name
+    }
+$stmtEventName->close();
     $pdf = new FPDF();
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(0, 10, 'Attendance Report for Event: ' . htmlspecialchars($eventID), 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Attendance Report for Event: ' . htmlspecialchars($eventName), 0, 1, 'C');
     $pdf->Ln(10);
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(60, 10, 'First Name', 1);
