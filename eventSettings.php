@@ -66,9 +66,21 @@
                     <span>Change Event Hours</span>
                 </div>
                 <!-- Go Back to vmsDash.php -->
-                <div class="dashboard-item" data-link="vmsDash.php">
-                    <img src="images/go-back.svg">
-                    <span>Go Back</span>
+                <!-- Go Back for vmsroot (links to vmsDash.php) -->
+                <?php if ($_SESSION['access_level'] >= 4 && $_SESSION['_id'] === 'vmsroot'): ?>
+                    <div class="dashboard-item" data-link="vmsDash.php">
+                        <img src="images/go-back.svg">
+                        <span>Go Back</span>
+                    </div>
+                <?php endif ?>
+
+                <!-- Go Back for regular admins (links to adminDash.php) -->
+                <?php if ($_SESSION['access_level'] == 3 && $_SESSION['_id'] !== 'vmsroot'): ?>
+                    <div class="dashboard-item" data-link="adminDash.php">
+                        <img src="images/go-back.svg">
+                        <span>Go Back</span>
+                    </div>
+                <?php endif ?>
                 </div>
             </div>
         </main>

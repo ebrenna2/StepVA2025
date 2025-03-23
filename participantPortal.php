@@ -102,6 +102,22 @@
                     <img src="images/manage-account.svg">
                     <span>Edit Profile</span>
                 </div>
+
+                <?php if ($_SESSION['access_level'] >= 4 && $_SESSION['_id'] === 'vmsroot'): ?>
+                    <div class="dashboard-item" data-link="vmsDash.php">
+                        <img src="images/go-back.svg">
+                        <span>Go Back</span>
+                    </div>
+                <?php endif ?>
+
+                <!-- Go Back for regular admins (links to adminDash.php) -->
+                <?php if ($_SESSION['access_level'] == 3 && $_SESSION['_id'] !== 'vmsroot'): ?>
+                    <div class="dashboard-item" data-link="adminDash.php">
+                        <img src="images/go-back.svg">
+                        <span>Go Back</span>
+                    </div>
+                <?php endif ?>
+                
                 <div class="dashboard-item" data-link="changePassword.php">
                     <img src="images/change-password.svg">
                     <span>Change Password</span>

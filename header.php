@@ -124,7 +124,14 @@
         $permission_array['registeradmin.php'] = 2;
         $permission_array['viewvideos.php'] = 1;
         // LOWERCASE
-
+        $permission_array['vmsdash.php'] = 2;
+        $permission_array['volunteerportal.php'] = 1;
+        $permission_array['participantportal.php'] = 0;
+        $permission_array['adminportal.php'] = 2;
+        $permission_array['eventsettings.php'] = 2;
+        $permission_array['admindash.php'] = 2;
+        $permission_array['viewall.php'] = 2;
+        // NEW UI
 
 
         //Check if they're at a valid page for their access level.

@@ -71,9 +71,21 @@
                     <img src="images/person.svg">
                     <span>Participants</span>
                 </div>
-                <div class="dashboard-item" data-link="vmsDash.php">
-                    <img src="images/go-back.svg">
-                    <span>Go Back</span>
+                <!-- back to vmsDash -->
+                <?php if ($_SESSION['access_level'] >= 4 && $_SESSION['_id'] === 'vmsroot'): ?>
+                    <div class="dashboard-item" data-link="vmsDash.php">
+                        <img src="images/go-back.svg">
+                        <span>Go Back</span>
+                    </div>
+                <?php endif ?>
+
+                <!-- Go Back for regular admins (links to adminDash.php) -->
+                <?php if ($_SESSION['access_level'] == 3 && $_SESSION['_id'] !== 'vmsroot'): ?>
+                    <div class="dashboard-item" data-link="adminDash.php">
+                        <img src="images/go-back.svg">
+                        <span>Go Back</span>
+                    </div>
+                <?php endif ?>
                 </div>
             </div>
         </main>

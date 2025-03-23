@@ -8,12 +8,12 @@
     error_reporting(E_ALL);
 
     // Debug: Log session state
-    error_log("vmsDash.php: Session['_id'] = " . (isset($_SESSION['_id']) ? $_SESSION['_id'] : 'not set'));
-    error_log("vmsDash.php: Session['access_level'] = " . (isset($_SESSION['access_level']) ? $_SESSION['access_level'] : 'not set'));
+    error_log("adminDash.php: Session['_id'] = " . (isset($_SESSION['_id']) ? $_SESSION['_id'] : 'not set'));
+    error_log("adminDash.php: Session['access_level'] = " . (isset($_SESSION['access_level']) ? $_SESSION['access_level'] : 'not set'));
 
-    // Restrict access to vmsroot only
-    if (!isset($_SESSION['_id']) || $_SESSION['_id'] !== 'vmsroot' || !isset($_SESSION['access_level']) || $_SESSION['access_level'] < 4) {
-        error_log("vmsDash.php: Redirecting to login.php because user is not vmsroot or access_level < 4");
+    // Restrict access to regular admins (access level 3, but not vmsroot)
+    if (!isset($_SESSION['access_level']) || $_SESSION['access_level'] != 3 || (isset($_SESSION['_id']) && $_SESSION['_id'] === 'vmsroot')) {
+        error_log("adminDash.php: Redirecting to login.php because user is not a regular admin (access_level != 3 or is vmsroot)");
         header('Location: login.php');
         die();
     }
@@ -30,11 +30,11 @@
     <head>
         <?php require('universal.inc'); ?>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <title>Step VA System | Root Admin Dashboard</title>
+        <title>Step VA System | Admin Dashboard</title>
     </head>
     <body>
         <?php require('header.php'); ?>
-        <h1>Root Admin Dashboard</h1>
+        <h1>Admin Dashboard</h1>
         <main class='dashboard'>
             <p>Welcome back, <?php echo $person->get_first_name() ?>!</p>
             <p>Today is <?php echo date('l, F j, Y'); ?>.</p>
