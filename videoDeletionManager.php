@@ -101,7 +101,7 @@
         
         <div>
             <label for="videoSelect">Select a Video:</label>
-            <select id="videoSelect" onchange="loadVideo(this.value); setHiddenVideoVariable();">
+            <select id="videoSelect" onchange="loadVideo(this.value); setHiddenVideoVariable(); getHiddenVideoVariable();">
                 <option value="">-- Choose a Video --</option>
                 <?php foreach ($videos as $video) {
                     // Filters videos based on account type
@@ -128,22 +128,17 @@
 
             function deleteVideo(){
                 var videoSelectDropdown = document.getElementById("videoSelect").value;
-                alert('In Delete Video!')
+                //alert('In Delete Video!')
                 window.location.href = 'videoDeletionHelper.php?id=' + encodeURIComponent(videoSelectionDropdown);
             }
 
-            function getSelectedVideoVariable() {
+            function getHiddenVideoVariable() {
                 return selectedVideo;
             }
 
             function setHiddenVideoVariable() {
-                var selectedVideo = document.getElementById("videoSelect").value;
-            }
-
-            function getSelectedVideo() {
-                var videoSelectDropdown = document.getElementById("videoSelect");
-                var selectedValue = videoSelectDropdown.value;
-                return selectedValue;
+                selectedVideo = document.getElementById("videoSelect").value;
+                return true;
             }
         
             function loadVideo(videoId) {
@@ -165,10 +160,21 @@
 
         </script>
 
-        <form action="videoDeletionManager.php" id="deleteVideoForm" method="POST" onsubmit="deleteVideo()">
-            <input type="hidden" id="deletedVideoId" name="deletedVideoId" value=selectedVideo>
+        <form action="videoDeletionHelper.php" id="deleteVideoForm" method="POST">
+            <input type="hidden" id="deletedVideoId" name="deletedVideoId" value="">
             <button type="submit">Delete</button>
         </form>
+
+        <script>
+            document.getElementById('deleteVideoForm').addEventListener('submit', function (event) {
+                document.getElementById('deletedVideoId').value = getHiddenVideoVariable();
+            });
+        </script>
+
+        <!--<form action="videoDeletionManager.php" id="deleteVideoForm" method="POST" onsubmit="deleteVideo()">
+            <input type="hidden" id="deletedVideoId" name="deletedVideoId" value=selectedVideo>
+            <button type="submit">Delete</button>
+        </form> -->
         <br>
 
     </body>

@@ -120,6 +120,7 @@
 
         $permission_array['videouploadmanager.php'] = 2;
         $permission_array['videodeletionmanager.php'] = 2;
+        $permission_array['videodeletionhelper.php'] = 2;
         //For family leaders to view
         $permission_array['familymanagementportal.php'] = 1;
         $permission_array['editchildprofile.php'] = 1;

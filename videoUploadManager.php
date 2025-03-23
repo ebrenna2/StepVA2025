@@ -124,7 +124,7 @@
             Needs to be updated to take user back to updated Dashboard once Jack finishes the big declutter dashboard update.
         -->
         <div id="calendar-footer">
-            <a class="button cancel" href="index.php">Return to Dashboard</a>
+            <a class="button cancel" href="adminPortal.php">Return to Dashboard</a>
         </div>
 
     </body>

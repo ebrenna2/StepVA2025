@@ -57,7 +57,15 @@
                 </div>
                 <div class="dashboard-item" data-link="viewVideos.php">
                     <img src="images/camera.svg">
-                    <span>Training Videos</span>
+                    <span>View Training Videos</span>
+                </div>
+                <div class="dashboard-item" data-link="videoUploadManager.php">
+                    <i class="fa-solid fa-upload"></i>
+                    <span>Upload Videos</span>
+                </div>
+                <div class="dashboard-item" data-link="videoDeletionManager.php">
+                    <i class="fa-solid fa-video-slash"></i>
+                    <span>Delete Videos</span>
                 </div>
                 <div class="dashboard-item" data-link="eventSettings.php">
                     <img src="images/settings.svg">
