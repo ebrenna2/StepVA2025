@@ -134,6 +134,7 @@
         $permission_array['eventsettings.php'] = 2;
         $permission_array['admindash.php'] = 2;
         $permission_array['viewall.php'] = 2;
+        $permission_array['registervolunteerbar.php'] = 2;
         // NEW UI
 
 
