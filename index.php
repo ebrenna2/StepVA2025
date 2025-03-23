@@ -60,5 +60,6 @@ if ($_SESSION['access_level'] >= 4 && $_SESSION['_id'] === 'vmsroot') {
         header('Location: volunteerPortal.php');
         die();
     }
+
 }
-?>?>
+?>
