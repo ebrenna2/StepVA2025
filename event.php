@@ -379,7 +379,14 @@
             <?php
                     if ($event_capacity > count(getvolunteers_byevent($event_info['id']))) {
                         $restricted = ($event_info['restricted_signup'] == 1) ? "Yes" : "No";
-                        echo "<a href='eventSignUp.php?event_name=" . urlencode($event_name) . "&restricted=" . $restricted . "' class='button signup'>Sign Up for Event</a>";
+                        if (isset($_GET['id'])){
+                            $eid = $_GET['id'];
+                            echo "<a href='eventSignUp.php?event_id=" . urlencode($eid) . "&restricted=" . $restricted . "' class='button signup'>Sign Up for Event</a>";
+                        } else {
+                            //echo "<a href='eventSignUp.php?event_id=" . -1 . "&restricted=" . $restricted . "' class='button signup'>Sign Up for Event</a>";
+                        }
+                        
+                        
                     } else {
                         echo "<a class='button danger'>Sign-ups Closed!</a>";
                     }
