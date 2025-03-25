@@ -9,6 +9,7 @@
     $accesslevel = 0;
     $userID = null;
 
+    
     include "domain/Video.php";
     include "database/dbVideos.php";
 
