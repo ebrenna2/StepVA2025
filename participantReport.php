@@ -97,12 +97,9 @@ if (isset($_GET['group']) && $_GET['group'] !== '') {
 
 if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
     $pdf = new FPDF();
-
-
     $pdf->AddPage();
     $pdf->SetTitle('Participant Accommodations Report');
     $pdf->SetAuthor('Step VA');
-
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(0, 10, 'Participant Accommodations Report', 0, 1, 'C');
@@ -111,20 +108,36 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
     $pdf->Cell(50, 10, 'Last Name', 1, 0, 'C');
     $pdf->Cell(70, 10, 'Accommodation Needs', 1, 0, 'C');
     $pdf->Cell(20, 10, 'Age', 1, 1, 'C'); 
-
     $pdf->SetFont('Arial', '', 12);
 
-foreach ($participants as $participant) {
-    $age = date_diff(date_create($participant['birthday']), date_create('today'))->y;
-    $pdf->Cell(50, 10, $participant['first_name'], 1, 0, 'C');
-    $pdf->Cell(50, 10, $participant['last_name'], 1, 0, 'C');
-    $pdf->Cell(70, 10, $participant['disability_accomodation_needs'], 1, 0, 'C');
-    $pdf->Cell(20, 10, $age, 1, 1, 'C');
+    if (!empty($grouped)) {
+        foreach ($grouped as $groupKey => $group) {
+            $pdf->SetFont('Arial', 'B', 12);
+            $pdf->Cell(190, 10, $groupKey, 1, 1, 'L');
+            $pdf->SetFont('Arial', '', 12);
+
+            foreach ($group as $participant) {
+                $age = date_diff(date_create($participant['birthday']), date_create('today'))->y;
+                $pdf->Cell(50, 10, $participant['first_name'], 1, 0, 'C');
+                $pdf->Cell(50, 10, $participant['last_name'], 1, 0, 'C');
+                $pdf->Cell(70, 10, $participant['disability_accomodation_needs'], 1, 0, 'C');
+                $pdf->Cell(20, 10, $age, 1, 1, 'C');
+            }
+        }
+    } else {
+        foreach ($participants as $participant) {
+            $age = date_diff(date_create($participant['birthday']), date_create('today'))->y;
+            $pdf->Cell(50, 10, $participant['first_name'], 1, 0, 'C');
+            $pdf->Cell(50, 10, $participant['last_name'], 1, 0, 'C');
+            $pdf->Cell(70, 10, $participant['disability_accomodation_needs'], 1, 0, 'C');
+            $pdf->Cell(20, 10, $age, 1, 1, 'C');
+        }
+    }
+
+    $pdf->Output('I', 'Participant_Accommodations.pdf');
+    exit;
 }
 
-$pdf->Output('I', 'Participant_Accommodations.pdf');
-exit;
-}
 ?>
 
 <!DOCTYPE html>
