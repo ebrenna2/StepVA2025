@@ -159,7 +159,6 @@ exit;
         <select name="group" id="group">
             <option value="">-- Select --</option>
             <option value="accommodation" <?= (($_GET['group'] ?? '') === 'accommodation') ? 'selected' : '' ?>>Accommodation Needs</option>
-            <option value="birthday" <?= (($_GET['group'] ?? '') === 'birthday') ? 'selected' : '' ?>>Birthday Month</option>
             <option value="age" <?= (($_GET['group'] ?? '') === 'age') ? 'selected' : '' ?>>Age Group</option>
         </select>
 
@@ -173,7 +172,7 @@ exit;
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Accommodation Needs</th>
-                    <th>Birthday</th>
+                    <th>Age</th>
                 </tr>
             </thead>
             <tbody class="standout">
