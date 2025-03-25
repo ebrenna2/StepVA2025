@@ -9,8 +9,9 @@
     $accesslevel = 0;
     $userID = null;
 
-    include "domain\Video.php";
-    include "database\dbVideos.php";
+    
+    include "domain/Video.php";
+    include "database/dbVideos.php";
 
     // Post request method only used when sending new video data to the server.
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

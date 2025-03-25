@@ -14,10 +14,10 @@
         die();
     }
 
-    include_once('database\dbVideos.php');
-    include_once('database\dbPersons.php');
-    include_once('domain\Person.php');
-    include_once('domain\Video.php');
+    include_once('database/dbVideos.php');
+    include_once('database/dbPersons.php');
+    include_once('domain/Person.php');
+    include_once('domain/Video.php');
 
     if (isset($_SESSION['_id'])) {
         $person = retrieve_person($_SESSION['_id']);
