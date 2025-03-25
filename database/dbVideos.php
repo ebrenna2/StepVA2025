@@ -8,8 +8,7 @@ function add_video($video) {
     $result = mysqli_query($con,$query);
 
     if ($result == null || mysqli_num_rows($result) == 0) {
-        mysqli_query($con, 'INSERT INTO dbvideos VALUES ("' .
-            $video->get_id() . '","' .
+        mysqli_query($con, 'INSERT INTO dbvideos (url, title, synopsis, type) VALUES ("' .
             $video->get_url() . '","' .
             $video->get_title() . '","' .
             $video->get_synopsis() . '","' .
