@@ -184,6 +184,7 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Accommodation Needs</th>
+                    <th>Birthday</th>
                 </tr>
             </thead>
             <tbody class="standout">
@@ -198,6 +199,7 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
                                     <td><?= htmlspecialchars($participant['first_name']) ?></td>
                                     <td><?= htmlspecialchars($participant['last_name']) ?></td>
                                     <td><?= htmlspecialchars($participant['disability_accomodation_needs']) ?></td>
+                                    <td><?= date_diff(date_create($participant['birthday']), date_create('today'))->y ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endforeach; ?>
@@ -207,6 +209,7 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
                                 <td><?= htmlspecialchars($participant['first_name']) ?></td>
                                 <td><?= htmlspecialchars($participant['last_name']) ?></td>
                                 <td><?= htmlspecialchars($participant['disability_accomodation_needs']) ?></td>
+                                <td><?= date_diff(date_create($participant['birthday']), date_create('today'))->y ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
