@@ -100,13 +100,14 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
     $pdf->AddPage();
     
     $pdf->SetFont('Arial', 'B', 16);
-    $pdf->Cell(0, 10, 'Participant Accommodations Report', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Participant Accommodations Report', 0, 2, 'D');
     $pdf->Ln(10);
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(60, 10, 'First Name', 1);
     $pdf->Cell(60, 10, 'Last Name', 1);
     $pdf->Cell(70, 10, 'Accommodation Needs', 1);
+    $pdf->Cell(0, 10, 'Age', 1);
     $pdf->Ln();
 
     $pdf->SetFont('Arial', '', 12);
@@ -120,6 +121,7 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
                 $pdf->Cell(60, 10, htmlspecialchars($participant['first_name']), 1);
                 $pdf->Cell(60, 10, htmlspecialchars($participant['last_name']), 1);
                 $pdf->Cell(70, 10, htmlspecialchars($participant['disability_accomodation_needs']), 1);
+                $pdf->Cell(0, 10, date_diff(date_create($participant['birthday']), date_create('today'))->y, 1);
                 $pdf->Ln();
             }
         }
@@ -129,6 +131,7 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
             $pdf->Cell(60, 10, htmlspecialchars($participant['first_name']), 1);
             $pdf->Cell(60, 10, htmlspecialchars($participant['last_name']), 1);
             $pdf->Cell(70, 10, htmlspecialchars($participant['disability_accomodation_needs']), 1);
+            $pdf->Cell(0, 10, date_diff(date_create($participant['birthday']), date_create('today'))->y, 1);
             $pdf->Ln();
         }
     }
