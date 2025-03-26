@@ -57,3 +57,13 @@ function retrieve_all_videos() {
     mysqli_close($con);
     return $videos;
 }
+
+function update_video($id, $url, $title, $synopsis, $type){
+    $connection = connect();
+    $query = "UPDATE dbvideos SET url='$url', title='$title', synopsis='$synopsis', type='$type' where id='$id'";
+    
+    $result = mysqli_query($connection, $query);
+    mysqli_commit($connection);
+    mysqli_close($connection);
+    return $result;
+}
