@@ -68,7 +68,7 @@
                     <span>Delete Videos</span>
                 </div>
                 <div class="dashboard-item" data-link="editVideos.php">
-                    <img src="images/editVideo.svg">
+                    <img src="images/editvideo.svg">
                     <span>Edit Videos</span>
                 </div>
                 <div class="dashboard-item" data-link="eventSettings.php">

@@ -1,28 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="248.000000pt" height="203.000000pt" viewBox="0 0 248.000000 203.000000"
- preserveAspectRatio="xMidYMid meet">
-
-<g transform="translate(0.000000,203.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M129 1992 c-60 -31 -105 -87 -119 -148 -12 -51 -12 -1607 0 -1658 14
--63 59 -118 119 -149 l55 -27 585 0 586 0 0 55 0 55 -72 0 -73 0 0 160 0 160
-94 0 93 0 20 55 21 55 -664 0 -664 0 0 470 0 470 1030 0 1030 0 0 -135 0 -135
-55 0 55 0 0 308 c0 302 -1 308 -24 358 -27 58 -80 106 -135 123 -28 8 -305 11
--989 11 l-950 0 -53 -28z m401 -232 l0 -150 -210 0 -210 0 0 95 c0 112 15 156
-62 185 30 18 50 20 196 20 l162 0 0 -150z m570 0 l0 -150 -230 0 -230 0 0 150
-0 150 230 0 230 0 0 -150z m560 0 l0 -150 -225 0 -225 0 0 150 0 150 225 0
-225 0 0 -150z m441 135 c54 -29 69 -67 69 -182 l0 -103 -200 0 -200 0 0 150 0
-150 150 0 c117 0 158 -4 181 -15z m-1571 -1615 l0 -160 -162 0 c-146 0 -166 2
--196 20 -49 30 -62 72 -62 195 l0 105 210 0 210 0 0 -160z m570 0 l0 -160
--230 0 -230 0 0 160 0 160 230 0 230 0 0 -160z"/>
-<path d="M950 1340 c-13 -8 -15 -56 -18 -314 -4 -408 -13 -400 256 -214 253
-174 254 174 250 212 -3 28 -23 45 -213 178 -206 144 -239 161 -275 138z"/>
-<path d="M2007 698 l-206 -213 129 -130 130 -130 184 191 c102 105 197 205
-212 223 l27 33 -119 119 c-65 65 -126 119 -135 119 -9 0 -109 -96 -222 -212z"/>
-<path d="M1682 228 c-11 -84 -19 -155 -16 -157 2 -2 69 9 149 25 l145 29 -128
-128 -129 129 -21 -154z"/>
-</g>
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 3H6C3.79086 3 2 4.79086 2 7V17C2 19.2091 3.79086 21 6 21H18C20.2091 21 22 19.2091 22 17V7C22 4.79086 20.2091 3 18 3Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22 17H2" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2 7H22" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 7V3" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7 7V3" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17 7V3" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 21V17" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7 21V17" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17 21V17" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

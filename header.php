@@ -80,7 +80,7 @@
         $permission_array['addweek.php'] = 2;
         $permission_array['log.php'] = 2;
         $permission_array['reports.php'] = 2;
-        $permission_array['editVideos.php'] = 2;
+        $permission_array['editvideos.php'] = 2;
         $permission_array['participantreport.php'] = 2;
         $permission_array['eventedit.php'] = 2;
         $permission_array['modifyuserrole.php'] = 2;

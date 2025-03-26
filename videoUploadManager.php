@@ -108,7 +108,7 @@
             <select name="videoType" id="videoType">
                 <option value="volunteer">Volunteer</option>
                 <option value="participant">Participant</option>
-                <option value="admin">Admin</option>
+                <option value="admin">All</option>
             </select><br><br>
 
             
