@@ -67,6 +67,10 @@
                     <i class="fa-solid fa-video-slash"></i>
                     <span>Delete Videos</span>
                 </div>
+                <div class="dashboard-item" data-link="editVideos.php">
+                    <i class="images/editVideo.png"></i>
+                    <span>Edit Videos</span>
+                </div>
                 <div class="dashboard-item" data-link="eventSettings.php">
                     <img src="images/settings.svg">
                     <span>Event Settings</span>
