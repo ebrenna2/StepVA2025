@@ -66,6 +66,21 @@ $videos = retrieve_all_videos();
 </head>
 
 <body>
+    <style>
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        label {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+    </style>
+
     <?php require('header.php'); ?>
     <h1>Edit Videos</h1>
 
@@ -76,25 +91,28 @@ $videos = retrieve_all_videos();
 
     <div>
         <label for="videoSelect">Select a Video:</label>
-        <select id="videoSelect" onchange="loadVideoData(this.value)">
+        <select style="width: 50%; margin-left: 25%;" id="videoSelect" onchange="loadVideoData(this.value)">
             <option value="">-- Choose a Video --</option>
             <?php foreach ($videos as $video) {
                 echo "<option value='{$video['id']}'>{$video['title']}</option>";
             } ?>
         </select>
     </div>
-
+    <br>
     <form action="editVideos.php" method="POST">
         <input type="hidden" id="video_id" name="video_id">
 
         <label for="video_url">Video URL:</label>
         <input type="text" id="video_url" name="video_url" required><br>
+        <br>
 
         <label for="video_title">Title:</label>
         <input type="text" id="video_title" name="video_title" required><br>
+        <br>
 
         <label for="video_synopsis">Synopsis:</label>
         <textarea id="video_synopsis" name="video_synopsis" required></textarea><br>
+        <br>
 
         <label for="video_type">Type:</label>
         <select id="video_type" name="video_type">
@@ -102,8 +120,10 @@ $videos = retrieve_all_videos();
             <option value="1">Participant</option>
             <option value="2">All</option>
         </select><br>
+        <br>
 
         <button type="submit" name="update_video">Update Video</button>
+        <p><br></p>
     </form>
 </body>
 

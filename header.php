@@ -120,6 +120,7 @@
         $permission_array['eventattendanceform.php'] = 2;
         $permission_array['eventfailurebaddeparturetime.php'] = 1;
 
+        $permission_array['videomanagerportal.php'] = 2;
         $permission_array['videouploadmanager.php'] = 2;
         $permission_array['videodeletionmanager.php'] = 2;
         $permission_array['videodeletionhelper.php'] = 2;

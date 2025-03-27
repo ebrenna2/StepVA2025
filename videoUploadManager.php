@@ -13,6 +13,9 @@
     include "domain/Video.php";
     include "database/dbVideos.php";
 
+    $uploadSuccess = false;
+    $alertToggle = false;
+
     // Post request method only used when sending new video data to the server.
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -42,7 +45,8 @@
         );
 
         // Adds video to database
-        add_video($newVideo);
+        $uploadSuccess = add_video($newVideo);
+        $alertToggle = true;
 
     }
 
@@ -121,12 +125,24 @@
         <br>
         </p>
 
-        <!-- IMPORTANT NOTE:  
-            Needs to be updated to take user back to updated Dashboard once Jack finishes the big declutter dashboard update.
-        -->
         <div id="calendar-footer">
             <a class="button cancel" href="adminPortal.php">Return to Dashboard</a>
         </div>
+
+        <script>
+            var uploadSuccess = "<?php echo $uploadSuccess; ?>";
+            var alertToggle = "<?php echo $alertToggle; ?>";
+
+            if (alertToggle){
+                if (uploadSuccess) {
+                    <?php $alertToggle = false; ?>;
+                    alert("Your video has been successfully uploaded!");
+                } else {
+                    <?php $alertToggle = false; ?>;
+                    alert("There was an error in video uploading. Please try again.");
+                }
+            }
+        </script>
 
     </body>
         

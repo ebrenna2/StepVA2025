@@ -55,21 +55,9 @@
                     <img src="images/create-report.svg">
                     <span>Reports Page</span>
                 </div>
-                <div class="dashboard-item" data-link="viewVideos.php">
-                    <img src="images/camera.svg">
-                    <span>View Training Videos</span>
-                </div>
-                <div class="dashboard-item" data-link="videoUploadManager.php">
-                    <i class="fa-solid fa-upload"></i>
-                    <span>Upload Videos</span>
-                </div>
-                <div class="dashboard-item" data-link="videoDeletionManager.php">
-                    <i class="fa-solid fa-video-slash"></i>
-                    <span>Delete Videos</span>
-                </div>
-                <div class="dashboard-item" data-link="editVideos.php">
-                    <img src="images/editvideo.svg">
-                    <span>Edit Videos</span>
+                <div class="dashboard-item" data-link="videoManagerPortal.php">
+                    <i class="fa-solid fa-file-video"></i>
+                    <span>Manage Videos</span>
                 </div>
                 <div class="dashboard-item" data-link="eventSettings.php">
                     <img src="images/settings.svg">

@@ -99,9 +99,12 @@
             // If its not set, user gets sent back to the deletion manager.
             if (isset($_POST['deletedVideoId'])) {
                 $deletedVideoId = $_POST['deletedVideoId'];
-                remove_video($deletedVideoId);
+                echo("Deleting video from database . . . "); // Tells Admin whats happening in case of slow internet 
+                $videoRemovalSuccess = remove_video($deletedVideoId);
+                $_SESSION["videoRemovalSuccess"] = true;
                 header("Location: videoDeletionManager.php");
             } else {
+                $_SESSION["videoRemovalSuccess"] = false;
                 header("Location: videoDeletionManager.php");
             }
         

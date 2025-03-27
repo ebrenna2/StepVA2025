@@ -64,6 +64,15 @@
         $allowed_type = 2;
     }
 
+    if(isset($_SESSION['videoRemovalSuccess'])){
+        if($_SESSION['videoRemovalSuccess'] == true) {
+            echo('<script type="text/javascript">alert("Your video has been successfully removed!");</script>');
+        } else {
+            echo('<script type="text/javascript">alert("Oops! Your video could not be removed. Please try again!");</script>');
+        }
+        unset($_SESSION['videoRemovalSuccess']);
+    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,7 +110,7 @@
         
         <div>
             <label for="videoSelect">Select a Video:</label>
-            <select id="videoSelect" onchange="loadVideo(this.value); setHiddenVideoVariable(); getHiddenVideoVariable();">
+            <select id="videoSelect" onchange="loadVideo(this.value); setHiddenVideoVariable();">
                 <option value="">-- Choose a Video --</option>
                 <?php foreach ($videos as $video) {
                     // Filters videos based on account type
@@ -125,13 +134,7 @@
 
         <script>
             var selectedVideo = '';
-
-            function deleteVideo(){
-                var videoSelectDropdown = document.getElementById("videoSelect").value;
-                //alert('In Delete Video!')
-                window.location.href = 'videoDeletionHelper.php?id=' + encodeURIComponent(videoSelectionDropdown);
-            }
-
+            
             function getHiddenVideoVariable() {
                 return selectedVideo;
             }
@@ -171,10 +174,6 @@
             });
         </script>
 
-        <!--<form action="videoDeletionManager.php" id="deleteVideoForm" method="POST" onsubmit="deleteVideo()">
-            <input type="hidden" id="deletedVideoId" name="deletedVideoId" value=selectedVideo>
-            <button type="submit">Delete</button>
-        </form> -->
         <br>
 
     </body>
