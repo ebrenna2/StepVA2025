@@ -147,41 +147,41 @@
                     const familyInfoContainer = document.getElementById('family_member_info_section');
 
                     function updateFamilyMemberSections() {
-    const count = parseInt(numFamilyInput.value) || 0;
-    familyInfoContainer.innerHTML = '';
-    familyInfoContainer.style.display = count > 0 ? 'block' : 'none';
+                        const count = parseInt(numFamilyInput.value) || 0;
+                        familyInfoContainer.innerHTML = '';
+                        familyInfoContainer.style.display = count > 0 ? 'block' : 'none';
 
-    if (count >= 12) {
-        familyInfoContainer.innerHTML = `
-            <div class="section">
-                <label style="color: red;">Please enter a number less than 12.</label>
-            </div>
-        `;
-    } else if (count > 0) {        
-        for (let i = 1; i <= count; i++) {
-            const section = document.createElement('fieldset');
-            section.className = 'section-box family-member-section';
-            section.innerHTML = `
-                <legend>Family Member ${i} Information</legend>
-                <input type="hidden" name="family[${i}][volunteer_or_participant]" value="p">
+                        if (count >= 12) {
+                            familyInfoContainer.innerHTML = `
+                                <div class="section">
+                                    <label style="color: red;">Please enter a number less than 12.</label>
+                                </div>
+                            `;
+                        } else if (count > 0) {        
+                            for (let i = 1; i <= count; i++) {
+                                const section = document.createElement('fieldset');
+                                section.className = 'section-box family-member-section';
+                                section.innerHTML = `
+                                    <legend>Family Member ${i} Information</legend>
+                                    <input type="hidden" name="family[${i}][volunteer_or_participant]" value="p">
 
-                <label for="family_first_name_${i}"><em>* </em>First Name</label>
-                <input type="text" id="family_first_name_${i}" name="family[${i}][first_name]" required placeholder="Enter family member ${i}'s first name">
+                                    <label for="family_first_name_${i}"><em>* </em>First Name</label>
+                                    <input type="text" id="family_first_name_${i}" name="family[${i}][first_name]" required placeholder="Enter family member ${i}'s first name">
 
-                <label for="family_last_name_${i}"><em>* </em>Last Name</label>
-                <input type="text" id="family_last_name_${i}" name="family[${i}][last_name]" required placeholder="Enter family member ${i}'s last name">
+                                    <label for="family_last_name_${i}"><em>* </em>Last Name</label>
+                                    <input type="text" id="family_last_name_${i}" name="family[${i}][last_name]" required placeholder="Enter family member ${i}'s last name">
 
-                <label for="family_birthdate_${i}"><em>* </em>Date of Birth</label>
-                <input type="date" id="family_birthdate_${i}" name="family[${i}][birthdate]" required placeholder="Choose family member ${i}'s birthday" max="<?php echo date('Y-m-d'); ?>">
+                                    <label for="family_birthdate_${i}"><em>* </em>Date of Birth</label>
+                                    <input type="date" id="family_birthdate_${i}" name="family[${i}][birthdate]" required placeholder="Choose family member ${i}'s birthday" max="<?php echo date('Y-m-d'); ?>">
 
-                <label for="family_street_address_${i}"><em>* </em>Street Address</label>
-                <input type="text" id="family_street_address_${i}" name="family[${i}][street_address]" required placeholder="Enter family member ${i}'s street address">
+                                    <label for="family_street_address_${i}"><em>* </em>Street Address</label>
+                                    <input type="text" id="family_street_address_${i}" name="family[${i}][street_address]" required placeholder="Enter family member ${i}'s street address">
 
-                <label for="family_city_${i}"><em>* </em>City</label>
-                <input type="text" id="family_city_${i}" name="family[${i}][city]" required placeholder="Enter family member ${i}'s city">
+                                    <label for="family_city_${i}"><em>* </em>City</label>
+                                    <input type="text" id="family_city_${i}" name="family[${i}][city]" required placeholder="Enter family member ${i}'s city">
 
-                <label for="family_state_${i}"><em>* </em>State</label>
-                <select id="family_state_${i}" name="family[${i}][state]" required>
+                                    <label for="family_state_${i}"><em>* </em>State</label>
+                                    <select id="family_state_${i}" name="family[${i}][state]" required>
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
                                         <option value="AZ">Arizona</option>
@@ -236,147 +236,147 @@
                                     </select>
 
                                     <label for="family_zip_${i}"><em>* </em>Zip Code</label>
-                <input type="text" id="family_zip_${i}" name="family[${i}][zip]" pattern="[0-9]{5}" title="5-digit zip code" required placeholder="Enter family member ${i}'s 5-digit zip code">
+                                    <input type="text" id="family_zip_${i}" name="family[${i}][zip]" pattern="[0-9]{5}" title="5-digit zip code" required placeholder="Enter family member ${i}'s 5-digit zip code">
 
-                <legend>Contact Information</legend>
-                <p>The following information will help us determine the best way to contact family member ${i} regarding event coordination.</p>
+                                    <legend>Contact Information</legend>
+                                    <p>The following information will help us determine the best way to contact family member ${i} regarding event coordination.</p>
 
-                <label for="family_email_${i}"><em>* </em>E-mail</label>
-                <input type="email" id="family_email_${i}" name="family[${i}][email]" required placeholder="Enter family member ${i}'s e-mail address">
+                                    <label for="family_email_${i}"><em>* </em>E-mail</label>
+                                    <input type="email" id="family_email_${i}" name="family[${i}][email]" required placeholder="Enter family member ${i}'s e-mail address">
 
-                <label for="family_phone_${i}"><em>* </em>Phone Number</label>
-                <input type="text" id="family_phone_${i}" name="family[${i}][phone]" required placeholder="Ex. (555) 555-5555">
+                                    <label for="family_phone_${i}"><em>* </em>Phone Number</label>
+                                    <input type="text" id="family_phone_${i}" name="family[${i}][phone]" required placeholder="Ex. (555) 555-5555">
 
-                <label><em>* </em>Phone Type</label>
-                <div class="radio-group">
-                    <input type="radio" id="family_phone_type_cellphone_${i}" name="family[${i}][phone_type]" value="cellphone" required><label for="family_phone_type_cellphone_${i}">Cell</label>
-                    <input type="radio" id="family_phone_type_home_${i}" name="family[${i}][phone_type]" value="home"><label for="family_phone_type_home_${i}">Home</label>
-                    <input type="radio" id="family_phone_type_work_${i}" name="family[${i}][phone_type]" value="work"><label for="family_phone_type_work_${i}">Work</label>
-                </div>
+                                    <label><em>* </em>Phone Type</label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="family_phone_type_cellphone_${i}" name="family[${i}][phone_type]" value="cellphone" required><label for="family_phone_type_cellphone_${i}">Cell</label>
+                                        <input type="radio" id="family_phone_type_home_${i}" name="family[${i}][phone_type]" value="home"><label for="family_phone_type_home_${i}">Home</label>
+                                        <input type="radio" id="family_phone_type_work_${i}" name="family[${i}][phone_type]" value="work"><label for="family_phone_type_work_${i}">Work</label>
+                                    </div>
 
-                <legend>Emergency Contact</legend>
-                <p>Please provide us with someone to contact on behalf of family member ${i} in case of an emergency.</p>
+                                    <legend>Emergency Contact</legend>
+                                    <p>Please provide us with someone to contact on behalf of family member ${i} in case of an emergency.</p>
 
-                <label for="family_emergency_contact_first_name_${i}"><em>* </em>Contact First Name</label>
-                <input type="text" id="family_emergency_contact_first_name_${i}" name="family[${i}][emergency_contact_first_name]" required placeholder="Enter emergency contact first name">
+                                    <label for="family_emergency_contact_first_name_${i}"><em>* </em>Contact First Name</label>
+                                    <input type="text" id="family_emergency_contact_first_name_${i}" name="family[${i}][emergency_contact_first_name]" required placeholder="Enter emergency contact first name">
 
-                <label for="family_emergency_contact_last_name_${i}"><em>* </em>Contact Last Name</label>
-                <input type="text" id="family_emergency_contact_last_name_${i}" name="family[${i}][emergency_contact_last_name]" required placeholder="Enter emergency contact last name">
+                                    <label for="family_emergency_contact_last_name_${i}"><em>* </em>Contact Last Name</label>
+                                    <input type="text" id="family_emergency_contact_last_name_${i}" name="family[${i}][emergency_contact_last_name]" required placeholder="Enter emergency contact last name">
 
-                <label for="family_emergency_contact_relation_${i}"><em>* </em>Contact Relation to Family Member ${i}</label>
-                <input type="text" id="family_emergency_contact_relation_${i}" name="family[${i}][emergency_contact_relation]" required placeholder="Ex. Spouse, Mother, Father, Sister, Brother, Friend">
+                                    <label for="family_emergency_contact_relation_${i}"><em>* </em>Contact Relation to Family Member ${i}</label>
+                                    <input type="text" id="family_emergency_contact_relation_${i}" name="family[${i}][emergency_contact_relation]" required placeholder="Ex. Spouse, Mother, Father, Sister, Brother, Friend">
 
-                <label for="family_emergency_contact_phone_${i}"><em>* </em>Contact Phone Number</label>
-                <input type="text" id="family_emergency_contact_phone_${i}" name="family[${i}][emergency_contact_phone]" required placeholder="Enter emergency contact phone number. Ex. (555) 555-5555">
+                                    <label for="family_emergency_contact_phone_${i}"><em>* </em>Contact Phone Number</label>
+                                    <input type="text" id="family_emergency_contact_phone_${i}" name="family[${i}][emergency_contact_phone]" required placeholder="Enter emergency contact phone number. Ex. (555) 555-5555">
 
-                <label><em>* </em>Contact Phone Type</label>
-                <div class="radio-group">
-                    <input type="radio" id="family_emergency_phone_type_cellphone_${i}" name="family[${i}][emergency_contact_phone_type]" value="cellphone" required><label for="family_emergency_phone_type_cellphone_${i}">Cell</label>
-                    <input type="radio" id="family_emergency_phone_type_home_${i}" name="family[${i}][emergency_contact_phone_type]" value="home"><label for="family_emergency_phone_type_home_${i}">Home</label>
-                    <input type="radio" id="family_emergency_phone_type_work_${i}" name="family[${i}][emergency_contact_phone_type]" value="work"><label for="family_emergency_phone_type_work_${i}">Work</label>
-                </div>
+                                    <label><em>* </em>Contact Phone Type</label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="family_emergency_phone_type_cellphone_${i}" name="family[${i}][emergency_contact_phone_type]" value="cellphone" required><label for="family_emergency_phone_type_cellphone_${i}">Cell</label>
+                                        <input type="radio" id="family_emergency_phone_type_home_${i}" name="family[${i}][emergency_contact_phone_type]" value="home"><label for="family_emergency_phone_type_home_${i}">Home</label>
+                                        <input type="radio" id="family_emergency_phone_type_work_${i}" name="family[${i}][emergency_contact_phone_type]" value="work"><label for="family_emergency_phone_type_work_${i}">Work</label>
+                                    </div>
 
                                     <legend>Other Required Information</legend>
-                <p>Here are a few other pieces of information we need from family member ${i}.</p>
+                                    <p>Here are a few other pieces of information we need from family member ${i}.</p>
 
-                <label><em>* </em>T-Shirt Size</label>
-                <div class="radio-group">
-                    <input type="radio" id="family_xxs_${i}" name="family[${i}][tshirt_size]" value="xxs" required><label for="family_xxs_${i}">XXS</label>
-                    <input type="radio" id="family_xs_${i}" name="family[${i}][tshirt_size]" value="xs"><label for="family_xs_${i}">XS</label>
-                    <input type="radio" id="family_s_${i}" name="family[${i}][tshirt_size]" value="s"><label for="family_s_${i}">S</label>
-                    <input type="radio" id="family_m_${i}" name="family[${i}][tshirt_size]" value="m"><label for="family_m_${i}">M</label>
-                    <input type="radio" id="family_l_${i}" name="family[${i}][tshirt_size]" value="l"><label for="family_l_${i}">L</label>
-                    <input type="radio" id="family_xl_${i}" name="family[${i}][tshirt_size]" value="xl"><label for="family_xl_${i}">XL</label>
-                    <input type="radio" id="family_xxl_${i}" name="family[${i}][tshirt_size]" value="xxl"><label for="family_xxl_${i}">XXL</label>
-                </div>
+                                    <label><em>* </em>T-Shirt Size</label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="family_xxs_${i}" name="family[${i}][tshirt_size]" value="xxs" required><label for="family_xxs_${i}">XXS</label>
+                                        <input type="radio" id="family_xs_${i}" name="family[${i}][tshirt_size]" value="xs"><label for="family_xs_${i}">XS</label>
+                                        <input type="radio" id="family_s_${i}" name="family[${i}][tshirt_size]" value="s"><label for="family_s_${i}">S</label>
+                                        <input type="radio" id="family_m_${i}" name="family[${i}][tshirt_size]" value="m"><label for="family_m_${i}">M</label>
+                                        <input type="radio" id="family_l_${i}" name="family[${i}][tshirt_size]" value="l"><label for="family_l_${i}">L</label>
+                                        <input type="radio" id="family_xl_${i}" name="family[${i}][tshirt_size]" value="xl"><label for="family_xl_${i}">XL</label>
+                                        <input type="radio" id="family_xxl_${i}" name="family[${i}][tshirt_size]" value="xxl"><label for="family_xxl_${i}">XXL</label>
+                                    </div>
 
-                <label for="family_school_affiliation_${i}"><em>* </em>School Affiliation (or N/A)</label>
-                <input type="text" id="family_school_affiliation_${i}" name="family[${i}][school_affiliation]" required placeholder="Are you affiliated with any school?">
+                                    <label for="family_school_affiliation_${i}"><em>* </em>School Affiliation (or N/A)</label>
+                                    <input type="text" id="family_school_affiliation_${i}" name="family[${i}][school_affiliation]" required placeholder="Are you affiliated with any school?">
 
-                <label for="family_photo_release_${i}"><em>* </em>Photo Release Restrictions: Can family member ${i}'s photo be taken and used on our website and social media?</label>
-                <div class="radio-group">
-                    <input type="radio" id="family_restricted_${i}" name="family[${i}][photo_release]" value="Restricted" required><label for="family_restricted_${i}">Restricted</label>
-                    <input type="radio" id="family_not_restricted_${i}" name="family[${i}][photo_release]" value="Not Restricted"><label for="family_not_restricted_${i}">Not Restricted</label>
-                </div>
+                                    <label for="family_photo_release_${i}"><em>* </em>Photo Release Restrictions: Can family member ${i}'s photo be taken and used on our website and social media?</label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="family_restricted_${i}" name="family[${i}][photo_release]" value="Restricted" required><label for="family_restricted_${i}">Restricted</label>
+                                        <input type="radio" id="family_not_restricted_${i}" name="family[${i}][photo_release]" value="Not Restricted"><label for="family_not_restricted_${i}">Not Restricted</label>
+                                    </div>
 
-                <label for="family_photo_release_notes_${i}"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
-                <input type="text" id="family_photo_release_notes_${i}" name="family[${i}][photo_release_notes]" required placeholder="Do you have any specific notes about your photo release status?">
+                                    <label for="family_photo_release_notes_${i}"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
+                                    <input type="text" id="family_photo_release_notes_${i}" name="family[${i}][photo_release_notes]" required placeholder="Do you have any specific notes about your photo release status?">
 
-                <legend>Optional Information</legend>
-                <p>Here are some optional pieces of information family member ${i} can give us.</p>
+                                    <legend>Optional Information</legend>
+                                    <p>Here are some optional pieces of information family member ${i} can give us.</p>
 
-                <label>How did family member ${i} hear about StepVA?</label>
-                <input type="text" id="family_how_you_heard_of_stepva_${i}" name="family[${i}][how_you_heard_of_stepva]" placeholder="">
+                                    <label>How did family member ${i} hear about StepVA?</label>
+                                    <input type="text" id="family_how_you_heard_of_stepva_${i}" name="family[${i}][how_you_heard_of_stepva]" placeholder="">
 
-                <label>What is family member ${i}'s preferred contact method?</label>
-                <div class="radio-group">
-                    <input type="radio" id="family_text_${i}" name="family[${i}][preferred_feedback_method]" value="text"><label for="family_text_${i}">Text</label>
-                    <input type="radio" id="family_email_${i}" name="family[${i}][preferred_feedback_method]" value="email"><label for="family_email_${i}">Email</label>
-                    <input type="radio" id="family_no_preference_${i}" name="family[${i}][preferred_feedback_method]" value="No preference" checked><label for="family_no_preference_${i}">No preference</label>
-                </div>
+                                    <label>What is family member ${i}'s preferred contact method?</label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="family_text_${i}" name="family[${i}][preferred_feedback_method]" value="text"><label for="family_text_${i}">Text</label>
+                                        <input type="radio" id="family_email_${i}" name="family[${i}][preferred_feedback_method]" value="email"><label for="family_email_${i}">Email</label>
+                                        <input type="radio" id="family_no_preference_${i}" name="family[${i}][preferred_feedback_method]" value="No preference" checked><label for="family_no_preference_${i}">No preference</label>
+                                    </div>
 
-                                   <label>What are family member ${i}'s hobbies? Are there any specific skills/interests they have that could be useful for volunteering at StepVA?</label>
-                <input type="text" id="family_hobbies_${i}" name="family[${i}][hobbies]" placeholder="">
+                                    <label>What are family member ${i}'s hobbies? Are there any specific skills/interests they have that could be useful for volunteering at StepVA?</label>
+                                    <input type="text" id="family_hobbies_${i}" name="family[${i}][hobbies]" placeholder="">
 
-                <label>Does family member ${i} have any other experience with volunteering?</label>
-                <input type="text" id="family_professional_experience_${i}" name="family[${i}][professional_experience]" placeholder="">
+                                    <label>Does family member ${i} have any other experience with volunteering?</label>
+                                    <input type="text" id="family_professional_experience_${i}" name="family[${i}][professional_experience]" placeholder="">
 
-                <label>Are there any accommodations family member ${i} may need? Anything we should keep in mind?</label>
-                <input type="text" id="family_disability_accomodation_needs_${i}" name="family[${i}][disability_accomodation_needs]" placeholder="">
+                                    <label>Are there any accommodations family member ${i} may need? Anything we should keep in mind?</label>
+                                    <input type="text" id="family_disability_accomodation_needs_${i}" name="family[${i}][disability_accomodation_needs]" placeholder="">
 
-                <legend>Login Credentials</legend>
-                <p>Family member ${i} will use the following information to log in to the system if you choose to create a login for them.</p>
+                                    <legend>Login Credentials</legend>
+                                    <p>Family member ${i} will use the following information to log in to the system if you choose to create a login for them.</p>
 
-                <label><em>* </em>Should this family member have their own login?</label>
-                <div class="radio-group">
-                    <input type="radio" id="has_login_yes_${i}" name="family[${i}][has_login]" value="yes" onclick="toggleCredentials(${i}, true)" required><label for="has_login_yes_${i}">Yes</label>
-                    <input type="radio" id="has_login_no_${i}" name="family[${i}][has_login]" value="no" onclick="toggleCredentials(${i}, false)" required><label for="has_login_no_${i}">No</label>
-                </div>
+                                    <label><em>* </em>Should this family member have their own login?</label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="has_login_yes_${i}" name="family[${i}][has_login]" value="yes" onclick="toggleCredentials(${i}, true)" required><label for="has_login_yes_${i}">Yes</label>
+                                        <input type="radio" id="has_login_no_${i}" name="family[${i}][has_login]" value="no" onclick="toggleCredentials(${i}, false)" required><label for="has_login_no_${i}">No</label>
+                                    </div>
 
-                <div id="credentials_section_${i}" style="display:none;">
-                    <label for="family_username_${i}"><em>* </em>Username</label>
-                    <input type="text" id="family_username_${i}" name="family[${i}][username]" placeholder="Enter a username">
+                                    <div id="credentials_section_${i}" style="display:none;">
+                                        <label for="family_username_${i}"><em>* </em>Username</label>
+                                        <input type="text" id="family_username_${i}" name="family[${i}][username]" placeholder="Enter a username">
 
-                    <label for="family_password_${i}"><em>* </em>Password</label>
-                    <input type="password" id="family_password_${i}" name="family[${i}][password]" placeholder="Enter a strong password">
-                    <p id="family_password_error_${i}" class="error hidden">Password needs to be at least 8 characters long, contain at least one number, one uppercase letter, and one lowercase letter!</p>
+                                        <label for="family_password_${i}"><em>* </em>Password</label>
+                                        <input type="password" id="family_password_${i}" name="family[${i}][password]" placeholder="Enter a strong password">
+                                        <p id="family_password_error_${i}" class="error hidden">Password needs to be at least 8 characters long, contain at least one number, one uppercase letter, and one lowercase letter!</p>
 
-                    <label for="family_password_reenter_${i}"><em>* </em>Re-enter Password</label>
-                    <input type="password" id="family_password_reenter_${i}" name="family[${i}][password_reenter]" placeholder="Re-enter password">
-                    <p id="family_password_match_error_${i}" class="error hidden">Passwords do not match!</p>
-                </div>
-            `;
-            familyInfoContainer.appendChild(section);
-        }
-    }
-}
+                                        <label for="family_password_reenter_${i}"><em>* </em>Re-enter Password</label>
+                                        <input type="password" id="family_password_reenter_${i}" name="family[${i}][password_reenter]" placeholder="Re-enter password">
+                                        <p id="family_password_match_error_${i}" class="error hidden">Passwords do not match!</p>
+                                    </div>
+                                `;
+                                familyInfoContainer.appendChild(section);
+                            }
+                        }
+                    }
 
-function toggleCredentials(i, show) {
-    const credentialsSection = document.getElementById('credentials_section_' + i);
-    const usernameField = document.getElementById('family_username_' + i);
-    const passwordField = document.getElementById('family_password_' + i);
-    const passwordReenterField = document.getElementById('family_password_reenter_' + i);
-    if (show) {
-        credentialsSection.style.display = 'block';
-        usernameField.disabled = false;
-        passwordField.disabled = false;
-        passwordReenterField.disabled = false;
-        usernameField.required = true;
-        passwordField.required = true;
-        passwordReenterField.required = true;
-    } else {
-        credentialsSection.style.display = 'none';
-        usernameField.disabled = true;
-        passwordField.disabled = true;
-        passwordReenterField.disabled = true;
-        usernameField.required = false;
-        passwordField.required = false;
-        passwordReenterField.required = false;
-        usernameField.value = '';
-        passwordField.value = '';
-        passwordReenterField.value = '';
-    }
-}
+                    function toggleCredentials(i, show) {
+                        const credentialsSection = document.getElementById('credentials_section_' + i);
+                        const usernameField = document.getElementById('family_username_' + i);
+                        const passwordField = document.getElementById('family_password_' + i);
+                        const passwordReenterField = document.getElementById('family_password_reenter_' + i);
+                        if (show) {
+                            credentialsSection.style.display = 'block';
+                            usernameField.disabled = false;
+                            passwordField.disabled = false;
+                            passwordReenterField.disabled = false;
+                            usernameField.required = true;
+                            passwordField.required = true;
+                            passwordReenterField.required = true;
+                        } else {
+                            credentialsSection.style.display = 'none';
+                            usernameField.disabled = true;
+                            passwordField.disabled = true;
+                            passwordReenterField.disabled = true;
+                            usernameField.required = false;
+                            passwordField.required = false;
+                            passwordReenterField.required = false;
+                            usernameField.value = '';
+                            passwordField.value = '';
+                            passwordReenterField.value = '';
+                        }
+                    }
 
                     function toggleNumFamilyMembersSection() {
                         const familyRadios = document.querySelectorAll('input[name="family_or_individual"]');
