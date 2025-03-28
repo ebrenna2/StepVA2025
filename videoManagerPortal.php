@@ -33,6 +33,21 @@
         <title>Step VA System | Admin Portal</title>
     </head>
     <body>
+    <style>
+
+    form {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    label {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    </style>
+
         <?php require('header.php'); ?>
         <h1>Video Management Portal</h1>
         <main class='dashboard'>
