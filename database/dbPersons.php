@@ -16,6 +16,7 @@
  */
 include_once('dbinfo.php');
 include_once(dirname(__FILE__).'/../domain/Person.php');
+require_once('domain/Person.php');
 
 /*
  * add a person to dbPersons table: if already there, return false
@@ -348,6 +349,31 @@ function getall_dbPersons($name_from, $name_to, $venue) {
     }
 
     return $thePersons;
+}
+
+// Gets all users with access level 3 (Admins)
+// Does not include vmsroot, as vmsroot has access level 4
+function getall_admins() {
+    $con=connect();
+    $query = 'SELECT * FROM dbpersons';
+    $result = mysqli_query($con,$query);
+
+    if ($result == null || mysqli_num_rows($result) == 0) {
+        mysqli_close($con);
+        return false;
+    }
+
+    $result = mysqli_query($con,$query);
+    $admins = array();
+
+    while ($result_row = mysqli_fetch_assoc($result)) {
+        $theAdmin = make_a_person($result_row);
+        if ($theAdmin->get_access_level() === 3) {
+            $admins[] = $theAdmin;
+        }
+    }
+
+    return $admins;
 }
 
 /*

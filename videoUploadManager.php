@@ -125,9 +125,11 @@
         <br>
         </p>
 
-        <div id="calendar-footer">
+        <div id="calendar-footer" style="width: 50%; margin: 0 auto;">
             <a class="button cancel" href="adminPortal.php">Return to Dashboard</a>
         </div>
+
+        <br>
 
         <script>
             var uploadSuccess = "<?php echo $uploadSuccess; ?>";

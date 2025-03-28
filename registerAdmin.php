@@ -147,12 +147,10 @@
 
                     if ($result) {
                         error_log("DEBUG: Admin successfully added to the database.");
-                        echo 'NEW ADMIN CREATION SUCCESS';
-                        exit();
+                        echo ('<script>alert("The admin was successfully added to the database!");</script>');
                     } else {
                         error_log("ERROR: Admin insertion failed. Username might already exist.");
-                        echo 'USER ALREADY EXISTS';
-                        exit();
+                        echo ('<script>alert("Error: Failed to add admin from database because the user already exists. Please try again.");</script>');
                     }
 
                 
