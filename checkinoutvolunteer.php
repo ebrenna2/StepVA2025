@@ -19,132 +19,108 @@ if (!$loggedIn) {
     die();
 }
 
+$isAdmin = $accessLevel >= 2;
+
+if ($isAdmin && isset($_GET['id'])) {
+    require_once('include/input-validation.php');
+    $args = sanitize($_GET);
+    $id = $args['id'];
+    $viewingSelf = $id == $userID;
+} else {
+    $id = $_SESSION['_id'];
+    $viewingSelf = true;
+}
+
 require_once('database/dbEvents.php');
 require_once('database/dbPersons.php');
-require_once('include/input-validation.php');
 
-$message = "";
+$message = '';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['eventID'], $_POST['action'])) {
     $eventID = $_POST['eventID'];
+    $action = $_POST['action'];
+    $event_info = retrieve_event2($eventID);
 
-    if (isset($_POST['checkin'])) {
+    if ($action === "checkin") {
         $start = $_POST['start_time'];
-        if (can_check_in($userID, ['id' => $eventID])) {
-            $success = check_in($userID, $eventID, $start);
-            $message = $success ? "✅ Checked in successfully!" : "❌ Error: Could not check in.";
+        if (can_check_in($userID, $event_info)) {
+            check_in($userID, $eventID, $start);
+            $formatted_start = date("Y-m-d H:i:s", strtotime($start));
+            $message = "Checked in successfully at " . $formatted_start;
         } else {
-            $message = "❌ Not allowed to check in again.";
+            $message = "You've already checked in for this event or it's not the correct time.";
         }
     }
 
-    if (isset($_POST['checkout'])) {
+    if ($action === "checkout") {
         $end = $_POST['end_time'];
-        if (can_check_out($userID, ['id' => $eventID])) {
-            $success = check_out($userID, $eventID, $end);
-            $message = $success ? "✅ Checked out successfully!" : "❌ Error: Could not check out.";
+        if (can_check_out($userID, $event_info)) {
+            check_out($userID, $eventID, $end);
+            $formatted_end = date("Y-m-d H:i:s", strtotime($end));
+            $message = "Checked out successfully at " . $formatted_end;
         } else {
-            $message = "❌ Not allowed to check out again.";
+            $message = "You can't check out without checking in first.";
         }
     }
 }
 
 $events = get_signed_up_events_by($userID);
-?>
 
+$selected_event_info = null;
+if (isset($_POST['eventID']) && !empty($_POST['eventID'])) {
+    $selected_event_info = retrieve_event2($_POST['eventID']);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <?php require_once('universal.inc'); ?>
     <title>Step VA | Volunteer Check In / Out</title>
     <link rel="stylesheet" href="css/hours-report.css">
-    <script>
-    const eventsData = <?php echo json_encode(
-        array_map(function ($e) use ($userID) {
-            return [
-                'id'          => $e['id'],
-                'name'        => $e['name'],
-                'start_time'  => $e['start_time'],
-                'end_time'    => $e['end_time'],
-                'canCheckIn'  => can_check_in($userID, $e),
-                'canCheckOut' => can_check_out($userID, $e)
-            ];
-        }, $events)
-    ); ?>;
-    
-    function handleEventSelect() {
-        const eventSelect = document.getElementById('eventDropdown');
-        const selectedID   = eventSelect.value;
-
-        const checkIn      = document.getElementById('checkinBtn');
-        const checkOut     = document.getElementById('checkoutBtn');
-        const start        = document.getElementById('start_time');
-        const end          = document.getElementById('end_time');
-
-        const selected = eventsData.find(e => e.id == selectedID);
-
-        if (!selected) {
-
-            checkIn.disabled  = true;
-            checkOut.disabled = true;
-            start.disabled    = true;
-            end.disabled      = true;
-            return;
-        }
-
-        document.getElementById('eventID').value = selectedID;
-
-        if (selected.canCheckIn) {
-            start.disabled    = false;
-            checkIn.disabled  = false;
-
-            end.disabled      = true;
-            checkOut.disabled = true;
-        } else if (selected.canCheckOut) {
-            start.disabled    = true;
-            checkIn.disabled  = true;
-
-            end.disabled      = false;
-            checkOut.disabled = false;
-        } else {
-            start.disabled    = true;
-            end.disabled      = true;
-            checkIn.disabled  = true;
-            checkOut.disabled = true;
-        }
-    }
-</script>
-
 </head>
 <body>
+    <?php require('header.php'); ?>
+    <main class="hours-report">
     <h2>Volunteer Check-In / Check-Out</h2>
-
     <?php if (!empty($message)): ?>
-        <p><strong><?= htmlspecialchars($message) ?></strong></p>
+        <div style="margin: 10px 0; color: green; font-weight: bold;">
+            <?= htmlspecialchars($message) ?>
+        </div>
     <?php endif; ?>
 
-    <form method="post">
-        <label for="eventDropdown">Select Event:</label>
-        <select id="eventDropdown" onchange="handleEventSelect()">
-            <option value="">-- Select an event --</option>
-            <?php foreach ($events as $event): ?>
-                <option value="<?= $event['id'] ?>"><?= htmlspecialchars($event['name']) ?></option>
-            <?php endforeach; ?>
-        </select>
+    <form method="post" id="checkForm">
+    <label for="eventID">Event:</label>
+    <select name="eventID" id="eventID" required onchange="this.form.submit()">
+        <option value="" disabled <?= !isset($_POST['eventID']) ? 'selected' : '' ?>>Select Event</option>
+        <?php foreach ($events as $event): ?>
+            <option value="<?= $event['id'] ?>" <?= (isset($_POST['eventID']) && $_POST['eventID'] == $event['id']) ? 'selected' : '' ?>>
+                <?= htmlspecialchars($event['name']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <br><br>
 
-        <input type="hidden" name="eventID" id="eventID" value="">
+    <?php if ($selected_event_info): ?>
+        <?php if (can_check_in($userID, $selected_event_info)) : ?>
+            <input type="hidden" name="action" value="checkin">
+            <input type="hidden" name="start_time" value="<?= date('Y-m-d\TH:i') ?>">
+            <button type="submit" class="button success">Check-In</button>
+        <?php elseif (can_check_out($userID, $selected_event_info)) : ?>
+            <input type="hidden" name="action" value="checkout">
+            <input type="hidden" name="end_time" value="<?= date('Y-m-d\TH:i') ?>">
+            <button type="submit" class="button danger">Check-Out</button>
+        <?php else: ?>
+            <p>No available action for this event at this time.</p>
+        <?php endif; ?>
+    <?php endif; ?>
+</form>
 
-        <br><br>
-        <label for="start_time">Start Time:</label>
-        <input type="datetime-local" name="start_time" id="start_time" disabled>
+<?php if ($viewingSelf): ?>
+    <a class="button cancel no-print" href="volunteerPortal.php">Return to Portal</a>
+<?php else: ?>
+    <a class="button cancel no-print" href="volunteerPortal.php?id=<?= htmlspecialchars($id) ?>">Return to Portal</a>
+<?php endif; ?>
 
-        <br><br>
-        <label for="end_time">End Time:</label>
-        <input type="datetime-local" name="end_time" id="end_time" disabled>
-
-        <br><br>
-        <input type="submit" name="checkin" id="checkinBtn" value="Check In" disabled>
-        <input type="submit" name="checkout" id="checkoutBtn" value="Check Out" disabled>
-    </form>
-</body>
-</html>
+<script>
+    document.getElementById('debug').innerText = "Select an event to see available actions.";
+</script>

@@ -203,50 +203,44 @@ function update_volunteer_hours($eventname, $username, $new_start_time, $new_end
 
 /*@@@ Thomas */
 
-/* Check-in a user by adding a new row and with start_time to dbpersonhours */
 function check_in($personID, $eventID, $start_time) {
-    $con=connect();
-    $query = "INSERT INTO dbpersonhours (personID, eventID, start_time) VALUES ( '" .$personID. "', '" .$eventID. "', '" .$start_time. "')";
-    $result = mysqli_query($con,$query);
+    $con = connect();
+    $query = "INSERT INTO dbpersonhours (personID, eventID, start_time) VALUES ('$personID', '$eventID', '$start_time')";
+    $result = mysqli_query($con, $query);
     mysqli_close($con);
     return $result;
 }
 
-/* Check-out a user by adding their end_time to dbpersonhours */
 function check_out($personID, $eventID, $end_time) {
-    $con=connect();
-    $query = "UPDATE dbpersonhours SET end_time = '" . $end_time . "' WHERE eventID = '" .$eventID. "' AND personID = '" .$personID. "' and end_time IS NULL";
-    $result = mysqli_query($con,$query);
+    $con = connect();
+    $query = "UPDATE dbpersonhours SET end_time = '$end_time' WHERE eventID = '$eventID' AND personID = '$personID' AND end_time IS NULL";
+    $result = mysqli_query($con, $query);
     mysqli_close($con);
     return $result;
 }
+
 
 
 function can_check_in($personID, $event_info) {
-    if (!isset($event_info['start_time'])) {
+    if (!isset($event_info['startTime'])) {  
         return false;
     }
-
-    $event_start = strtotime($event_info['start_time']);
-    $event_end = isset($event_info['end_time']) ? strtotime($event_info['end_time']) : $event_start + 86400;
-
+    $event_start = strtotime($event_info['startTime']);
+    $event_end = isset($event_info['endTime']) ? strtotime($event_info['endTime']) : $event_start + 86400;
     $current_time = time();
-
     if (!($current_time >= $event_start && $current_time <= $event_end)) {
         return false;
     }
-
     $con = connect();
     $query = "SELECT * FROM dbpersonhours WHERE personID = '$personID' AND eventID = '{$event_info['id']}'";
     $result = mysqli_query($con, $query);
     mysqli_close($con);
-
     if (mysqli_num_rows($result) === 0) {
         return true;
     }
-
     return false;
 }
+
 
 
 /* Return true if a user is able to check out from a given event (they have already checked in) */

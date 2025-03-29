@@ -87,6 +87,10 @@
                     <i class="fa-solid fa-list"></i>
                     <span>My Upcoming Events</span>
                 </div>
+                <div class="dashboard-item" data-link="checkinoutvolunteer.php">
+                    <i class="fa-solid fa-list"></i>
+                    <span><Em>Event Check In / Out</Em></span>
+                </div>
                 <div class="dashboard-item" data-link="editHours.php">
                     <i class="fa-regular fa-clock"></i>
                     <span>Change Hours</span>
