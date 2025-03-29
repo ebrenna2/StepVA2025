@@ -1026,6 +1026,15 @@ function find_user_names($name) {
     /*@@@ end Thomas */
 
     
+    function insert_person_hours($personID, $eventID, $start_time, $end_time) {
+        $con = connect();
+        $query = "INSERT INTO dbpersonhours (personID, eventID, start_time, end_time)
+                  VALUES ('$personID', '$eventID', '$start_time', '$end_time')";
+        $result = mysqli_query($con, $query);
+        mysqli_close($con);
+        return $result; 
+    }
+    
     function get_events_attended_by_2($personID) {
         // Prepare the SQL query to select rows where personID matches
         $query = "SELECT personID, eventID, start_time, end_time FROM dbpersonhours WHERE personID = ?";
