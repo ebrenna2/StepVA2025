@@ -221,28 +221,33 @@ function check_out($personID, $eventID, $end_time) {
     return $result;
 }
 
-/* Return true if a given user is currently able to check-in to a given event */
+
 function can_check_in($personID, $event_info) {
-
-    if (!(time() > strtotime($event_info['date']) && time() < strtotime($event_info['date']) + 86400)) {
-        // event is not ongoing
-        return False;
+    if (!isset($event_info['start_time'])) {
+        return false;
     }
 
-    if (!(check_if_signed_up($event_info['id'], $personID))) {
-        // user is not signed up for this event
-        return False;
+    $event_start = strtotime($event_info['start_time']);
+    $event_end = isset($event_info['end_time']) ? strtotime($event_info['end_time']) : $event_start + 86400;
+
+    $current_time = time();
+
+    if (!($current_time >= $event_start && $current_time <= $event_end)) {
+        return false;
     }
 
-    if (can_check_out($personID, $event_info)) {
-        // user is already checked-in
-        return False;
+    $con = connect();
+    $query = "SELECT * FROM dbpersonhours WHERE personID = '$personID' AND eventID = '{$event_info['id']}'";
+    $result = mysqli_query($con, $query);
+    mysqli_close($con);
+
+    if (mysqli_num_rows($result) === 0) {
+        return true;
     }
 
-    // validation passed
-    return True;
-
+    return false;
 }
+
 
 /* Return true if a user is able to check out from a given event (they have already checked in) */
 function can_check_out($personID, $event_info) {
