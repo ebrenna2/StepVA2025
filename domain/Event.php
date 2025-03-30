@@ -15,6 +15,7 @@ class Event {
     private $completed;
     private $event_type;
     private $restricted_signup;
+    private $restricted_volunteers;
     #private $trainingMedia;
     #private $postMedia;
     #private $animalId;
@@ -80,6 +81,9 @@ class Event {
         return $this->restricted_signup;
     }
 
+    function getRestrictedVolunteers() {
+        return $this->restricted_volunteers;
+    }
 
     #function getTrainingMedia() {
     #    return $trainingMedia;

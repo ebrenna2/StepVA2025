@@ -1,72 +1,72 @@
-<?php session_cache_expire(30);
-    session_start();
-    // Make session information accessible, allowing us to associate
-    // data with the logged-in user.
+<?php 
+session_cache_expire(30);
+session_start();
 
-    ini_set("display_errors",1);
-    error_reporting(E_ALL);
+// Make session information accessible, allowing us to associate data with the logged-in user.
+ini_set("display_errors",1);
+error_reporting(E_ALL);
 
-    $loggedIn = false;
-    $accessLevel = 0;
-    $userID = null;
-    if (isset($_SESSION['_id'])) {
-        $loggedIn = true;
-        // 0 = not logged in, 1 = standard user, 2 = manager (Admin), 3 super admin (TBI)
-        $accessLevel = $_SESSION['access_level'];
-        $userID = $_SESSION['_id'];
-    } 
-    // Require admin privileges
-    if ($accessLevel < 2) {
-        header('Location: login.php');
-        //echo 'bad access level';
+$loggedIn = false;
+$accessLevel = 0;
+$userID = null;
+
+if (isset($_SESSION['_id'])) {
+    $loggedIn = true;
+    $accessLevel = $_SESSION['access_level'];
+    $userID = $_SESSION['_id'];
+} 
+
+// Require admin privileges
+if ($accessLevel < 2) {
+    header('Location: login.php');
+    die();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require_once('include/input-validation.php');
+    require_once('database/dbEvents.php');
+    $args = sanitize($_POST, null);
+    $required = array(
+        "name", "date", "start-time", "end-time", "role", "description",
+    );
+
+    // Check required fields
+    if (!wereRequiredFieldsSubmitted($args, $required)) {
+        echo 'bad form data';
         die();
-    }
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        require_once('include/input-validation.php');
-        require_once('database/dbEvents.php');
-        $args = sanitize($_POST, null);
-        $required = array(
-            "name", "date", "start-time", "end-time", "role", "description",
-        );
-        if (!wereRequiredFieldsSubmitted($args, $required)) {
-            echo 'bad form data';
+    } else {
+        $validated = validate12hTimeRangeAndConvertTo24h($args["start-time"], $args["end-time"]);
+        if (!$validated) {
+            echo 'bad time range';
             die();
-        } else {
-            $validated = validate12hTimeRangeAndConvertTo24h($args["start-time"], $args["end-time"]);
-            if (!$validated) {
-                echo 'bad time range';
-                die();
-            }
+        }
 
-            $restricted_signup = $args['role'];
-            
-            
-            $startTime = $args['start-time'] = $validated[0];
-            $endTime = $args['end-time'] = $validated[1];
-            $date = $args['date'] = validateDate($args["date"]);
-            $recurrence = isset($args['recurrence']) ? $args['recurrence'] : null;
-            $endDate = isset($args['end-date']) ? $args['end-date'] : null;
-            //$capacity = intval($args["capacity"]);
-            //$abbrevLength = strlen($args['abbrev-name']);
-            //if (!$startTime || !$date || $abbrevLength > 11){
-            if (!$startTime || !$endTime || !$date > 11){
-                echo 'bad args';
-                die();
-            }
+        $restricted_signup = $args['role'];
+        $startTime = $args['start-time'] = $validated[0];
+        $endTime = $args['end-time'] = $validated[1];
+        $date = $args['date'] = validateDate($args["date"]);
+        $recurrence = isset($args['recurrence']) ? $args['recurrence'] : null;
+        $endDate = isset($args['end-date']) ? $args['end-date'] : null;
 
-            // If event is recurring, call the set_recurring function
-            if (isset($args['recurring']) && $args['recurring'] == 'y') {
-                $args['end-date'] = $endDate;
-                $args['recurrence'] = $recurrence;
-                $args['date'] = $date;
-                $args['start-time'] = $startTime;
-                $args['end-time'] = $endTime;
-                $args['role'] = $restricted_signup;
+        if (!$startTime || !$endTime || !$date) {
+            echo 'bad args';
+            die();
+        }
 
+        // Capture restricted_volunteers (if provided)
+        $restricted_volunteers = isset($args['restricted-volunteers']) ? intval($args['restricted-volunteers']) : NULL;
+        
+        // If event is recurring, call the set_recurring function
+        if (isset($args['recurring']) && $args['recurring'] == 'y') {
+            $args['end-date'] = $endDate;
+            $args['recurrence'] = $recurrence;
+            $args['date'] = $date;
+            $args['start-time'] = $startTime;
+            $args['end-time'] = $endTime;
+            $args['role'] = $restricted_signup;
+            $args['restricted-volunteers'] = $restricted_volunteers;
 
-                // Call set_recurring function
-                $createdEventIds = set_recurring($args);
-
+            $createdEventIds = set_recurring($args);
 
             if ($createdEventIds) {
                 header('Location: eventSuccess.php');
@@ -75,65 +75,43 @@
                 echo 'Error creating recurring events.';
                 die();
             }
-            } else {
+        } else {
             // Create a single event if not recurring
-                $id = create_event($args);
-                if (!$id) {
-                    echo 'Error creating event';
-                    die();
-                } else {
-                    header('Location: eventSuccess.php');
-                    exit();
-                }
-
-            //var_dump($args);
+            $args['restricted-volunteers'] = $restricted_volunteers;
             $id = create_event($args);
-            if(!$id){
-                //echo "Oopsy!";
+
+            if (!$id) {
+                echo 'Error creating event';
                 die();
             } else {
-                //echo'<script> location.replace("eventSuccess.php"); </script>';
                 header('Location: eventSuccess.php');
                 exit();
             }
-            //require_once('include/output.php');
-            
-            //$name = htmlspecialchars_decode($args['name']);
-            //$startTime = time24hto12h($startTime);
-            //$date = date('l, F j, Y', strtotime($date));
-
-            /*require_once('database/dbMessages.php');
-            system_message_all_users_except($userID, "A new event was created!", "Exciting news!\r\n\r\nThe [$name](event: $id) event at $startTime on $date was added!\r\nSign up today!");
-            header("Location: event.php?id=$id&createSuccess");
-            */
-            //die();
         }
     }
 }
-    $date = null;
-    if (isset($_GET['date'])) {
-        $date = $_GET['date'];
-        $datePattern = '/[0-9]{4}-[0-9]{2}-[0-9]{2}/';
-        $timeStamp = strtotime($date);
-        if (!preg_match($datePattern, $date) || !$timeStamp) {
-            header('Location: calendar.php');
-            die();
-        }
+
+$date = null;
+if (isset($_GET['date'])) {
+    $date = $_GET['date'];
+    $datePattern = '/[0-9]{4}-[0-9]{2}-[0-9]{2}/';
+    $timeStamp = strtotime($date);
+    if (!preg_match($datePattern, $date) || !$timeStamp) {
+        header('Location: calendar.php');
+        die();
     }
+}
 
-    // get animal data from database for form
-    // Connect to database
-    include_once('database/dbinfo.php'); 
-    $con=connect();  
-    // Get all the animals from animal table
-    //$sql = "SELECT * FROM `dbAnimals`";
-    //$all_animals = mysqli_query($con,$sql);
-    //$sql = "SELECT * FROM `dbLocations`";
-    //$all_locations = mysqli_query($con,$sql);
-    //$sql = "SELECT * FROM `dbServices`";
-    //$all_services = mysqli_query($con,$sql);
+// Include the database connection
+include_once('database/dbinfo.php'); 
+$con = connect();  
 
-?><!DOCTYPE html>
+// Get animal data from database for form (if necessary)
+//$all_animals = mysqli_query($con, "SELECT * FROM `dbAnimals`");
+//$all_locations = mysqli_query($con, "SELECT * FROM `dbLocations`");
+//$all_services = mysqli_query($con, "SELECT * FROM `dbServices`");
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <?php require_once('universal.inc') ?>
@@ -170,6 +148,8 @@
                 <input type="radio" id="y" name="recurring" value="y" required><label for="recurring">Yes</label>
                 <input type="radio" id="n" name="recurring" value="n" required><label for="recurring">No</label>
             </div>
+            <label for="name">Restricted Number of Volunteers</label>
+            <input type="number" id="restricted-volunteers" name="restricted-volunteers" required placeholder="Enter restricted number (e.g. 1-99)">
                 </fieldset>
                 <label for="recurrence">Recurrence Frequency</label>
             <select id="recurrence" name="recurrence">
