@@ -212,9 +212,9 @@
                 $orientation_date,
                 $background_complete,
                 $background_date,
-                '',
-                '',
-                '',
+                $skills,
+                $networks,
+                $contributions,
                 -1 // This indicates not part of a family
             );
 

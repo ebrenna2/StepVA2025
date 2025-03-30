@@ -193,6 +193,15 @@
             <label>Are there any accomodations you may need? Anything we should keep in mind?</label>
             <input type="text" id="disability_accomodation_needs" name="disability_accomodation_needs" placeholder="">
 
+            <label>Are there any specific skills/interests you have that you believe could be useful for volunteering at StepVA? </label>
+            <input type="text" id="skills" name="skills" placeholder="">
+
+            <label>Do you have connections to any local businesses or organizations that might be interested in sponsoring or supporting our programs? </label>
+            <input type="text" id="networks" name="networks" placeholder="">
+
+            <label>Do you have any additional ways you can contribute to STEPVA? </label>
+            <input type="text" id="contributions" name="contributions" placeholder="">
+
         </fieldset>
 
         <fieldset class="section-box" id="training-info-section" style="display: none;">
