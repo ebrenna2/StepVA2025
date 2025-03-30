@@ -103,6 +103,7 @@ $access_level = $_SESSION['access_level']; ?>
                             <th>Last Name</th>
                             <th>User ID</th>
                             <th>Position</th>
+                            <th>Volunteer Count</th>
                             <?php if ($access_level >= 2): ?>
                                 <th>Actions</th>
                             <?php endif; ?>
@@ -119,6 +120,8 @@ $access_level = $_SESSION['access_level']; ?>
                             //foreach ($events as $event): 
                             $user_info = retrieve_person($event['username']);
                             $position_label = $event['role'] === 'p' ? 'Participant' : ($event['role'] === 'v' ? 'Volunteer' : 'Unknown');
+                            $volunteer_count = get_volunteer_count($event_id['eventname']);
+                            $restricted_limit = get_restricted_volunteers_limit($event_id['eventname']);
                             ?>
                             <tr>
                                 <td><a
@@ -130,6 +133,10 @@ $access_level = $_SESSION['access_level']; ?>
                                         href="viewProfile.php?id=<?php echo urlencode($user_info->get_id()); ?>"><?php echo htmlspecialchars($user_info->get_id()); ?></a>
                                 </td>
                                 <td><?php echo htmlspecialchars($position_label); ?></td>
+                                <td>
+                                    <!-- Display the restricted volunteer count (x/y) -->
+                                    <?php echo $volunteer_count . '/' . $restricted_limit; ?>
+                                </td>
                                 <?php if ($access_level >= 2): ?>
                                     <td>
                                         <form method="POST" style="display:inline;">
