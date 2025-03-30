@@ -158,10 +158,6 @@
             }
 
             $status = "Active";
-            
-            $skills = '';
-            $networks = '';
-            $contributions = '';
 
             $type = 'participant';
             
