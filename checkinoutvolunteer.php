@@ -94,8 +94,9 @@ if (isset($_POST['eventID']) && !empty($_POST['eventID'])) {
         <option value="" disabled <?= !isset($_POST['eventID']) ? 'selected' : '' ?>>Select Event</option>
         <?php foreach ($events as $event): ?>
             <option value="<?= $event['id'] ?>" <?= (isset($_POST['eventID']) && $_POST['eventID'] == $event['id']) ? 'selected' : '' ?>>
-                <?= htmlspecialchars($event['name']) ?>
+                 <?= htmlspecialchars($event['name']) ?> - <?= date('M d, Y', strtotime($event['date'])) ?>
             </option>
+
         <?php endforeach; ?>
     </select>
     <br><br>

@@ -175,7 +175,7 @@ function fetch_event_signups($eventID) {
 function get_signed_up_events_by($userID) {
     $connection = connect();
     $query = "
-        SELECT e.id, e.name
+        SELECT e.id, e.name, e.date
         FROM dbevents e
         JOIN dbeventpersons ep ON e.id = ep.eventID
         WHERE ep.userID = '$userID'
