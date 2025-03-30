@@ -546,47 +546,59 @@ function fetch_event_by_id($id) {
 function create_event($event) {
     $connection = connect();
     $name = $event["name"];
-    //$abbrevName = $event["abbrev-name"];
     $date = $event["date"];
     $startTime = $event["start-time"];    
     $endTime = $event["end-time"];
     $description = $event["description"];
+
+    // Default capacity if not set
     if (isset($event["capacity"])) {
         $capacity = $event["capacity"];
     } else {
         $capacity = 999;
     }
+
+    // Default location if not set
     if (isset($event["location"])) {
         $location = $event["location"];
     } else {
         $location = "";
     }
-    //$completed = $event["completed"];
-    //$event_type = $event["event_type"];
+
+    // Restricted signup (assumes "r" means restricted)
     $restricted_signup = $event["role"];
     if ($restricted_signup == "r") {
         $restricted = 1;
     } else {
         $restricted = 0;
     }
-    $description = $event["description"];
-    //$location = $event["location"];
-    //$services = $event["service"];
 
-    //$animal = $event["animal"];
+    // Default completed status
     $completed = "no";
+
+    // Get the restricted_volunteers value (if provided)
+    $restricted_volunteers = isset($event["restricted-volunteers"]) ? intval($event["restricted-volunteers"]) : NULL;
+
+    // Update the query to include the new restricted_volunteers field
     $query = "
-        insert into dbevents (name, date, startTime, endTime, restricted_signup, description, capacity, completed, location, event_type)
-        values ('$name', '$date', '$startTime', '$endTime', $restricted, '$description', $capacity, '$completed', '$location', 'New')
+        INSERT INTO dbevents (name, date, startTime, endTime, restricted_signup, description, capacity, completed, location, event_type, restricted_volunteers)
+        VALUES ('$name', '$date', '$startTime', '$endTime', $restricted, '$description', $capacity, '$completed', '$location', 'New', $restricted_volunteers)
     ";
+
     $result = mysqli_query($connection, $query);
+
     if (!$result) {
+        // If the query fails, return null
         return null;
     }
+
+    // Get the ID of the newly inserted event
     $id = mysqli_insert_id($connection);
-    //add_services_to_event($id, $services);
+
+    // Commit the transaction and close the connection
     mysqli_commit($connection);
     mysqli_close($connection);
+
     return $id;
 }
 
@@ -661,6 +673,36 @@ function set_recurring($event) {
 
     // Return the ID of the first created event
     return $event_id;
+}
+
+// Function to get the volunteer count (x) for an event
+function get_volunteer_count($eventID) {
+    $connection = connect(); // Assuming `connect()` is your function for getting a DB connection
+    $query = "SELECT COUNT(*) AS volunteer_count FROM dbeventpersons WHERE eventID = '$eventID' AND position = 'v'"; // 'v' for volunteer
+    $result = mysqli_query($connection, $query);
+
+    if (!$result) {
+        // If query fails, handle error
+        return null;
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    return (int)$row['volunteer_count']; // Return the volunteer count
+}
+
+// Function to get the restricted volunteers limit (y) for an event
+function get_restricted_volunteers_limit($eventID) {
+    $connection = connect(); // Assuming `connect()` is your function for getting a DB connection
+    $query = "SELECT restricted_volunteers FROM dbevents WHERE id = '$eventID'"; // Assuming the column name is `restricted_volunteers`
+    $result = mysqli_query($connection, $query);
+
+    if (!$result) {
+        // If query fails, handle error
+        return null;
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    return (int)$row['restricted_volunteers']; // Return the restricted volunteers limit
 }
 
 
