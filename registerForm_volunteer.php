@@ -128,46 +128,74 @@
         </fieldset>
 
         <fieldset class="section-box">
-            <legend>Other Required Information</legend>
+    <legend>Other Required Information</legend>
 
-            <p>Here are a few other pieces on information we need from you.</p>
+    <p>Here are a few other pieces on information we need from you.</p>
 
-            <!--
-            This is functional code for a user to select if they are a 
-            volunteer or participant
-            <label><em>* </em>Are you a volunteer or a participant?</label>
-            <div class="radio-group">
-                <input type="radio" id="v" name="volunteer_or_participant" value="v" required><label for="volunteer_or_participant">Volunteer</label>
-                <input type="radio" id="p" name="volunteer_or_participant" value="p" required><label for="volunteer_or_participant">Participant</label>
-            </div>
-            -->
-            <!-- Default value for volunteer_or_participant -->
-            <input type="hidden" name="volunteer_or_participant" value="v">
+    <input type="hidden" name="volunteer_or_participant" value="v">
 
-            
-            <label><em>* </em>T-Shirt Size</label>
-            <div class="radio-group">
-                <input type="radio" id="xxs" name="tshirt_size" value="xxs" required><label for="tshirt_size">XXS</label>
-                <input type="radio" id="xs" name="tshirt_size" value="xs" required><label for="tshirt_size">XS</label>
-                <input type="radio" id="s" name="tshirt_size" value="s" required><label for="tshirt_size">S</label>
-                <input type="radio" id="m" name="tshirt_size" value="m" required><label for="tshirt_size">M</label>
-                <input type="radio" id="l" name="tshirt_size" value="l" required><label for="tshirt_size">L</label>
-                <input type="radio" id="xl" name="tshirt_size" value="xl" required><label for="tshirt_size">XL</label>
-                <input type="radio" id="xxl" name="tshirt_size" value="xxl" required><label for="tshirt_size">XXL</label>
-            </div>
+    <label><em>* </em>T-Shirt Size</label>
+    <div class="radio-group">
+        <input type="radio" id="xxs" name="tshirt_size" value="xxs" required><label for="tshirt_size">XXS</label>
+        <input type="radio" id="xs" name="tshirt_size" value="xs" required><label for="tshirt_size">XS</label>
+        <input type="radio" id="s" name="tshirt_size" value="s" required><label for="tshirt_size">S</label>
+        <input type="radio" id="m" name="tshirt_size" value="m" required><label for="tshirt_size">M</label>
+        <input type="radio" id="l" name="tshirt_size" value="l" required><label for="tshirt_size">L</label>
+        <input type="radio" id="xl" name="tshirt_size" value="xl" required><label for="tshirt_size">XL</label>
+        <input type="radio" id="xxl" name="tshirt_size" value="xxl" required><label for="tshirt_size">XXL</label>
+    </div>
 
-            <label for="school_affiliation"><em>* </em>School Affiliation (or N/A)</label>
-            <input type="text" id="school_affiliation" name="school_affiliation" required placeholder="Are you affiliated with any school?">
+    <label for="school_affiliation"><em>* </em>School Affiliation (or N/A)</label>
+    <input type="text" id="school_affiliation" name="school_affiliation" required placeholder="Are you affiliated with any school?">
 
-            <label for="photo_release"><em>* </em>Photo Release Restrictions: Can your photo be taken and used on our website and social media?</label>
-            <div class="radio-group">
-                <input type="radio" id="Restricted" name="photo_release" value="Restricted" required><label for="photo_release">Restricted</label>
-                <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" required><label for="photo_release">Not Restricted</label>
-            </div>
+    <label for="photo_release"><em>* </em>Photo Release Restrictions: Can your photo be taken and used on our website and social media?</label>
+    <div class="radio-group">
+        <input type="radio" id="Restricted" name="photo_release" value="Restricted" required><label for="photo_release">Restricted</label>
+        <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" required><label for="photo_release">Not Restricted</label>
+    </div>
 
-            <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
-            <input type="text" id="photo_release_notes" name="photo_release_notes" required placeholder="Do you have any specific notes about your photo release status?">
-        </fieldset>
+    <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
+    <input type="text" id="photo_release_notes" name="photo_release_notes" required placeholder="Do you have any specific notes about your photo release status?">
+
+    <!-- New Photo Release Details Section -->
+    <div id="photo-release-details" style="display: none;">
+        <label><em>* </em>Can your cast or crew member be featured in a profile?</label>
+        <div class="radio-group">
+            <input type="radio" id="profile-yes" name="profile_feature" value="Yes" required>
+            <label for="profile-yes">Yes</label>
+            <input type="radio" id="profile-no" name="profile_feature" value="No" required>
+            <label for="profile-no">No</label>
+        </div>
+
+        <label><em>* </em>How would you like your cast/crew member identified?</label>
+        <div class="radio-group">
+            <input type="radio" id="id-full-name" name="identification_preference" value="First and last name">
+            <label for="id-full-name">First and last name</label>
+            <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial">
+            <label for="id-first-name">First name and Last initial</label>
+            <input type="radio" id="id-initials" name="identification_preference" value="Initials only">
+            <label for="id-initials">Initials only</label>
+        </div>
+
+        <label><em>* </em>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
+        <div class="radio-group">
+            <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" required>
+            <label for="headshot-yes">Yes</label>
+            <input type="radio" id="headshot-no" name="headshot_publish" value="No" required>
+            <label for="headshot-no">No</label>
+        </div>
+
+        <label><em>* </em>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
+        <div class="radio-group">
+            <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" required>
+            <label for="likeness-yes">Yes</label>
+            <input type="radio" id="likeness-no" name="likeness_usage" value="No" required>
+            <label for="likeness-no">No</label>
+            <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" required>
+            <label for="likeness-filter">Only with a filter</label>
+        </div>
+    </div>
+</fieldset>
 
         <fieldset class="section-box">
             <legend>Optional Information</legend>
@@ -246,34 +274,30 @@
             </div>
         </fieldset>
 
-        <script>
+
+            <script>
             // Function to toggle the visibility of the training section based on volunteer or participant selection
             function toggleTrainingSection() {
-                // Get the value of the hidden input field
                 const volunteerOrParticipant = document.querySelector('input[name="volunteer_or_participant"]').value;
-                const trainingInfoSection = document.getElementById('training-info-section'); // Entire training section
+                const trainingInfoSection = document.getElementById('training-info-section');
 
-                // Show the entire training section only if the user is a volunteer
                 if (volunteerOrParticipant === 'v') {
                     trainingInfoSection.style.display = 'block';
                 } else {
                     trainingInfoSection.style.display = 'none';
                 }
 
-                // Also hide the date fields initially if the section is visible
                 toggleTrainingDateField();
                 toggleOrientationDateField();
                 toggleBackgroundDateField();
             }
 
-            // Function to toggle the visibility of the training date field based on training complete selection
+            // Function to toggle the visibility of the training date field
             function toggleTrainingDateField() {
                 const trainingCompleteYes = document.getElementById('training-complete-yes');
                 const trainingCompleteNo = document.getElementById('training-complete-no');
                 const trainingDateField = document.getElementById('training_date');
                 const trainingDateLabel = document.getElementById('training-date-label');
-
-                // Show the training date field and its label if "Yes" is selected for training complete
                 if (trainingCompleteYes.checked) {
                     trainingDateField.style.display = 'inline';
                     trainingDateLabel.style.display = 'inline';
@@ -283,14 +307,13 @@
                 }
             }
 
-            // Function to toggle the visibility of the orientation date field based on orientation complete selection
+            // Function to toggle the visibility of the orientation date field
             function toggleOrientationDateField() {
                 const orientationCompleteYes = document.getElementById('orientation-complete-yes');
                 const orientationCompleteNo = document.getElementById('orientation-complete-no');
                 const orientationDateField = document.getElementById('orientation_date');
                 const orientationDateLabel = document.getElementById('orientation-date-label');
 
-                // Show the orientation date field and its label if "Yes" is selected for orientation complete
                 if (orientationCompleteYes.checked) {
                     orientationDateField.style.display = 'inline';
                     orientationDateLabel.style.display = 'inline';
@@ -300,20 +323,37 @@
                 }
             }
 
-            // Function to toggle the visibility of the background date field based on background complete selection
+            // Function to toggle the visibility of the background date field
             function toggleBackgroundDateField() {
                 const backgroundCompleteYes = document.getElementById('background-complete-yes');
                 const backgroundCompleteNo = document.getElementById('background-complete-no');
                 const backgroundDateField = document.getElementById('background_date');
                 const backgroundDateLabel = document.getElementById('background-date-label');
 
-                // Show the background date field and its label if "Yes" is selected for background complete
                 if (backgroundCompleteYes.checked) {
                     backgroundDateField.style.display = 'inline';
                     backgroundDateLabel.style.display = 'inline';
                 } else {
                     backgroundDateField.style.display = 'none';
                     backgroundDateLabel.style.display = 'none';
+                }
+            }
+
+            // Function to toggle the visibility of the photo release details section
+            function togglePhotoReleaseDetails() {
+                const notRestricted = document.getElementById('Not Restricted');
+                const photoReleaseDetails = document.getElementById('photo-release-details');
+
+                if (notRestricted.checked) {
+                    photoReleaseDetails.style.display = 'block';
+                    document.querySelectorAll('#photo-release-details input').forEach(input => {
+                        input.setAttribute('required', 'required');
+                    });
+                } else {
+                    photoReleaseDetails.style.display = 'none';
+                    document.querySelectorAll('#photo-release-details input').forEach(input => {
+                        input.removeAttribute('required');
+                    });
                 }
             }
 
@@ -331,14 +371,20 @@
             document.getElementById('background-complete-yes').addEventListener('change', toggleBackgroundDateField);
             document.getElementById('background-complete-no').addEventListener('change', toggleBackgroundDateField);
 
+            // Event listener for photo release radio buttons
+            document.querySelectorAll('input[name="photo_release"]').forEach(radio => {
+                radio.addEventListener('change', togglePhotoReleaseDetails);
+            });
+
             // Initial check on page load
             document.addEventListener('DOMContentLoaded', () => {
-                toggleTrainingSection(); // Ensure the training section is correctly displayed on page load
-                toggleTrainingDateField(); // Ensure the training date field is correctly displayed based on the selection
-                toggleOrientationDateField(); // Ensure the orientation date field is correctly displayed based on the selection
-                toggleBackgroundDateField(); // Ensure the background date field is correctly displayed based on the selection
+                toggleTrainingSection();
+                toggleTrainingDateField();
+                toggleOrientationDateField();
+                toggleBackgroundDateField();
+                togglePhotoReleaseDetails(); // Add this to ensure the photo release section is correctly displayed on page load
             });
-        </script>
+            </script>
 
 
         <fieldset class="section-box">
