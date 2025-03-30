@@ -56,6 +56,7 @@
         $permission_array['logout.php'] = 0;
         $permission_array['register.php'] = 0;
         $permission_array['findanimal.php'] = 0;
+        $permission_array['login.php'] = 0;
         //pages volunteers can view
         $permission_array['help.php'] = 1;
         $permission_array['dashboard.php'] = 1;
@@ -105,7 +106,7 @@
         $permission_array['viewalleventsignups.php'] = 2;
         $permission_array['resources.php'] = 2;
         $permission_array['adminregistervolunteer.php'] = 2;
-        
+        $permission_array['checkinoutvolunteer.php'] = 1;
 
         $permission_array['edithours.php'] = 2;
         $permission_array['eventlist.php'] = 1;
@@ -124,6 +125,7 @@
         $permission_array['videouploadmanager.php'] = 2;
         $permission_array['videodeletionmanager.php'] = 2;
         $permission_array['videodeletionhelper.php'] = 2;
+        $permission_array['deleteadmin.php'] = 2;
         //For family leaders to view
         $permission_array['familymanagementportal.php'] = 1;
         $permission_array['editchildprofile.php'] = 1;

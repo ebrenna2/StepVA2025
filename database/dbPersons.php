@@ -16,6 +16,7 @@
  */
 include_once('dbinfo.php');
 include_once(dirname(__FILE__).'/../domain/Person.php');
+require_once('domain/Person.php');
 
 /*
  * add a person to dbPersons table: if already there, return false
@@ -202,46 +203,45 @@ function update_volunteer_hours($eventname, $username, $new_start_time, $new_end
 
 /*@@@ Thomas */
 
-/* Check-in a user by adding a new row and with start_time to dbpersonhours */
 function check_in($personID, $eventID, $start_time) {
-    $con=connect();
-    $query = "INSERT INTO dbpersonhours (personID, eventID, start_time) VALUES ( '" .$personID. "', '" .$eventID. "', '" .$start_time. "')";
-    $result = mysqli_query($con,$query);
+    $con = connect();
+    $query = "INSERT INTO dbpersonhours (personID, eventID, start_time) VALUES ('$personID', '$eventID', '$start_time')";
+    $result = mysqli_query($con, $query);
     mysqli_close($con);
     return $result;
 }
 
-/* Check-out a user by adding their end_time to dbpersonhours */
 function check_out($personID, $eventID, $end_time) {
-    $con=connect();
-    $query = "UPDATE dbpersonhours SET end_time = '" . $end_time . "' WHERE eventID = '" .$eventID. "' AND personID = '" .$personID. "' and end_time IS NULL";
-    $result = mysqli_query($con,$query);
+    $con = connect();
+    $query = "UPDATE dbpersonhours SET end_time = '$end_time' WHERE eventID = '$eventID' AND personID = '$personID' AND end_time IS NULL";
+    $result = mysqli_query($con, $query);
     mysqli_close($con);
     return $result;
 }
 
-/* Return true if a given user is currently able to check-in to a given event */
+
+
 function can_check_in($personID, $event_info) {
-
-    if (!(time() > strtotime($event_info['date']) && time() < strtotime($event_info['date']) + 86400)) {
-        // event is not ongoing
-        return False;
+    if (!isset($event_info['startTime'])) {  
+        return false;
     }
-
-    if (!(check_if_signed_up($event_info['id'], $personID))) {
-        // user is not signed up for this event
-        return False;
+    $event_start = strtotime($event_info['startTime']);
+    $event_end = isset($event_info['endTime']) ? strtotime($event_info['endTime']) : $event_start + 86400;
+    $current_time = time();
+    if (!($current_time >= $event_start && $current_time <= $event_end)) {
+        return false;
     }
-
-    if (can_check_out($personID, $event_info)) {
-        // user is already checked-in
-        return False;
+    $con = connect();
+    $query = "SELECT * FROM dbpersonhours WHERE personID = '$personID' AND eventID = '{$event_info['id']}'";
+    $result = mysqli_query($con, $query);
+    mysqli_close($con);
+    if (mysqli_num_rows($result) === 0) {
+        return true;
     }
-
-    // validation passed
-    return True;
-
+    return false;
 }
+
+
 
 /* Return true if a user is able to check out from a given event (they have already checked in) */
 function can_check_out($personID, $event_info) {
@@ -348,6 +348,31 @@ function getall_dbPersons($name_from, $name_to, $venue) {
     }
 
     return $thePersons;
+}
+
+// Gets all users with access level 3 (Admins)
+// Does not include vmsroot, as vmsroot has access level 4
+function getall_admins() {
+    $con=connect();
+    $query = 'SELECT * FROM dbpersons';
+    $result = mysqli_query($con,$query);
+
+    if ($result == null || mysqli_num_rows($result) == 0) {
+        mysqli_close($con);
+        return false;
+    }
+
+    $result = mysqli_query($con,$query);
+    $admins = array();
+
+    while ($result_row = mysqli_fetch_assoc($result)) {
+        $theAdmin = make_a_person($result_row);
+        if ($theAdmin->get_access_level() === 3) {
+            $admins[] = $theAdmin;
+        }
+    }
+
+    return $admins;
 }
 
 /*
@@ -999,6 +1024,15 @@ function find_user_names($name) {
     }
     /*@@@ end Thomas */
 
+    
+    function insert_person_hours($personID, $eventID, $start_time, $end_time) {
+        $con = connect();
+        $query = "INSERT INTO dbpersonhours (personID, eventID, start_time, end_time)
+                  VALUES ('$personID', '$eventID', '$start_time', '$end_time')";
+        $result = mysqli_query($con, $query);
+        mysqli_close($con);
+        return $result; 
+    }
     
     function get_events_attended_by_2($personID) {
         // Prepare the SQL query to select rows where personID matches

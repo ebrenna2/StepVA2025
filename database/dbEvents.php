@@ -172,6 +172,28 @@ function fetch_event_signups($eventID) {
     return $signups;
 }
 
+function get_signed_up_events_by($userID) {
+    $connection = connect();
+    $query = "
+        SELECT e.id, e.name, e.date
+        FROM dbevents e
+        JOIN dbeventpersons ep ON e.id = ep.eventID
+        WHERE ep.userID = '$userID'
+        ORDER BY e.date ASC
+    ";
+    $result = mysqli_query($connection, $query);
+
+    $events = [];
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $events[] = $row;
+        }
+    }
+    mysqli_close($connection);
+    return $events; 
+}
+
+
 function fetch_pending($eventID) {
     $connection = connect();
     $query = "SELECT username, role, notes FROM dbpendingsignups WHERE eventname = '$eventID'";
