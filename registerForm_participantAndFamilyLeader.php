@@ -527,7 +527,7 @@
 
     <!-- New Photo Release Details Section -->
     <div id="photo-release-details" style="display: none;">
-        <label><em>* </em>Can your cast or crew member be featured in a profile?</label>
+        <label>Can your cast or crew member be featured in a profile?</label>
         <div class="radio-group">
             <input type="radio" id="profile-yes" name="profile_feature" value="Yes" required>
             <label for="profile-yes">Yes</label>
@@ -535,7 +535,7 @@
             <label for="profile-no">No</label>
         </div>
 
-        <label><em>* </em>How would you like your cast/crew member identified?</label>
+        <label>How would you like your cast/crew member identified?</label>
         <div class="radio-group">
             <input type="radio" id="id-full-name" name="identification_preference" value="First and last name">
             <label for="id-full-name">First and last name</label>
@@ -545,7 +545,7 @@
             <label for="id-initials">Initials only</label>
         </div>
 
-        <label><em>* </em>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
+        <label>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
         <div class="radio-group">
             <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" required>
             <label for="headshot-yes">Yes</label>
@@ -553,7 +553,7 @@
             <label for="headshot-no">No</label>
         </div>
 
-        <label><em>* </em>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
+        <label>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
         <div class="radio-group">
             <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" required>
             <label for="likeness-yes">Yes</label>

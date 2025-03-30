@@ -86,7 +86,11 @@ function add_person($person) {
             '{$person->get_skills()}',
             '{$person->get_networks()}',
             '{$person->get_contributions()}',
-            '{$person->get_familyId()}'
+            '{$person->get_familyId()}',
+            '{$person->get_profile_feature()}',
+            '{$person->get_identification_preference()}',
+            '{$person->get_headshot_publish()}',
+            '{$person->get_likeness_usage()}'
         )");
         mysqli_close($con);
         return true;
@@ -462,7 +466,11 @@ function make_a_person($result_row) {
         $result_row['skills'],
         $result_row['networks'],
         $result_row['contributions'],
-        0
+        0,
+        $result_row['profile_feature'],
+        $result_row['identification_preference'],
+        $result_row['headshot_publish'],
+        $result_row['likeness_usage']
     );
 
     return $thePerson;

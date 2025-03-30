@@ -69,6 +69,13 @@ class Person {
 	// Family member stuff
 	private $familyId;
 
+	//photo release shi
+	private $profile_feature;
+	private $identification_preference;
+	private $headshot_publish;
+	private $likeness_usage;
+
+
 	/*
 	 * This is a temporary mini constructor for testing purposes. It will be expanded later.
 	 */
@@ -79,7 +86,8 @@ class Person {
 						$emergency_contact_relation, $tshirt_size, $school_affiliation, $photo_release, $photo_release_notes, $type, $status, $archived,
 						$how_you_heard_of_stepva, $preferred_feedback_method, $hobbies, $professional_experience, $disability_accomodation_needs, 
 						$training_complete, $training_date, $orientation_complete,
-						$orientation_date, $background_complete, $background_date, $skills, $networks, $contributions, $familyId
+						$orientation_date, $background_complete, $background_date, $skills, $networks, $contributions, $familyId, $profile_feature, $identification_preference,
+						$headshot_publish, $likeness_usage
 						) {
 		$this->id = $id; // (username)
 		$this->password = $password;
@@ -121,6 +129,10 @@ class Person {
 		$this->networks = $networks;
 		$this->contributions = $contributions;
 		$this->familyId = $familyId;
+		$this->profile_feature = $profile_feature;
+		$this->identification_preference = $identification_preference;
+		$this->headshot_publish = $headshot_publish;
+		$this->likeness_usage = $likeness_usage;
 
 		// access_level = 1 for users, and = 3 for admin
 		if ($id == 'vmsroot') {
@@ -295,5 +307,21 @@ class Person {
 	}
 	function get_familyId(){
 		return $this->familyId;
+	}
+
+	function get_profile_feature() {
+		return $this->profile_feature;
+	}
+	
+	function get_identification_preference() {
+		return $this->identification_preference;
+	}
+	
+	function get_headshot_publish() {
+		return $this->headshot_publish;
+	}
+	
+	function get_likeness_usage() {
+		return $this->likeness_usage;
 	}
 }

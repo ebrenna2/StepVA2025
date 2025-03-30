@@ -58,6 +58,10 @@
             $contributions = isset($args['contributions']) ? $args['contributions'] : '';
             $networks = isset($args['networks']) ? $args['networks'] : '';
             $disability_accomodation_needs = isset($args['disability_accomodation_needs']) ? $args['disability_accomodation_needs'] : '';
+            $profile_feature = isset($args['profile_feature']) ? $args['profile_feature'] : '';
+            $identification_preference = isset($args['identification_preference']) ? $args['identification_preference'] : '';
+            $headshot_publish = isset($args['headshot_publish']) ? $args['headshot_publish'] : '';
+            $likeness_usage = isset($args['likeness_usage']) ? $args['likeness_usage'] : '';
 
             $errors = false;
             if (!wereRequiredFieldsSubmitted($args, $required)) {
@@ -204,7 +208,11 @@
                 $skills,
                 $networks,
                 $contributions,
-                $familyId=-1 //Default to negative one indicating not a family leader, but will update in a second if so
+                $familyId=-1, //Default to negative one indicating not a family leader, but will update in a second if so
+                $profile_feature,
+                $identification_preference,
+                $headshot_publish,
+                $likeness_usage
             );
 
             //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
@@ -415,7 +423,11 @@
                             $member_skills,
                             $member_networks,
                             $member_contributions,
-                            $familyId
+                            $familyId,
+                            $profile_feature,
+                            $identification_preference,
+                            $headshot_publish,
+                            $likeness_usage
                         );
 
                         //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
