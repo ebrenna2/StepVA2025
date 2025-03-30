@@ -577,8 +577,7 @@
                 <input type="password" id="password-reenter" name="password-reenter" placeholder="Re-enter password" required>
                 <p id="password-match-error" class="error hidden">Passwords do not match!</p>
             </fieldset>
-        <p>By pressing Submit below, you are agreeing to volunteer for the organization.</p>
-        <input type="submit" name="registration-form" value="Submit">
+            <input type="submit" name="registration-form" value="Submit">
 
         </form>
     </main>
