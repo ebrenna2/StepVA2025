@@ -225,166 +225,172 @@
             // Store the family leader in the family leader table and store
 
             //Family member stuff
-            if ($family_or_individual === "y"){
-                //This means they are signing up as a family
+            if ($family_or_individual === "y") {
+                // This means they are signing up as a family
                 $type = '';
-
-                //Need to get other family member details from args list
+            
                 $num_family_members = isset($_POST['num_family_members']) ? $_POST['num_family_members'] : null;
-                if (!is_null($num_family_members) && $num_family_members > 0){
+                if (!is_null($num_family_members) && $num_family_members > 0) {
                     echo 'There are: ' . $num_family_members . ' family members.';
-
-                    //At this point, they are a family leader and can be inserted into the table
-
+            
                     $familyId = add_family_leader($id);
-
-                    if (update_person_familyid($id, $familyId) != 1){
+            
+                    if (update_person_familyid($id, $familyId) != 1) {
                         echo 'There was an issue updating the family member id';
                     }
-
+            
                     $family_members = isset($_POST['family']) ? $_POST['family'] : null;
-
+            
                     $member_required = array(
                         'first_name', 'last_name', 'birthdate',
                         'street_address', 'city', 'state', 'zip', 
                         'email', 'phone', 'phone_type', 'emergency_contact_first_name',
                         'emergency_contact_last_name',
                         'emergency_contact_relation', 'emergency_contact_phone', 'tshirt_size',
-                        'school_affiliation', 'username', 'password',
-                        'photo_release', 'photo_release_notes'
+                        'school_affiliation', 'photo_release', 'photo_release_notes',
+                        'has_login' // Added to ensure this field is submitted
                     );
-
-                    for ($i = 1; $i <= $num_family_members; $i++){
-
+            
+                    for ($i = 1; $i <= $num_family_members; $i++) {
                         $member = $family_members[$i];
-
+            
                         if (!wereRequiredFieldsSubmitted($member, $member_required)) {
-                            echo 'not all required';
+                            echo 'Not all required fields were submitted for family member ' . $i;
                             $errors = true;
                         }
-                        
+            
                         $member_first_name = isset($member['first_name']) ? $member['first_name'] : null;
                         $member_last_name = isset($member['last_name']) ? $member['last_name'] : null;
-
+            
                         $member_birthdate = isset($member['birthdate']) ? $member['birthdate'] : null;
                         $member_birthdate = validateDate($member_birthdate);
-                        if (!$member_birthdate){
+                        if (!$member_birthdate) {
                             $errors = true;
-                            echo 'bad member dob';
+                            echo 'Bad date of birth for family member ' . $i;
                         }
-
+            
                         $member_street_address = isset($member['street_address']) ? $member['street_address'] : null;
                         $member_city = isset($member['city']) ? $member['city'] : null;
-
+            
                         $member_state = isset($member['state']) ? $member['state'] : null;
                         if (!valueConstrainedTo($member_state, array('AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
-                                                              'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
-                                                              'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
-                                                              'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
-                                                              'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'))) {
+                                                                     'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+                                                                     'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+                                                                     'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+                                                                     'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'))) {
                             $errors = true;
                         }
-
+            
                         $member_zip = isset($member['zip']) ? $member['zip'] : null;
                         if (!validateZipcode($member_zip)) {
                             $errors = true;
-                            echo 'bad zip';
+                            echo 'Bad zip code for family member ' . $i;
                         }
-
+            
                         $member_email = isset($member['email']) ? $member['email'] : null;
                         $member_email = strtolower($member_email);
                         $member_email = validateEmail($member_email);
                         if (!$member_email) {
                             $errors = true;
-                            echo 'bad member email';
+                            echo 'Bad email for family member ' . $i;
                         }
-
-                        //Need to validate
+            
                         $member_phone = isset($member['phone']) ? $member['phone'] : null;
                         $member_phone = validateAndFilterPhoneNumber($member_phone);
                         if (!$member_phone) {
                             $errors = true;
-                            echo 'bad member phone';
+                            echo 'Bad phone number for family member ' . $i;
                         }
                         $member_phone_type = isset($member['phone_type']) ? $member['phone_type'] : null;
                         if (!valueConstrainedTo($member_phone_type, array('cellphone', 'home', 'work'))) {
                             $errors = true;
-                            echo 'bad member phone type';
+                            echo 'Bad phone type for family member ' . $i;
                         }
-
+            
                         $member_emergency_contact_first_name = isset($member['emergency_contact_first_name']) ? $member['emergency_contact_first_name'] : null;
                         $member_emergency_contact_last_name = isset($member['emergency_contact_last_name']) ? $member['emergency_contact_last_name'] : null;
                         $member_emergency_contact_relation = isset($member['emergency_contact_relation']) ? $member['emergency_contact_relation'] : null;
-
+            
                         $member_emergency_contact_phone = isset($member['emergency_contact_phone']) ? $member['emergency_contact_phone'] : null;
                         $member_emergency_contact_phone = validateAndFilterPhoneNumber($member_emergency_contact_phone);
                         if (!$member_emergency_contact_phone) {
                             $errors = true;
-                            echo 'bad member e-contact phone';
+                            echo 'Bad emergency contact phone for family member ' . $i;
                         }
-                        
+            
                         $member_emergency_contact_phone_type = isset($member['emergency_contact_phone_type']) ? $member['emergency_contact_phone_type'] : null;
                         if (!valueConstrainedTo($member_emergency_contact_phone_type, array('cellphone', 'home', 'work'))) {
                             $errors = true;
-                            echo 'bad member phone type';
+                            echo 'Bad emergency phone type for family member ' . $i;
                         }
-
+            
                         $member_tshirt_size = isset($member['tshirt_size']) ? $member['tshirt_size'] : null;
                         $member_school_affiliation = isset($member['school_affiliation']) ? $member['school_affiliation'] : null;
-
+            
                         $member_photo_release = isset($member['photo_release']) ? $member['photo_release'] : null;
                         if (!valueConstrainedTo($member_photo_release, array('Restricted', 'Not Restricted'))) {
                             $errors = true;
-                            echo 'bad member photo release type';
+                            echo 'Bad photo release type for family member ' . $i;
                         }
                         $member_photo_release_notes = isset($member['photo_release_notes']) ? $member['photo_release_notes'] : null;
-                        
+            
                         $member_how_you_heard_of_stepva = isset($member['how_you_heard_of_stepva']) ? $member['how_you_heard_of_stepva'] : '';
                         $member_preferred_feedback_method = isset($member['preferred_feedback_method']) ? $member['preferred_feedback_method'] : '';
                         $member_hobbies = isset($member['hobbies']) ? $member['hobbies'] : '';
                         $member_professional_experience = isset($member['professional_experience']) ? $member['professional_experience'] : '';
                         $member_disability_accomodation_needs = isset($member['disability_accomodation_needs']) ? $member['disability_accomodation_needs'] : '';
-
+            
                         $member_training_complete = isset($member['training_complete']) ? (int)$member['training_complete'] : 0;
                         $member_training_date = isset($member['training_date']) ? $member['training_date'] : null;
-            
                         $member_orientation_complete = isset($member['orientation_complete']) ? (int)$member['orientation_complete'] : 0;
                         $member_orientation_date = isset($member['orientation_date']) ? $member['orientation_date'] : null;
-            
                         $member_background_complete = isset($member['background_complete']) ? (int)$member['background_complete'] : 0;
                         $member_background_date = isset($member['background_date']) ? $member['background_date'] : null;
-
-                        $member_username = isset($member['username']) ? $member['username'] : null;
-                        // May want to enforce password requirements at this step
-                        //$username = $args['username'];
-                        $member_password = isset($member['password']) ? $member['password'] : null;
-                        $member_password = isSecurePassword($member_password);
-                        if (!$member_password) {
-                            $errors = true;
+            
+                        // Handle username and password based on has_login
+                        if ($member['has_login'] === 'yes') {
+                            if (!isset($member['username']) || !isset($member['password']) || !isset($member['password_reenter'])) {
+                                $errors = true;
+                                echo 'Username and password are required when choosing to create a login for family member ' . $i;
+                            } else {
+                                if ($member['password'] !== $member['password_reenter']) {
+                                    $errors = true;
+                                    echo 'Passwords do not match for family member ' . $i;
+                                } else {
+                                    $member_username = $member['username'];
+                                    $member_password = isSecurePassword($member['password']);
+                                    if (!$member_password) {
+                                        $errors = true;
+                                        echo 'Password does not meet security requirements for family member ' . $i;
+                                    } else {
+                                        $member_password = password_hash($member['password'], PASSWORD_BCRYPT);
+                                    }
+                                }
+                            }
                         } else {
-                            $member_password = password_hash($member_password, PASSWORD_BCRYPT);
-                        } 
-                        
-                        
-                        $member_password_reenter = isset($member['password_reenter']) ? $member['password_reenter'] : null;
-
+                            // Generate username and password
+                            $timestamp = date('YmdHis');
+                            $member_username = strtolower($member_first_name . '_' . $member_last_name . '_' . $timestamp);
+                            $default_password = "TempPass123!"; // Should meet isSecurePassword criteria
+                            $member_password = password_hash($default_password, PASSWORD_BCRYPT);
+                        }
+            
                         if ($errors) {
                             echo '<p>Your member form submission contained unexpected input.</p>';
                             die();
                         }
-
-                        $member_status = "Active";
             
+                        $member_status = "Active";
                         $member_type = 'participant';
-
                         $member_archived = 0;
 
                       // $member_skills = '';
                       //  $member_networks = '';
                        // $member_contributions = '';
+
             
                         $newperson = new Person(
-                            $member_username, // (id = username)
+                            $member_username,
                             $member_password,
                             date("Y-m-d"),
                             $member_first_name,
@@ -406,7 +412,7 @@
                             $member_school_affiliation,
                             $member_photo_release,
                             $member_photo_release_notes,
-                            $member_type, // admin or volunteer or participant...
+                            $member_type,
                             $member_status,
                             $member_archived,
                             $member_how_you_heard_of_stepva,
@@ -429,22 +435,17 @@
                             $headshot_publish,
                             $likeness_usage
                         );
-
-                        //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
+            
                         $result = add_person($newperson);
-
                         if (!$result) {
-                            echo '<p>That username is already in use.</p>';
+                            echo '<p>That username is already in use for family member ' . $i . '.</p>';
                         }
-
-                        if (add_family_member($member_username, $familyId) != 1){
-                            echo 'There was an issue adding ' . $username . ' to the family member table';
+            
+                        if (add_family_member($member_username, $familyId) != 1) {
+                            echo 'There was an issue adding ' . $member_username . ' to the family member table';
                         }
                     }
                 }
-
-                //Here need to add each of the family members individually using person constructor
-
             } else {
                 //Just signing up as a participant
                 $type = 'participant';

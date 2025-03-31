@@ -150,7 +150,7 @@
                         const count = parseInt(numFamilyInput.value) || 0;
                         familyInfoContainer.innerHTML = '';
                         familyInfoContainer.style.display = count > 0 ? 'block' : 'none';
-    
+
                         if (count >= 12) {
                             familyInfoContainer.innerHTML = `
                                 <div class="section">
@@ -282,12 +282,12 @@
                                     <label><em>* </em>T-Shirt Size</label>
                                     <div class="radio-group">
                                         <input type="radio" id="family_xxs_${i}" name="family[${i}][tshirt_size]" value="xxs" required><label for="family_xxs_${i}">XXS</label>
-                                        <input type="radio" id="family_xs_${i}" name="family[${i}][tshirt_size]" value="xs" required><label for="family_xs_${i}">XS</label>
+                                        <input type="radio" id="family_xs_${i}" name="family[${i}][tshirt_size]" value="xs"><label for="family_xs_${i}">XS</label>
                                         <input type="radio" id="family_s_${i}" name="family[${i}][tshirt_size]" value="s"><label for="family_s_${i}">S</label>
                                         <input type="radio" id="family_m_${i}" name="family[${i}][tshirt_size]" value="m"><label for="family_m_${i}">M</label>
                                         <input type="radio" id="family_l_${i}" name="family[${i}][tshirt_size]" value="l"><label for="family_l_${i}">L</label>
                                         <input type="radio" id="family_xl_${i}" name="family[${i}][tshirt_size]" value="xl"><label for="family_xl_${i}">XL</label>
-                                        <input type="radio" id="family_xxl_${i}" name="family[${i}][tshirt_size]" value="xxl" required><label for="family_xxl_${i}">XXL</label>
+                                        <input type="radio" id="family_xxl_${i}" name="family[${i}][tshirt_size]" value="xxl"><label for="family_xxl_${i}">XXL</label>
                                     </div>
 
                                     <label for="family_school_affiliation_${i}"><em>* </em>School Affiliation (or N/A)</label>
@@ -325,21 +325,56 @@
                                     <input type="text" id="family_disability_accomodation_needs_${i}" name="family[${i}][disability_accomodation_needs]" placeholder="">
 
                                     <legend>Login Credentials</legend>
-                                    <p>Family member ${i} will use the following information to log in to the system.</p>
+                                    <p>Family member ${i} will use the following information to log in to the system if you choose to create a login for them.</p>
 
-                                    <label for="family_username_${i}"><em>* </em>Username</label>
-                                    <input type="text" id="family_username_${i}" name="family[${i}][username]" required placeholder="Enter a username">
-                                
-                                    <label for="family_password_${i}"><em>* </em>Password</label>
-                                    <input type="password" id="family_password_${i}" name="family[${i}][password]" placeholder="Enter a strong password" required>
-                                    <p id="family_password_error_${i}" class="error hidden">Password needs to be at least 8 characters long, contain at least one number, one uppercase letter, and one lowercase letter!</p>
+                                    <label><em>* </em>Should this family member have their own login?</label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="has_login_yes_${i}" name="family[${i}][has_login]" value="yes" onclick="toggleCredentials(${i}, true)" required><label for="has_login_yes_${i}">Yes</label>
+                                        <input type="radio" id="has_login_no_${i}" name="family[${i}][has_login]" value="no" onclick="toggleCredentials(${i}, false)" required><label for="has_login_no_${i}">No</label>
+                                    </div>
 
-                                    <label for="family_password_reenter_${i}"><em>* </em>Re-enter Password</label>
-                                    <input type="password" id="family_password_reenter_${i}" name="family[${i}][password_reenter]" placeholder="Re-enter password" required>
-                                    <p id="family_password_match_error_${i}" class="error hidden">Passwords do not match!</p>
+                                    <div id="credentials_section_${i}" style="display:none;">
+                                        <label for="family_username_${i}"><em>* </em>Username</label>
+                                        <input type="text" id="family_username_${i}" name="family[${i}][username]" placeholder="Enter a username">
+
+                                        <label for="family_password_${i}"><em>* </em>Password</label>
+                                        <input type="password" id="family_password_${i}" name="family[${i}][password]" placeholder="Enter a strong password">
+                                        <p id="family_password_error_${i}" class="error hidden">Password needs to be at least 8 characters long, contain at least one number, one uppercase letter, and one lowercase letter!</p>
+
+                                        <label for="family_password_reenter_${i}"><em>* </em>Re-enter Password</label>
+                                        <input type="password" id="family_password_reenter_${i}" name="family[${i}][password_reenter]" placeholder="Re-enter password">
+                                        <p id="family_password_match_error_${i}" class="error hidden">Passwords do not match!</p>
+                                    </div>
                                 `;
                                 familyInfoContainer.appendChild(section);
                             }
+                        }
+                    }
+
+                    function toggleCredentials(i, show) {
+                        const credentialsSection = document.getElementById('credentials_section_' + i);
+                        const usernameField = document.getElementById('family_username_' + i);
+                        const passwordField = document.getElementById('family_password_' + i);
+                        const passwordReenterField = document.getElementById('family_password_reenter_' + i);
+                        if (show) {
+                            credentialsSection.style.display = 'block';
+                            usernameField.disabled = false;
+                            passwordField.disabled = false;
+                            passwordReenterField.disabled = false;
+                            usernameField.required = true;
+                            passwordField.required = true;
+                            passwordReenterField.required = true;
+                        } else {
+                            credentialsSection.style.display = 'none';
+                            usernameField.disabled = true;
+                            passwordField.disabled = true;
+                            passwordReenterField.disabled = true;
+                            usernameField.required = false;
+                            passwordField.required = false;
+                            passwordReenterField.required = false;
+                            usernameField.value = '';
+                            passwordField.value = '';
+                            passwordReenterField.value = '';
                         }
                     }
 
