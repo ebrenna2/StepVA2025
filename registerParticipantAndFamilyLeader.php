@@ -46,7 +46,7 @@
 
             $optional = array(
                 'how_you_heard_of_stepva', 'preferred_feedback_method', 'hobbies',
-                'skills', 'professional_experience', 'disability_accomodation_needs'
+                'skills', 'contributions', 'networks', 'professional_experience', 'disability_accomodation_needs'
             );
 
             // Set optional fields if they exist
@@ -54,7 +54,14 @@
             $preferred_feedback_method = isset($args['preferred_feedback_method']) ? $args['preferred_feedback_method'] : '';
             $hobbies = isset($args['hobbies']) ? $args['hobbies'] : '';
             $professional_experience = isset($args['professional_experience']) ? $args['professional_experience'] : '';
+            $skills = isset($args['skills']) ? $args['skills'] : '';
+            $contributions = isset($args['contributions']) ? $args['contributions'] : '';
+            $networks = isset($args['networks']) ? $args['networks'] : '';
             $disability_accomodation_needs = isset($args['disability_accomodation_needs']) ? $args['disability_accomodation_needs'] : '';
+            $profile_feature = isset($args['profile_feature']) ? $args['profile_feature'] : '';
+            $identification_preference = isset($args['identification_preference']) ? $args['identification_preference'] : '';
+            $headshot_publish = isset($args['headshot_publish']) ? $args['headshot_publish'] : '';
+            $likeness_usage = isset($args['likeness_usage']) ? $args['likeness_usage'] : '';
 
             $errors = false;
             if (!wereRequiredFieldsSubmitted($args, $required)) {
@@ -158,10 +165,6 @@
             }
 
             $status = "Active";
-            
-            $skills = '';
-            $networks = '';
-            $contributions = '';
 
             $type = 'participant';
             
@@ -205,7 +208,11 @@
                 $skills,
                 $networks,
                 $contributions,
-                $familyId=-1 //Default to negative one indicating not a family leader, but will update in a second if so
+                $familyId=-1, //Default to negative one indicating not a family leader, but will update in a second if so
+                $profile_feature,
+                $identification_preference,
+                $headshot_publish,
+                $likeness_usage
             );
 
             //Down here is where we're probably going to need to figure out potentially adding them to a 'family' table
@@ -376,9 +383,11 @@
                         $member_status = "Active";
                         $member_type = 'participant';
                         $member_archived = 0;
-                        $member_skills = '';
-                        $member_networks = '';
-                        $member_contributions = '';
+
+                      // $member_skills = '';
+                      //  $member_networks = '';
+                       // $member_contributions = '';
+
             
                         $newperson = new Person(
                             $member_username,
@@ -420,7 +429,11 @@
                             $member_skills,
                             $member_networks,
                             $member_contributions,
-                            $familyId
+                            $familyId,
+                            $profile_feature,
+                            $identification_preference,
+                            $headshot_publish,
+                            $likeness_usage
                         );
             
                         $result = add_person($newperson);

@@ -552,14 +552,53 @@
                 <input type="text" id="school_affiliation" name="school_affiliation" required placeholder="Are you affiliated with any school?">
 
                 <label for="photo_release"><em>* </em>Photo Release Restrictions: Can your photo be taken and used on our website and social media?</label>
-                <div class="radio-group">
-                    <input type="radio" id="Restricted" name="photo_release" value="Restricted" required><label for="photo_release">Restricted</label>
-                    <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" required><label for="photo_release">Not Restricted</label>
-                </div>
+    <div class="radio-group">
+        <input type="radio" id="Restricted" name="photo_release" value="Restricted" required><label for="photo_release">Restricted</label>
+        <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" required><label for="photo_release">Not Restricted</label>
+    </div>
 
-                <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
-                <input type="text" id="photo_release_notes" name="photo_release_notes" required placeholder="Do you have any specific notes about your photo release status?">
-            </fieldset>
+    <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
+    <input type="text" id="photo_release_notes" name="photo_release_notes" required placeholder="Do you have any specific notes about your photo release status?">
+
+    <!-- New Photo Release Details Section -->
+    <div id="photo-release-details" style="display: none;">
+        <label>Can your cast or crew member be featured in a profile?</label>
+        <div class="radio-group">
+            <input type="radio" id="profile-yes" name="profile_feature" value="Yes" required>
+            <label for="profile-yes">Yes</label>
+            <input type="radio" id="profile-no" name="profile_feature" value="No" required>
+            <label for="profile-no">No</label>
+        </div>
+
+        <label>How would you like your cast/crew member identified?</label>
+        <div class="radio-group">
+            <input type="radio" id="id-full-name" name="identification_preference" value="First and last name">
+            <label for="id-full-name">First and last name</label>
+            <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial">
+            <label for="id-first-name">First name and Last initial</label>
+            <input type="radio" id="id-initials" name="identification_preference" value="Initials only">
+            <label for="id-initials">Initials only</label>
+        </div>
+
+        <label>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
+        <div class="radio-group">
+            <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" required>
+            <label for="headshot-yes">Yes</label>
+            <input type="radio" id="headshot-no" name="headshot_publish" value="No" required>
+            <label for="headshot-no">No</label>
+        </div>
+
+        <label>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
+        <div class="radio-group">
+            <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" required>
+            <label for="likeness-yes">Yes</label>
+            <input type="radio" id="likeness-no" name="likeness_usage" value="No" required>
+            <label for="likeness-no">No</label>
+            <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" required>
+            <label for="likeness-filter">Only with a filter</label>
+        </div>
+    </div>
+</fieldset>
 
             <fieldset class="section-box">
                 <legend>Optional Information</legend>
@@ -585,7 +624,16 @@
                 <label>Are there any accomodations you may need? Anything we should keep in mind?</label>
                 <input type="text" id="disability_accomodation_needs" name="disability_accomodation_needs" placeholder="">
 
-            </fieldset>
+                <label>Are there any specific skills/interests you have that you believe could be useful for volunteering at StepVA? </label>
+                <input type="text" id="skills" name="skills" placeholder="">
+
+                <label>Do you have connections to any local businesses or organizations that might be interested in sponsoring or supporting our programs? </label>
+                <input type="text" id="networks" name="networks" placeholder="">
+
+                <label>Do you have any additional ways you can contribute to STEPVA? </label>
+                <input type="text" id="contributions" name="contributions" placeholder="">
+
+                </fieldset>
 
             <fieldset class="section-box">
                 <legend>Login Credentials</legend>
@@ -603,10 +651,35 @@
                 <input type="password" id="password-reenter" name="password-reenter" placeholder="Re-enter password" required>
                 <p id="password-match-error" class="error hidden">Passwords do not match!</p>
             </fieldset>
-        <p>By pressing Submit below, you are agreeing to volunteer for the organization.</p>
-        <input type="submit" name="registration-form" value="Submit">
+            <input type="submit" name="registration-form" value="Submit">
 
         </form>
     </main>
 </body>
 </html>
+<script>
+    function togglePhotoReleaseDetails() {
+                const notRestricted = document.getElementById('Not Restricted');
+                const photoReleaseDetails = document.getElementById('photo-release-details');
+
+                if (notRestricted.checked) {
+                    photoReleaseDetails.style.display = 'block';
+                    document.querySelectorAll('#photo-release-details input').forEach(input => {
+                        input.setAttribute('required', 'required');
+                    });
+                } else {
+                    photoReleaseDetails.style.display = 'none';
+                    document.querySelectorAll('#photo-release-details input').forEach(input => {
+                        input.removeAttribute('required');
+                    });
+                }
+            }
+
+            document.querySelectorAll('input[name="photo_release"]').forEach(radio => {
+                radio.addEventListener('change', togglePhotoReleaseDetails);
+            });
+            
+            document.addEventListener('DOMContentLoaded', () => {
+                togglePhotoReleaseDetails(); // Add this to ensure the photo release section is correctly displayed on page load
+            });
+</script>
