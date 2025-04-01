@@ -24,6 +24,17 @@
     }
     $notRoot = $person->get_id() != 'vmsroot';
 
+if (isset($_POST['deletedVideoId'])) {
+    $deletedVideoId = $_POST['deletedVideoId'];
+    $videoRemovalSuccess = remove_video($deletedVideoId);
+    $_SESSION["videoRemovalSuccess"] = true;
+    header("Location: videoDeletionManager.php");
+    exit;
+} else {
+    $_SESSION["videoRemovalSuccess"] = false;
+    header("Location: videoDeletionManager.php");
+    exit;
+}
     $videos = retrieve_all_videos();
 
     if (isset($_GET['id'])) {
@@ -93,22 +104,6 @@
     </head>
     </head>
     <body>
-        <?php require('header.php'); 
-
-            // If a video id has been sent, the video with the correlating id gets deleted.
-            // If its not set, user gets sent back to the deletion manager.
-            if (isset($_POST['deletedVideoId'])) {
-                $deletedVideoId = $_POST['deletedVideoId'];
-                echo("Deleting video from database . . . "); // Tells Admin whats happening in case of slow internet 
-                $videoRemovalSuccess = remove_video($deletedVideoId);
-                $_SESSION["videoRemovalSuccess"] = true;
-                header("Location: videoDeletionManager.php");
-            } else {
-                $_SESSION["videoRemovalSuccess"] = false;
-                header("Location: videoDeletionManager.php");
-            }
-        
-        ?>
     </body>
 </html>
 

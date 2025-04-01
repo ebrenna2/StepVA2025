@@ -96,7 +96,7 @@
 
             </form>
             <p></p>
-            <p>Don't have an account? <a href = "/StepVA2025/registerLanding.php">Sign Up</a>!</p>
+            <p>Don't have an account? <a href = "registerLanding.php">Sign Up</a>!</p>
             <p>Looking for <a href="https://www.stepva.org/">Step VA</a>?</p>
         </main>
     </body>

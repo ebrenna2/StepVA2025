@@ -1,15 +1,19 @@
-<!--
-    @author Maxwell Van Vort
--->
-
 <?php
-    session_cache_expire(30);
-    session_start();
-    $loggedin = false;
-    $accesslevel = 0;
-    $userID = null;
+session_cache_expire(30);
+session_start();
+if (!isset($_SESSION['_id']) || !isset($_SESSION['access_level']) || $_SESSION['access_level'] < 1) {
+    if (isset($_SESSION['change-password'])) {
+        header('Location: changePassword.php');
+    } else {
+        header('Location: login.php');
+    }
+    exit();
+}
 
-    
+
+$userID = $_SESSION['_id'];
+$accessLevel = $_SESSION['access_level'];
+
     include "domain/Video.php";
     include "database/dbVideos.php";
 
@@ -17,7 +21,7 @@
     $alertToggle = false;
 
     // Post request method only used when sending new video data to the server.
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // If, at any point, a video in the database has type equal to -1 then something went horribly wrong.
         $newVideoTypeUnformatted = $_POST["videoType"];
@@ -50,21 +54,20 @@
 
     }
 
-    if (isset($_SESSION['_id'])) {
-        $loggedIn = true;
-        $accessLevel = $_SESSION['access_level'];
-        $userID = $_SESSION['_id'];
-    }
+ $loggedIn = false; 
+if (isset($_SESSION['_id'])) {
+    $loggedIn = true;
+    $accessLevel = $_SESSION['access_level'];
+    $userID = $_SESSION['_id'];
+}
 
-    if (!$loggedIn) {
-        header('Location: login.php');
-        die();
-    }    
-
-    
+if (!$loggedIn) {
+    header('Location: login.php');
+    die();
+}
 ?>
 <!DOCTYPE html>
-    <html>
+<html>
 
     <head>
         <?php require_once('universal.inc') ?>
@@ -131,22 +134,18 @@
 
         <br>
 
-        <script>
-            var uploadSuccess = "<?php echo $uploadSuccess; ?>";
-            var alertToggle = "<?php echo $alertToggle; ?>";
+       <script>
+       var uploadSuccess = <?php echo json_encode($uploadSuccess); ?>;
+        var alertToggle = <?php echo json_encode($alertToggle); ?>;
 
-            if (alertToggle){
-                if (uploadSuccess) {
-                    <?php $alertToggle = false; ?>;
-                    alert("Your video has been successfully uploaded!");
-                } else {
-                    <?php $alertToggle = false; ?>;
-                    alert("There was an error in video uploading. Please try again.");
+        if (alertToggle) {
+            if (uploadSuccess) {
+                alert("Your video has been successfully uploaded!");
+            } else {
+                alert("There was an error in video uploading. Please try again.");
                 }
-            }
+                }
         </script>
-
-    </body>
-        
+        </body>     
 </html>
 
