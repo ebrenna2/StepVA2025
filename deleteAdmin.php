@@ -1,6 +1,6 @@
 <?php
     // Author: Maxwell Van Vort
-    // Description: Deletin of Admins page.
+    // Description: Delete admin, page only accessible by vmsroot
 
     require_once('include/input-validation.php');
     require_once('database/dbPersons.php');
@@ -37,18 +37,18 @@
 <!DOCTYPE html>
     <html>
     <head>
-        <?php require_once('universal.inc'); ?>
+        <?php require_once('universal.inc'); ?> 
         <title>Step VA | Register</title>
     </head>
     <body>
-        <?php
+        <?php  
             require_once('header.php');
             require_once('domain/Person.php');
-            require_once('database/dbPersons.php');
+            require_once('database/dbPersons.php'); //Default requirements for anything accessing the database 45-47
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                $result = remove_person($_POST['deletedAdminId']);
+                $result = remove_person($_POST['deletedAdminId']); //Get selected admin ID call remove person dbPersons 114
 
                 if ($result) {
                     error_log("DEBUG: Admin successfully deleted the database.");
