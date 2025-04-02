@@ -2,7 +2,7 @@
 session_cache_expire(30);
 session_start();
 // Author: Maxwell Van Vort
-// Description: Deletion of Admins page.
+// Description: Deletion of Admins page
 
 
 $loggedIn = false;
