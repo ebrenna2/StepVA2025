@@ -115,7 +115,7 @@ if (isset($_SESSION['_id'])) {
 
             // Display the family member edit button
             echo '<td class="button-column">';
-            echo '<a href="editchildprofile.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '">';
+            echo '<a href="editChildProfile.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '">';
             echo '<button type="button" class="edit-button">Edit Child Profile</button>';
             echo '</a>';
 
@@ -125,7 +125,7 @@ if (isset($_SESSION['_id'])) {
             echo '</a>';
 
             // Display the delete family member button
-            echo '<a href="deletefamilymember.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '" onclick="return confirm(\'Are you sure you want to delete this family member?\');">';
+            echo '<a href="deleteFamilyMember.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '" onclick="return confirm(\'Are you sure you want to delete this family member?\');">';
             echo '<button type="button" class="delete-button">Delete Family Member</button>';
             echo '</a>';
             echo '</td>';

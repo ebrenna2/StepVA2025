@@ -3,9 +3,8 @@
     // Description: New admins registration page.
 
     require_once('include/input-validation.php');
-?>
 
-<?php session_cache_expire(30);
+    session_cache_expire(30);
     session_start();
     // Make session information accessible, allowing us to associate
     // data with the logged-in user. If needed, this will allow us to
@@ -19,14 +18,13 @@
     $userID = null;
     if (isset($_SESSION['_id'])) {
         $loggedIn = true;
-        // 0 = not logged in, 1 = standard user, 2 = manager (Admin), 3 super admin (TBI)
+        // 0 = not logged in, 1 = standard user, 3 = manager (Admin), 4 super admin (TBI)
         $accessLevel = $_SESSION['access_level'];
         $userID = $_SESSION['_id'];
     } 
-    // Adding new admin requires admin privileges. 
-    if ($accessLevel < 2) {
+     
+    if ($accessLevel < 3) {
         header('Location: login.php');
-        //echo 'bad access level';
         die();
     }
 ?>  
@@ -64,7 +62,7 @@
                 $email = validateEmail($email);
                 if (!$email) {
                     $errors = true;
-                    echo 'bad email';
+                    //echo 'bad email';
                 }
 
                 $id = $args['username'];
@@ -80,48 +78,53 @@
                     die();
                 }
 
-                $newperson = new Person(
-                    $id, // (id = username)
-                    $password,
-                    '', // Date
-                    $first_name,
-                    '', // Last name
-                    '', // DoB
-                    'N/A', // Street Address
-                    'N/A', // City
-                    'VA', // State
-                    'N/A', // Zip Code
-                    '', // Phone 1
-                    'N/A', // Phone 1 Type
-                    $email,
-                    'N/A', // Emergency Contact First Name
-                    'N/A', // Emergency Contact Last Name
-                    'N/A', // Emergency Contact Phone
-                    'N/A', // Emergency Contact Phone Type
-                    'N/A', // Emergency Contact Relation
-                    '', // T Shirt Size
-                    '', // School Affiliation 
-                    '', // Photo Release
-                    '', // Photo Release Notes
-                    'Admin', // Type of Account
-                    '', // Status (Access Magic occurs here)
-                    0, // Archived
-                    '', // How you heard of stepva
-                    '', // Prefered feedback method
-                    '', // Hobbies
-                    '', // Professional Expereince
-                    '', // Disability Accomodation needs
-                    0, // Training Complete
-                    '', // Training Date
-                    0, // Orientation Complete
-                    '', // Orientation Date
-                    0, // Background Complete 
-                    '', // Background date
-                    '', // Skills
-                    '', // Networks
-                    '',  // Contributions
-                    0
-                );
+$newperson = new Person(
+    $id,
+    $password,
+    '', // Date
+    $first_name,
+    '', // Last name
+    '', // DoB
+    'N/A', // Street Address
+    'N/A', // City
+    'VA', // State
+    'N/A', // Zip Code
+    '', // Phone 1
+    'N/A', // Phone 1 Type
+    $email,
+    'N/A', // Emergency Contact First Name
+    'N/A', // Emergency Contact Last Name
+    'N/A', // Emergency Contact Phone
+    'N/A', // Emergency Contact Phone Type
+    'N/A', // Emergency Contact Relation
+    '', // T Shirt Size
+    '', // School Affiliation 
+    '', // Photo Release
+    '', // Photo Release Notes
+    'Admin', // Type of Account
+    '', // Status
+    0, // Archived
+    '', // How you heard of stepva
+    '', // Preferred feedback method
+    '', // Hobbies
+    '', // Professional Experience
+    '', // Disability Accommodation needs
+    0, // Training Complete
+    '', // Training Date
+    0, // Orientation Complete
+    '', // Orientation Date
+    0, // Background Complete 
+    '', // Background Date
+    '', // Skills
+    '', // Networks
+    '', // Contributions
+    '0', // Family ID 
+    '', // Profile Feature
+    '', // Identification Preference
+    0,  // Headshot Publish
+    0   // Likeness Usage
+);
+
     
 
                 //$person = Array();
@@ -141,12 +144,9 @@
                     //$person[$day . 'days_end'] = '';
                 //}
 
-                error_log("DEBUG: Trying to insert new admin: " . print_r($newperson, true));
-
                     $result = add_person($newperson);
 
                     if ($result) {
-                        error_log("DEBUG: Admin successfully added to the database.");
                         echo ('<script>alert("The admin was successfully added to the database!");</script>');
                     } else {
                         error_log("ERROR: Admin insertion failed. Username might already exist.");
@@ -157,11 +157,11 @@
                 if (!$result) {
                     echo '<p>That username is already in use.</p>';
                 } else {
-                    /*if ($loggedIn) {
+                    if ($loggedIn) {
                         echo '<script>document.location = "index.php?registerSuccess";</script>';
-                    } else {*/
+                    } else {
                         echo '<script>document.location = "login.php?registerSuccess";</script>';
-                    /*}*/
+                    }
                 }               
             } else {
                 require_once('registrationFormAdmin.php'); 
