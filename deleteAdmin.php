@@ -66,36 +66,12 @@ ob_end_flush();
                 } else {
                     error_log("ERROR: Admin deletion failed.");
                     echo ('<script>alert("Error: Failed to delete admin from database. Please try again.");</script>');
-<html>
-<head>
-    <?php require_once 'universal.inc'; ?>
-    <title>Step VA | Register</title>
-    <style>
-    #adminSelect {
-        display: block;
-        margin: 0 auto;
-        width: 50%;
-        text-align: center;
-    }
-    label {
-        display: block;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-    form {
-        width: 50%;
-        margin: 0 auto;
-        text-align: center;
-    }
-</style>
-</head>
-<body>
-    <?php
-    require_once 'header.php';
-    if (isset($message)) {
-        echo $message;
-    }
-    ?>
+                }
+                if (isset($message)) {
+                    echo $message;
+                }
+            }
+        ?>
     <h1>Admin Deletion</h1>
     <div>
         <br>
