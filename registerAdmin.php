@@ -78,52 +78,52 @@
                     die();
                 }
 
-$newperson = new Person(
-    $id,
-    $password,
-    '', // Date
-    $first_name,
-    '', // Last name
-    '', // DoB
-    'N/A', // Street Address
-    'N/A', // City
-    'VA', // State
-    'N/A', // Zip Code
-    '', // Phone 1
-    'N/A', // Phone 1 Type
-    $email,
-    'N/A', // Emergency Contact First Name
-    'N/A', // Emergency Contact Last Name
-    'N/A', // Emergency Contact Phone
-    'N/A', // Emergency Contact Phone Type
-    'N/A', // Emergency Contact Relation
-    '', // T Shirt Size
-    '', // School Affiliation 
-    '', // Photo Release
-    '', // Photo Release Notes
-    'Admin', // Type of Account
-    '', // Status
-    0, // Archived
-    '', // How you heard of stepva
-    '', // Preferred feedback method
-    '', // Hobbies
-    '', // Professional Experience
-    '', // Disability Accommodation needs
-    0, // Training Complete
-    '', // Training Date
-    0, // Orientation Complete
-    '', // Orientation Date
-    0, // Background Complete 
-    '', // Background Date
-    '', // Skills
-    '', // Networks
-    '', // Contributions
-    '0', // Family ID 
-    '', // Profile Feature
-    '', // Identification Preference
-    0,  // Headshot Publish
-    0   // Likeness Usage
-);
+                $newperson = new Person(
+                    $id,
+                    $password,
+                    '', // Date
+                    $first_name,
+                    '', // Last name
+                    '', // DoB
+                    'N/A', // Street Address
+                    'N/A', // City
+                    'VA', // State
+                    'N/A', // Zip Code
+                    '', // Phone 1
+                    'N/A', // Phone 1 Type
+                    $email,
+                    'N/A', // Emergency Contact First Name
+                    'N/A', // Emergency Contact Last Name
+                    'N/A', // Emergency Contact Phone
+                    'N/A', // Emergency Contact Phone Type
+                    'N/A', // Emergency Contact Relation
+                    '', // T Shirt Size
+                    '', // School Affiliation 
+                    '', // Photo Release
+                    '', // Photo Release Notes
+                    'Admin', // Type of Account
+                    '', // Status
+                    0, // Archived
+                    '', // How you heard of stepva
+                    '', // Preferred feedback method
+                    '', // Hobbies
+                    '', // Professional Experience
+                    '', // Disability Accommodation needs
+                    0, // Training Complete
+                    '', // Training Date
+                    0, // Orientation Complete
+                    '', // Orientation Date
+                    0, // Background Complete 
+                    '', // Background Date
+                    '', // Skills
+                    '', // Networks
+                    '', // Contributions
+                    '0', // Family ID 
+                    '', // Profile Feature
+                    '', // Identification Preference
+                    0,  // Headshot Publish
+                    0   // Likeness Usage
+                );
 
     
 
