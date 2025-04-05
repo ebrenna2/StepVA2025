@@ -47,19 +47,23 @@ if ($_SESSION['access_level'] >= 4 && $_SESSION['_id'] === 'vmsroot') {
     header('Location: adminDash.php');
     die();
 } elseif ($_SESSION['access_level'] == 1) {
-    // Check if the user is a family leader or participant
-    if (is_family_leader($person->get_id())) {
-        // Redirect family leaders to participantPortal.php
-        error_log("index.php: Redirecting family leader to participantPortal.php");
+    // Check the user's role
+    $role = $person->get_type();
+    if ($role === 'participant') {
+        // Redirect family leaders and participants to participantPortal.php
+        error_log("index.php: Redirecting family leader/participant to participantPortal.php");
         header('Location: participantPortal.php');
         die();
-    } else {
-        // Redirect volunteers (and participants who aren't family leaders) to their respective portals
-        // For simplicity, assuming all access level 1 users who aren't family leaders are volunteers
+    } elseif ($role === 'volunteer') {
+        // Redirect volunteers to volunteerPortal.php
         error_log("index.php: Redirecting volunteer to volunteerPortal.php");
         header('Location: volunteerPortal.php');
         die();
+    } else {
+        // Handle unexpected roles (e.g., log an error and redirect to a default page)
+        error_log("index.php: Unknown role '$role' for user with access_level 1, redirecting to login.php");
+        header('Location: login.php');
+        die();
     }
-
 }
 ?>
