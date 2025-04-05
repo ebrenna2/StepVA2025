@@ -447,6 +447,7 @@
                     }
                 }
             } else {
+                //View this one
                 //Just signing up as a participant
                 $type = 'participant';
             }
