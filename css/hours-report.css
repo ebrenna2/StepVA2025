@@ -2,10 +2,19 @@
     display: none;
 }
 
+.scrollable-table {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    display: block;
+}
+
+
 #signature-table td {
     padding: 1rem 0rem;
     width: 100%;
 }
+
 
 main.hours-report {
     display: flex;
@@ -27,29 +36,27 @@ table#signature-table td:first-of-type {
     white-space: nowrap;
 }
 
-@media print {
-    :root {
-        font-size: 12pt;
-    }
+.table {
+    font-family: 'Montserrat';
+    border-collapse: collapse;
+    font-size: 14px;
+    width: 400px;
+}
 
-    h2 {
-        font-size: 14pt;
-    }
+.table th {
+    background-color: white;
+    color: #00aeef;
+    text-align: left;
+    position: sticky;
+    top: 20px;
+}
 
-    .print-only {
-        display: initial;
-    }
+.table th,
+.table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
 
-    .no-print {
-        display: none;
-    }
-
-    header {
-        display: none;
-    }
-
-    table.general td {
-        white-space: normal !important;
-        padding: 0.5rem !important;
-    }
+.table tbody tr:nth-of-type(even) {
+    background-color: #f2f2f2;
 }

@@ -141,7 +141,7 @@ $event_ids = get_attended_event_ids($username);
                             <input type="hidden" name="userID" value="<?php echo htmlspecialchars($username); ?>" />
                         
                             <!-- Submit button for adding -->
-                            <center><button class="button success" style="width: 50%; margin: 25px;">Add a new check-in</button></center>
+                            <center><button class="button success" style="width: 50%; margin: 25px;">Fix check-ins / check-outs</button></center>
                         </form>
 
                     </fieldset>
