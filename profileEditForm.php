@@ -221,6 +221,45 @@
                 <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" <?php if ($photo_release == 'Not Restricted') echo 'checked'; ?> required><label for="photo_release">Not Restricted</label>
             </div>
 
+            <!-- New Photo Release Details Section -->
+            <div id="photo-release-details">
+                <label>Can your cast or crew member be featured in a profile?</label>
+                <div class="radio-group">
+                    <input type="radio" id="profile-yes" name="profile_feature" value="Yes" required>
+                    <label for="profile-yes">Yes</label>
+                    <input type="radio" id="profile-no" name="profile_feature" value="No" required>
+                    <label for="profile-no">No</label>
+                </div>
+
+                <label>How would you like your cast/crew member identified?</label>
+                <div class="radio-group">
+                    <input type="radio" id="id-full-name" name="identification_preference" value="First and last name">
+                    <label for="id-full-name">First and last name</label>
+                    <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial">
+                    <label for="id-first-name">First name and Last initial</label>
+                    <input type="radio" id="id-initials" name="identification_preference" value="Initials only">
+                    <label for="id-initials">Initials only</label>
+                </div>
+
+                <label>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
+                <div class="radio-group">
+                    <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" required>
+                    <label for="headshot-yes">Yes</label>
+                    <input type="radio" id="headshot-no" name="headshot_publish" value="No" required>
+                    <label for="headshot-no">No</label>
+                </div>
+
+                <label>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
+                <div class="radio-group">
+                    <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" required>
+                    <label for="likeness-yes">Yes</label>
+                    <input type="radio" id="likeness-no" name="likeness_usage" value="No" required>
+                    <label for="likeness-no">No</label>
+                    <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" required>
+                    <label for="likeness-filter">Only with a filter</label>
+                </div>
+            </div>
+
             <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
             <input type="text" id="photo_release_notes" name="photo_release_notes" value="<?php echo hsc($person->get_photo_release_notes()); ?>" required placeholder="Do you have any specific notes about your photo release status?">
         </fieldset>
