@@ -87,8 +87,8 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
     $total_hours = 0;
     foreach ($events as $event) {
         $time = fetch_volunteering_hours($id, $event['id']);
-        if ($time == -1) continue;
-
+        $hours = $time / 3600;
+        if ($hours <= 0) continue;
         $hours = $time / 3600;
         $total_hours += $hours;
         $dateFmt = date('m/d/Y', strtotime($event['date']));
@@ -184,11 +184,11 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
                                 $total_hours = 0;
                                 foreach ($events as $event) {
                                     $time = fetch_volunteering_hours($id, $event['id']);
-                                    if ($time == -1) {
+                                    $hours = $time / 3600;
+                                    if ($hours <= 0) {
                                         continue;
                                     }
-                                    $hours = $time / 3600;
-                                    $total_hours += $hours;
+                                    $total_hours += $hours;                                    
                                     $dateFmt = date('m/d/Y', strtotime($event['date']));
                                     echo '<tr>
                                             <td>' . $dateFmt . '</td>
