@@ -15,6 +15,7 @@
         </div>
 
 <script>
+    //View this one
   // Isolated test script - remove this block when done testing
   document.getElementById('test-submit-btn').addEventListener('click', async function() {
     const form = document.querySelector('form.signup-form');
