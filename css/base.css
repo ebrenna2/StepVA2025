@@ -86,6 +86,47 @@ table, td, tr, th, form, fieldset, em, button, a {
     font-weight: 300;
 }
 
+.darkmode {
+    /* CSS variables that will be used across the page */
+    --page-background-color: #041935; /* Kept as-is, dark blue base */
+    --page-font-color: #dceaf5; /* Kept as-is, light blue text */
+    --inactive-font-color: #e3e0e0; /* Kept as-is, subtle gray */
+    --inactive-background-color: #010d1d; /* Kept as-is, near-black */
+    --standout-background: #000000; /* Kept as-is, pure black */
+
+    --happy-toast-background-color: #1a7024; /* Kept as-is, green */
+    --happy-toast-font-color: white; /* Kept as-is */
+
+    --info-toast-background-color: #494e80; /* Kept as-is, muted blue */
+    --info-toast-font-color: white; /* Kept as-is */
+
+    --error-toast-background-color: #0d0956; /* Kept as-is, dark purple */
+    --error-toast-font-color: rgb(213, 135, 135); /* Kept as-is, soft red */
+
+    --shadow-and-border-color: #040b1b; /* Kept as-is, very dark blue */
+
+    --main-color: #084A66; /* Updated to darker-ish blue from #00aeef */
+    --accent-color: #57717d; /* Kept as-is, teal-ish, pairs well */
+    --secondary-accent-color: #a3e0f7; /* Updated to light mode’s soft blue for contrast */
+    --dark-blue-button: #084A66; /* New darker-ish blue for buttons or accents */
+
+    --calendar-event-color: #780f7c; /* Kept as-is, purple */
+    --calendar-event-color-hover: var(--main-color); /* Now #084A66 */
+    --calendar-today-border: 2px solid var(--secondary-accent-color); /* Now #a3e0f7 */
+
+    --button-font-color: #ffffff; /* Updated to white for better contrast */
+    --text-field-border: 2px solid var(--shadow-and-border-color); /* Updated from #e8e8e8 for consistency */
+
+    --cancel-button-background-color: #aaa; /* Kept as-is, gray */
+
+    --error-color: red; /* Kept as-is */
+
+    /* Global rules */
+    font-size: 18px;
+    font-family: Montserrat;
+    font-weight: 300;
+}
+
 /* Page Sections */
 
 header {
@@ -924,4 +965,29 @@ img.profile-pic {
 .dashboard-item i {
     font-size: 55px; /* Set the desired size */
     color: #ffffff; /* Optional: set color */
+}
+#theme-switch{
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+#theme-switch svg{
+    fill: var(--primary-color);
+}
+#theme-switch svg:last-child{
+    display: none;
+}
+.darkmode #theme-switch svg:first-child{
+    display: none;
+}
+.darkmode #theme-switch svg:last-child{
+    display: block;
 }

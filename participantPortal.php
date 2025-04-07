@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <title>Step VA System | Participant Portal</title>
     </head>
-    <body>
+    <body >
         <?php require('header.php'); ?>
         <h1>Participant Portal</h1>
         <main class='dashboard'>
