@@ -8,7 +8,6 @@ The design was inspired by the existing Gwyneth's Gift website,
 but no code was taken from there. All of the code below is original code.
 **/
 
-
 /* Create variable fonts for standard and italics versions of the fontface used by the org (Montserrat by Google) */
 @font-face {
     font-family: 'Montserrat';
@@ -80,6 +79,9 @@ table, td, tr, th, form, fieldset, em, button, a {
 
     --error-color: red;
 
+    --base-variant: #f0f0f0;
+    --primary-color: #00aeef;
+
     /* Global rules */
     font-size: 18px;
     font-family: Montserrat;
@@ -88,38 +90,42 @@ table, td, tr, th, form, fieldset, em, button, a {
 
 .darkmode {
     /* CSS variables that will be used across the page */
-    --page-background-color: #041935; /* Kept as-is, dark blue base */
-    --page-font-color: #dceaf5; /* Kept as-is, light blue text */
-    --inactive-font-color: #e3e0e0; /* Kept as-is, subtle gray */
-    --inactive-background-color: #010d1d; /* Kept as-is, near-black */
-    --standout-background: #000000; /* Kept as-is, pure black */
+    --page-background-color: #041935;
+    --page-font-color: #e8f0fa;
+    --inactive-font-color: #c0c0c0; /* Lighter gray for better contrast */
+    --inactive-background-color: #1a2b4b;
+    --standout-background: #0a1e3b;
 
-    --happy-toast-background-color: #1a7024; /* Kept as-is, green */
-    --happy-toast-font-color: white; /* Kept as-is */
+    --happy-toast-background-color: #1a7024;
+    --happy-toast-font-color: white;
 
-    --info-toast-background-color: #494e80; /* Kept as-is, muted blue */
-    --info-toast-font-color: white; /* Kept as-is */
+    --info-toast-background-color: #494e80;
+    --info-toast-font-color: white;
 
-    --error-toast-background-color: #0d0956; /* Kept as-is, dark purple */
-    --error-toast-font-color: rgb(213, 135, 135); /* Kept as-is, soft red */
+    --error-toast-background-color: #0d0956;
+    --error-toast-font-color: #ff9999;
 
-    --shadow-and-border-color: #040b1b; /* Kept as-is, very dark blue */
+    --shadow-and-border-color: #2a3b5b;
 
-    --main-color: #084A66; /* Updated to darker-ish blue from #00aeef */
-    --accent-color: #57717d; /* Kept as-is, teal-ish, pairs well */
-    --secondary-accent-color: #a3e0f7; /* Updated to light mode’s soft blue for contrast */
-    --dark-blue-button: #084A66; /* New darker-ish blue for buttons or accents */
+    --main-color: #084A66;
+    --accent-color: #57717d;
+    --secondary-accent-color: #a3e0f7;
+    --dark-blue-button: #084A66;
 
-    --calendar-event-color: #780f7c; /* Kept as-is, purple */
-    --calendar-event-color-hover: var(--main-color); /* Now #084A66 */
-    --calendar-today-border: 2px solid var(--secondary-accent-color); /* Now #a3e0f7 */
+    --calendar-event-color: #4a2b6b;
+    --calendar-event-color-hover: #0a5f88;
+    --calendar-today-border: 2px solid #a3e0f7;
 
-    --button-font-color: #ffffff; /* Updated to white for better contrast */
-    --text-field-border: 2px solid var(--shadow-and-border-color); /* Updated from #e8e8e8 for consistency */
+    --button-font-color: #ffffff;
+    --text-field-border: 2px solid #2a3b5b;
 
-    --cancel-button-background-color: #aaa; /* Kept as-is, gray */
+    --cancel-button-background-color: #666;
+    --cancel-button-background-color-hover: #888;
 
-    --error-color: red; /* Kept as-is */
+    --error-color: #ff6666;
+
+    --base-variant: #1a2b4b;
+    --primary-color: #a3e0f7;
 
     /* Global rules */
     font-size: 18px;
@@ -143,7 +149,17 @@ body {
 }
 
 body.darkmode {
-    background-color: var(--page-background-color); /* Ensures #041935 is applied */
+    background-color: var(--page-background-color);
+}
+
+body.darkmode,
+body.darkmode p,
+body.darkmode span,
+body.darkmode div,
+body.darkmode li,
+body.darkmode td,
+body.darkmode th {
+    color: var(--page-font-color);
 }
 
 header > img {
@@ -205,10 +221,7 @@ span.logo {
 }
 
 nav {
-    /* position: fixed; */
-    /* margin-top: -5rem; */
     background-color: var(--page-background-color);
-    /* box-shadow: 0px 3px 1rem var(--shadow-and-border-color); */
     border-bottom: 2px solid var(--shadow-and-border-color);
     max-width: 100vw;
 }
@@ -217,6 +230,27 @@ nav {
     color: var(--main-color);
     font-weight: 300;
     font-size: 1.5rem;
+}
+
+body.darkmode nav {
+    background-color: var(--standout-background);
+    border-bottom: 2px solid var(--shadow-and-border-color);
+}
+
+body.darkmode nav ul li a {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+body.darkmode #vms-logo {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .dropdown-item {
+    color: var(--secondary-accent-color);
 }
 
 /* Header mobile rules */
@@ -302,7 +336,6 @@ input[type=submit], button, .button {
     border-radius: var(--button-border-radius);
     font-weight: 500;
     width: 100%;
-
     transition: background-color .3s;
     cursor: pointer;
     text-align: center;
@@ -312,15 +345,66 @@ input[type=submit]:hover, button:hover, .button:hover {
     background-color: var(--accent-color);
 }
 
-/* input.visited:invalid {
-    outline: 2px solid var(--secondary-accent-color);
-} */
-
 label {
     color: var(--main-color);
     font-weight: 600;
     width: 100%;
     text-align: left;
+}
+
+body.darkmode input[type=text],
+body.darkmode input[type=password],
+body.darkmode input[type=date],
+body.darkmode input[type=email],
+body.darkmode input[type=number],
+body.darkmode input[type=tel],
+body.darkmode select,
+body.darkmode textarea,
+body.darkmode .pseudo-input,
+body.darkmode .pseudo-input-disabled {
+    background-color: var(--inactive-background-color);
+    color: var(--page-font-color);
+    border: var(--text-field-border);
+}
+
+body.darkmode input[type=text]:disabled,
+body.darkmode input[type=password]:disabled,
+body.darkmode input[type=date]:disabled,
+body.darkmode input[type=number]:disabled,
+body.darkmode input[type=email]:disabled,
+body.darkmode input[type=tel]:disabled,
+body.darkmode select:disabled,
+body.darkmode textarea:disabled,
+body.darkmode .pseudo-input-disabled {
+    background-color: #0a1e3b;
+    color: var(--inactive-font-color);
+}
+
+body.darkmode input[type=submit],
+body.darkmode button,
+body.darkmode .button {
+    background-color: var(--main-color);
+    color: var(--button-font-color);
+}
+
+body.darkmode input[type=submit]:hover,
+body.darkmode button:hover,
+body.darkmode .button:hover {
+    background-color: var(--accent-color);
+}
+
+body.darkmode button.cancel,
+body.darkmode a.cancel {
+    background-color: var(--cancel-button-background-color);
+}
+
+body.darkmode button.cancel:hover,
+body.darkmode a.cancel:hover {
+    background-color: var(--cancel-button-background-color-hover);
+}
+
+body.darkmode label {
+    color: var(--secondary-accent-color);
 }
 
 /* Login Form */
@@ -358,6 +442,11 @@ h1 {
     width: 100%;
     text-align: center;
     padding: 1rem;
+}
+
+body.darkmode h1 {
+    background-color: var(--main-color);
+    color: var(--button-font-color);
 }
 
 h2 {
@@ -412,9 +501,7 @@ h3:not(:first-of-type) {
     padding: 1rem;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
-    /*thomas*/
     text-align: center;
-    /**/
 }
 
 .info-toast {
@@ -422,7 +509,7 @@ h3:not(:first-of-type) {
     color: var(--info-toast-font-color);
     padding: 1rem;
     border-radius: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom    margin-bottom: 1rem;
 }
 
 .error-toast {
@@ -431,8 +518,21 @@ h3:not(:first-of-type) {
     padding: 1rem;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
-    /* border: 1px solid var(--error-toast-font-color);
-    outline: 3px solid var(--error-toast-background-color) */
+}
+
+body.darkmode .happy-toast {
+    background-color: var(--happy-toast-background-color);
+    color: var(--happy-toast-font-color);
+}
+
+body.darkmode .info-toast {
+    background-color: var(--info-toast-background-color);
+    color: var(--info-toast-font-color);
+}
+
+body.darkmode .error-toast {
+    background-color: var(--error-toast-background-color);
+    color: var(--error-toast-font-color);
 }
 
 /* Calendar */
@@ -468,7 +568,6 @@ main.calendar-view th {
 }
 
 @media only screen and (max-width: 900px) {
-
     div#table-wrapper, div.table-wrapper {
         overflow-x: auto;
     }
@@ -502,7 +601,6 @@ main.calendar-view th {
 }
 
 .calendar-event:hover {
-    /* filter: brightness(1.2); */
     background-color: var(--calendar-event-color-hover);
 }
 
@@ -552,7 +650,6 @@ h1.calendar-header a {
 
 #month-jumper {
     background-color: var(--page-background-color);
-    /* border: 1px solid var(--secondary-accent-color); */
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -580,6 +677,43 @@ button.cancel:hover, a.cancel:hover {
     cursor: pointer;
 }
 
+body.darkmode table#calendar {
+    background-color: var(--standout-background);
+}
+
+body.darkmode .calendar-day {
+    border: 1px solid var(--shadow-and-border-color);
+    background-color: var(--inactive-background-color);
+    color: var(--page-font-color);
+}
+
+body.darkmode .calendar-day:hover:not(.other-month) {
+    outline: 2px solid var(--accent-color);
+}
+
+body.darkmode .calendar-event {
+    background-color: var(--calendar-event-color);
+    color: var(--button-font-color);
+}
+
+body.darkmode .calendar-event:hover {
+    background-color: var(--calendar-event-color-hover);
+}
+
+body.darkmode .other-month {
+    background-color: #0a1e3b;
+    color: var(--inactive-font-color);
+}
+
+body.darkmode .today {
+    border: var(--calendar-today-border);
+}
+
+body.darkmode #month-jumper {
+    background-color: var(--inactive-background-color);
+    box-shadow: 0px 1rem 1rem rgba(0, 0, 0, 0.7);
+}
+
 /* Dashboard */
 main.dashboard {
     padding: 0 8rem 4rem 8rem;
@@ -595,7 +729,6 @@ main.dashboard > p {
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    /* padding: 0 8rem 4rem 8rem; */
     margin-top: 2rem;
     gap: 3rem;
     justify-content: center;
@@ -621,7 +754,6 @@ main.dashboard > p {
 .dashboard-item:hover {
     background-color: var(--accent-color);
     cursor: pointer;
-    /* text-shadow: 0px 0px .25rem black; */
 }
 
 .dashboard-item > img {
@@ -629,10 +761,18 @@ main.dashboard > p {
     height: 4rem;
 }
 
+body.darkmode .dashboard-item {
+    background-color: var(--main-color);
+    color: var(--button-font-color);
+}
+
+body.darkmode .dashboard-item:hover {
+    background-color: var(--accent-color);
+}
+
 @media only screen and (max-width: 680px) {
     main.dashboard {
         padding: 1rem;
-
     }
     #dashboard {
         gap: 1rem;
@@ -660,7 +800,6 @@ form.signup-form {
     flex-direction: column;
 }
 
-/* thomas added this */
 form.signup-form .section-box {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -668,7 +807,11 @@ form.signup-form .section-box {
     margin-bottom: 20px;
     background-color: #fafafa;
 }
-/**/
+
+body.darkmode form.signup-form .section-box {
+    border: 1px solid var(--shadow-and-border-color);
+    background-color: var(--standout-background);
+}
 
 form.signup-form > fieldset {
     padding: 1.5rem;
@@ -721,7 +864,6 @@ form.signup-form em {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
-
 }
 
 .checkbox-grouping {
@@ -808,6 +950,16 @@ table.event {
     border-bottom: 3px solid var(--shadow-and-border-color);
     padding-bottom: 1rem;
     background-color: var(--standout-background);
+}
+
+body.darkmode table.event {
+    background-color: var(--standout-background);
+    border-bottom: 3px solid var(--shadow-and-border-color);
+}
+
+body.darkmode table.event th {
+    background-color: var(--main-color);
+    color: var(--button-font-color);
 }
 
 /* Event Search Page */
@@ -921,6 +1073,20 @@ table.general th, table.general td {
     }
 }
 
+body.darkmode table.general {
+    background-color: var(--standout-background);
+}
+
+body.darkmode table.general th {
+    background-color: var(--main-color);
+    color: var(--button-font-color);
+}
+
+body.darkmode .standout {
+    background-color: var(--standout-background);
+    border-bottom: 3px solid var(--shadow-and-border-color);
+}
+
 .new-password {
     font-size: 2rem;
     padding: 1rem;
@@ -929,14 +1095,16 @@ table.general th, table.general td {
 }
 
 /* Profile picture */
-
-
 img.profile-pic {
-	object-fit: cover;
+    object-fit: cover;
 }
 
 .pic_update_message {
-  color: green;
+    color: green;
+}
+
+body.darkmode .pic_update_message {
+    color: #66cc66;
 }
 
 .link-like {
@@ -967,10 +1135,11 @@ img.profile-pic {
 }
 
 .dashboard-item i {
-    font-size: 55px; /* Set the desired size */
-    color: #ffffff; /* Optional: set color */
+    font-size: 55px;
+    color: #ffffff;
 }
-#theme-switch{
+
+#theme-switch {
     height: 50px;
     width: 50px;
     padding: 0;
@@ -983,15 +1152,19 @@ img.profile-pic {
     top: 20px;
     right: 20px;
 }
-#theme-switch svg{
+
+#theme-switch svg {
     fill: var(--primary-color);
 }
-#theme-switch svg:last-child{
+
+#theme-switch svg:last-child {
     display: none;
 }
-.darkmode #theme-switch svg:first-child{
+
+.darkmode #theme-switch svg:first-child {
     display: none;
 }
-.darkmode #theme-switch svg:last-child{
+
+.darkmode #theme-switch svg:last-child {
     display: block;
 }
