@@ -142,6 +142,10 @@ body {
     font-family: Montserrat;
 }
 
+body.darkmode {
+    background-color: var(--page-background-color); /* Ensures #041935 is applied */
+}
+
 header > img {
     height: 5rem;
 }
