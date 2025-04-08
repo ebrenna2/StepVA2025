@@ -162,6 +162,18 @@ body.darkmode th {
     color: var(--page-font-color);
 }
 
+/* Style labels and values in the profile page for better readability */
+body.darkmode main.general fieldset label {
+    color: var(--secondary-accent-color); /* Already set, just confirming */
+    font-weight: 500; /* Slightly bolder for hierarchy */
+    margin-bottom: 0.25rem;
+}
+
+body.darkmode main.general fieldset p {
+    color: var(--page-font-color); /* Already set, just confirming */
+    margin-bottom: 1rem; /* Space between entries */
+}
+
 header > img {
     height: 5rem;
 }
@@ -243,6 +255,24 @@ body.darkmode nav ul li a {
 
 body.darkmode nav ul li a:hover {
     color: var(--accent-color);
+}
+
+/* Style the dropdown menu container in dark mode */
+body.darkmode nav ul li ul,
+body.darkmode nav ul li .dropdown-menu {
+    background-color: var(--standout-background) !important; /* #0a1e3b */
+    border: 1px solid var(--shadow-and-border-color); /* #2a3b5b */
+}
+
+/* Ensure dropdown menu items have the correct text color */
+body.darkmode nav ul li ul li a,
+body.darkmode nav ul li .dropdown-menu li a {
+    color: var(--secondary-accent-color); /* #a3e0f7 */
+}
+
+body.darkmode nav ul li ul li a:hover,
+body.darkmode nav ul li .dropdown-menu li a:hover {
+    color: var(--accent-color); /* #57717d */
 }
 
 body.darkmode #vms-logo {
@@ -509,7 +539,7 @@ h3:not(:first-of-type) {
     color: var(--info-toast-font-color);
     padding: 1rem;
     border-radius: 0.5rem;
-    margin-bottom    margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .error-toast {
@@ -1085,6 +1115,14 @@ body.darkmode table.general th {
 body.darkmode .standout {
     background-color: var(--standout-background);
     border-bottom: 3px solid var(--shadow-and-border-color);
+}
+
+/* Ensure fieldsets in general sections use the correct background in dark mode */
+body.darkmode main.general fieldset,
+body.darkmode form.general fieldset {
+    background-color: var(--standout-background); /* #0a1e3b */
+    border: 1px solid var(--shadow-and-border-color); /* #2a3b5b */
+    border-radius: 0.5rem; /* Optional: for a polished look */
 }
 
 .new-password {
