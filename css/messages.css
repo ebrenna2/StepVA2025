@@ -1,9 +1,18 @@
 :root {
     --unread-message-background: #f1eadf;
     --message-body-border-color: #ddd;
-    --priorityone-color:#4FFFB0;
-    --prioritytwo-color:#F0E68C;
-    --prioritythree-color:#fd5c63;
+    --priorityone-color: #4FFFB0;
+    --prioritytwo-color: #F0E68C;
+    --prioritythree-color: #fd5c63;
+}
+
+/* Dark mode adjustments for messages */
+body.darkmode {
+    --unread-message-background: #1a2b4b; /* Matches --inactive-background-color */
+    --message-body-border-color: var(--shadow-and-border-color); /* #2a3b5b */
+    --priorityone-color: #3bb588; /* Darker green */
+    --prioritytwo-color: #b3a23e; /* Darker yellow */
+    --prioritythree-color: #c93036; /* Darker red */
 }
 
 tr.message {
@@ -11,31 +20,54 @@ tr.message {
     transition: filter .3s;
     background-color: inherit;
 }
-tr.message {
-    cursor: pointer;
-    transition: filter .3s;
-    background-color: inherit;
+
+body.darkmode tr.message {
+    background-color: var(--standout-background); /* #0a1e3b */
+    border-bottom: 1px solid var(--shadow-and-border-color); /* #2a3b5b */
 }
+
 tr.message.unread {
     font-weight: 500;
     background-color: var(--unread-message-background);
+}
+
+body.darkmode tr.message.unread {
+    background-color: var(--unread-message-background); /* #1a2b4b */
 }
 
 tr.message.prio1 {
     font-weight: 500;
     background-color: var(--priorityone-color);
 }
+
+body.darkmode tr.message.prio1 {
+    background-color: var(--priorityone-color); /* #3bb588 */
+}
+
 tr.message.prio2 {
     font-weight: 500;
     background-color: var(--prioritytwo-color);
 }
+
+body.darkmode tr.message.prio2 {
+    background-color: var(--prioritytwo-color); /* #b3a23e */
+}
+
 tr.message.prio3 {
     font-weight: 500;
     background-color: var(--prioritythree-color);
 }
 
+body.darkmode tr.message.prio3 {
+    background-color: var(--prioritythree-color); /* #c93036 */
+}
+
 tr.message:hover {
     filter: brightness(0.85);
+}
+
+body.darkmode tr.message:hover {
+    filter: brightness(1.2); /* Brighten for dark mode */
 }
 
 .message-body {
@@ -44,10 +76,19 @@ tr.message:hover {
     padding: 2rem;
 }
 
+body.darkmode .message-body {
+    background-color: var(--standout-background);
+    border: 1px solid var(--message-body-border-color);
+}
+
 .message-body {
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
+}
+
+body.darkmode .message-body {
+    color: var(--page-font-color);
 }
 
 .sender-time-line {
@@ -55,7 +96,10 @@ tr.message:hover {
     flex-direction: row;
     justify-content: left;
     gap: .5rem;
-    /* justify-content: space-between; */
+}
+
+body.darkmode .sender-time-line {
+    color: var(--page-font-color);
 }
 
 @media only screen and (min-width: 1024px) {
@@ -68,7 +112,6 @@ tr.message:hover {
     .sender-time-line {
         flex-direction: column;
         gap: .5rem;
-        /* align-items: left; */
         width: 100%;
     }
 }
@@ -84,4 +127,8 @@ main.message {
 p.no-messages {
     text-align: center;
     padding: 2rem;
+}
+
+body.darkmode p.no-messages {
+    color: var(--page-font-color);
 }
