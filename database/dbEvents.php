@@ -605,13 +605,16 @@ function create_event($event) {
 function set_recurring($event) {
     $recurring = $event["recurring"];
     $recurrence = isset($event["recurrence"]) ? $event["recurrence"] : "Daily";  // Default to "Daily"
+
+    //  No validation that $event["date"] and $event["end-date"] exist and are strings.
+    // Could cause unexpected behavior or warnings later if undefined or in wrong format.
     $startDate = $event["date"];
     $endDate = $event["end-date"];
 
     // Check if startDate and endDate are valid before using strtotime
     if (empty($startDate) || empty($endDate)) {
         echo 'Invalid start or end date';
-        die();  // Exit if dates are invalid
+        die();  // Exit if dates are invalid, Use of die() is bad here, consider a more graceful method of handling errors
     }
 
     // Convert startDate and endDate to timestamps
@@ -621,12 +624,12 @@ function set_recurring($event) {
     // Check if strtotime failed to convert the dates
     if ($startDate === false || $endDate === false) {
         echo 'Invalid start or end date';
-        die();  // Exit if date conversion failed
+        die();  // Exit if date conversion failed, Use of die() is bad here, consider a more graceful method of handling errors
     }
 
     // Create the first event on the start date
     $event["date"] = date("Y-m-d", $startDate);  // Set the first event date
-    $event_id = create_event($event);
+    $event_id = create_event($event); // Assumes this function always succeeds. No error handling.
 
     // If recurrence is not enabled, just return the event ID
     if ($recurring == 'n') {
@@ -637,6 +640,7 @@ function set_recurring($event) {
     $currentDate = $startDate;
     $occurrenceCount = 0;
 
+    // Limiting to 100 events is good but hard-coded; should be configurable.
     // Only continue if the current date is within the range of the end date
     while ($currentDate <= $endDate && $occurrenceCount < 100) {  // Limit to 100 occurrences to prevent infinite loops
         switch ($recurrence) {
@@ -692,7 +696,8 @@ function get_volunteer_count($eventID) {
 
 // Function to get the restricted volunteers limit (y) for an event
 function get_restricted_volunteers_limit($eventID) {
-    $connection = connect(); // Assuming `connect()` is your function for getting a DB connection
+    $connection = connect(); // Assuming `connect()` is your function for getting a DB connection, Assumes connect() always returns a valid DB connection. No error checking is done.
+    // This exposes the function to SQL Injection if $eventID is not validated.
     $query = "SELECT restricted_volunteers FROM dbevents WHERE id = '$eventID'"; // Assuming the column name is `restricted_volunteers`
     $result = mysqli_query($connection, $query);
 

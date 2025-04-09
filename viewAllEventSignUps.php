@@ -125,6 +125,7 @@ $access_level = $_SESSION['access_level']; ?>
                             $volunteer_count = get_volunteer_count($event_id['eventname']);
                             $restricted_limit = get_restricted_volunteers_limit($event_id['eventname']);
                             ?>
+                            
                             <tr>
                                 <td><a href="event.php?id=<?php echo urlencode($event['eventname']); ?>"><?php echo htmlspecialchars($name['name']); ?></a></td>
                                 <td><?php echo htmlspecialchars($user_info->get_first_name()); ?></td>
