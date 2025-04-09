@@ -17,6 +17,55 @@
 </head>
 
 <header>
+    <div class="container mt-3 position-relative" style="max-width: 400px;">
+        <input id="pageSearch" class="form-control" type="text" placeholder="Search pages..." autocomplete="off">
+        <div id="suggestions" class="list-group position-absolute w-100 z-3" style="top: 100%; max-height: 200px; overflow-y: auto; display: none;"></div>
+    </div>
+    <script>
+    const pages = [
+        { name: "Home", url: "index.php" },
+        { name: "Calendar", url: "calendar.php" },
+        { name: "Inbox", url: "inbox.php" },
+        { name: "Add Event", url: "addevent.php" },
+        { name: "Cancel Event", url: "cancelEvent.php"},
+        { name: "Delete Admin", url: "deleteAdmin.php"},
+        { name: "Delete Event", url: "deleteEvent.php"},
+        { name: "Delete Family Member", url: "deleteFamilyMember.php"},
+        { name: "View All Events", url: "viewAllEvents.php" },
+        { name: "Edit Profile", url: "editProfile.php" },
+        { name: "Change Password", url: "changePassword.php" },
+        { name: "Volunteer Report", url: "volunteerReport.php" },
+        { name: "Upload Resources", url: "resources.php" },
+        { name: "Logout", url: "logout.php" }
+    ];
+    const input = document.getElementById("pageSearch");
+    const suggestions = document.getElementById("suggestions");
+    input.addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        suggestions.innerHTML = "";
+        if (query === "") {
+            suggestions.style.display = "none";
+            return;
+        }
+        const filtered = pages.filter(page => page.name.toLowerCase().includes(query));
+        if (filtered.length === 0) {
+            suggestions.style.display = "none";
+            return
+        }
+        filtered.forEach(page => {
+            const item = document.createElement("a");
+            item.classList.add("list-group-item", "list-group-item-action");
+            item.textContent = page.name;
+            item.href = page.url;
+            suggestions.appendChild(item);
+        });
+        suggestions.style.display = "block";});
+    document.addEventListener("click", function (e) {
+        if (!input.contains(e.target) && !suggestions.contains(e.target)) {
+            suggestions.style.display = "none";
+        }
+        });
+    </script>
 
     <?PHP
     //Log-in security
