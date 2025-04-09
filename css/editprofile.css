@@ -1026,3 +1026,154 @@ table.general th, table.general td {
     font-size: 1.2em;
     color: #555;
 }
+
+/* Dark mode adjustments for edit profile */
+body.darkmode {
+    /* Backgrounds */
+    --standout-background: #0a1e3b;
+    --inactive-background-color: #1a2b4b;
+}
+
+/* Containers and Sections */
+body.darkmode .container {
+    background-color: var(--standout-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.darkmode .section-box {
+    background-color: var(--standout-background);
+    border: 1px solid var(--shadow-and-border-color);
+    padding: 20px;
+    border-radius: 0.5rem;
+}
+
+body.darkmode .standout {
+    background-color: var(--standout-background);
+    border-bottom: 3px solid var(--shadow-and-border-color);
+}
+
+body.darkmode .event-item {
+    background-color: var(--standout-background);
+    border: 1px solid var(--shadow-and-border-color);
+}
+
+/* Tables */
+body.darkmode table.event {
+    background-color: var(--standout-background);
+    border-bottom: 3px solid var(--shadow-and-border-color);
+}
+
+body.darkmode table.event td {
+    background-color: var(--standout-background);
+}
+
+/* Form Inputs */
+body.darkmode input[type=text],
+body.darkmode input[type=password],
+body.darkmode input[type=date],
+body.darkmode input[type=email],
+body.darkmode input[type=tel],
+body.darkmode select,
+body.darkmode textarea,
+body.darkmode .pseudo-input {
+    background-color: #1a2b4b;
+    border: 2px solid var(--shadow-and-border-color);
+    color: var(--page-font-color);
+}
+
+body.darkmode input[type=text]:disabled,
+body.darkmode input[type=password]:disabled,
+body.darkmode input[type=date]:disabled,
+body.darkmode input[type=email]:disabled,
+body.darkmode input[type=tel]:disabled,
+body.darkmode select:disabled,
+body.darkmode textarea:disabled,
+body.darkmode .pseudo-input-disabled {
+    background-color: #0a1e3b;
+    color: var(--inactive-font-color);
+}
+
+body.darkmode .styled-form input[type="text"],
+body.darkmode .styled-form select,
+body.darkmode .styled-form textarea {
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Text Colors */
+body.darkmode .section-box legend,
+body.darkmode .styled-form label,
+body.darkmode .username-header h3 {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .section-box label,
+body.darkmode .field-pair label {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .section-box p,
+body.darkmode .field-pair p {
+    color: var(--page-font-color);
+}
+
+body.darkmode .event-details {
+    color: var(--page-font-color);
+}
+
+body.darkmode .event-details strong {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .no-events-message {
+    color: var(--page-font-color);
+}
+
+body.darkmode .edit-icon {
+    color: var(--page-font-color);
+}
+
+body.darkmode .edit-icon:hover {
+    color: var(--accent-color);
+}
+
+/* Buttons */
+body.darkmode .button.success {
+    background-color: var(--happy-toast-background-color);
+}
+
+body.darkmode .button.danger {
+    background-color: var(--error-color);
+}
+
+body.darkmode .button.cancel {
+    background-color: #666 !important;
+}
+
+body.darkmode .button.cancel:hover {
+    background-color: #888 !important;
+}
+
+body.darkmode .button.edit-button {
+    background-color: var(--main-color);
+}
+
+body.darkmode .button.edit-button:hover {
+    background-color: var(--accent-color);
+}
+
+/* Toasts */
+body.darkmode .happy-toast {
+    background-color: var(--happy-toast-background-color);
+    color: var(--happy-toast-font-color);
+}
+
+body.darkmode .info-toast {
+    background-color: var(--info-toast-background-color);
+    color: var(--info-toast-font-color);
+}
+
+body.darkmode .error-toast {
+    background-color: var(--error-toast-background-color);
+    color: var(--error-toast-font-color);
+}

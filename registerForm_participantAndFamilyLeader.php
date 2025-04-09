@@ -9,111 +9,8 @@
     <h1>New Participant Registration</h1>
     <main class="signup-form">
 
-    <div id="test-submit-container">
-  <button type="button" id="test-submit-btn">Test Submit</button>
-  <p style="font-size: 12px;">Click to auto-fill and submit with dummy data (for testing only)</p>
-</div>
-
-<script>
-  // Isolated test script - remove this block when done testing
-  document.getElementById('test-submit-btn').addEventListener('click', async function() {
-    const form = document.querySelector('form.signup-form');
-
-    // Generate unique username with date/time
-    const now = new Date();
-    const timestamp = now.toISOString().replace(/[-:T.]/g, '').slice(0, 14); // e.g., 20250307123456
-    const uniqueUsername = `testuser${timestamp}`;
-
-    // Fill participant fields (before family section)
-    form.querySelector('#first_name').value = 'John';
-    form.querySelector('#last_name').value = 'Doe';
-    form.querySelector('#birthdate').value = '1990-01-01';
-    form.querySelector('#street_address').value = '123 Test St';
-    form.querySelector('#city').value = 'Testville';
-    form.querySelector('#state').value = 'VA';
-    form.querySelector('#zip').value = '12345';
-    form.querySelector('#email').value = 'john.doe@test.com';
-    form.querySelector('#phone').value = '(555) 555-5555';
-    form.querySelector('input[name="phone_type"][value="cellphone"]').checked = true;
-    form.querySelector('#emergency_contact_first_name').value = 'Jane';
-    form.querySelector('#emergency_contact_last_name').value = 'Doe';
-    form.querySelector('#emergency_contact_relation').value = 'Spouse';
-    form.querySelector('#emergency_contact_phone').value = '(555) 555-6666';
-    form.querySelector('input[name="emergency_contact_phone_type"][value="cellphone"]').checked = true;
-    form.querySelector('input[name="tshirt_size"][value="m"]').checked = true;
-    form.querySelector('#school_affiliation').value = 'N/A';
-    form.querySelector('input[name="photo_release"][value="Not Restricted"]').checked = true;
-    form.querySelector('#photo_release_notes').value = 'N/A';
-
-    // Fill participant optional fields
-    form.querySelector('#how_you_heard_of_stepva').value = 'Friend';
-    form.querySelector('input[name="preferred_feedback_method"][value="email"]').checked = true;
-    form.querySelector('#hobbies').value = 'Reading, hiking';
-    form.querySelector('#professional_experience').value = 'Volunteered at local shelter';
-    form.querySelector('#disability_accomodation_needs').value = 'None';
-
-    // Trigger family section
-    const familyRadio = form.querySelector('input[name="family_or_individual"][value="y"]');
-    familyRadio.checked = true;
-    familyRadio.dispatchEvent(new Event('change', { bubbles: true })); // Trigger toggleNumFamilyMembersSection
-
-    const numFamilyInput = form.querySelector('#numFamilyMembers');
-    numFamilyInput.value = 1; // One family member
-    numFamilyInput.dispatchEvent(new Event('input', { bubbles: true })); // Trigger updateFamilyMemberSections
-
-    // Wait for family section to render (async delay)
-    await new Promise(resolve => setTimeout(resolve, 250)); // 250ms delay
-
-    // Fill family member fields
-    const familySection = form.querySelector('#family_member_info_section');
-    if (familySection.querySelector('#family_first_name_1')) {
-      familySection.querySelector('#family_first_name_1').value = 'Junior';
-      familySection.querySelector('#family_last_name_1').value = 'Doe';
-      familySection.querySelector('#family_birthdate_1').value = '2015-01-01';
-      familySection.querySelector('#family_street_address_1').value = '123 Test St';
-      familySection.querySelector('#family_city_1').value = 'Testville';
-      familySection.querySelector('#family_state_1').value = 'VA';
-      familySection.querySelector('#family_zip_1').value = '12345';
-      familySection.querySelector('#family_email_1').value = 'junior.doe@test.com';
-      familySection.querySelector('#family_phone_1').value = '(555) 555-7777';
-      familySection.querySelector('input[name="family[1][phone_type]"][value="cellphone"]').checked = true;
-      familySection.querySelector('#family_emergency_contact_first_name_1').value = 'Jane';
-      familySection.querySelector('#family_emergency_contact_last_name_1').value = 'Doe';
-      familySection.querySelector('#family_emergency_contact_relation_1').value = 'Mother';
-      familySection.querySelector('#family_emergency_contact_phone_1').value = '(555) 555-8888';
-      familySection.querySelector('input[name="family[1][emergency_contact_phone_type]"][value="cellphone"]').checked = true;
-      familySection.querySelector('input[name="family[1][tshirt_size]"][value="s"]').checked = true;
-      familySection.querySelector('#family_school_affiliation_1').value = 'N/A';
-      familySection.querySelector('input[name="family[1][photo_release]"][value="Not Restricted"]').checked = true;
-      familySection.querySelector('#family_photo_release_notes_1').value = 'N/A';
-      // Fill family optional fields
-      familySection.querySelector('#family_how_you_heard_of_stepva_1').value = 'Parent';
-      familySection.querySelector('input[name="family[1][preferred_feedback_method]"][value="text"]').checked = true;
-      familySection.querySelector('#family_hobbies_1').value = 'Drawing, soccer';
-      familySection.querySelector('#family_professional_experience_1').value = 'None';
-      familySection.querySelector('#family_disability_accomodation_needs_1').value = 'None';
-      familySection.querySelector('#family_username_1').value = `${uniqueUsername}_jr`;
-      familySection.querySelector('#family_password_1').value = 'Password2!';
-      familySection.querySelector('#family_password_reenter_1').value = 'Password2!';
-    } else {
-      console.error('Family member fields not rendered!');
-    }
-
-    // Fill sections below family (Login Credentials)
-    form.querySelector('#username').value = uniqueUsername;
-    form.querySelector('#password').value = 'Password2!';
-    form.querySelector('#password-reenter').value = 'Password2!';
-
-    // Submit the form
-    console.log('Base phone length:', form.querySelector('#phone').value.length);
-    console.log('Base phone exact:', JSON.stringify(form.querySelector('#phone').value));
-    console.log('Family phone length:', familySection.querySelector('#family_phone_1')?.value.length);
-    console.log('Family phone exact:', JSON.stringify(familySection.querySelector('#family_phone_1')?.value));
-    //form.submit();
-  });
-</script>
-
-        <form class="signup-form" method="post">
+        <?php //<form class="signup-form" method="post"> ?>
+        <form class="signup-form" method="post" onsubmit="console.log('Submitting'); if (!this.checkValidity()) { console.log('Validation failed'); this.reportValidity(); return false; }">
             <h2>Participant Registration Form</h2>
             <p>Please fill out each section of the following form if you would like to participate in an event.</p>
             <p>An asterisk (<em>*</em>) indicates a required field.</p>
@@ -126,7 +23,7 @@
                 <div class="radio-group">
                     <input type="radio" id="yes" name="family_or_individual" value="y" required>
                     <label for="yes">Yes</label>
-                    <input type="radio" id="no" name="family_or_individual" value="n" required>
+                    <input type="radio" id="no" name="family_or_individual" value="n" >
                     <label for="no">No</label>
                 </div>
 
@@ -348,6 +245,8 @@
                                 `;
                                 familyInfoContainer.appendChild(section);
                             }
+                        } else {
+                            familyInfoContainer.innerHTML = ``;
                         }
                     }
 
@@ -389,9 +288,11 @@
 
                         if (isFamily) {
                             numFamilySection.style.display = 'block';
+                            numFamilyInput.setAttribute('min', '1'); 
                         } else {
                             numFamilyInput.value = 0;
                             numFamilySection.style.display = 'none';
+                            numFamilyInput.setAttribute('min', '0'); // Allow 0 for individual
                             updateFamilyMemberSections();
                         }
                     }
@@ -562,15 +463,15 @@
 
     <!-- New Photo Release Details Section -->
     <div id="photo-release-details" style="display: none;">
-        <label>Can your cast or crew member be featured in a profile?</label>
+        <label><em>* </em>Can your cast or crew member be featured in a profile?</label>
         <div class="radio-group">
-            <input type="radio" id="profile-yes" name="profile_feature" value="Yes" required>
+            <input type="radio" id="profile-yes" name="profile_feature" value="Yes" >
             <label for="profile-yes">Yes</label>
-            <input type="radio" id="profile-no" name="profile_feature" value="No" required>
+            <input type="radio" id="profile-no" name="profile_feature" value="No" >
             <label for="profile-no">No</label>
         </div>
 
-        <label>How would you like your cast/crew member identified?</label>
+        <label><em>* </em>How would you like your cast/crew member identified?</label>
         <div class="radio-group">
             <input type="radio" id="id-full-name" name="identification_preference" value="First and last name">
             <label for="id-full-name">First and last name</label>
@@ -580,21 +481,21 @@
             <label for="id-initials">Initials only</label>
         </div>
 
-        <label>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
+        <label><em>* </em>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
         <div class="radio-group">
-            <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" required>
+            <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" >
             <label for="headshot-yes">Yes</label>
-            <input type="radio" id="headshot-no" name="headshot_publish" value="No" required>
+            <input type="radio" id="headshot-no" name="headshot_publish" value="No" >
             <label for="headshot-no">No</label>
         </div>
 
-        <label>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
+        <label><em>* </em>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
         <div class="radio-group">
-            <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" required>
+            <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" >
             <label for="likeness-yes">Yes</label>
-            <input type="radio" id="likeness-no" name="likeness_usage" value="No" required>
+            <input type="radio" id="likeness-no" name="likeness_usage" value="No" >
             <label for="likeness-no">No</label>
-            <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" required>
+            <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" >
             <label for="likeness-filter">Only with a filter</label>
         </div>
     </div>
@@ -659,27 +560,27 @@
 </html>
 <script>
     function togglePhotoReleaseDetails() {
-                const notRestricted = document.getElementById('Not Restricted');
-                const photoReleaseDetails = document.getElementById('photo-release-details');
+        const notRestricted = document.getElementById('Not Restricted');
+        const photoReleaseDetails = document.getElementById('photo-release-details');
 
-                if (notRestricted.checked) {
-                    photoReleaseDetails.style.display = 'block';
-                    document.querySelectorAll('#photo-release-details input').forEach(input => {
-                        input.setAttribute('required', 'required');
-                    });
-                } else {
-                    photoReleaseDetails.style.display = 'none';
-                    document.querySelectorAll('#photo-release-details input').forEach(input => {
-                        input.removeAttribute('required');
-                    });
-                }
-            }
-
-            document.querySelectorAll('input[name="photo_release"]').forEach(radio => {
-                radio.addEventListener('change', togglePhotoReleaseDetails);
+        if (notRestricted.checked) {
+            photoReleaseDetails.style.display = 'block';
+            document.querySelectorAll('#photo-release-details input').forEach(input => {
+                input.setAttribute('required', 'required');
             });
+        } else {
+            photoReleaseDetails.style.display = 'none';
+            document.querySelectorAll('#photo-release-details input').forEach(input => {
+                input.removeAttribute('required');
+            });
+        }
+    }
+
+    document.querySelectorAll('input[name="photo_release"]').forEach(radio => {
+        radio.addEventListener('change', togglePhotoReleaseDetails);
+    });
             
-            document.addEventListener('DOMContentLoaded', () => {
-                togglePhotoReleaseDetails(); // Add this to ensure the photo release section is correctly displayed on page load
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+        togglePhotoReleaseDetails(); // Add this to ensure the photo release section is correctly displayed on page load
+    });
 </script>

@@ -758,3 +758,273 @@ td {
     word-break: break-word;
 }
 
+/* Dark mode updates for events page */
+
+/* Backgrounds */
+body.darkmode .section-box {
+    background-color: var(--standout-background);
+    border: 1px solid var(--shadow-and-border-color);
+}
+
+body.darkmode .container {
+    background-color: var(--standout-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.darkmode table tr:nth-child(odd) {
+    background-color: var(--inactive-background-color);
+}
+
+body.darkmode .modal-content {
+    background-color: var(--standout-background);
+    color: var(--page-font-color);
+}
+
+/* Text colors */
+body.darkmode .section-box legend {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .field-pair label {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .field-pair p {
+    color: var(--page-font-color);
+}
+
+body.darkmode .label,
+body.darkmode table td.label {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .edit-icon {
+    color: var(--page-font-color);
+}
+
+body.darkmode .edit-icon:hover {
+    color: var(--accent-color);
+}
+
+body.darkmode .delete-icon {
+    color: var(--error-color);
+}
+
+body.darkmode .delete-icon:hover {
+    color: #ff3333;
+}
+
+body.darkmode th {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .empty-slot,
+body.darkmode .inactive {
+    color: var(--inactive-font-color);
+}
+
+/* Confirmation modals */
+body.darkmode #delete-confirmation,
+body.darkmode #complete-confirmation,
+body.darkmode #cancel-confirmation {
+    background-color: var(--standout-background);
+    border: 1px solid var(--shadow-and-border-color);
+    box-shadow: 0px 1rem 1rem rgba(0, 0, 0, 0.7);
+}
+
+body.darkmode #delete-confirmation p,
+body.darkmode #complete-confirmation p,
+body.darkmode #cancel-confirmation p {
+    color: var(--page-font-color);
+}
+
+/* Buttons */
+body.darkmode .button.cancel {
+    background-color: var(--cancel-button-background-color) !important;
+}
+
+body.darkmode .button.cancel:hover {
+    background-color: var(--cancel-button-background-color-hover) !important;
+}
+
+body.darkmode .button.success {
+    background-color: var(--happy-toast-background-color);
+}
+
+body.darkmode .button.danger {
+    background-color: var(--error-color);
+}
+
+body.darkmode .button.signup {
+    background-color: var(--main-color) !important;
+}
+
+body.darkmode .button.signup:hover {
+    background-color: var(--accent-color) !important;
+}
+
+/* Toasts */
+body.darkmode .happy-toast {
+    background-color: var(--happy-toast-background-color);
+    color: var(--happy-toast-font-color);
+}
+
+/* Ensure table cells have the correct background in dark mode */
+body.darkmode table td {
+    background-color: var(--standout-background); /* #0a1e3b */
+}
+
+/* Confirm table background */
+body.darkmode table {
+    background-color: var(--standout-background); /* #0a1e3b */
+    border-bottom: 3px solid var(--shadow-and-border-color); /* #2a3b5b */
+}
+
+/* Ensure table wrapper doesn’t override the background */
+body.darkmode #table-wrapper {
+    background-color: transparent;
+}
+
+/* Add a subtle border to the table in dark mode */
+body.darkmode #table-wrapper table {
+    border: 1px solid var(--shadow-and-border-color); /* #2a3b5b */
+    border-radius: 0.5rem;
+}
+
+/* Adjust padding for better spacing */
+body.darkmode table td {
+    padding: 12px 20px; /* Matches the existing padding but ensures consistency */
+}
+
+/* Dark mode updates for event page */
+
+/* Backgrounds */
+body.darkmode .container {
+    background-color: var(--standout-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.darkmode .section-box {
+    background-color: var(--standout-background);
+    border: 1px solid var(--shadow-and-border-color);
+}
+
+body.darkmode table {
+    background-color: var(--standout-background);
+    border-bottom: 3px solid var(--shadow-and-border-color);
+}
+
+body.darkmode table tr:nth-child(odd) {
+    background-color: var(--inactive-background-color);
+}
+
+body.darkmode table td {
+    background-color: var(--standout-background);
+}
+
+body.darkmode .modal-content {
+    background-color: var(--standout-background);
+    color: var(--page-font-color);
+}
+
+/* Text colors */
+body.darkmode h1 {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode h2 {
+    color: var(--secondary-accent-color) !important;
+}
+
+body.darkmode .section-box legend {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .field-pair label,
+body.darkmode .label,
+body.darkmode table td.label {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode table td:not(.label) {
+    color: var(--page-font-color);
+}
+
+body.darkmode .field-pair p {
+    color: var(--page-font-color);
+}
+
+body.darkmode .edit-icon {
+    color: var(--page-font-color);
+}
+
+body.darkmode .edit-icon:hover {
+    color: var(--accent-color);
+}
+
+body.darkmode .delete-icon {
+    color: var(--error-color);
+}
+
+body.darkmode .delete-icon:hover {
+    color: #ff3333;
+}
+
+body.darkmode th {
+    color: var(--secondary-accent-color);
+}
+
+body.darkmode .empty-slot,
+body.darkmode .inactive {
+    color: var(--inactive-font-color);
+}
+
+/* Buttons */
+body.darkmode .button.cancel {
+    background-color: var(--cancel-button-background-color) !important;
+}
+
+body.darkmode .button.cancel:hover {
+    background-color: var(--cancel-button-background-color-hover) !important;
+}
+
+body.darkmode .button.success {
+    background-color: var(--happy-toast-background-color);
+}
+
+body.darkmode .button.danger {
+    background-color: var(--error-color);
+}
+
+body.darkmode .button.signup {
+    background-color: var(--main-color) !important;
+}
+
+body.darkmode .button.signup:hover {
+    background-color: var(--accent-color) !important;
+}
+
+body.darkmode .button:not(.success):not(.danger):not(.signup):not(.cancel) {
+    background-color: var(--main-color);
+}
+
+body.darkmode .button:not(.success):not(.danger):not(.signup):not(.cancel):hover {
+    background-color: var(--accent-color);
+}
+
+/* Toasts */
+body.darkmode .happy-toast {
+    background-color: var(--happy-toast-background-color);
+    color: var(--happy-toast-font-color);
+}
+
+/* Add a subtle border to the table in dark mode */
+body.darkmode #table-wrapper table {
+    border: 1px solid var(--shadow-and-border-color);
+    border-radius: 0.5rem;
+}
+
+/* Adjust padding for better spacing */
+body.darkmode table td {
+    padding: 12px 20px;
+}
