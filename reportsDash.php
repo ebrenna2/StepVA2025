@@ -79,4 +79,5 @@
             </div>
         </main>
     </body>
+    <a class="button cancel" href="vmsDash.php">Return to Dash</a>
 </html>
