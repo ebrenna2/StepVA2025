@@ -34,31 +34,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $viewingSelf = true;
 }
 
-if ($isAdmin && isset($_GET['search_id'])) {
-    $search_id = sanitize($_GET)['search_id'];
-    $volunteer = retrieve_person($search_id);
-    if (empty($volunteer)) {
-        $message = "No volunteer found with that name.";
-    } else {
-        $id = $volunteer->get_id();
-        $viewingSelf = false;
-    }
-} else {
-    $volunteer = retrieve_person($userID);
-}
-
-
-$volunteer = retrieve_person($id);
-
-$check_in_history = get_events_attended_by_2($id);
-$check_in_history = array_filter($check_in_history, function($entry) {
-    $oneWeekAgo = strtotime('-7 days');
-    return (strtotime($entry['start_time']) >= $oneWeekAgo);
-});
-
-usort($check_in_history, function($a, $b) {
-    return strtotime($b['start_time']) <=> strtotime($a['start_time']);
-});
+require_once('database/dbEvents.php');
+require_once('database/dbPersons.php');
 
 $message = '';
 
@@ -109,47 +86,11 @@ if (isset($_POST['eventID']) && !empty($_POST['eventID'])) {
 <?php require('header.php'); ?>
 <main class="hours-report">
     <h2>Volunteer Check-In / Check-Out</h2>
-
-    <?php if ($isAdmin): ?>
-        <form method="get" action="">
-            <label for="search_id">Search by Username:</label>
-            <input type="text" name="search_id" id="search_id" placeholder="Enter username" required>
-            <button type="submit" class="button">Search</button>
-        </form>
-        <br>
-        <?php if (!$viewingSelf && !empty($volunteer)): ?>
-            <h4><?= htmlspecialchars($volunteer->get_id()) ?>'s Check-In History (Past 7 Days)</h4>
-            <?php if (!empty($check_in_history)): ?>
-                <div class="scrollable-table">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Event Name</th>
-                                <th>Start Time</th>
-                                <th>End Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($check_in_history as $entry): ?>
-                            <tr>
-                                <td><?= htmlspecialchars(get_event_from_id($entry['eventID'])) ?></td>
-                                <td><?= htmlspecialchars(date('M d, Y g:i A', strtotime($entry['start_time']))) ?></td>
-                                <td>
-                                    <?= $entry['end_time']
-                                        ? htmlspecialchars(date('M d, Y g:i A', strtotime($entry['end_time'])))
-                                        : '<em>Still Checked In</em>' ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php else: ?>
-                <p>This volunteer has not checked into any events in the past 7 days.</p>
-            <?php endif; ?>
-        <?php else: ?>
-            <p style="color:#666;">Use the search box above to see a volunteer's check-in and check-out history.</p>
-        <?php endif; ?>
+    <?php if (!empty($message)): ?>
+        <div style="margin: 10px 0; color: green; font-weight: bold;">
+            <?= htmlspecialchars($message) ?>
+        </div>
+    <?php endif; ?>
 
     <?php else: ?>
         <form method="post" id="checkForm">
