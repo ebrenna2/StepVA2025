@@ -92,19 +92,19 @@
         $permission_array['reportspage.php'] = 2;
         $permission_array['resetpassword.php'] = 2;
         $permission_array['addappointment.php'] = 2;
-        $permission_array['addanimal.php'] = 2;
+       // $permission_array['addanimal.php'] = 2;
         $permission_array['addservice.php'] = 2;
         $permission_array['addlocation.php'] = 2;
         $permission_array['viewservice.php'] = 2;
         $permission_array['viewlocation.php'] = 2;
         $permission_array['viewarchived.php'] = 2;
-        $permission_array['animal.php'] = 2;
-        $permission_array['editanimal.php'] = 2;
+        // $permission_array['animal.php'] = 2;
+        // $permission_array['editanimal.php'] = 2;
         $permission_array['eventsuccess.php'] = 2;
         $permission_array['viewsignuplist.php'] = 2;
         $permission_array['vieweventsignups.php'] = 2;
         $permission_array['viewalleventsignups.php'] = 2;
-        $permission_array['resources.php'] = 2;
+        //$permission_array['resources.php'] = 2;
         $permission_array['adminregistervolunteer.php'] = 2;
         $permission_array['checkinoutvolunteer.php'] = 1;
 
@@ -258,6 +258,17 @@
         //echo('<span class="nav-divider">|</span>');
         echo('<li><a class="nav-link active" aria-current="page" href="' . $path . 'logout.php">Log out</a></li>');
         echo '</ul></nav>';
+
+        echo '
+            <script type="text/javascript" src="darkmode.js" defer></script>
+
+            <button id="theme-switch">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-400q48 0 88 26t59 71l10 23h25q42 0 70 29.5t28 70.5q0 42-29 71t-71 29H240q-66 0-113-47T80-240q0-67 47-113.5T240-400Zm210-440q-18 99 11 193.5T561-481q71 71 165.5 100T920-370q-26 142-135 234.5T533-40q32-26 49.5-62.5T600-180q0-68-42.5-117.5T449-357q-32-57-87.5-90T240-480q-32 0-62.5 8T120-448q2-145 94.5-255T450-840Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
+
+            </button>
+
+        ';
         
     }
     ?>

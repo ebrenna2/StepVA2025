@@ -301,6 +301,26 @@
                 </div>
 
                 <div class="field-pair">
+                    <label>Profile Feature</label>
+                    <p><?php echo ucfirst($user->get_profile_feature() ?: "No (Restricted)") ?></p>
+                </div>
+
+                <div class="field-pair">
+                    <label>Identification Preference</label>
+                    <p><?php echo ucfirst($user->get_identification_preference() ?: "Not specified") ?></p>
+                </div>
+
+                <div class="field-pair">
+                    <label>Headshot Publish</label>
+                    <p><?php echo ucfirst($user->get_headshot_publish() ?: "No (Restricted)") ?></p>
+                </div>
+
+                <div class="field-pair">
+                    <label>Likeness Usage</label>
+                    <p><?php echo ucfirst($user->get_likeness_usage() ?: "No (Restricted)") ?></p>
+                </div>
+
+                <div class="field-pair">
                     <label>Photo Release Notes</label>
                     <p><?php echo ucfirst($user->get_photo_release_notes() ?: "Not specified") ?></p>
                 </div>

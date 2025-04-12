@@ -9,111 +9,8 @@
     <h1>New Participant Registration</h1>
     <main class="signup-form">
 
-    <div id="test-submit-container">
-  <button type="button" id="test-submit-btn">Test Submit</button>
-  <p style="font-size: 12px;">Click to auto-fill and submit with dummy data (for testing only)</p>
-</div>
-
-<script>
-  // Isolated test script - remove this block when done testing
-  document.getElementById('test-submit-btn').addEventListener('click', async function() {
-    const form = document.querySelector('form.signup-form');
-
-    // Generate unique username with date/time
-    const now = new Date();
-    const timestamp = now.toISOString().replace(/[-:T.]/g, '').slice(0, 14); // e.g., 20250307123456
-    const uniqueUsername = `testuser${timestamp}`;
-
-    // Fill participant fields (before family section)
-    form.querySelector('#first_name').value = 'John';
-    form.querySelector('#last_name').value = 'Doe';
-    form.querySelector('#birthdate').value = '1990-01-01';
-    form.querySelector('#street_address').value = '123 Test St';
-    form.querySelector('#city').value = 'Testville';
-    form.querySelector('#state').value = 'VA';
-    form.querySelector('#zip').value = '12345';
-    form.querySelector('#email').value = 'john.doe@test.com';
-    form.querySelector('#phone').value = '(555) 555-5555';
-    form.querySelector('input[name="phone_type"][value="cellphone"]').checked = true;
-    form.querySelector('#emergency_contact_first_name').value = 'Jane';
-    form.querySelector('#emergency_contact_last_name').value = 'Doe';
-    form.querySelector('#emergency_contact_relation').value = 'Spouse';
-    form.querySelector('#emergency_contact_phone').value = '(555) 555-6666';
-    form.querySelector('input[name="emergency_contact_phone_type"][value="cellphone"]').checked = true;
-    form.querySelector('input[name="tshirt_size"][value="m"]').checked = true;
-    form.querySelector('#school_affiliation').value = 'N/A';
-    form.querySelector('input[name="photo_release"][value="Not Restricted"]').checked = true;
-    form.querySelector('#photo_release_notes').value = 'N/A';
-
-    // Fill participant optional fields
-    form.querySelector('#how_you_heard_of_stepva').value = 'Friend';
-    form.querySelector('input[name="preferred_feedback_method"][value="email"]').checked = true;
-    form.querySelector('#hobbies').value = 'Reading, hiking';
-    form.querySelector('#professional_experience').value = 'Volunteered at local shelter';
-    form.querySelector('#disability_accomodation_needs').value = 'None';
-
-    // Trigger family section
-    const familyRadio = form.querySelector('input[name="family_or_individual"][value="y"]');
-    familyRadio.checked = true;
-    familyRadio.dispatchEvent(new Event('change', { bubbles: true })); // Trigger toggleNumFamilyMembersSection
-
-    const numFamilyInput = form.querySelector('#numFamilyMembers');
-    numFamilyInput.value = 1; // One family member
-    numFamilyInput.dispatchEvent(new Event('input', { bubbles: true })); // Trigger updateFamilyMemberSections
-
-    // Wait for family section to render (async delay)
-    await new Promise(resolve => setTimeout(resolve, 250)); // 250ms delay
-
-    // Fill family member fields
-    const familySection = form.querySelector('#family_member_info_section');
-    if (familySection.querySelector('#family_first_name_1')) {
-      familySection.querySelector('#family_first_name_1').value = 'Junior';
-      familySection.querySelector('#family_last_name_1').value = 'Doe';
-      familySection.querySelector('#family_birthdate_1').value = '2015-01-01';
-      familySection.querySelector('#family_street_address_1').value = '123 Test St';
-      familySection.querySelector('#family_city_1').value = 'Testville';
-      familySection.querySelector('#family_state_1').value = 'VA';
-      familySection.querySelector('#family_zip_1').value = '12345';
-      familySection.querySelector('#family_email_1').value = 'junior.doe@test.com';
-      familySection.querySelector('#family_phone_1').value = '(555) 555-7777';
-      familySection.querySelector('input[name="family[1][phone_type]"][value="cellphone"]').checked = true;
-      familySection.querySelector('#family_emergency_contact_first_name_1').value = 'Jane';
-      familySection.querySelector('#family_emergency_contact_last_name_1').value = 'Doe';
-      familySection.querySelector('#family_emergency_contact_relation_1').value = 'Mother';
-      familySection.querySelector('#family_emergency_contact_phone_1').value = '(555) 555-8888';
-      familySection.querySelector('input[name="family[1][emergency_contact_phone_type]"][value="cellphone"]').checked = true;
-      familySection.querySelector('input[name="family[1][tshirt_size]"][value="s"]').checked = true;
-      familySection.querySelector('#family_school_affiliation_1').value = 'N/A';
-      familySection.querySelector('input[name="family[1][photo_release]"][value="Not Restricted"]').checked = true;
-      familySection.querySelector('#family_photo_release_notes_1').value = 'N/A';
-      // Fill family optional fields
-      familySection.querySelector('#family_how_you_heard_of_stepva_1').value = 'Parent';
-      familySection.querySelector('input[name="family[1][preferred_feedback_method]"][value="text"]').checked = true;
-      familySection.querySelector('#family_hobbies_1').value = 'Drawing, soccer';
-      familySection.querySelector('#family_professional_experience_1').value = 'None';
-      familySection.querySelector('#family_disability_accomodation_needs_1').value = 'None';
-      familySection.querySelector('#family_username_1').value = `${uniqueUsername}_jr`;
-      familySection.querySelector('#family_password_1').value = 'Password2!';
-      familySection.querySelector('#family_password_reenter_1').value = 'Password2!';
-    } else {
-      console.error('Family member fields not rendered!');
-    }
-
-    // Fill sections below family (Login Credentials)
-    form.querySelector('#username').value = uniqueUsername;
-    form.querySelector('#password').value = 'Password2!';
-    form.querySelector('#password-reenter').value = 'Password2!';
-
-    // Submit the form
-    console.log('Base phone length:', form.querySelector('#phone').value.length);
-    console.log('Base phone exact:', JSON.stringify(form.querySelector('#phone').value));
-    console.log('Family phone length:', familySection.querySelector('#family_phone_1')?.value.length);
-    console.log('Family phone exact:', JSON.stringify(familySection.querySelector('#family_phone_1')?.value));
-    //form.submit();
-  });
-</script>
-
-        <form class="signup-form" method="post">
+        <?php //<form class="signup-form" method="post"> ?>
+        <form class="signup-form" method="post" onsubmit="console.log('Submitting'); if (!this.checkValidity()) { console.log('Validation failed'); this.reportValidity(); return false; }">
             <h2>Participant Registration Form</h2>
             <p>Please fill out each section of the following form if you would like to participate in an event.</p>
             <p>An asterisk (<em>*</em>) indicates a required field.</p>
@@ -126,7 +23,7 @@
                 <div class="radio-group">
                     <input type="radio" id="yes" name="family_or_individual" value="y" required>
                     <label for="yes">Yes</label>
-                    <input type="radio" id="no" name="family_or_individual" value="n" required>
+                    <input type="radio" id="no" name="family_or_individual" value="n" >
                     <label for="no">No</label>
                 </div>
 
@@ -150,7 +47,7 @@
                         const count = parseInt(numFamilyInput.value) || 0;
                         familyInfoContainer.innerHTML = '';
                         familyInfoContainer.style.display = count > 0 ? 'block' : 'none';
-    
+
                         if (count >= 12) {
                             familyInfoContainer.innerHTML = `
                                 <div class="section">
@@ -282,12 +179,12 @@
                                     <label><em>* </em>T-Shirt Size</label>
                                     <div class="radio-group">
                                         <input type="radio" id="family_xxs_${i}" name="family[${i}][tshirt_size]" value="xxs" required><label for="family_xxs_${i}">XXS</label>
-                                        <input type="radio" id="family_xs_${i}" name="family[${i}][tshirt_size]" value="xs" required><label for="family_xs_${i}">XS</label>
+                                        <input type="radio" id="family_xs_${i}" name="family[${i}][tshirt_size]" value="xs"><label for="family_xs_${i}">XS</label>
                                         <input type="radio" id="family_s_${i}" name="family[${i}][tshirt_size]" value="s"><label for="family_s_${i}">S</label>
                                         <input type="radio" id="family_m_${i}" name="family[${i}][tshirt_size]" value="m"><label for="family_m_${i}">M</label>
                                         <input type="radio" id="family_l_${i}" name="family[${i}][tshirt_size]" value="l"><label for="family_l_${i}">L</label>
                                         <input type="radio" id="family_xl_${i}" name="family[${i}][tshirt_size]" value="xl"><label for="family_xl_${i}">XL</label>
-                                        <input type="radio" id="family_xxl_${i}" name="family[${i}][tshirt_size]" value="xxl" required><label for="family_xxl_${i}">XXL</label>
+                                        <input type="radio" id="family_xxl_${i}" name="family[${i}][tshirt_size]" value="xxl"><label for="family_xxl_${i}">XXL</label>
                                     </div>
 
                                     <label for="family_school_affiliation_${i}"><em>* </em>School Affiliation (or N/A)</label>
@@ -325,21 +222,58 @@
                                     <input type="text" id="family_disability_accomodation_needs_${i}" name="family[${i}][disability_accomodation_needs]" placeholder="">
 
                                     <legend>Login Credentials</legend>
-                                    <p>Family member ${i} will use the following information to log in to the system.</p>
+                                    <p>Family member ${i} will use the following information to log in to the system if you choose to create a login for them.</p>
 
-                                    <label for="family_username_${i}"><em>* </em>Username</label>
-                                    <input type="text" id="family_username_${i}" name="family[${i}][username]" required placeholder="Enter a username">
-                                
-                                    <label for="family_password_${i}"><em>* </em>Password</label>
-                                    <input type="password" id="family_password_${i}" name="family[${i}][password]" placeholder="Enter a strong password" required>
-                                    <p id="family_password_error_${i}" class="error hidden">Password needs to be at least 8 characters long, contain at least one number, one uppercase letter, and one lowercase letter!</p>
+                                    <label><em>* </em>Should this family member have their own login?</label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="has_login_yes_${i}" name="family[${i}][has_login]" value="yes" onclick="toggleCredentials(${i}, true)" required><label for="has_login_yes_${i}">Yes</label>
+                                        <input type="radio" id="has_login_no_${i}" name="family[${i}][has_login]" value="no" onclick="toggleCredentials(${i}, false)" required><label for="has_login_no_${i}">No</label>
+                                    </div>
 
-                                    <label for="family_password_reenter_${i}"><em>* </em>Re-enter Password</label>
-                                    <input type="password" id="family_password_reenter_${i}" name="family[${i}][password_reenter]" placeholder="Re-enter password" required>
-                                    <p id="family_password_match_error_${i}" class="error hidden">Passwords do not match!</p>
+                                    <div id="credentials_section_${i}" style="display:none;">
+                                        <label for="family_username_${i}"><em>* </em>Username</label>
+                                        <input type="text" id="family_username_${i}" name="family[${i}][username]" placeholder="Enter a username">
+
+                                        <label for="family_password_${i}"><em>* </em>Password</label>
+                                        <input type="password" id="family_password_${i}" name="family[${i}][password]" placeholder="Enter a strong password">
+                                        <p id="family_password_error_${i}" class="error hidden">Password needs to be at least 8 characters long, contain at least one number, one uppercase letter, and one lowercase letter!</p>
+
+                                        <label for="family_password_reenter_${i}"><em>* </em>Re-enter Password</label>
+                                        <input type="password" id="family_password_reenter_${i}" name="family[${i}][password_reenter]" placeholder="Re-enter password">
+                                        <p id="family_password_match_error_${i}" class="error hidden">Passwords do not match!</p>
+                                    </div>
                                 `;
                                 familyInfoContainer.appendChild(section);
                             }
+                        } else {
+                            familyInfoContainer.innerHTML = ``;
+                        }
+                    }
+
+                    function toggleCredentials(i, show) {
+                        const credentialsSection = document.getElementById('credentials_section_' + i);
+                        const usernameField = document.getElementById('family_username_' + i);
+                        const passwordField = document.getElementById('family_password_' + i);
+                        const passwordReenterField = document.getElementById('family_password_reenter_' + i);
+                        if (show) {
+                            credentialsSection.style.display = 'block';
+                            usernameField.disabled = false;
+                            passwordField.disabled = false;
+                            passwordReenterField.disabled = false;
+                            usernameField.required = true;
+                            passwordField.required = true;
+                            passwordReenterField.required = true;
+                        } else {
+                            credentialsSection.style.display = 'none';
+                            usernameField.disabled = true;
+                            passwordField.disabled = true;
+                            passwordReenterField.disabled = true;
+                            usernameField.required = false;
+                            passwordField.required = false;
+                            passwordReenterField.required = false;
+                            usernameField.value = '';
+                            passwordField.value = '';
+                            passwordReenterField.value = '';
                         }
                     }
 
@@ -354,9 +288,11 @@
 
                         if (isFamily) {
                             numFamilySection.style.display = 'block';
+                            numFamilyInput.setAttribute('min', '1'); 
                         } else {
                             numFamilyInput.value = 0;
                             numFamilySection.style.display = 'none';
+                            numFamilyInput.setAttribute('min', '0'); // Allow 0 for individual
                             updateFamilyMemberSections();
                         }
                     }
@@ -517,14 +453,53 @@
                 <input type="text" id="school_affiliation" name="school_affiliation" required placeholder="Are you affiliated with any school?">
 
                 <label for="photo_release"><em>* </em>Photo Release Restrictions: Can your photo be taken and used on our website and social media?</label>
-                <div class="radio-group">
-                    <input type="radio" id="Restricted" name="photo_release" value="Restricted" required><label for="photo_release">Restricted</label>
-                    <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" required><label for="photo_release">Not Restricted</label>
-                </div>
+    <div class="radio-group">
+        <input type="radio" id="Restricted" name="photo_release" value="Restricted" required><label for="photo_release">Restricted</label>
+        <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" required><label for="photo_release">Not Restricted</label>
+    </div>
 
-                <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
-                <input type="text" id="photo_release_notes" name="photo_release_notes" required placeholder="Do you have any specific notes about your photo release status?">
-            </fieldset>
+    <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
+    <input type="text" id="photo_release_notes" name="photo_release_notes" required placeholder="Do you have any specific notes about your photo release status?">
+
+    <!-- New Photo Release Details Section -->
+    <div id="photo-release-details" style="display: none;">
+        <label><em>* </em>Can your cast or crew member be featured in a profile?</label>
+        <div class="radio-group">
+            <input type="radio" id="profile-yes" name="profile_feature" value="Yes" >
+            <label for="profile-yes">Yes</label>
+            <input type="radio" id="profile-no" name="profile_feature" value="No" >
+            <label for="profile-no">No</label>
+        </div>
+
+        <label><em>* </em>How would you like your cast/crew member identified?</label>
+        <div class="radio-group">
+            <input type="radio" id="id-full-name" name="identification_preference" value="First and last name">
+            <label for="id-full-name">First and last name</label>
+            <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial">
+            <label for="id-first-name">First name and Last initial</label>
+            <input type="radio" id="id-initials" name="identification_preference" value="Initials only">
+            <label for="id-initials">Initials only</label>
+        </div>
+
+        <label><em>* </em>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
+        <div class="radio-group">
+            <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" >
+            <label for="headshot-yes">Yes</label>
+            <input type="radio" id="headshot-no" name="headshot_publish" value="No" >
+            <label for="headshot-no">No</label>
+        </div>
+
+        <label><em>* </em>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
+        <div class="radio-group">
+            <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" >
+            <label for="likeness-yes">Yes</label>
+            <input type="radio" id="likeness-no" name="likeness_usage" value="No" >
+            <label for="likeness-no">No</label>
+            <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" >
+            <label for="likeness-filter">Only with a filter</label>
+        </div>
+    </div>
+</fieldset>
 
             <fieldset class="section-box">
                 <legend>Optional Information</legend>
@@ -550,7 +525,16 @@
                 <label>Are there any accomodations you may need? Anything we should keep in mind?</label>
                 <input type="text" id="disability_accomodation_needs" name="disability_accomodation_needs" placeholder="">
 
-            </fieldset>
+                <label>Are there any specific skills/interests you have that you believe could be useful for volunteering at StepVA? </label>
+                <input type="text" id="skills" name="skills" placeholder="">
+
+                <label>Do you have connections to any local businesses or organizations that might be interested in sponsoring or supporting our programs? </label>
+                <input type="text" id="networks" name="networks" placeholder="">
+
+                <label>Do you have any additional ways you can contribute to STEPVA? </label>
+                <input type="text" id="contributions" name="contributions" placeholder="">
+
+                </fieldset>
 
             <fieldset class="section-box">
                 <legend>Login Credentials</legend>
@@ -568,10 +552,35 @@
                 <input type="password" id="password-reenter" name="password-reenter" placeholder="Re-enter password" required>
                 <p id="password-match-error" class="error hidden">Passwords do not match!</p>
             </fieldset>
-        <p>By pressing Submit below, you are agreeing to volunteer for the organization.</p>
-        <input type="submit" name="registration-form" value="Submit">
+            <input type="submit" name="registration-form" value="Submit">
 
         </form>
     </main>
 </body>
 </html>
+<script>
+    function togglePhotoReleaseDetails() {
+        const notRestricted = document.getElementById('Not Restricted');
+        const photoReleaseDetails = document.getElementById('photo-release-details');
+
+        if (notRestricted.checked) {
+            photoReleaseDetails.style.display = 'block';
+            document.querySelectorAll('#photo-release-details input').forEach(input => {
+                input.setAttribute('required', 'required');
+            });
+        } else {
+            photoReleaseDetails.style.display = 'none';
+            document.querySelectorAll('#photo-release-details input').forEach(input => {
+                input.removeAttribute('required');
+            });
+        }
+    }
+
+    document.querySelectorAll('input[name="photo_release"]').forEach(radio => {
+        radio.addEventListener('change', togglePhotoReleaseDetails);
+    });
+            
+    document.addEventListener('DOMContentLoaded', () => {
+        togglePhotoReleaseDetails(); // Add this to ensure the photo release section is correctly displayed on page load
+    });
+</script>

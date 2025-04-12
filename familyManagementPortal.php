@@ -26,68 +26,111 @@ if (isset($_SESSION['_id'])) {
 <head>
     <?php require_once('universal.inc'); ?>
     <title>Step VA | Manage Profile</title>
-    <style>
-        .main-content {
-            max-width: 1200px; /* Keeping increased width */
-            margin: 20px auto;
-            padding: 20px;
-        }
-        .section-box {
-            border: 2px solid #999; /* Keeping the thicker border */
-            border-radius: 5px;
-            padding: 30px; /* Keeping increased padding */
-            overflow: hidden; /* Ensure content doesn't overflow and get clipped */
-        }
-        .family-table {
-            width: 100%; /* Adjusted to fit within the fieldset */
-            max-width: 700px; /* Increased max-width to give more room */
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        .family-table td {
-            padding: 10px;
-            vertical-align: middle;
-        }
-        .family-table .name-column {
-            width: 40%;
-            white-space: nowrap;
-        }
-        .family-table .button-column {
-            width: 60%;
-            min-width: 300px;
-            white-space: nowrap;
-            padding-right: 40px; /* Increased padding to push buttons away from border */
-        }
-        .edit-button, .register-button, .delete-button {
-            padding: 6px 6px; /* Keeping smaller padding */
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-right: 10px;
-            display: inline-block;
-            font-size: 0.9em; /* Keeping smaller font */
-            width: 200px; /* Added specific width to reduce button size */
-            text-align: center; /* Center the text within the button */
-        }
-        .edit-button {
-            background-color: #4CAF50; /* Green for Edit */
-        }
-        .delete-button {
-            background-color: #ff4444; /* Red for Delete */
-        }
-        .edit-button:hover, .register-button:hover, .delete-button:hover {
-            background-color: #0056b3; /* Consistent hover color */
-        }
-        legend {
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            padding: 0 10px;
-        }
-    </style>
+        <style>
+            .main-content {
+                max-width: 1200px;
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .section-box {
+                border: 2px solid #999;
+                border-radius: 5px;
+                padding: 30px;
+                overflow: hidden;
+            }
+            .family-table {
+                width: 100%;
+                max-width: 700px;
+                margin: 20px auto;
+                border-collapse: collapse;
+            }
+            .family-table td {
+                padding: 10px;
+                vertical-align: middle;
+            }
+            .family-table .name-column {
+                width: 40%;
+                white-space: nowrap;
+            }
+            .family-table .button-column {
+                width: 60%;
+                min-width: 300px;
+                white-space: nowrap;
+                padding-right: 40px;
+            }
+            .edit-button, .register-button, .delete-button {
+                padding: 6px 6px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                margin-right: 10px;
+                display: inline-block;
+                font-size: 0.9em;
+                width: 200px;
+                text-align: center;
+            }
+            .edit-button {
+                background-color: #4CAF50; /* Green for Edit */
+            }
+            .delete-button {
+                background-color: #ff4444; /* Red for Delete */
+            }
+            .edit-button:hover, .register-button:hover, .delete-button:hover {
+                background-color: #0056b3;
+            }
+            legend {
+                text-align: center;
+                font-size: 1.2em;
+                font-weight: bold;
+                padding: 0 10px;
+            }
+
+            /* Dark mode overrides */
+            body.darkmode .section-box {
+                background-color: var(--standout-background); /* #0a1e3b */
+                border: 2px solid var(--shadow-and-border-color); /* #2a3b5b */
+            }
+
+            body.darkmode .family-table {
+                background-color: var(--standout-background);
+            }
+
+            body.darkmode .family-table td {
+                background-color: var(--standout-background);
+                color: var(--page-font-color); /* #e8f0fa */
+            }
+
+            body.darkmode legend {
+                color: var(--secondary-accent-color); /* #a3e0f7 */
+            }
+
+            body.darkmode .edit-button {
+                background-color: #4CAF50 !important; /* Green */
+            }
+
+            body.darkmode .edit-button:hover {
+                background-color: #3d8b40 !important; /* Darker green */
+            }
+
+            body.darkmode .register-button {
+                background-color: #007bff !important; /* Blue */
+            }
+
+            body.darkmode .register-button:hover {
+                background-color: #0056b3 !important; /* Darker blue */
+            }
+
+            body.darkmode .delete-button {
+                background-color: var(--error-color) !important; /* #ff6666 */
+            }
+
+            body.darkmode .delete-button:hover {
+                background-color: #cc3333 !important; /* Darker red */
+            }
+        </style>
 </head>
 <body>
     <div class="main-content">
@@ -115,7 +158,7 @@ if (isset($_SESSION['_id'])) {
 
             // Display the family member edit button
             echo '<td class="button-column">';
-            echo '<a href="editchildprofile.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '">';
+            echo '<a href="editChildProfile.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '">';
             echo '<button type="button" class="edit-button">Edit Child Profile</button>';
             echo '</a>';
 
@@ -125,7 +168,7 @@ if (isset($_SESSION['_id'])) {
             echo '</a>';
 
             // Display the delete family member button
-            echo '<a href="deletefamilymember.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '" onclick="return confirm(\'Are you sure you want to delete this family member?\');">';
+            echo '<a href="deleteFamilyMember.php?childID=' . htmlspecialchars($familyMemIDs[$i]) . '" onclick="return confirm(\'Are you sure you want to delete this family member?\');">';
             echo '<button type="button" class="delete-button">Delete Family Member</button>';
             echo '</a>';
             echo '</td>';

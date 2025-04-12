@@ -331,16 +331,13 @@ if (mysqli_query($connection, $query)) {
                     <?php 
                         // fetch data from the $all_animals variable
                         // and individually display as an option
-                        while ($animal = mysqli_fetch_array(
-                                $all_animals, MYSQLI_ASSOC)):; 
+                        // while ($animal = mysqli_fetch_array(
+                        //         $all_animals, MYSQLI_ASSOC)):; 
                     ?>
-                    <option value="<?php echo $animal['id'];?>">
-                        <?php echo $animal['name'];?>
+                
+                      
                     </option>
-                    <?php 
-                        endwhile; 
-                        // terminate while loop
-                    ?>
+                   
                 </select>
                 <br/>
                 <p></p>

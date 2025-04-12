@@ -3,6 +3,9 @@ session_cache_expire(30);
 session_start();
 date_default_timezone_set("America/New_York");
 
+// Access level 0 Participant, 1 Volunteer, 2 All
+
+
 if (!isset($_SESSION['access_level']) || $_SESSION['access_level'] < 1) {
     if (isset($_SESSION['change-password'])) {
         header('Location: changePassword.php');

@@ -194,11 +194,21 @@
                 <input type="text" id="materials" name="materials" placeholder="Enter materials. Ex. felt, pipe cleaners">
                 
                 <fieldset>
-                    <label for="role">* Are you a volunteer or a participant? </label>
-                    <div class="radio-group">
-                        <input type="radio" id="v" name="role" value="v" required><label for="v">Volunteer</label>
-                        <input type="radio" id="p" name="role" value="p" required><label for="p">Participant</label>
-                    </div>
+                    <?php
+                        if (isset($_GET['childID'])) {
+                            echo '
+                                <input type="hidden" id="p" name="role" value="p" >
+                                ';
+                        } else {
+                            echo '
+                                    <label for="role">* Are you a volunteer or a participant? </label>
+                                    <div class="radio-group">
+                                        <input type="radio" id="v" name="role" value="v" required><label for="v">Volunteer</label>
+                                        <input type="radio" id="p" name="role" value="p" required><label for="p">Participant</label>
+                                    </div>';
+                        }
+                    ?>
+                    
                 </fieldset>
                 
                 <p></p>

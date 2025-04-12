@@ -37,44 +37,42 @@
                 'emergency_contact_last_name',
                 'emergency_contact_relation', 'emergency_contact_phone', 'tshirt_size',
                 'school_affiliation', 'username', 'password',
-                'photo_release', 'photo_release_notes'
-            ); 
+                'volunteer_or_participant', 'photo_release', 'photo_release_notes'
+            );
+            
+            // Capture the volunteer_or_participant value from the form
+            $volunteer_or_participant = isset($_POST['volunteer_or_participant']) ? $_POST['volunteer_or_participant'] : null;  
 
             
+            if ($volunteer_or_participant == 'v') {
+                // Check for the training_complete and training_date fields
+                if (empty($_POST['training_complete']) || empty($_POST['training_date'])) {
+                    $errors[] = "Training complete and training date are required for volunteers.";
+                }
 
-            // Check for the training_complete and training_date fields
-            if (empty($_POST['training_complete']) || empty($_POST['training_date'])) {
-                $errors[] = "Training complete and training date are required for volunteers.";
-            }
-
-            // Check for the orientation_complete and orientation_date fields
-            if (empty($_POST['orientation_complete']) || empty($_POST['orientation_date'])) {
-                $errors[] = "Orientation complete and orientation date are required for volunteers.";
-            }
+                // Check for the orientation_complete and orientation_date fields
+                if (empty($_POST['orientation_complete']) || empty($_POST['orientation_date'])) {
+                    $errors[] = "Orientation complete and orientation date are required for volunteers.";
+                }
                 
-            // Check for the background_complete and background_date fields
-            if (empty($_POST['background_complete']) || empty($_POST['background_date'])) {
-                $errors[] = "Background check complete and background check date are required for volunteers.";
+                // Check for the background_complete and background_date fields
+                if (empty($_POST['background_complete']) || empty($_POST['background_date'])) {
+                    $errors[] = "Background check complete and background check date are required for volunteers.";
+                }
             }
+            
 
             $optional = array(
                 'how_you_heard_of_stepva', 'preferred_feedback_method', 'hobbies',
-                'skills', 'contributions', 'networks', 'professional_experience', 'disability_accomodation_needs'
+                'skills', 'professional_experience', 'disability_accomodation_needs'
             );
 
             // Set optional fields if they exist
             $how_you_heard_of_stepva = isset($args['how_you_heard_of_stepva']) ? $args['how_you_heard_of_stepva'] : '';
             $preferred_feedback_method = isset($args['preferred_feedback_method']) ? $args['preferred_feedback_method'] : '';
             $hobbies = isset($args['hobbies']) ? $args['hobbies'] : '';
-            $skills = isset($args['skills']) ? $args['skills'] : '';
-            $contributions = isset($args['contributions']) ? $args['contributions'] : '';
-            $networks = isset($args['networks']) ? $args['networks'] : '';
             $professional_experience = isset($args['professional_experience']) ? $args['professional_experience'] : '';
             $disability_accomodation_needs = isset($args['disability_accomodation_needs']) ? $args['disability_accomodation_needs'] : '';
-            $profile_feature = isset($args['profile_feature']) ? $args['profile_feature'] : '';
-            $identification_preference = isset($args['identification_preference']) ? $args['identification_preference'] : '';
-            $headshot_publish = isset($args['headshot_publish']) ? $args['headshot_publish'] : '';
-            $likeness_usage = isset($args['likeness_usage']) ? $args['likeness_usage'] : '';
 
             $errors = false;
             if (!wereRequiredFieldsSubmitted($args, $required)) {
@@ -143,7 +141,12 @@
             }
             $photo_release_notes = $args['photo_release_notes'];
 
-            $type = 'volunteer';
+            $volunteer_or_participant = $args['volunteer_or_participant'];
+            if ($volunteer_or_participant == 'v') {
+                $type = 'volunteer';
+            } else {
+                $type = 'participant';
+            }
 
             $archived = 0;
 
@@ -218,15 +221,7 @@
                 $orientation_complete,
                 $orientation_date,
                 $background_complete,
-                $background_date,
-                $skills,
-                $networks,
-                $contributions,
-                -1, // This indicates not part of a family
-                $profile_feature,
-                $identification_preference,
-                $headshot_publish,
-                $likeness_usage
+                $background_date
             );
 
             $result = add_person($newperson);
@@ -240,7 +235,7 @@
                 /*}*/
             }
         } else {
-            require_once('registerForm_volunteer.php'); 
+            require_once('registrationForm.php'); 
         }
     ?>
 </body>

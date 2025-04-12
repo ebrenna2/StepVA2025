@@ -7952,3 +7952,1243 @@ Stack trace:
 #0 /home/customer/www/jenniferp130.sg-host.com/public_html/stepvarepo/editTimes.php(334): mysqli_fetch_array(NULL, 1)
 #1 {main}
   thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/stepvarepo/editTimes.php on line 334
+[31-Mar-2025 11:31:52 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:31:52 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:31:52 America/New_York] PHP Warning:  Undefined array key "skills" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 466
+[31-Mar-2025 11:31:52 America/New_York] PHP Warning:  Undefined array key "networks" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 467
+[31-Mar-2025 11:31:52 America/New_York] PHP Warning:  Undefined array key "contributions" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 468
+[31-Mar-2025 11:31:52 America/New_York] PHP Warning:  Undefined array key "profile_feature" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 470
+[31-Mar-2025 11:31:52 America/New_York] PHP Warning:  Undefined array key "identification_preference" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 471
+[31-Mar-2025 11:31:52 America/New_York] PHP Warning:  Undefined array key "headshot_publish" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 472
+[31-Mar-2025 11:31:52 America/New_York] PHP Warning:  Undefined array key "likeness_usage" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 473
+[31-Mar-2025 11:34:12 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:34:12 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:36:08 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:36:08 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:36:13 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:36:13 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:37:02 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:37:02 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:37:24 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:37:24 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:37:24 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:37:24 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:37:25 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:37:25 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:37:25 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:37:25 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:37:43 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:37:43 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:37:43 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'uphzj2ozla5mg'@'localhost' (using password: YES) in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php:32
+Stack trace:
+#0 /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php(32): mysqli_connect('localhost', 'uphzj2ozla5mg', Object(SensitiveParameterValue), 'dbeq5aamznytup')
+#1 /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php(134): connect()
+#2 /home/customer/www/jenniferp130.sg-host.com/public_html/index.php(31): retrieve_person('vmsroot')
+#3 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php on line 32
+[31-Mar-2025 11:38:53 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:38:53 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:38:53 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'uizaszojfdhvi'@'localhost' (using password: YES) in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php:32
+Stack trace:
+#0 /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php(32): mysqli_connect('localhost', 'uizaszojfdhvi', Object(SensitiveParameterValue), 'dbeq5aamznytup')
+#1 /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php(134): connect()
+#2 /home/customer/www/jenniferp130.sg-host.com/public_html/index.php(31): retrieve_person('vmsroot')
+#3 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php on line 32
+[31-Mar-2025 11:41:35 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:41:35 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:41:36 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:41:36 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:41:54 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:41:54 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:42:16 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:42:16 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:42:16 America/New_York] PHP Warning:  Undefined array key "skills" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 466
+[31-Mar-2025 11:42:16 America/New_York] PHP Warning:  Undefined array key "networks" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 467
+[31-Mar-2025 11:42:16 America/New_York] PHP Warning:  Undefined array key "contributions" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 468
+[31-Mar-2025 11:42:16 America/New_York] PHP Warning:  Undefined array key "profile_feature" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 470
+[31-Mar-2025 11:42:16 America/New_York] PHP Warning:  Undefined array key "identification_preference" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 471
+[31-Mar-2025 11:42:16 America/New_York] PHP Warning:  Undefined array key "headshot_publish" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 472
+[31-Mar-2025 11:42:16 America/New_York] PHP Warning:  Undefined array key "likeness_usage" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 473
+[31-Mar-2025 11:42:18 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:42:18 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:42:18 America/New_York] PHP Warning:  Undefined array key "skills" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 466
+[31-Mar-2025 11:42:18 America/New_York] PHP Warning:  Undefined array key "networks" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 467
+[31-Mar-2025 11:42:18 America/New_York] PHP Warning:  Undefined array key "contributions" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 468
+[31-Mar-2025 11:42:18 America/New_York] PHP Warning:  Undefined array key "profile_feature" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 470
+[31-Mar-2025 11:42:18 America/New_York] PHP Warning:  Undefined array key "identification_preference" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 471
+[31-Mar-2025 11:42:18 America/New_York] PHP Warning:  Undefined array key "headshot_publish" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 472
+[31-Mar-2025 11:42:18 America/New_York] PHP Warning:  Undefined array key "likeness_usage" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 473
+[31-Mar-2025 11:42:24 America/New_York] PHP Warning:  Undefined array key "skills" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 466
+[31-Mar-2025 11:42:24 America/New_York] PHP Warning:  Undefined array key "networks" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 467
+[31-Mar-2025 11:42:24 America/New_York] PHP Warning:  Undefined array key "contributions" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 468
+[31-Mar-2025 11:42:24 America/New_York] PHP Warning:  Undefined array key "profile_feature" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 470
+[31-Mar-2025 11:42:24 America/New_York] PHP Warning:  Undefined array key "identification_preference" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 471
+[31-Mar-2025 11:42:24 America/New_York] PHP Warning:  Undefined array key "headshot_publish" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 472
+[31-Mar-2025 11:42:24 America/New_York] PHP Warning:  Undefined array key "likeness_usage" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 473
+[31-Mar-2025 11:42:24 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php:35) in /home/customer/www/jenniferp130.sg-host.com/public_html/login.php on line 47
+[31-Mar-2025 15:42:59 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'uphzj2ozla5mg'@'localhost' (using password: YES) in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php:32
+Stack trace:
+#0 /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php(32): mysqli_connect('localhost', 'uphzj2ozla5mg', Object(SensitiveParameterValue), 'dbeq5aamznytup')
+#1 /home/customer/www/jenniferp130.sg-host.com/public_html/include/input-validation.php(63): connect()
+#2 /home/customer/www/jenniferp130.sg-host.com/public_html/login.php(21): sanitize(Array, Array)
+#3 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbinfo.php on line 32
+[31-Mar-2025 11:43:31 America/New_York] PHP Warning:  Undefined array key "skills" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 466
+[31-Mar-2025 11:43:31 America/New_York] PHP Warning:  Undefined array key "networks" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 467
+[31-Mar-2025 11:43:31 America/New_York] PHP Warning:  Undefined array key "contributions" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 468
+[31-Mar-2025 11:43:31 America/New_York] PHP Warning:  Undefined array key "profile_feature" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 470
+[31-Mar-2025 11:43:31 America/New_York] PHP Warning:  Undefined array key "identification_preference" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 471
+[31-Mar-2025 11:43:31 America/New_York] PHP Warning:  Undefined array key "headshot_publish" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 472
+[31-Mar-2025 11:43:31 America/New_York] PHP Warning:  Undefined array key "likeness_usage" in /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php on line 473
+[31-Mar-2025 11:43:31 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/database/dbPersons.php:466) in /home/customer/www/jenniferp130.sg-host.com/public_html/login.php on line 47
+[31-Mar-2025 11:45:07 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:45:07 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:45:07 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:45:07 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:45:07 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:46:49 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:46:49 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:46:49 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:46:58 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:46:58 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:46:58 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:46:58 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:46:58 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:47:32 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:47:32 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:47:36 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:47:36 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:47:36 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:47:36 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:47:36 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:47:40 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:47:40 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:47:40 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:47:42 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:47:42 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:47:51 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:47:51 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:47:55 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:47:55 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:47:55 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:48:06 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:48:06 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:48:06 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:48:20 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:20 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:48:20 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:48:20 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:20 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:48:22 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:22 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:48:24 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:24 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:48:31 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:31 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:48:31 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:48:32 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:32 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:48:44 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:44 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:48:44 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:48:45 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:45 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:48:53 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:48:53 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:49:14 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:49:14 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:49:14 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:49:16 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:16 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:16 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:49:16 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:16 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:18 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:18 America/New_York] index.php: Session['access_level'] = 3
+[31-Mar-2025 11:49:22 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:22 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:22 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:49:22 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:22 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:28 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:28 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:29 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:29 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:41 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:41 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:41 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:49:41 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:41 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:43 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:43 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:44 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:44 America/New_York] eventSettings.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:45 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:45 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:46 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:46 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:49:53 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:49:53 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:51:48 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:51:48 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:51:48 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:51:48 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:51:48 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:51:49 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:51:49 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:51:51 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:51:51 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:51:55 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:51:55 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:51:55 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:51:57 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:51:57 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:07 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:07 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:07 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:52:08 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:08 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:09 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:09 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:09 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:52:09 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:09 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:10 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:10 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:11 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:11 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:11 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:11 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:14 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:14 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:20 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:20 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:27 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:27 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:29 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:29 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:44 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:44 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:48 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:48 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:52:48 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:52:48 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:52:48 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:53:05 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:53:05 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:53:05 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:53:05 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:53:05 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Undefined variable $signup in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 256
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Trying to access array offset on value of type null in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 256
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Undefined variable $signup in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 257
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Trying to access array offset on value of type null in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 257
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Undefined variable $signup in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 258
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Trying to access array offset on value of type null in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 258
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Undefined variable $signup in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 270
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Trying to access array offset on value of type null in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 270
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Undefined variable $signup in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 271
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Trying to access array offset on value of type null in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 271
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Undefined variable $signup in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 272
+[31-Mar-2025 11:53:12 America/New_York] PHP Warning:  Trying to access array offset on value of type null in /home/customer/www/jenniferp130.sg-host.com/public_html/viewEventSignUps.php on line 272
+[31-Mar-2025 11:53:14 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:53:14 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:53:14 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:53:14 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:53:14 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:53:16 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:53:16 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:53:35 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:53:35 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:53:52 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:53:52 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:00 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:00 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:14 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:14 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:15 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:15 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:18 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:18 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:18 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:54:18 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:18 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:19 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:19 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:22 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:22 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:22 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:54:22 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:22 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:23 America/New_York] participantPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:23 America/New_York] participantPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:26 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:26 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:26 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:54:26 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:26 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:27 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:27 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:30 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:30 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:30 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:54:30 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:30 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:32 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:32 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:45 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:45 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:45 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:54:45 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:45 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:47 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:47 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:48 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:48 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:51 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:51 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:51 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:51 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:54:55 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:54:55 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:22 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:22 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:24 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:24 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:24 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:55:25 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:25 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:28 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:28 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:30 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:30 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:32 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:32 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:32 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:55:32 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:32 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:44 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:44 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:46 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:46 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:46 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:55:46 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:46 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:47 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:47 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:47 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:47 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:49 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:49 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:55:51 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:55:51 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:00 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:00 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:00 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:56:01 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:01 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:03 America/New_York] participantPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:03 America/New_York] participantPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:08 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:08 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:08 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:56:09 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:09 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:11 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:11 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 15:56:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php:7) in /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php on line 28
+[31-Mar-2025 11:56:17 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:17 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:17 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:56:17 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:17 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:18 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:18 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:19 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:19 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:26 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:26 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:26 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:56:26 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:26 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:31 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:31 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:40 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:40 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 15:56:44 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php:7) in /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php on line 28
+[31-Mar-2025 11:56:57 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:57 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:56:57 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php:9) in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 31
+[31-Mar-2025 11:56:59 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php:9) in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 31
+[31-Mar-2025 11:56:59 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:56:59 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:01 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:01 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:02 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:02 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:09 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:09 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:16 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:16 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:20 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'dbeq5aamznytup.dbEvents' doesn't exist in /home/customer/www/jenniferp130.sg-host.com/public_html/eventAttendanceForm.php:145
+Stack trace:
+#0 /home/customer/www/jenniferp130.sg-host.com/public_html/eventAttendanceForm.php(145): mysqli->query('SELECT id, name...')
+#1 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/eventAttendanceForm.php on line 145
+[31-Mar-2025 11:57:24 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:24 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:26 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:26 America/New_York] eventSettings.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:26 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:26 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:26 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:57:27 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:27 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:28 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:28 America/New_York] eventSettings.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:29 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:57:29 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:57:29 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:57:29 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:29 America/New_York] eventSettings.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:31 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:57:31 America/New_York] eventSettings.php: Session['access_level'] = 4
+[31-Mar-2025 11:57:33 America/New_York] index.php: Session['_id'] = ebrenna2
+[31-Mar-2025 11:57:33 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 11:57:33 America/New_York] index.php: Redirecting volunteer to volunteerPortal.php
+[31-Mar-2025 11:57:33 America/New_York] volunteerPortal.php: Session['_id'] = ebrenna2
+[31-Mar-2025 11:57:33 America/New_York] volunteerPortal.php: Session['access_level'] = 1
+[31-Mar-2025 11:57:36 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:57:36 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:57:36 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:57:48 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:57:48 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:57:48 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:58:35 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:58:35 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 11:58:35 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 11:58:35 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 11:58:35 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 11:58:36 America/New_York] PHP Warning:  Undefined variable $member_skills in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 11:58:36 America/New_York] PHP Warning:  Undefined variable $member_networks in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 11:58:36 America/New_York] PHP Warning:  Undefined variable $member_contributions in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 11:58:43 America/New_York] index.php: Session['_id'] = checkIt
+[31-Mar-2025 11:58:43 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 11:58:43 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 11:58:43 America/New_York] participantPortal.php: Session['_id'] = checkIt
+[31-Mar-2025 11:58:43 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 11:58:58 America/New_York] index.php: Session['_id'] = ebrenna2
+[31-Mar-2025 11:58:58 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 11:58:58 America/New_York] index.php: Redirecting volunteer to volunteerPortal.php
+[31-Mar-2025 11:58:58 America/New_York] volunteerPortal.php: Session['_id'] = ebrenna2
+[31-Mar-2025 11:58:58 America/New_York] volunteerPortal.php: Session['access_level'] = 1
+[31-Mar-2025 11:59:36 America/New_York] index.php: Session['_id'] = checkIt
+[31-Mar-2025 11:59:36 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 11:59:36 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 11:59:36 America/New_York] participantPortal.php: Session['_id'] = checkIt
+[31-Mar-2025 11:59:36 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 11:59:42 America/New_York] participantPortal.php: Session['_id'] = checkIt
+[31-Mar-2025 11:59:42 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 11:59:46 America/New_York] participantPortal.php: Session['_id'] = checkIt
+[31-Mar-2025 11:59:46 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 11:59:48 America/New_York] participantPortal.php: Session['_id'] = checkIt
+[31-Mar-2025 11:59:48 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 11:59:50 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 11:59:50 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 11:59:50 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 11:59:51 America/New_York] participantPortal.php: Session['_id'] = checkIt
+[31-Mar-2025 11:59:51 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 11:59:56 America/New_York] index.php: Session['_id'] = checkIt
+[31-Mar-2025 11:59:56 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 11:59:56 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 11:59:56 America/New_York] participantPortal.php: Session['_id'] = checkIt
+[31-Mar-2025 11:59:56 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 12:00:04 America/New_York] index.php: Session['_id'] = checkIt
+[31-Mar-2025 12:00:04 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 12:00:04 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 12:00:04 America/New_York] participantPortal.php: Session['_id'] = checkIt
+[31-Mar-2025 12:00:04 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 12:00:09 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 12:00:09 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 12:00:09 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 12:00:11 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:11 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:11 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:00:11 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:11 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:13 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:13 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:16 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:16 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:17 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:17 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:18 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:18 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:32 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:32 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:32 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:00:32 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:32 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:35 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:35 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:49 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:49 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:49 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:00:50 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:50 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:52 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:52 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:54 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:54 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:00:59 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:00:59 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:01:02 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:01:02 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:02:31 America/New_York] PHP Warning:  Undefined variable $member_skills in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 12:02:31 America/New_York] PHP Warning:  Undefined variable $member_networks in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 12:02:31 America/New_York] PHP Warning:  Undefined variable $member_contributions in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 12:02:35 America/New_York] index.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:02:35 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 12:02:35 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 12:02:35 America/New_York] participantPortal.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:02:35 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 12:03:04 America/New_York] index.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:03:04 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 12:03:04 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 12:03:05 America/New_York] participantPortal.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:03:05 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 16:03:20 UTC] Event name found: Finding Nemo Jr. for ID: 73
+[31-Mar-2025 16:04:04 UTC] Event name found: emma test 10 for ID: 129
+[31-Mar-2025 12:04:14 America/New_York] index.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:04:14 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 12:04:14 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 12:04:15 America/New_York] participantPortal.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:04:15 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 12:08:52 America/New_York] index.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:08:52 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 12:08:52 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 12:08:52 America/New_York] participantPortal.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:08:52 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 12:10:34 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:10:34 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:10:34 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:10:35 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:10:35 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:12:38 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:12:38 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:14:26 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:14:26 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:14:27 America/New_York] participantPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:14:27 America/New_York] participantPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:15:04 America/New_York] participantPortal.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:15:04 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 12:15:13 America/New_York] index.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:15:13 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 12:15:13 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 12:15:13 America/New_York] participantPortal.php: Session['_id'] = testuser20250331160223
+[31-Mar-2025 12:15:13 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 12:15:16 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 12:15:16 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 12:15:16 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 12:15:19 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:15:19 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:15:19 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:15:19 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:15:19 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:15:22 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:15:22 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:15:24 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:15:24 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:17:40 America/New_York] participantPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:17:40 America/New_York] participantPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:17:43 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:17:43 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:17:44 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:17:44 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:18:01 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:18:01 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:19:13 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:19:13 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:20:08 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:20:08 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:21:28 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:21:28 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:21:30 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:21:30 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:22:23 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:22:23 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:24:40 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:24:40 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:24:59 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:24:59 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:25:00 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:25:00 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:25:04 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:25:04 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:26:32 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:26:32 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:26:32 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:26:32 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:26:32 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:26:34 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:26:34 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:27:56 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:27:56 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:29:06 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:29:06 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:31:48 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:31:48 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:31:49 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:31:49 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:32:13 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:32:13 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:33:34 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:33:34 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:33:34 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:33:47 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:33:47 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:34:06 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:34:06 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:34:13 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:34:13 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:34:17 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:34:17 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:35:11 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:35:11 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:38:26 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:38:26 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:38:26 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:38:26 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:38:26 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:38:27 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:38:27 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:38:37 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:38:37 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:38:39 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:38:39 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:39:50 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:39:50 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:41:19 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:41:19 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 12:43:23 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:43:23 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 12:43:23 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 12:43:23 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:43:23 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 12:43:24 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 12:43:24 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:13:04 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:13:04 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:21:15 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 13:21:15 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 13:21:15 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 13:21:18 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:21:18 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 13:21:18 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 13:21:18 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:21:18 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 13:21:20 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:21:20 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:21:21 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:21:21 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:23:43 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:23:43 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:27:36 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:27:36 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:45:10 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:45:10 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 13:45:10 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 13:45:10 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:45:10 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 13:45:12 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:45:12 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:45:13 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:45:13 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:48:59 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:48:59 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 13:48:59 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 13:48:59 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:48:59 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 13:49:04 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:49:04 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:49:06 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:49:06 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:49:12 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/videoDeletionHelper.php:64) in /home/customer/www/jenniferp130.sg-host.com/public_html/videoDeletionHelper.php on line 105
+[31-Mar-2025 13:50:17 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/videoDeletionHelper.php:64) in /home/customer/www/jenniferp130.sg-host.com/public_html/videoDeletionHelper.php on line 104
+[31-Mar-2025 13:51:39 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:51:39 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 13:51:39 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 13:51:39 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:51:39 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 13:51:40 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:51:40 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:51:42 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:51:42 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:55:17 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 13:55:17 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 13:55:17 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 13:55:20 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:55:20 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 13:55:20 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 13:55:20 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:55:20 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 13:55:21 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:55:21 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 13:55:22 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 13:55:22 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:00:33 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:00:33 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:00:33 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:00:33 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:00:33 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:00:35 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:00:35 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:01:00 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:01:00 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:01:23 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:01:23 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:04:47 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:04:47 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:04:47 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:04:47 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:04:47 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:04:48 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:04:48 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:04:52 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:04:52 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:06:36 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:06:36 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:06:36 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:06:36 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:06:36 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:06:39 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:06:39 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:06:41 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:06:41 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:13:27 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:13:27 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:13:27 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:13:27 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:13:27 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:13:28 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:13:28 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:13:30 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:13:30 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:15:07 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:15:07 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:15:10 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:15:10 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:15:30 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:15:30 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:15:39 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:15:39 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:17:21 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:17:21 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:17:56 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:17:56 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:17:56 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:17:56 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:17:56 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:17:57 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:17:57 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:17:59 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:17:59 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:20:56 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:20:56 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:20:58 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:20:58 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:20:58 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:20:58 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:20:58 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:20:59 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:20:59 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 18:21:12 UTC] Event name found: emma test 10 for ID: 129
+[31-Mar-2025 14:21:18 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:21:18 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:21:18 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:21:18 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:21:18 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:21:19 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:21:19 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:21:36 America/New_York] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'dbeq5aamznytup.dbEvents' doesn't exist in /home/customer/www/jenniferp130.sg-host.com/public_html/eventAttendanceForm.php:145
+Stack trace:
+#0 /home/customer/www/jenniferp130.sg-host.com/public_html/eventAttendanceForm.php(145): mysqli->query('SELECT id, name...')
+#1 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/eventAttendanceForm.php on line 145
+[31-Mar-2025 14:22:10 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:10 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:22:10 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:22:10 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:10 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:22:11 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:11 America/New_York] eventSettings.php: Session['access_level'] = 4
+[31-Mar-2025 14:22:19 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:19 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:22:24 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:24 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:22:39 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:39 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:22:39 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:22:39 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:39 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:22:40 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:40 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:22:42 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:22:42 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:23:26 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:23:26 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:23:26 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:23:26 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:23:26 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:23:27 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:23:27 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:23:28 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:23:28 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:24:50 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:24:50 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:25:32 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:25:32 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:25:32 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:25:32 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:25:32 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:25:32 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:25:32 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 14:25:32 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 14:25:32 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:25:32 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 14:25:32 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:25:32 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 14:28:42 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 14:28:42 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:31:43 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:31:43 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 16:31:43 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 16:31:43 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:31:43 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 16:31:46 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:31:46 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:37:35 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:37:35 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:48:16 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:48:16 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:48:20 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:48:20 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 16:48:20 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 16:48:20 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:48:20 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 16:48:22 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:48:22 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:49:42 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:49:42 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 16:49:42 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 16:49:42 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:49:42 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 16:49:43 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:49:43 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:51:54 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 16:51:54 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 16:51:54 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 16:51:57 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:51:57 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 16:51:57 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 16:51:57 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:51:57 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 16:51:58 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:51:58 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:53:00 America/New_York] PHP Notice:  ob_end_flush(): Failed to delete and flush buffer. No buffer to delete or flush in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 42
+[31-Mar-2025 16:53:00 America/New_York] PHP Warning:  Undefined variable $adminIDs in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 88
+[31-Mar-2025 16:53:00 America/New_York] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php:88
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 88
+[31-Mar-2025 16:54:44 America/New_York] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php:9) in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 31
+[31-Mar-2025 16:54:47 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:54:47 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:55:11 America/New_York] PHP Warning:  Undefined variable $adminIDs in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 86
+[31-Mar-2025 16:55:11 America/New_York] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php:86
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 86
+[31-Mar-2025 16:56:31 America/New_York] PHP Warning:  Undefined variable $adminIDs in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 87
+[31-Mar-2025 16:56:31 America/New_York] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php:87
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/deleteAdmin.php on line 87
+[31-Mar-2025 16:56:51 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 16:56:51 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 16:57:17 America/New_York] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Person::__construct(), 40 passed in /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php on line 81 and exactly 44 expected in /home/customer/www/jenniferp130.sg-host.com/public_html/domain/Person.php:82
+Stack trace:
+#0 /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php(81): Person->__construct('meemeee', '$2y$10$ycWXQQUY...', '', 'Junior O', '', '', 'N/A', 'N/A', 'VA', 'N/A', '', 'N/A', 'loladog28@gmail...', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '', '', '', '', 'Admin', '', 0, '', '', '', '', '', 0, '', 0, '', 0, '', '', '', '', 0)
+#1 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/domain/Person.php on line 82
+[31-Mar-2025 16:59:56 America/New_York] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Person::__construct(), 43 passed in /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php on line 81 and exactly 44 expected in /home/customer/www/jenniferp130.sg-host.com/public_html/domain/Person.php:82
+Stack trace:
+#0 /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php(81): Person->__construct('meemeee', '$2y$10$5fikskDs...', '', 'Junior O', '', '', 'N/A', 'N/A', 'VA', 'N/A', '', 'N/A', 'loladog28@gmail...', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', '', '', '', '', 'Admin', '', 0, '', '', '', '', '', 0, '', 0, '', 0, '', '', '', '', '', '', 0, 0)
+#1 {main}
+  thrown in /home/customer/www/jenniferp130.sg-host.com/public_html/domain/Person.php on line 82
+[31-Mar-2025 17:01:41 America/New_York] DEBUG: Trying to insert new admin: Person Object
+(
+    [access_level:Person:private] => 3
+    [id:Person:private] => meemeee
+    [password:Person:private] => $2y$10$NdvhKT3vUJzBv2QlBVT44ODMlNBXCoVbVnCzmtbT3YZP/7g90JrBa
+    [start_date:Person:private] => 
+    [first_name:Person:private] => Junior O
+    [last_name:Person:private] => 
+    [birthday:Person:private] => 
+    [street_address:Person:private] => N/A
+    [city:Person:private] => N/A
+    [state:Person:private] => VA
+    [zip_code:Person:private] => N/A
+    [phone1:Person:private] => 
+    [phone1type:Person:private] => N/A
+    [email:Person:private] => loladog28@gmail.com
+    [emergency_contact_first_name:Person:private] => N/A
+    [emergency_contact_last_name:Person:private] => N/A
+    [emergency_contact_phone:Person:private] => N/A
+    [emergency_contact_phone_type:Person:private] => N/A
+    [emergency_contact_relation:Person:private] => N/A
+    [tshirt_size:Person:private] => 
+    [school_affiliation:Person:private] => 
+    [photo_release:Person:private] => 
+    [photo_release_notes:Person:private] => 
+    [type:Person:private] => Admin
+    [status:Person:private] => 
+    [archived:Person:private] => 0
+    [training_complete:Person:private] => 0
+    [training_date:Person:private] => 
+    [orientation_complete:Person:private] => 0
+    [orientation_date:Person:private] => 
+    [background_complete:Person:private] => 0
+    [background_date:Person:private] => 
+    [how_you_heard_of_stepva:Person:private] => 
+    [preferred_feedback_method:Person:private] => 
+    [hobbies:Person:private] => 
+    [professional_experience:Person:private] => 
+    [disability_accomodation_needs:Person:private] => 
+    [skills:Person:private] => 
+    [networks:Person:private] => 
+    [contributions:Person:private] => 
+    [familyId:Person:private] => 0
+    [profile_feature:Person:private] => 
+    [identification_preference:Person:private] => 
+    [headshot_publish:Person:private] => 0
+    [likeness_usage:Person:private] => 0
+)
+
+[31-Mar-2025 17:01:41 America/New_York] DEBUG: Admin successfully added to the database.
+[31-Mar-2025 17:02:11 America/New_York] DEBUG: Trying to insert new admin: Person Object
+(
+    [access_level:Person:private] => 3
+    [id:Person:private] => meemeee
+    [password:Person:private] => $2y$10$dRifJmNinm8tYay2NKaGR.8uwgxCnPYpo/sBKCbl5Y7UeitH4lRT2
+    [start_date:Person:private] => 
+    [first_name:Person:private] => Junior O
+    [last_name:Person:private] => 
+    [birthday:Person:private] => 
+    [street_address:Person:private] => N/A
+    [city:Person:private] => N/A
+    [state:Person:private] => VA
+    [zip_code:Person:private] => N/A
+    [phone1:Person:private] => 
+    [phone1type:Person:private] => N/A
+    [email:Person:private] => loladog28@gmail.com
+    [emergency_contact_first_name:Person:private] => N/A
+    [emergency_contact_last_name:Person:private] => N/A
+    [emergency_contact_phone:Person:private] => N/A
+    [emergency_contact_phone_type:Person:private] => N/A
+    [emergency_contact_relation:Person:private] => N/A
+    [tshirt_size:Person:private] => 
+    [school_affiliation:Person:private] => 
+    [photo_release:Person:private] => 
+    [photo_release_notes:Person:private] => 
+    [type:Person:private] => Admin
+    [status:Person:private] => 
+    [archived:Person:private] => 0
+    [training_complete:Person:private] => 0
+    [training_date:Person:private] => 
+    [orientation_complete:Person:private] => 0
+    [orientation_date:Person:private] => 
+    [background_complete:Person:private] => 0
+    [background_date:Person:private] => 
+    [how_you_heard_of_stepva:Person:private] => 
+    [preferred_feedback_method:Person:private] => 
+    [hobbies:Person:private] => 
+    [professional_experience:Person:private] => 
+    [disability_accomodation_needs:Person:private] => 
+    [skills:Person:private] => 
+    [networks:Person:private] => 
+    [contributions:Person:private] => 
+    [familyId:Person:private] => 0
+    [profile_feature:Person:private] => 
+    [identification_preference:Person:private] => 
+    [headshot_publish:Person:private] => 0
+    [likeness_usage:Person:private] => 0
+)
+
+[31-Mar-2025 17:02:11 America/New_York] ERROR: Admin insertion failed. Username might already exist.
+[31-Mar-2025 21:02:56 UTC] PHP Parse error:  syntax error, unexpected token "*" in /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php on line 163
+[31-Mar-2025 21:02:58 UTC] PHP Parse error:  syntax error, unexpected token "*" in /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php on line 163
+[31-Mar-2025 17:02:59 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:02:59 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 21:03:00 UTC] PHP Parse error:  syntax error, unexpected token "*" in /home/customer/www/jenniferp130.sg-host.com/public_html/registerAdmin.php on line 163
+[31-Mar-2025 17:03:46 America/New_York] DEBUG: Trying to insert new admin: Person Object
+(
+    [access_level:Person:private] => 3
+    [id:Person:private] => peepeepoopoo@gmail.com
+    [password:Person:private] => $2y$10$bt1On0PwxcLKeS1gApXZseRuk5KlCQ9W8n9jMZi35KRxBLtJTccQe
+    [start_date:Person:private] => 
+    [first_name:Person:private] => John
+    [last_name:Person:private] => 
+    [birthday:Person:private] => 
+    [street_address:Person:private] => N/A
+    [city:Person:private] => N/A
+    [state:Person:private] => VA
+    [zip_code:Person:private] => N/A
+    [phone1:Person:private] => 
+    [phone1type:Person:private] => N/A
+    [email:Person:private] => peepeepoopoo@gmail.com
+    [emergency_contact_first_name:Person:private] => N/A
+    [emergency_contact_last_name:Person:private] => N/A
+    [emergency_contact_phone:Person:private] => N/A
+    [emergency_contact_phone_type:Person:private] => N/A
+    [emergency_contact_relation:Person:private] => N/A
+    [tshirt_size:Person:private] => 
+    [school_affiliation:Person:private] => 
+    [photo_release:Person:private] => 
+    [photo_release_notes:Person:private] => 
+    [type:Person:private] => Admin
+    [status:Person:private] => 
+    [archived:Person:private] => 0
+    [training_complete:Person:private] => 0
+    [training_date:Person:private] => 
+    [orientation_complete:Person:private] => 0
+    [orientation_date:Person:private] => 
+    [background_complete:Person:private] => 0
+    [background_date:Person:private] => 
+    [how_you_heard_of_stepva:Person:private] => 
+    [preferred_feedback_method:Person:private] => 
+    [hobbies:Person:private] => 
+    [professional_experience:Person:private] => 
+    [disability_accomodation_needs:Person:private] => 
+    [skills:Person:private] => 
+    [networks:Person:private] => 
+    [contributions:Person:private] => 
+    [familyId:Person:private] => 0
+    [profile_feature:Person:private] => 
+    [identification_preference:Person:private] => 
+    [headshot_publish:Person:private] => 0
+    [likeness_usage:Person:private] => 0
+)
+
+[31-Mar-2025 17:03:46 America/New_York] DEBUG: Admin successfully added to the database.
+[31-Mar-2025 17:03:46 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:03:46 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:03:46 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:03:46 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:03:46 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:04:12 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:04:12 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:04:17 America/New_York] DEBUG: Admin successfully deleted from the database.
+[31-Mar-2025 17:04:44 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:04:44 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:04:44 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:04:44 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:04:44 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:04:47 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:04:47 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:04:55 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:04:55 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:04:55 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:04:55 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:04:55 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:04:56 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:04:56 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:05:01 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:05:01 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:05:02 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:05:02 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:05:35 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:05:35 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:05:49 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:05:49 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:06:04 America/New_York] participantPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:06:04 America/New_York] participantPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:06:33 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 17:06:33 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 17:06:33 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 17:06:38 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 17:06:38 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 17:06:38 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 17:06:40 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:06:40 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:06:40 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:06:40 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:06:40 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:06:41 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:06:41 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:06:44 America/New_York] PHP Warning:  Undefined variable $member_skills in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 17:06:44 America/New_York] PHP Warning:  Undefined variable $member_networks in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 17:06:44 America/New_York] PHP Warning:  Undefined variable $member_contributions in /home/customer/www/jenniferp130.sg-host.com/public_html/registerParticipantAndFamilyLeader.php on line 393
+[31-Mar-2025 17:06:49 America/New_York] index.php: Session['_id'] = testuser20250331210637
+[31-Mar-2025 17:06:49 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 17:06:49 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 17:06:49 America/New_York] participantPortal.php: Session['_id'] = testuser20250331210637
+[31-Mar-2025 17:06:49 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 17:06:49 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:06:49 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 21:06:52 UTC] Event name found: emma test 10 for ID: 129
+[31-Mar-2025 17:07:01 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:07:01 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:07:01 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:07:01 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:07:01 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:07:03 America/New_York] index.php: Session['_id'] = testuser20250331210637
+[31-Mar-2025 17:07:03 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 17:07:03 America/New_York] index.php: Redirecting family leader to participantPortal.php
+[31-Mar-2025 17:07:03 America/New_York] participantPortal.php: Session['_id'] = testuser20250331210637
+[31-Mar-2025 17:07:03 America/New_York] participantPortal.php: Session['access_level'] = 1
+[31-Mar-2025 17:12:53 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 17:12:53 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 17:12:53 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 17:14:30 America/New_York] index.php: Session['_id'] = testUserJack
+[31-Mar-2025 17:14:30 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 17:14:30 America/New_York] index.php: Redirecting volunteer to volunteerPortal.php
+[31-Mar-2025 17:14:30 America/New_York] volunteerPortal.php: Session['_id'] = testUserJack
+[31-Mar-2025 17:14:30 America/New_York] volunteerPortal.php: Session['access_level'] = 1
+[31-Mar-2025 17:18:44 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 17:18:44 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 17:18:44 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 17:18:52 America/New_York] index.php: Session['_id'] = ebrenna2
+[31-Mar-2025 17:18:52 America/New_York] index.php: Session['access_level'] = 1
+[31-Mar-2025 17:18:52 America/New_York] index.php: Redirecting volunteer to volunteerPortal.php
+[31-Mar-2025 17:18:52 America/New_York] volunteerPortal.php: Session['_id'] = ebrenna2
+[31-Mar-2025 17:18:52 America/New_York] volunteerPortal.php: Session['access_level'] = 1
+[31-Mar-2025 17:23:12 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:23:12 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:23:12 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:23:12 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:23:12 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:23:13 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:23:13 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:23:14 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:23:14 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:32:54 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:32:54 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:32:54 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:32:54 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:32:54 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:32:56 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:32:56 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:32:57 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:32:57 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:33:13 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:33:13 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:33:13 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:33:13 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:33:13 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:33:14 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:33:14 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:33:15 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:33:15 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:34:46 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:34:46 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:35:28 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:35:28 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:35:53 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:35:53 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:35:54 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:35:54 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:38:56 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:38:56 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 17:38:56 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 17:38:56 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:38:56 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 17:38:57 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:38:57 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 17:38:58 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 17:38:58 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 18:24:39 America/New_York] index.php: Session['_id'] = not set
+[31-Mar-2025 18:24:39 America/New_York] index.php: Session['access_level'] = not set
+[31-Mar-2025 18:24:39 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[31-Mar-2025 18:24:46 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 18:24:46 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 18:24:46 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 18:24:47 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 18:24:47 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 18:42:42 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 18:42:42 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 19:01:05 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:01:05 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 19:01:05 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 19:01:06 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:01:06 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 19:01:13 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:01:13 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 19:08:08 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:08:08 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 19:08:11 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:08:11 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 19:08:31 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:08:31 America/New_York] eventSettings.php: Session['access_level'] = 4
+[31-Mar-2025 19:15:49 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:15:49 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 19:15:49 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 19:15:49 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:15:49 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 19:15:50 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:15:50 America/New_York] eventSettings.php: Session['access_level'] = 4
+[31-Mar-2025 19:18:37 America/New_York] index.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:18:37 America/New_York] index.php: Session['access_level'] = 4
+[31-Mar-2025 19:18:37 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[31-Mar-2025 19:18:37 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:18:37 America/New_York] vmsDash.php: Session['access_level'] = 4
+[31-Mar-2025 19:18:43 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:18:43 America/New_York] adminPortal.php: Session['access_level'] = 4
+[31-Mar-2025 19:18:44 America/New_York] eventSettings.php: Session['_id'] = vmsroot
+[31-Mar-2025 19:18:44 America/New_York] eventSettings.php: Session['access_level'] = 4
+[01-Apr-2025 09:10:57 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[01-Apr-2025 09:10:57 America/New_York] adminPortal.php: Session['access_level'] = 4
+[01-Apr-2025 12:28:04 America/New_York] index.php: Session['_id'] = not set
+[01-Apr-2025 12:28:04 America/New_York] index.php: Session['access_level'] = not set
+[01-Apr-2025 12:28:04 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[01-Apr-2025 14:12:45 America/New_York] index.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:12:45 America/New_York] index.php: Session['access_level'] = 4
+[01-Apr-2025 14:12:45 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[01-Apr-2025 14:12:45 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:12:45 America/New_York] vmsDash.php: Session['access_level'] = 4
+[01-Apr-2025 14:12:47 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:12:47 America/New_York] adminPortal.php: Session['access_level'] = 4
+[01-Apr-2025 14:12:54 America/New_York] index.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:12:54 America/New_York] index.php: Session['access_level'] = 4
+[01-Apr-2025 14:12:54 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[01-Apr-2025 14:12:54 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:12:54 America/New_York] vmsDash.php: Session['access_level'] = 4
+[01-Apr-2025 14:12:56 America/New_York] volunteerPortal.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:12:56 America/New_York] volunteerPortal.php: Session['access_level'] = 4
+[01-Apr-2025 14:13:02 America/New_York] index.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:13:02 America/New_York] index.php: Session['access_level'] = 4
+[01-Apr-2025 14:13:02 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[01-Apr-2025 14:13:02 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:13:02 America/New_York] vmsDash.php: Session['access_level'] = 4
+[01-Apr-2025 14:13:07 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:13:07 America/New_York] adminPortal.php: Session['access_level'] = 4
+[01-Apr-2025 14:13:09 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:13:09 America/New_York] adminPortal.php: Session['access_level'] = 4
+[01-Apr-2025 14:13:21 America/New_York] index.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:13:21 America/New_York] index.php: Session['access_level'] = 4
+[01-Apr-2025 14:13:21 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[01-Apr-2025 14:13:21 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:13:21 America/New_York] vmsDash.php: Session['access_level'] = 4
+[01-Apr-2025 14:13:24 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:13:24 America/New_York] adminPortal.php: Session['access_level'] = 4
+[01-Apr-2025 14:13:26 America/New_York] adminPortal.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:13:26 America/New_York] adminPortal.php: Session['access_level'] = 4
+[01-Apr-2025 14:29:16 America/New_York] index.php: Session['_id'] = not set
+[01-Apr-2025 14:29:16 America/New_York] index.php: Session['access_level'] = not set
+[01-Apr-2025 14:29:16 America/New_York] index.php: Redirecting to login.php because access_level is invalid or not set
+[01-Apr-2025 14:29:19 America/New_York] index.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:29:19 America/New_York] index.php: Session['access_level'] = 4
+[01-Apr-2025 14:29:19 America/New_York] index.php: Redirecting vmsroot to vmsDash.php
+[01-Apr-2025 14:29:19 America/New_York] vmsDash.php: Session['_id'] = vmsroot
+[01-Apr-2025 14:29:19 America/New_York] vmsDash.php: Session['access_level'] = 4

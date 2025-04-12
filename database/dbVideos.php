@@ -3,41 +3,58 @@ include_once('dbinfo.php');
 include_once(dirname(__FILE__).'/../domain/Video.php');
 
 function add_video($video) {
-    $con=connect();
-    $query = "SELECT * FROM dbvideos WHERE id = '" . $video->get_id() . "'";
-    $result = mysqli_query($con,$query);
+    $con = connect();
 
-    if ($result == null || mysqli_num_rows($result) == 0) {
-        mysqli_query($con, 'INSERT INTO dbvideos (url, title, synopsis, type) VALUES ("' .
-            $video->get_url() . '","' .
-            $video->get_title() . '","' .
-            $video->get_synopsis() . '","' .
-            $video->get_type() . '");'
-        );
+    $stmt = $con->prepare("SELECT * FROM dbvideos WHERE id = ?");
+    $id = $video->get_id();
+    $stmt->bind_param("i", $id); // assuming id is an integer
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result == null || $result->num_rows == 0) {
+        $stmt = $con->prepare("INSERT INTO dbvideos (url, title, synopsis, type) VALUES (?, ?, ?, ?)");
+        $url = $video->get_url();
+        $title = $video->get_title();
+        $synopsis = $video->get_synopsis();
+        $type = $video->get_type();
+        $stmt->bind_param("ssss", $url, $title, $synopsis, $type);
+        $stmt->execute();
+        $stmt->close();
         mysqli_close($con);
         return true;
     }
 
+    $stmt->close();
     mysqli_close($con);
     return false;
 }
 
 function remove_video($id) {
-    $con=connect();
-    $query = 'SELECT * FROM dbvideos WHERE id = "' . $id . '"';
-    $result = mysqli_query($con,$query);
-    if ($result == null || mysqli_num_rows($result) == 0) {
+    $con = connect();
+
+    $stmt = $con->prepare("SELECT * FROM dbvideos WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result == null || $result->num_rows == 0) {
+        $stmt->close();
         mysqli_close($con);
         return false;
     }
-    $query = 'DELETE FROM dbvideos WHERE id = "' . $id . '"';
-    $result = mysqli_query($con,$query);
+
+    $stmt->close();
+
+    $stmt = $con->prepare("DELETE FROM dbvideos WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
     mysqli_close($con);
     return true;
 }
 
 function retrieve_all_videos() {
-    $con = connect(); // Ensure a connection is established
+    $con = connect();
     if (!$con) {
         die("Database connection error: " . mysqli_connect_error());
     }
@@ -59,11 +76,13 @@ function retrieve_all_videos() {
 }
 
 function update_video($id, $url, $title, $synopsis, $type){
-    $connection = connect();
-    $query = "UPDATE dbvideos SET url='$url', title='$title', synopsis='$synopsis', type='$type' where id='$id'";
-    
-    $result = mysqli_query($connection, $query);
-    mysqli_commit($connection);
-    mysqli_close($connection);
+    $con = connect();
+
+    $stmt = $con->prepare("UPDATE dbvideos SET url = ?, title = ?, synopsis = ?, type = ? WHERE id = ?");
+    $stmt->bind_param("ssssi", $url, $title, $synopsis, $type, $id);
+    $result = $stmt->execute();
+
+    $stmt->close();
+    mysqli_close($con);
     return $result;
 }
