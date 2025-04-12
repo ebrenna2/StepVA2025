@@ -47,8 +47,6 @@
                 <div class="happy-toast">Service successfully removed!</div>
             <?php elseif (isset($_GET['serviceAdded'])): ?>
                 <div class="happy-toast">Service successfully added!</div>
-            <?php elseif (isset($_GET['animalRemoved'])): ?>
-                <div class="happy-toast">Animal successfully removed!</div>
             <?php elseif (isset($_GET['locationAdded'])): ?>
                 <div class="happy-toast">Location successfully added!</div>
             <?php elseif (isset($_GET['deleteLocation'])): ?>
@@ -129,10 +127,10 @@
                         <i class="fa-regular fa-clock"></i>
                         <span><center>View & Change Event Hours</center></span>
                     </div>
-                    <div class="dashboard-item" data-link="resources.php">
+                    <!-- <div class="dashboard-item" data-link="resources.php">
                         <i class="fa-solid fa-arrow-up-from-bracket"></i>
                         <span><center>Upload Resources</center></span>
-                    </div>
+                    </div> -->
                     
                     <div class="dashboard-item" data-link="reportsDash.php">
                         <img src="images/create-report.svg">

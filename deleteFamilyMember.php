@@ -40,7 +40,7 @@ if (isset($_GET['childID'])) {
     mysqli_close($con);
 }
 
-header("Location: familymanagementportal.php?message=deleted");
+header("Location: familyManagementPortal.php?message=deleted");
 
 exit();
 ?>

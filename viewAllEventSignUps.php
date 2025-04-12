@@ -53,12 +53,14 @@ $access_level = $_SESSION['access_level']; ?>
             document.getElementById('resolution-confirmation-wrapper-' + ei + '-' + ui).classList.remove('hidden');
             return false;
         }
+
         function showApprove(ei, ui) {
             document.getElementById('resolution-confirmation-wrapper-' + ei + '-' + ui).classList.add('hidden');
             document.getElementById('reject-confirmation-wrapper-' + ei + '-' + ui).classList.add('hidden');
             document.getElementById('approve-confirmation-wrapper-' + ei + '-' + ui).classList.remove('hidden');
             return false;
         }
+
         function showReject(ei, ui) {
             document.getElementById('resolution-confirmation-wrapper-' + ei + '-' + ui).classList.add('hidden');
             document.getElementById('approve-confirmation-wrapper-' + ei + '-' + ui).classList.add('hidden');
@@ -85,7 +87,7 @@ $access_level = $_SESSION['access_level']; ?>
         <p>
             <?php if (sizeof($event_names) === 0):
                 echo "There are 0 pending signups awaiting resolution.";
-                ?>
+            ?>
             <?php elseif (sizeof($event_names) === 1):
                 echo "There is 1 pending signup awaiting resolution"; ?>
             <?php else: ?>
@@ -103,6 +105,7 @@ $access_level = $_SESSION['access_level']; ?>
                             <th>Last Name</th>
                             <th>User ID</th>
                             <th>Position</th>
+                            <th>Volunteer Count</th>
                             <?php if ($access_level >= 2): ?>
                                 <th>Actions</th>
                             <?php endif; ?>
@@ -119,43 +122,58 @@ $access_level = $_SESSION['access_level']; ?>
                             //foreach ($events as $event): 
                             $user_info = retrieve_person($event['username']);
                             $position_label = $event['role'] === 'p' ? 'Participant' : ($event['role'] === 'v' ? 'Volunteer' : 'Unknown');
+                            $volunteer_count = get_volunteer_count($event_id['eventname']);
+                            $restricted_limit = get_restricted_volunteers_limit($event_id['eventname']);
                             ?>
                             <tr>
-                                <td><a
-                                        href="event.php?id=<?php echo urlencode($event['eventname']); ?>"><?php echo htmlspecialchars($name['name']); ?></a>
-                                </td>
+                                <td><a href="event.php?id=<?php echo urlencode($event['eventname']); ?>"><?php echo htmlspecialchars($name['name']); ?></a></td>
                                 <td><?php echo htmlspecialchars($user_info->get_first_name()); ?></td>
                                 <td><?php echo htmlspecialchars($user_info->get_last_name()); ?></td>
-                                <td><a
-                                        href="viewProfile.php?id=<?php echo urlencode($user_info->get_id()); ?>"><?php echo htmlspecialchars($user_info->get_id()); ?></a>
-                                </td>
+                                <td><a href="viewProfile.php?id=<?php echo urlencode($user_info->get_id()); ?>"><?php echo htmlspecialchars($user_info->get_id()); ?></a></td>
                                 <td><?php echo htmlspecialchars($position_label); ?></td>
+                                <td>
+                                    <!-- Display the restricted volunteer count (x/y) -->
+                                    <?php echo $volunteer_count . '/' . $restricted_limit; ?>
+                                </td>
                                 <?php if ($access_level >= 2): ?>
                                     <td>
                                         <form method="POST" style="display:inline;">
                                             <input type="hidden" name="event_id" value="<?= $event_id['eventname']; ?>">
-                                            <input type="hidden" name="user_id"
-                                                value="<?php echo htmlspecialchars($event['username']); ?>">
+                                            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($event['username']); ?>">
                                         </form>
                                         <?php $ei = $event['eventname'];
                                         $ui = $event['username']; ?>
-                                        <button onclick="showResolutionConfirmation(<?=$ei?>, '<?=$ui?>')" class="button">Resolve</button>
+
+                                        <!-- Show the "Resolve" button for participants, always -->
+                                        <?php if ($event['role'] !== 'v'): ?>
+                                            <button onclick="showResolutionConfirmation(<?= $ei ?>, '<?= $ui ?>')" class="button">Resolve</button>
+                                        <?php endif; ?>
+
+                                        <!-- Show the "Resolve" button for volunteers only when the event is not full -->
+                                        <?php if ($event['role'] === 'v' && $volunteer_count < $restricted_limit): ?>
+                                            <button onclick="showResolutionConfirmation(<?= $ei ?>, '<?= $ui ?>')" class="button">Resolve</button>
+                                        <?php endif; ?>
+
+                                        <!-- Show the "Reject" button for volunteers when the event is full -->
+                                        <?php if ($volunteer_count >= $restricted_limit && $event['role'] === 'v'): ?>
+                                            <button onclick="showReject(<?= $ei ?>, '<?= $ui ?>')" class="button danger">Reject</button>
+                                        <?php endif; ?>
                                     </td>
                                 <?php endif; ?>
                             </tr>
-                            <div id="resolution-confirmation-wrapper-<?= $event_id['eventname'] ?>-<?= $event['username'] ?>" class="modal-content hidden" style = "margin:auto">
+                            <div id="resolution-confirmation-wrapper-<?= $event_id['eventname'] ?>-<?= $event['username'] ?>" class="modal-content hidden" style="margin:auto">
                                 <div class="modal-content">
-                                <?php $en = $event_id['eventname'];
-                                $un = $event['username']; ?>
+                                    <?php $en = $event_id['eventname'];
+                                    $un = $event['username']; ?>
                                     <p>Would you like to approve or reject this sign-up request?</p>
-                                    <button onclick="showApprove(<?=$en?>, '<?=$un?>')" class="button success">Approve</button>
-                                    <button onclick="showReject(<?=$en?>, '<?=$un?>')" class="button danger">Reject</button>
+                                    <button onclick="showApprove(<?= $en ?>, '<?= $un ?>')" class="button success">Approve</button>
+                                    <button onclick="showReject(<?= $en ?>, '<?= $un ?>')" class="button danger">Reject</button>
                                     <button
                                         onclick="document.getElementById('resolution-confirmation-wrapper-<?= $event_id['eventname'] ?>-<?= $event['username'] ?>').classList.add('hidden')"
                                         id="cancel-cancel" class="button cancel">Cancel</button>
                                 </div>
                             </div>
-                            <div id="approve-confirmation-wrapper-<?= $event_id['eventname'] ?>-<?= $event['username'] ?>" class="modal-content hidden" style = "margin:auto">
+                            <div id="approve-confirmation-wrapper-<?= $event_id['eventname'] ?>-<?= $event['username'] ?>" class="modal-content hidden" style="margin:auto">
                                 <div class="modal-content">
                                     <p>Are you sure you want to approve this sign-up request?</p>
                                     <p>This action cannot be undone</p>
@@ -171,7 +189,7 @@ $access_level = $_SESSION['access_level']; ?>
                                         id="cancel-cancel" class="button cancel">Cancel</button>
                                 </div>
                             </div>
-                            <div id="reject-confirmation-wrapper-<?= $event_id['eventname'] ?>-<?= $event['username'] ?>" class="modal-content hidden" style = "margin:auto">
+                            <div id="reject-confirmation-wrapper-<?= $event_id['eventname'] ?>-<?= $event['username'] ?>" class="modal-content hidden" style="margin:auto">
                                 <div class="modal-content">
                                     <p>Are you sure you want to reject this sign-up request?</p>
                                     <p>This action cannot be undone </p>

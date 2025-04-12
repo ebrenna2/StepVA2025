@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <title>Step VA System | Participant Portal</title>
     </head>
-    <body>
+    <body >
         <?php require('header.php'); ?>
         <h1>Participant Portal</h1>
         <main class='dashboard'>
@@ -42,8 +42,6 @@
                 <div class="happy-toast">Service successfully removed!</div>
             <?php elseif (isset($_GET['serviceAdded'])): ?>
                 <div class="happy-toast">Service successfully added!</div>
-            <?php elseif (isset($_GET['animalRemoved'])): ?>
-                <div class="happy-toast">Animal successfully removed!</div>
             <?php elseif (isset($_GET['locationAdded'])): ?>
                 <div class="happy-toast">Location successfully added!</div>
             <?php elseif (isset($_GET['deleteLocation'])): ?>

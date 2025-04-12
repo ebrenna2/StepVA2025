@@ -139,6 +139,12 @@
                 $errors = true;
                 echo 'bad photo release type';
             }
+
+            $profile_feature = $args['profile_feature'];
+            $identification_preference = $args['identification_preference'];
+            $headshot_publish = $args['headshot_publish'];
+            $likeness_usage = $args['likeness_usage'];
+
             $photo_release_notes = $args['photo_release_notes'];
 
         $tshirt_size = $args['tshirt_size'];
@@ -188,7 +194,8 @@
             $preferred_feedback_method, $hobbies, $professional_experience,
             $disability_accomodation_needs, $training_complete, $training_date,
             $orientation_complete, $orientation_date, $background_complete,
-            $background_date, $skills, $networks, $contributions, $photo_release, $photo_release_notes
+            $background_date, $skills, $networks, $contributions, 
+            $photo_release, $profile_feature, $identification_preference, $headshot_publish, $likeness_usage, $photo_release_notes
         );
         if ($result) {
             if ($editingSelf) {

@@ -1,144 +1,14 @@
-<h1>New Participant Registration</h1>
+<h1>New Volunteer Registration</h1>
 <main class="signup-form">
     <form class="signup-form" method="post">
-        <h2>Participant Registration Form</h2>
-        <p>Please fill out each section of the following form if you would like to participate for in the organization.</p>
+        <h2>Registration Form</h2>
+        <p>Please fill out each section of the following form if you would like to volunteer for the organization.</p>
         <p>An asterisk (<em>*</em>) indicates a required field.</p>
         
         <fieldset class="section-box">
             <legend>Personal Information</legend>
 
             <p>The following information will help us identify you within our system.</p>
-            <label><em>* </em>Will you be signing up as a Family?</label>
-            <div class="radio-group">
-                <input type="radio" id="yes" name="family_or_individual" value="y" required>
-                <label for="yes">Yes</label>
-
-                <input type="radio" id="no" name="family_or_individual" value="n" required>
-                <label for="no">No</label>
-            </div>
-
-            <div id="num_family_members-section" style="display: none;" >
-                <label for="numFamilyMembers">Number of Family Members:</label>
-                <input type="number" id="numFamilyMembers" name="num_family_members" min=1 max=100 value=0>
-            </div>
-
-            <div id="family_member_info_section" style="display: none;" ></div>
-
-            <script>
-                const input = document.getElementById('numFamilyMembers');
-                const container = document.getElementById('family_member_info_section');
-
-                function updateFamilyMemberSections() {
-                    const count = parseInt(input.value) || 0;
-            
-                    // Clear existing sections
-                    container.innerHTML = '';
-
-                    if (count >= 12){
-                        const section = document.createElement('div');
-                        //This is where can add the fields associated with the family members
-                        section.className = 'section';
-                        
-                        section.innerHTML = `
-                            <div>
-                                <label style="color: red;">
-                                    Please enter a number less than 12.
-                                </label>
-
-                            </div>
-                        `;
-
-                        //Add this section to the container
-                        container.appendChild(section);
-                    } else {
-                        const section = document.createElement('div');
-                        // Create new sections based on input
-                        for (let i = 1; i <= count; i++) {
-
-                            //Label for getting family member age
-                            const labelAge = document.createElement('label');
-                            labelAge.htmlFor = `age${i}`;
-                            labelAge.textContent = `Member ${i} Age`;
-                            //Adding the label to the section
-                            section.appendChild(labelAge);
-                            //Input for getting family member age
-                            const inputAge = document.createElement('input');
-                            inputAge.type = 'number';
-                            inputAge.id = `age${i}`;
-                            inputAge.name = `family_mem_age${i}`;
-                            inputAge.min = '1';
-                            inputAge.max = '120';
-                            inputAge.value = '0';
-                            //Adding input age to the section
-                            section.appendChild(inputAge);
-                            
-                        }
-                        //Add this section to the container
-                        container.appendChild(section);
-                    }   
-                    
-                    const family_member_info_section = document.getElementById('family_member_info_section'); // Entire training section
-                    if (count === 0){
-                        family_member_info_section.style.display = "none";
-                    } else {
-                        family_member_info_section.style.display = "block";
-                    }
-
-                }
-
-                // Add event listener to the input (not using querySelectorAll)
-                input.addEventListener('input', updateFamilyMemberSections)
-
-                // Initial check on page load
-                document.addEventListener('DOMContentLoaded', () => {
-                    updateFamilyMemberSections(); // Toggle the input section for info of family members
-                });
-
-            </script>
-
-            <script>
-                // Function to toggle the visibility of the training section based on volunteer or participant selection
-                function toggleNumFamilyMembersSection() {
-                    // Get the value of the hidden input field
-                    const familyRadios = document.querySelectorAll('input[name="family_or_individual"]');
-                    const numFamilyMembersSection = document.getElementById('num_family_members-section'); // Entire training section
-                    
-                    let isFamily = false;
-                    
-                    familyRadios.forEach(radio => {
-                        if (radio.checked && radio.value === 'y') {
-                            isFamily = true;
-                        }
-                    });
-
-                    // Show the entire training section only if the user is a volunteer
-                    if (isFamily) {
-                        numFamilyMembersSection.style.display = 'block';
-                    } else {
-                        const numFamilyMembersInput = document.getElementById('numFamilyMembers')
-                        numFamilyMembersInput.value = 0;
-                        updateFamilyMemberSections();
-                        numFamilyMembersSection.style.display = 'none';
-                    }
-
-                }
-
-
-                // Event listeners for changes in volunteer/participant selection and the complete statuses
-                document.querySelectorAll('input[name="family_or_individual"]').forEach(radio => {
-                    radio.addEventListener('change', toggleNumFamilyMembersSection);
-                });
-
-                // Initial check on page load
-                document.addEventListener('DOMContentLoaded', () => {
-                    toggleNumFamilyMembersSection(); // Toggle the input box for number of family members
-                });
-
-            </script>
-            
-            <!-- Default value for volunteer_or_participant -->
-            <input type="hidden" name="volunteer_or_participant" value="v">
             <label for="first_name"><em>* </em>First Name</label>
             <input type="text" id="first_name" name="first_name" required placeholder="Enter your first name">
 
@@ -261,16 +131,27 @@
             <legend>Other Required Information</legend>
 
             <p>Here are a few other pieces on information we need from you.</p>
-           
+
+            <!--
+            This is functional code for a user to select if they are a 
+            volunteer or participant
+            <label><em>* </em>Are you a volunteer or a participant?</label>
+            <div class="radio-group">
+                <input type="radio" id="v" name="volunteer_or_participant" value="v" required><label for="volunteer_or_participant">Volunteer</label>
+                <input type="radio" id="p" name="volunteer_or_participant" value="p" required><label for="volunteer_or_participant">Participant</label>
+            </div>
+            -->
+            <!-- Default value for volunteer_or_participant -->
+            <input type="hidden" name="volunteer_or_participant" value="v">
+
+            
             <label><em>* </em>T-Shirt Size</label>
             <div class="radio-group">
-            <input type="radio" id="xxs" name="tshirt_size" value="xxs" required><label for="tshirt_size">XXS</label>
                 <input type="radio" id="xs" name="tshirt_size" value="xs" required><label for="tshirt_size">XS</label>
                 <input type="radio" id="s" name="tshirt_size" value="s" required><label for="tshirt_size">S</label>
                 <input type="radio" id="m" name="tshirt_size" value="m" required><label for="tshirt_size">M</label>
                 <input type="radio" id="l" name="tshirt_size" value="l" required><label for="tshirt_size">L</label>
                 <input type="radio" id="xl" name="tshirt_size" value="xl" required><label for="tshirt_size">XL</label>
-                <input type="radio" id="xxl" name="tshirt_size" value="xxl" required><label for="tshirt_size">XXL</label>
             </div>
 
             <label for="school_affiliation"><em>* </em>School Affiliation (or N/A)</label>
@@ -311,7 +192,144 @@
             <input type="text" id="disability_accomodation_needs" name="disability_accomodation_needs" placeholder="">
 
         </fieldset>
-        
+
+        <fieldset class="section-box" id="training-info-section" style="display: none;">
+            <legend>Training Information</legend>
+            <!--<p>If you are a volunteer, please indicate your training status.</p>-->
+
+            <div id="training-info">
+                <label><em>* </em>Training Complete?</label>
+                <div class="radio-group">
+                    <input type="radio" id="training-complete-yes" name="training_complete" value="1">
+                    <label for="training-complete-yes">Yes</label>
+                    <input type="radio" id="training-complete-no" name="training_complete" value="0">
+                    <label for="training-complete-no">No</label>
+                </div>
+
+                <label for="training_date" id="training-date-label" style="display: none;">Training Date</label>
+                <input type="date" id="training_date" name="training_date" placeholder="Enter training date" style="display: none;" max="<?php echo date('Y-m-d'); ?>">
+
+                <!-- Orientation Information -->
+                <label><em>* </em>Orientation Complete?</label>
+                <div class="radio-group">
+                    <input type="radio" id="orientation-complete-yes" name="orientation_complete" value="1">
+                    <label for="orientation-complete-yes">Yes</label>
+                    <input type="radio" id="orientation-complete-no" name="orientation_complete" value="0">
+                    <label for="orientation-complete-no">No</label>
+                </div>
+
+                <label for="orientation_date" id="orientation-date-label" style="display: none;">Orientation Date</label>
+                <input type="date" id="orientation_date" name="orientation_date" placeholder="Enter orientation date" style="display: none;" max="<?php echo date('Y-m-d'); ?>">
+
+                <!-- Background Information -->
+                <label><em>* </em>Background Check Complete?</label>
+                <div class="radio-group">
+                    <input type="radio" id="background-complete-yes" name="background_complete" value="1">
+                    <label for="background-complete-yes">Yes</label>
+                    <input type="radio" id="background-complete-no" name="background_complete" value="0">
+                    <label for="background-complete-no">No</label>
+                </div>
+
+                <label for="background_date" id="background-date-label" style="display: none;">Background Date</label>
+                <input type="date" id="background_date" name="background_date" placeholder="Enter background date" style="display: none;" max="<?php echo date('Y-m-d'); ?>">
+            </div>
+        </fieldset>
+
+        <script>
+            // Function to toggle the visibility of the training section based on volunteer or participant selection
+            function toggleTrainingSection() {
+                // Get the value of the hidden input field
+                const volunteerOrParticipant = document.querySelector('input[name="volunteer_or_participant"]').value;
+                const trainingInfoSection = document.getElementById('training-info-section'); // Entire training section
+
+                // Show the entire training section only if the user is a volunteer
+                if (volunteerOrParticipant === 'v') {
+                    trainingInfoSection.style.display = 'block';
+                } else {
+                    trainingInfoSection.style.display = 'none';
+                }
+
+                // Also hide the date fields initially if the section is visible
+                toggleTrainingDateField();
+                toggleOrientationDateField();
+                toggleBackgroundDateField();
+            }
+
+            // Function to toggle the visibility of the training date field based on training complete selection
+            function toggleTrainingDateField() {
+                const trainingCompleteYes = document.getElementById('training-complete-yes');
+                const trainingCompleteNo = document.getElementById('training-complete-no');
+                const trainingDateField = document.getElementById('training_date');
+                const trainingDateLabel = document.getElementById('training-date-label');
+
+                // Show the training date field and its label if "Yes" is selected for training complete
+                if (trainingCompleteYes.checked) {
+                    trainingDateField.style.display = 'inline';
+                    trainingDateLabel.style.display = 'inline';
+                } else {
+                    trainingDateField.style.display = 'none';
+                    trainingDateLabel.style.display = 'none';
+                }
+            }
+
+            // Function to toggle the visibility of the orientation date field based on orientation complete selection
+            function toggleOrientationDateField() {
+                const orientationCompleteYes = document.getElementById('orientation-complete-yes');
+                const orientationCompleteNo = document.getElementById('orientation-complete-no');
+                const orientationDateField = document.getElementById('orientation_date');
+                const orientationDateLabel = document.getElementById('orientation-date-label');
+
+                // Show the orientation date field and its label if "Yes" is selected for orientation complete
+                if (orientationCompleteYes.checked) {
+                    orientationDateField.style.display = 'inline';
+                    orientationDateLabel.style.display = 'inline';
+                } else {
+                    orientationDateField.style.display = 'none';
+                    orientationDateLabel.style.display = 'none';
+                }
+            }
+
+            // Function to toggle the visibility of the background date field based on background complete selection
+            function toggleBackgroundDateField() {
+                const backgroundCompleteYes = document.getElementById('background-complete-yes');
+                const backgroundCompleteNo = document.getElementById('background-complete-no');
+                const backgroundDateField = document.getElementById('background_date');
+                const backgroundDateLabel = document.getElementById('background-date-label');
+
+                // Show the background date field and its label if "Yes" is selected for background complete
+                if (backgroundCompleteYes.checked) {
+                    backgroundDateField.style.display = 'inline';
+                    backgroundDateLabel.style.display = 'inline';
+                } else {
+                    backgroundDateField.style.display = 'none';
+                    backgroundDateLabel.style.display = 'none';
+                }
+            }
+
+            // Event listeners for changes in volunteer/participant selection and the complete statuses
+            document.querySelectorAll('input[name="volunteer_or_participant"]').forEach(radio => {
+                radio.addEventListener('change', toggleTrainingSection);
+            });
+
+            document.getElementById('training-complete-yes').addEventListener('change', toggleTrainingDateField);
+            document.getElementById('training-complete-no').addEventListener('change', toggleTrainingDateField);
+
+            document.getElementById('orientation-complete-yes').addEventListener('change', toggleOrientationDateField);
+            document.getElementById('orientation-complete-no').addEventListener('change', toggleOrientationDateField);
+
+            document.getElementById('background-complete-yes').addEventListener('change', toggleBackgroundDateField);
+            document.getElementById('background-complete-no').addEventListener('change', toggleBackgroundDateField);
+
+            // Initial check on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                toggleTrainingSection(); // Ensure the training section is correctly displayed on page load
+                toggleTrainingDateField(); // Ensure the training date field is correctly displayed based on the selection
+                toggleOrientationDateField(); // Ensure the orientation date field is correctly displayed based on the selection
+                toggleBackgroundDateField(); // Ensure the background date field is correctly displayed based on the selection
+            });
+        </script>
+
+
         <fieldset class="section-box">
             <legend>Login Credentials</legend>
             
