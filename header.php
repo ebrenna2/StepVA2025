@@ -22,6 +22,7 @@
         <div id="suggestions" class="list-group position-absolute w-100 z-3" style="top: 100%; max-height: 200px; overflow-y: auto; display: none;"></div>
     </div>
     <script>
+        // Based on Account type Use one of 3 lists
     const pages = [
         { name: "Home", url: "index.php" },
         { name: "Calendar", url: "calendar.php" },
@@ -31,11 +32,11 @@
         { name: "Delete Admin", url: "deleteAdmin.php"},
         { name: "Delete Event", url: "deleteEvent.php"},
         { name: "Delete Family Member", url: "deleteFamilyMember.php"},
+        // Add more from here
         { name: "View All Events", url: "viewAllEvents.php" },
         { name: "Edit Profile", url: "editProfile.php" },
         { name: "Change Password", url: "changePassword.php" },
         { name: "Volunteer Report", url: "volunteerReport.php" },
-        { name: "Upload Resources", url: "resources.php" },
         { name: "Logout", url: "logout.php" }
     ];
     const input = document.getElementById("pageSearch");
@@ -282,7 +283,7 @@
             echo('<a class="dropdown-item" href="' . $path . 'volunteerReport.php">View Hours</a>');
         }
         echo('<a class="dropdown-item" href="' . $path . 'changePassword.php">Change Password</a>');
-        echo('<a class="dropdown-item" href="' . $path . 'resources.php">Upload Resources</a>');
+        //echo('<a class="dropdown-item" href="' . $path . 'resources.php">Upload Resources</a>');
         echo('</div>');
         echo('</li>');
 
