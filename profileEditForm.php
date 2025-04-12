@@ -284,37 +284,41 @@
             <div id="photo-release-details">
                 <label>Can your cast or crew member be featured in a profile?</label>
                 <div class="radio-group">
-                    <input type="radio" id="profile-yes" name="profile_feature" value="Yes" required>
+                    <?php $profile_feature = $person->get_profile_feature(); ?>
+                    <input type="radio" id="profile-yes" name="profile_feature" value="Yes" <?php if ($profile_feature == 'Yes') echo 'checked'; ?> required>
                     <label for="profile-yes">Yes</label>
-                    <input type="radio" id="profile-no" name="profile_feature" value="No" required>
+                    <input type="radio" id="profile-no" name="profile_feature" value="No"  <?php if ($profile_feature == 'No') echo 'checked'; ?> required>
                     <label for="profile-no">No</label>
                 </div>
 
                 <label>How would you like your cast/crew member identified?</label>
                 <div class="radio-group">
-                    <input type="radio" id="id-full-name" name="identification_preference" value="First and last name">
+                    <?php $identification_preference = $person->get_identification_preference(); ?>
+                    <input type="radio" id="id-full-name" name="identification_preference" value="First and last name" <?php if ($identification_preference == 'First and last name') echo 'checked'; ?>>
                     <label for="id-full-name">First and last name</label>
-                    <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial">
+                    <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial" <?php if ($identification_preference == 'First name and last initial') echo 'checked'; ?>>
                     <label for="id-first-name">First name and Last initial</label>
-                    <input type="radio" id="id-initials" name="identification_preference" value="Initials only">
+                    <input type="radio" id="id-initials" name="identification_preference" value="Initials only" <?php if ($identification_preference == 'Initials only') echo 'checked'; ?>>
                     <label for="id-initials">Initials only</label>
                 </div>
 
                 <label>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
                 <div class="radio-group">
-                    <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" required>
+                    <?php $headshot_publish = $person->get_headshot_publish(); ?>
+                    <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" <?php if ($headshot_publish == 'Yes') echo 'checked'; ?> required>
                     <label for="headshot-yes">Yes</label>
-                    <input type="radio" id="headshot-no" name="headshot_publish" value="No" required>
+                    <input type="radio" id="headshot-no" name="headshot_publish" value="No" <?php if ($headshot_publish == 'No') echo 'checked'; ?> required>
                     <label for="headshot-no">No</label>
                 </div>
 
                 <label>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
                 <div class="radio-group">
-                    <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" required>
+                    <?php $likeness_usage = $person->get_likeness_usage(); ?>
+                    <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" <?php if ($likeness_usage == 'Yes') echo 'checked'; ?> required>
                     <label for="likeness-yes">Yes</label>
-                    <input type="radio" id="likeness-no" name="likeness_usage" value="No" required>
+                    <input type="radio" id="likeness-no" name="likeness_usage" value="No" <?php if ($likeness_usage == 'No') echo 'checked'; ?> required>
                     <label for="likeness-no">No</label>
-                    <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" required>
+                    <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" <?php if ($likeness_usage == 'Only with a filter') echo 'checked'; ?> required>
                     <label for="likeness-filter">Only with a filter</label>
                 </div>
             </div>
@@ -464,12 +468,11 @@
 
             <label>What is your preferred contact method?</label>
             <div class="radio-group">
-                <?php $preferred_feedback_method = $person->get_preferred_feedback_method(); ?>
-
-                <input type="radio" id="text" name="preferred_feedback_method" value="text" <?php if ($type == 'text') echo 'checked'; ?> required>
+                <?php $preferred_feedback_method = $person->get_preferred_feedback_method();?>
+                <input type="radio" id="text" name="preferred_feedback_method" value="text" <?php if ($preferred_feedback_method == 'text') echo 'checked'; ?> required>
                 <label for="text">Text</label>
                 
-                <input type="radio" id="email" name="preferred_feedback_method" value="email" <?php if ($type == 'email') echo 'checked'; ?> required>
+                <input type="radio" id="email" name="preferred_feedback_method" value="email" <?php if ($preferred_feedback_method == 'email') echo 'checked'; ?> required>
                 <label for="email">Email</label>
                 
                 <input type="radio" id="no-preference" name="preferred_feedback_method" value="no-preference" 
