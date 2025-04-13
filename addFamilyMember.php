@@ -133,7 +133,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Add family member relationship in the family member table
         $add_to_family = add_family_member($username, $familyId);
         if ($add_to_family) {
-            echo "";
+            echo "<script>
+            alert('Family member has been successfully added!');
+            window.location.href = 'familyManagementPortal.php'; // Redirect to the family management page
+          </script>";
+          exit;
         } else {
             echo "There was an issue adding the family member to the family.";
         }
