@@ -23,22 +23,21 @@ require_once('domain/Person.php');
  */
 
 function add_person($person) {
-    if (!$person instanceof Person)
+    error_log("add_person() called for user: " . $person->get_id());  // Add logging here
+    
+    if (!$person instanceof Person) {
+        error_log("Error: add_person type mismatch");
         die("Error: add_person type mismatch");
-    $con=connect();
+    }
+    
+    $con = connect();
     $query = "SELECT * FROM dbpersons WHERE id = '" . $person->get_id() . "'";
-    $result = mysqli_query($con,$query);
-    //if there's no entry for this id, add it
+    $result = mysqli_query($con, $query);
+    
     if ($result == null || mysqli_num_rows($result) == 0) {
-        /*mysqli_query($con,'INSERT INTO dbPersons (id, first_name, last_name, birthday, email, password) VALUES("' .
-            $person->get_id() . '","' .
-            $person->get_first_name() . '","' .
-            $person->get_last_name() . '","' .
-            $person->get_birthday() . '","' .
-            $person->get_email() . '","' .
-            $person->get_password() . '");'
-        );*/
-        mysqli_query($con, "INSERT INTO dbpersons VALUES (
+        error_log("Inserting person into the database...");
+
+        $insert_query = "INSERT INTO dbpersons VALUES (
             '{$person->get_id()}',
             '{$person->get_start_date()}',
             'n/a', /* venue */
@@ -91,10 +90,20 @@ function add_person($person) {
             '{$person->get_identification_preference()}',
             '{$person->get_headshot_publish()}',
             '{$person->get_likeness_usage()}'
-        )");
+        )";
+
+        $insert_result = mysqli_query($con, $insert_query);
+        
+        if (!$insert_result) {
+            error_log("Failed to insert person into db: " . mysqli_error($con));
+        } else {
+            error_log("Person inserted successfully.");
+        }
+
         mysqli_close($con);
         return true;
     }
+
     mysqli_close($con);
     return false;
 }
@@ -130,18 +139,25 @@ function remove_person($id) {
  * if not in table, return false
  */
 
-function retrieve_person($id) { // (username! not id)
-    $con=connect();
+ function retrieve_person($id) {
+    $con = connect();
     $query = "SELECT * FROM dbpersons WHERE id = '" . $id . "'";
-    $result = mysqli_query($con,$query);
+    $result = mysqli_query($con, $query);
+
     if (mysqli_num_rows($result) !== 1) {
         mysqli_close($con);
         return false;
     }
+
+    // Fetch the result row
     $result_row = mysqli_fetch_assoc($result);
-    // var_dump($result_row);
+    
+    $result_row['familyid'] = (int)$result_row['familyid'];
+    
+    // Proceed with creating the Person object
     $thePerson = make_a_person($result_row);
-//    mysqli_close($con);
+
+    mysqli_close($con);
     return $thePerson;
 }
 
@@ -305,37 +321,6 @@ function update_profile_pic($id, $link) {
   return $result;
 }
 
-function search_person_by_name($first, $last) {
-    $con = connect();
-
-    $first = mysqli_real_escape_string($con, $first);
-    $last = mysqli_real_escape_string($con, $last);
-
-    $query = "SELECT * FROM dbpersons WHERE (type LIKE '%volunteer%' OR type = 'v')";
-
-    if (!empty($first)) {
-        $query .= " AND first_name LIKE '%$first%'";
-    }
-
-    if (!empty($last)) {
-        $query .= " AND last_name LIKE '%$last%'";
-    }
-
-    $query .= " ORDER BY last_name, first_name";
-
-    $result = mysqli_query($con, $query);
-    $persons = [];
-
-    while ($row = mysqli_fetch_assoc($result)) {
-        $persons[] = make_a_person($row);
-    }
-
-    mysqli_close($con);
-    return $persons;
-}
-
-
-
 /*
  * Returns the age of the person by subtracting the 
  * person's birthday from the current date
@@ -497,7 +482,7 @@ function make_a_person($result_row) {
         $result_row['skills'],
         $result_row['networks'],
         $result_row['contributions'],
-        0,
+        $result_row['familyid'],
         $result_row['profile_feature'],
         $result_row['identification_preference'],
         $result_row['headshot_publish'],
@@ -739,8 +724,7 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         $school_affiliation, $tshirt_size, $how_you_heard_of_stepva,
         $preferred_feedback_method, $hobbies, $professional_experience,
         $disability_accomodation_needs, $training_complete, $training_date, $orientation_complete,
-        $orientation_date, $background_complete, $background_date, $skills, $networks, $contributions,
-        $photo_release, $profile_feature, $identification_preference, $headshot_publish, $likeness_usage, $photo_release_notes
+        $orientation_date, $background_complete, $background_date, $skills, $networks, $contributions, $photo_release, $photo_release_notes
     ) {
         $query = "update dbpersons set 
             first_name='$first_name', last_name='$last_name', birthday='$birthday',
@@ -761,10 +745,6 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
             networks='$networks',
             contributions='$contributions',
             photo_release='$photo_release',
-            profile_feature='$profile_feature',
-            identification_preference='$identification_preference',
-            headshot_publish='$headshot_publish',
-            likeness_usage='$likeness_usage',
             photo_release_notes='$photo_release_notes'
             where id='$id'";
         $connection = connect();
@@ -1364,16 +1344,86 @@ function find_user_names($name) {
 
     function add_family_member($username, $familyid) {
         $con = connect();
+        
+        // Check if the family ID exists in dbfamilyleader
+        $query_check = "SELECT familyid FROM dbfamilyleader WHERE familyid = ?";
+        $stmt_check = mysqli_prepare($con, $query_check);
+        if (!$stmt_check) {
+            error_log("Prepare failed for familyid check: " . mysqli_error($con));
+            mysqli_close($con);
+            return 0;
+        }
+        
+        mysqli_stmt_bind_param($stmt_check, "i", $familyid);  // Ensure familyid is an integer
+        mysqli_stmt_execute($stmt_check);
+        mysqli_stmt_store_result($stmt_check);
+        if (mysqli_stmt_num_rows($stmt_check) == 0) {
+            error_log("Invalid familyid: $familyid does not exist in dbfamilyleader");
+            mysqli_stmt_close($stmt_check);
+            mysqli_close($con);
+            return 0; // Family ID is not valid, return 0
+        }
+        mysqli_stmt_close($stmt_check);
+    
+        // Insert into dbfamilymember if familyid is valid
         $query = "INSERT INTO dbfamilymember (username, familyid) VALUES (?, ?)";
         $stmt = mysqli_prepare($con, $query);
-        mysqli_stmt_bind_param($stmt, "si", $username, $familyid); // "s" for string, "i" for int
-        mysqli_stmt_execute($stmt);
+        if (!$stmt) {
+            error_log("Prepare failed for insert: " . mysqli_error($con));
+            mysqli_close($con);
+            return 0;
+        }
+    
+        mysqli_stmt_bind_param($stmt, "si", $username, $familyid);  // Ensure familyid is integer
+        $success = mysqli_stmt_execute($stmt);
+        if (!$success) {
+            error_log("Execute failed: " . mysqli_stmt_error($stmt)); // Log the exact error
+            mysqli_stmt_close($stmt);
+            mysqli_close($con);
+            return 0;
+        }
+    
         $rows_affected = mysqli_stmt_affected_rows($stmt);
         mysqli_stmt_close($stmt);
         mysqli_close($con);
-        return $rows_affected; // Returns 1 if successful, 0 if failed
+    
+        if ($rows_affected > 0) {
+            echo "";
+        } else {
+            echo "";
+        }
+        
+    
+        return $rows_affected; // Should return 1 if successful
+    }    
+    
+    function is_valid_family_id($familyId) {
+        if ($familyId === null) {
+            return false;
+        }
+    
+        $con = connect();
+        $query = "SELECT familyid FROM dbfamilyleader WHERE familyid = ?";
+        $stmt = mysqli_prepare($con, $query);
+    
+        if (!$stmt) {
+            mysqli_close($con);
+            return false;
+        }
+    
+        mysqli_stmt_bind_param($stmt, "i", $familyId); // Ensure familyId is integer
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+    
+        $valid = mysqli_stmt_num_rows($stmt) > 0;
+        mysqli_stmt_close($stmt);
+        mysqli_close($con);
+    
+        return $valid;
     }
-
+    
+    
+    
     function is_family_leader($username) {
         $con = connect();
         $query = "SELECT username FROM dbfamilyleader WHERE username = ?";
@@ -1476,4 +1526,32 @@ function find_user_names($name) {
         
         return $success;
     }
+
+    function search_person_by_name($first, $last) {
+        $con = connect();
     
+        $first = mysqli_real_escape_string($con, $first);
+        $last = mysqli_real_escape_string($con, $last);
+    
+        $query = "SELECT * FROM dbpersons WHERE (type LIKE '%volunteer%' OR type = 'v')";
+    
+        if (!empty($first)) {
+            $query .= " AND first_name LIKE '%$first%'";
+        }
+    
+        if (!empty($last)) {
+            $query .= " AND last_name LIKE '%$last%'";
+        }
+    
+        $query .= " ORDER BY last_name, first_name";
+    
+        $result = mysqli_query($con, $query);
+        $persons = [];
+    
+        while ($row = mysqli_fetch_assoc($result)) {
+            $persons[] = make_a_person($row);
+        }
+    
+        mysqli_close($con);
+        return $persons;
+    }    

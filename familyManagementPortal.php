@@ -181,5 +181,6 @@ if (isset($_SESSION['_id'])) {
         echo '</fieldset>';
         ?>
     </div>
+    <a class="button cancel" href="participantPortal.php">Return to Participant Portal</a>
 </body>
 </html>
