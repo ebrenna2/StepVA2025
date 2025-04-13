@@ -77,10 +77,6 @@
                     <img src="images/new-event.svg">
                     <span>Sign Up for Event</span>
                 </div>
-                <div class="dashboard-item" data-link="adminViewingEvents.php">
-                    <i class="fa-solid fa-list"></i>
-                    <span>View Events</span>
-                </div>
                 <div class="dashboard-item" data-link="viewMyUpcomingEvents.php">
                     <i class="fa-solid fa-list"></i>
                     <span>My Upcoming Events</span>
