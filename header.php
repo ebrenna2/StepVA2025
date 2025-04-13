@@ -18,11 +18,18 @@
             padding: 5px;
         }
         #suggestions {
-            width: 200px;
+            position: absolute;     /* Key for dropdown positioning */
+            top: 100%;              /* Places it right below the input */
+            left: 0;
+            width: 100%;            /* Make it match the input width */
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top: none;
             max-height: 150px;
             overflow-y: auto;
-            display: none;
             z-index: 1000;
+            display: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* optional visual polish */
         }
         .nav-search {
             margin-left: auto;
@@ -155,7 +162,10 @@
             ['name' => 'Reports Page', 'url' => 'reportsDash.php'],
             ['name' => 'View Profile', 'url' => 'viewProfile.php'],
             ['name' => 'Edit Profile', 'url' => 'editProfile.php'],
-            ['name' => 'Training Videos', 'url' => 'viewVideos.php'],
+            ['name' => 'Edit Videos', 'url' => 'editVideos.php'],
+            ['name' => 'Add Video', 'url' => 'videoUploadManager.php'],
+            ['name' => 'Delete Videos', 'url' => 'videoDeletionManager.php'],
+            ['name' => 'View Videos', 'url' => 'viewVideos.php'],
             ['name' => 'My Upcoming Events', 'url' => 'viewMyUpcomingEvents.php'],
             ['name' => 'View Volunteering Report', 'url' => 'volunteerReport.php'],
             ['name' => 'Manage Family', 'url' => 'familyManagementPortal.php'],
