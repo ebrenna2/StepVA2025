@@ -172,12 +172,15 @@ if (isset($_SESSION['_id'])) {
             echo '<button type="button" class="delete-button">Delete Family Member</button>';
             echo '</a>';
             echo '</td>';
-
             echo '</tr>';
         }
         echo '</table>';
+        echo '<a href="addFamilyMember.php">';
+        echo '    <button type="button" class="add-family-button">Add Family Member</button>';
+        echo '</a>';
         echo '</fieldset>';
         ?>
     </div>
+    <a class="button cancel" href="participantPortal.php">Return to Participant Portal</a>
 </body>
 </html>

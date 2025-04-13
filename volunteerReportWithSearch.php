@@ -168,7 +168,7 @@ if (!empty($matching_volunteers)) {
     <main class="hours-report">
     <?php if ($id === null): ?>
 
-<p>Please enter a User ID above to search.</p>
+<p>Please enter a name above to search.</p>
 
 <?php elseif (!$volunteer): ?>
 
