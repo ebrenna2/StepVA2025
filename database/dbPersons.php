@@ -321,6 +321,37 @@ function update_profile_pic($id, $link) {
   return $result;
 }
 
+function search_person_by_name($first, $last) {
+    $con = connect();
+
+    $first = mysqli_real_escape_string($con, $first);
+    $last = mysqli_real_escape_string($con, $last);
+
+    $query = "SELECT * FROM dbpersons WHERE (type LIKE '%volunteer%' OR type = 'v')";
+
+    if (!empty($first)) {
+        $query .= " AND first_name LIKE '%$first%'";
+    }
+
+    if (!empty($last)) {
+        $query .= " AND last_name LIKE '%$last%'";
+    }
+
+    $query .= " ORDER BY last_name, first_name";
+
+    $result = mysqli_query($con, $query);
+    $persons = [];
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $persons[] = make_a_person($row);
+    }
+
+    mysqli_close($con);
+    return $persons;
+}
+
+
+
 /*
  * Returns the age of the person by subtracting the 
  * person's birthday from the current date
