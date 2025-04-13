@@ -225,4 +225,5 @@ $notRoot = ($person->get_id() !== 'vmsroot');
         ?>
     </div>
 </body>
+<a class="button cancel" href="reportsDash.php">Return to Reports Page</a>
 </html>

@@ -34,6 +34,18 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $viewingSelf = true;
 }
 
+if ($isAdmin && (isset($_GET['first_name']) || isset($_GET['last_name']))) {
+    $first_name = isset($_GET['first_name']) ? sanitize($_GET)['first_name'] : '';
+    $last_name = isset($_GET['last_name']) ? sanitize($_GET)['last_name'] : '';
+    
+    $matching_volunteers = search_person_by_name($first_name, $last_name);
+
+    if (empty($matching_volunteers)) {
+        $message = "No volunteers found with that name.";
+    }
+}
+
+
 if ($isAdmin && isset($_GET['search_id'])) {
     $search_id = sanitize($_GET)['search_id'];
     $volunteer = retrieve_person($search_id);
@@ -111,12 +123,31 @@ if (isset($_POST['eventID']) && !empty($_POST['eventID'])) {
     <h2>Volunteer Check-In / Check-Out</h2>
 
     <?php if ($isAdmin): ?>
-        <form method="get" action="">
-            <label for="search_id">Search by Username:</label>
-            <input type="text" name="search_id" id="search_id" placeholder="Enter username" required>
-            <button type="submit" class="button">Search</button>
-        </form>
+    <form method="get" action="">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name" placeholder="Enter first name">
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name" placeholder="Enter last name">
+
+        <button type="submit" class="button">Search</button>
+    </form>
+
         <br>
+
+        <?php if (!empty($matching_volunteers)): ?>
+    <h4>Matching Volunteers:</h4>
+    <ul>
+        <?php foreach ($matching_volunteers as $vol): ?>
+            <li>
+                <?= htmlspecialchars($vol->get_first_name() . ' ' . $vol->get_last_name()) ?>
+                (<?= htmlspecialchars($vol->get_id()) ?>)
+                <a href="?search_id=<?= htmlspecialchars($vol->get_id()) ?>">View</a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
         <?php if (!$viewingSelf && !empty($volunteer)): ?>
             <h4><?= htmlspecialchars($volunteer->get_id()) ?>'s Check-In History (Past 7 Days)</h4>
             <?php if (!empty($check_in_history)): ?>
