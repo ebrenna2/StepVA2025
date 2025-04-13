@@ -1585,4 +1585,4 @@ function find_user_names($name) {
     
         mysqli_close($con);
         return $persons;
-    }    
+    }  
