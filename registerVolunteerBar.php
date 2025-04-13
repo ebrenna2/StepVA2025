@@ -88,9 +88,16 @@
             $how_you_heard_of_stepva = isset($args['how_you_heard_of_stepva']) ? $args['how_you_heard_of_stepva'] : '';
             $preferred_feedback_method = isset($args['preferred_feedback_method']) ? $args['preferred_feedback_method'] : '';
             $hobbies = isset($args['hobbies']) ? $args['hobbies'] : '';
+            $skills = isset($args['skills']) ? $args['skills'] : '';
+            $contributions = isset($args['contributions']) ? $args['contributions'] : '';
+            $networks = isset($args['networks']) ? $args['networks'] : '';
             $professional_experience = isset($args['professional_experience']) ? $args['professional_experience'] : '';
             $disability_accomodation_needs = isset($args['disability_accomodation_needs']) ? $args['disability_accomodation_needs'] : '';
-
+            $profile_feature = isset($args['profile_feature']) ? $args['profile_feature'] : '';
+            $identification_preference = isset($args['identification_preference']) ? $args['identification_preference'] : '';
+            $headshot_publish = isset($args['headshot_publish']) ? $args['headshot_publish'] : '';
+            $likeness_usage = isset($args['likeness_usage']) ? $args['likeness_usage'] : '';
+            
             $errors = false;
             if (!wereRequiredFieldsSubmitted($args, $required)) {
                 $errors = true;
@@ -234,10 +241,14 @@
                 $orientation_date,
                 $background_complete,
                 $background_date,
-                '',
-                '',
-                '',
-                -1
+                $skills,
+                $networks,
+                $contributions,
+                -1, // This indicates not part of a family
+                $profile_feature,
+                $identification_preference,
+                $headshot_publish,
+                $likeness_usage
             );
 
             $result = add_person($newperson);
