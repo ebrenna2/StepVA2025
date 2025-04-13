@@ -98,20 +98,39 @@
 
             <p>The following information helps us identify you within our system.</p>
             <label for="first_name"><em>* </em>First Name</label>
-            <input type="text" id="first_name" name="first_name" value="<?php echo hsc($person->get_first_name()); ?>" required placeholder="Enter your first name">
+            <input type="text" id="first_name" name="first_name" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_first_name(), ENT_QUOTES, 'UTF-8', false); 
+                ?>"
+                required placeholder="Enter your first name"
+            >
 
             <label for="last_name"><em>* </em>Last Name</label>
-            <input type="text" id="last_name" name="last_name" value="<?php echo hsc($person->get_last_name()); ?>" required placeholder="Enter your last name">
+            <input type="text" id="last_name" name="last_name" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_last_name(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                required placeholder="Enter your last name"
+            >
 
             <label for="birthday"><em>* </em>Date of Birth</label>
             <input type="date" id="birthday" name="birthday" value="<?php echo hsc($person->get_birthday()); ?>" required placeholder="Choose your birthday" max="<?php echo date('Y-m-d'); ?>">
 
 
             <label for="street_address"><em>* </em>Street Address</label>
-            <input type="text" id="street_address" name="street_address" value="<?php echo hsc($person->get_street_address()); ?>" required placeholder="Enter your street address">
+            <input type="text" id="street_address" name="street_address" value=
+                "<?php
+                    echo htmlspecialchars($person->get_street_address(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+            required placeholder="Enter your street address">
 
             <label for="city"><em>* </em>City</label>
-            <input type="text" id="city" name="city" value="<?php echo hsc($person->get_city()); ?>" required placeholder="Enter your city">
+            <input type="text" id="city" name="city" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_city(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                required placeholder="Enter your city"
+            >
 
             <label for="state"><em>* </em>State</label>
             <select id="state" name="state" required>
@@ -135,7 +154,12 @@
             </select>
 
             <label for="zip_code"><em>* </em>Zip Code</label>
-            <input type="text" id="zip_code" name="zip_code" value="<?php echo hsc($person->get_zip_code()); ?>" pattern="[0-9]{5}" title="5-digit zip code" required placeholder="Enter your 5-digit zip code">
+            <input type="text" id="zip_code" name="zip_code" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_zip_code(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                pattern="[0-9]{5}" title="5-digit zip code" required placeholder="Enter your 5-digit zip code"
+            >
         </fieldset>
 
         <fieldset class="section-box">
@@ -143,10 +167,20 @@
 
             <p>The following information helps us determine the best way to contact you regarding event coordination.</p>
             <label for="email"><em>* </em>E-mail</label>
-            <input type="email" id="email" name="email" value="<?php echo hsc($person->get_email()); ?>" required placeholder="Enter your e-mail address">
+            <input type="email" id="email" name="email" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_email(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                required placeholder="Enter your e-mail address"
+            >
 
             <label for="phone1"><em>* </em>Phone Number</label>
-            <input type="tel" id="phone1" name="phone1" value="<?php echo formatPhoneNumber($person->get_phone1()); ?>" pattern="\([0-9]{3}\) [0-9]{3}-[0-9]{4}" required placeholder="Ex. (555) 555-5555">
+            <input type="tel" id="phone1" name="phone1" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_phone1(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                pattern="\([0-9]{3}\) [0-9]{3}-[0-9]{4}" required placeholder="Ex. (555) 555-5555"
+            >
 
             <label><em>* </em>Phone Type</label>
             <div class="radio-group">
@@ -163,16 +197,36 @@
 
             <p>Please provide us with someone to contact on your behalf in case of an emergency.</p>
             <label for="emergency_contact_first_name" required><em>* </em>First Name</label>
-            <input type="text" id="emergency_contact_first_name" name="emergency_contact_first_name" value="<?php echo hsc($person->get_emergency_contact_first_name()); ?>" required placeholder="Enter emergency contact name">
+            <input type="text" id="emergency_contact_first_name" name="emergency_contact_first_name" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_emergency_contact_first_name(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                required placeholder="Enter emergency contact name"
+            >
 
             <label for="emergency_contact_last_name" required><em>* </em>Last Name</label>
-            <input type="text" id="emergency_contact_last_name" name="emergency_contact_last_name" value="<?php echo hsc($person->get_emergency_contact_last_name()); ?>" required placeholder="Enter emergency contact name">
+            <input type="text" id="emergency_contact_last_name" name="emergency_contact_last_name" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_emergency_contact_last_name(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                required placeholder="Enter emergency contact name"
+            >
 
             <label for="emergency_contact_relation"><em>* </em>Contact Relation to You</label>
-            <input type="text" id="emergency_contact_relation" name="emergency_contact_relation" value="<?php echo hsc($person->get_emergency_contact_relation()); ?>" required placeholder="Ex. Spouse, Mother, Father, Sister, Brother, Friend">
+            <input type="text" id="emergency_contact_relation" name="emergency_contact_relation" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_emergency_contact_relation(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                required placeholder="Ex. Spouse, Mother, Father, Sister, Brother, Friend"
+            >
 
             <label for="emergency_contact_phone"><em>* </em>Phone Number</label>
-            <input type="tel" id="emergency_contact_phone" name="emergency_contact_phone" value="<?php echo formatPhoneNumber($person->get_emergency_contact_phone()); ?>" pattern="\([0-9]{3}\) [0-9]{3}-[0-9]{4}" required placeholder="Ex. (555) 555-5555">
+            <input type="tel" id="emergency_contact_phone" name="emergency_contact_phone" value=
+                "<?php
+                    echo htmlspecialchars($person->get_emergency_contact_phone(), ENT_QUOTES, 'UTF-8', false);  
+                ?>" 
+                pattern="\([0-9]{3}\) [0-9]{3}-[0-9]{4}" required placeholder="Ex. (555) 555-5555"
+            >
 
             <label><em>* </em>Phone Type</label>
             <div class="radio-group">
@@ -200,7 +254,12 @@
 
 
             <label for="school_affiliation"><em>* </em>School Affiliation</label>
-            <input type="text" id="school_affiliation" name="school_affiliation" value="<?php echo hsc($person->get_school_affiliation()); ?>" required placeholder="Enter your affiliated school.">
+            <input type="text" id="school_affiliation" name="school_affiliation" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_school_affiliation(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                required placeholder="Enter your affiliated school."
+            >
 
             <label><em>* </em>Tshirt Size</label>
             <div class="radio-group">
@@ -225,43 +284,52 @@
             <div id="photo-release-details">
                 <label>Can your cast or crew member be featured in a profile?</label>
                 <div class="radio-group">
-                    <input type="radio" id="profile-yes" name="profile_feature" value="Yes" required>
+                    <?php $profile_feature = $person->get_profile_feature(); ?>
+                    <input type="radio" id="profile-yes" name="profile_feature" value="Yes" <?php if ($profile_feature == 'Yes') echo 'checked'; ?> required>
                     <label for="profile-yes">Yes</label>
-                    <input type="radio" id="profile-no" name="profile_feature" value="No" required>
+                    <input type="radio" id="profile-no" name="profile_feature" value="No"  <?php if ($profile_feature == 'No') echo 'checked'; ?> required>
                     <label for="profile-no">No</label>
                 </div>
 
                 <label>How would you like your cast/crew member identified?</label>
                 <div class="radio-group">
-                    <input type="radio" id="id-full-name" name="identification_preference" value="First and last name">
+                    <?php $identification_preference = $person->get_identification_preference(); ?>
+                    <input type="radio" id="id-full-name" name="identification_preference" value="First and last name" <?php if ($identification_preference == 'First and last name') echo 'checked'; ?>>
                     <label for="id-full-name">First and last name</label>
-                    <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial">
+                    <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial" <?php if ($identification_preference == 'First name and last initial') echo 'checked'; ?>>
                     <label for="id-first-name">First name and Last initial</label>
-                    <input type="radio" id="id-initials" name="identification_preference" value="Initials only">
+                    <input type="radio" id="id-initials" name="identification_preference" value="Initials only" <?php if ($identification_preference == 'Initials only') echo 'checked'; ?>>
                     <label for="id-initials">Initials only</label>
                 </div>
 
                 <label>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
                 <div class="radio-group">
-                    <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" required>
+                    <?php $headshot_publish = $person->get_headshot_publish(); ?>
+                    <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" <?php if ($headshot_publish == 'Yes') echo 'checked'; ?> required>
                     <label for="headshot-yes">Yes</label>
-                    <input type="radio" id="headshot-no" name="headshot_publish" value="No" required>
+                    <input type="radio" id="headshot-no" name="headshot_publish" value="No" <?php if ($headshot_publish == 'No') echo 'checked'; ?> required>
                     <label for="headshot-no">No</label>
                 </div>
 
                 <label>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
                 <div class="radio-group">
-                    <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" required>
+                    <?php $likeness_usage = $person->get_likeness_usage(); ?>
+                    <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" <?php if ($likeness_usage == 'Yes') echo 'checked'; ?> required>
                     <label for="likeness-yes">Yes</label>
-                    <input type="radio" id="likeness-no" name="likeness_usage" value="No" required>
+                    <input type="radio" id="likeness-no" name="likeness_usage" value="No" <?php if ($likeness_usage == 'No') echo 'checked'; ?> required>
                     <label for="likeness-no">No</label>
-                    <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" required>
+                    <input type="radio" id="likeness-filter" name="likeness_usage" value="Only with a filter" <?php if ($likeness_usage == 'Only with a filter') echo 'checked'; ?> required>
                     <label for="likeness-filter">Only with a filter</label>
                 </div>
             </div>
 
             <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
-            <input type="text" id="photo_release_notes" name="photo_release_notes" value="<?php echo hsc($person->get_photo_release_notes()); ?>" required placeholder="Do you have any specific notes about your photo release status?">
+            <input type="text" id="photo_release_notes" name="photo_release_notes" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_photo_release_notes(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                required placeholder="Do you have any specific notes about your photo release status?"
+            >
         </fieldset>
 
         <fieldset class="section-box">
@@ -392,16 +460,19 @@
             <legend>Optional Information</legend>
 
             <label>How did you hear about StepVA?</label>
-            <input type="text" id="how_you_heard_of_stepva" name="how_you_heard_of_stepva" value="<?php echo hsc($person->get_how_you_heard_of_stepva()); ?>" placeholder="">
+            <input type="text" id="how_you_heard_of_stepva" name="how_you_heard_of_stepva" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_how_you_heard_of_stepva(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" placeholder=""
+            >
 
             <label>What is your preferred contact method?</label>
             <div class="radio-group">
-                <?php $preferred_feedback_method = $person->get_preferred_feedback_method(); ?>
-
-                <input type="radio" id="text" name="preferred_feedback_method" value="text" <?php if ($type == 'text') echo 'checked'; ?> required>
+                <?php $preferred_feedback_method = $person->get_preferred_feedback_method();?>
+                <input type="radio" id="text" name="preferred_feedback_method" value="text" <?php if ($preferred_feedback_method == 'text') echo 'checked'; ?> required>
                 <label for="text">Text</label>
                 
-                <input type="radio" id="email" name="preferred_feedback_method" value="email" <?php if ($type == 'email') echo 'checked'; ?> required>
+                <input type="radio" id="email" name="preferred_feedback_method" value="email" <?php if ($preferred_feedback_method == 'email') echo 'checked'; ?> required>
                 <label for="email">Email</label>
                 
                 <input type="radio" id="no-preference" name="preferred_feedback_method" value="no-preference" 
@@ -410,22 +481,51 @@
             </div>
 
             <label>What are your hobbies? </label>
-            <input type="text" id="hobbies" name="hobbies" value="<?php echo hsc($person->get_hobbies()); ?>" placeholder="">
+            <input type="text" id="hobbies" name="hobbies" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_hobbies(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" placeholder=""
+            >
 
             <label>Do you have any other experience with volunteering?</label>
-            <input type="text" id="professional_experience" name="professional_experience" value="<?php echo hsc($person->get_professional_experience()); ?>" placeholder="">
+            <input type="text" id="professional_experience" name="professional_experience" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_professional_experience(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                placeholder=""
+            >
 
             <label>Are there any accomodations you may need? Anything we should keep in mind?</label>
-            <input type="text" id="disability_accomodation_needs" name="disability_accomodation_needs" value="<?php echo hsc($person->get_disability_accomodation_needs()); ?>" placeholder="">
+            <input type="text" id="disability_accomodation_needs" name="disability_accomodation_needs" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_disability_accomodation_needs(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                placeholder=""
+            >
 
             <label>Are there any specific skills/interests you have that you believe could be useful for volunteering at StepVA? </label>
-            <input type="text" id="skills" name="skills" value="<?php echo hsc($person->get_skills()); ?>" placeholder="">
+            <input type="text" id="skills" name="skills" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_skills(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                placeholder=""
+            >
 
             <label>Do you have connections to any local businesses or organizations that might be interested in sponsoring or supporting our programs? </label>
-            <input type="text" id="networks" name="networks" value="<?php echo hsc($person->get_networks()); ?>" placeholder="">
+            <input type="text" id="networks" name="networks" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_networks(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                placeholder=""
+            >
 
             <label>Do you have any additional ways you can contribute to STEPVA? </label>
-            <input type="text" id="contributions" name="contributions" value="<?php echo hsc($person->get_contributions()); ?>" placeholder="">
+            <input type="text" id="contributions" name="contributions" value=
+                "<?php 
+                    echo htmlspecialchars($person->get_contributions(), ENT_QUOTES, 'UTF-8', false); 
+                ?>" 
+                placeholder=""
+            >
         </fieldset>
 
         <p></p>

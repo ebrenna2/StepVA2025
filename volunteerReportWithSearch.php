@@ -127,15 +127,48 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
     <?php require_once('header.php'); ?>
     <h1>Volunteer History Report</h1>
     <form method="GET" class="no-print" style="margin-bottom: 1rem;">
-                <label for="search_id">Search by User ID:</label>
-                <input type="text" id="search_id" name="id" 
-                    placeholder="Enter User ID" value="<?php echo isset($_GET['id']) ? htmlspecialchars($_GET['id']) : ''; ?>">
-                <button type="submit">Search</button>
-            </form>
+    <label for="first_name">First Name:</label>
+    <input type="text" name="first_name" id="first_name" placeholder="Enter first name"
+           value="<?= isset($_GET['first_name']) ? htmlspecialchars($_GET['first_name']) : '' ?>">
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" name="last_name" id="last_name" placeholder="Enter last name"
+           value="<?= isset($_GET['last_name']) ? htmlspecialchars($_GET['last_name']) : '' ?>">
+
+    <button type="submit">Search</button>
+</form>
+
+<?php
+$matching_volunteers = [];
+
+if ($isAdmin && (isset($_GET['first_name']) || isset($_GET['last_name']))) {
+    $first = isset($_GET['first_name']) ? trim($_GET['first_name']) : '';
+    $last = isset($_GET['last_name']) ? trim($_GET['last_name']) : '';
+
+    if ($first !== '' || $last !== '') {
+        $matching_volunteers = search_person_by_name($first, $last);
+    }
+}
+
+if (!empty($matching_volunteers)) {
+    echo '<h4>Matching Volunteers:</h4>';
+    echo '<ul>';
+    foreach ($matching_volunteers as $vol) {
+        $fullName = htmlspecialchars($vol->get_first_name() . ' ' . $vol->get_last_name());
+        $volID = htmlspecialchars($vol->get_id());
+
+        echo "<li>
+                $fullName ($volID)
+                <a href='volunteerReportWithSearch.php?id=$volID'>View</a>
+              </li>";
+    }
+    echo '</ul>';
+}
+?>
     <main class="hours-report">
     <?php if ($id === null): ?>
 
-<p>Please enter a User ID above to search.</p>
+<p>Please enter a name above to search.</p>
 
 <?php elseif (!$volunteer): ?>
 
@@ -249,15 +282,8 @@ if (isset($_GET['generate_pdf']) && $_GET['generate_pdf'] == 'true') {
                 <p>There are no volunteer hours to report 
                    <?php if ($dateFrom || $dateTo) echo "in this date range"; ?>.</p>
             <?php endif; ?>
-
-            <?php if ($viewingSelf): ?>
-                <a class="button cancel no-print" href="viewProfile.php">Return to Profile</a>
-            <?php else: ?>
-                <a class="button cancel no-print" href="viewProfile.php?id=<?php echo htmlspecialchars($id); ?>">
-                    Return to Profile
-                </a>
-            <?php endif; ?>
-        <?php endif; ?>
-    </main>
+            </main>
+    <?php endif; ?>
+    <a class="button cancel" href="reportsDash.php">Return to Reports Page</a>
 </body>
 </html>
