@@ -5,20 +5,15 @@
 class Event {
     private $id;
     private $name;
-    #private $abbrevName;
     private $date;
     private $startTime;
     private $endTime;
     private $description;
-    #private $location;
     private $capacity;
     private $completed;
     private $event_type;
     private $restricted_signup;
     private $restricted_volunteers;
-    #private $trainingMedia;
-    #private $postMedia;
-    #private $animalId;
 
     function __construct($id, $name, $date, $startTime, $endTime, $description, $capacity, $completed, $event_type, $restricted_signup) {
         $this->id = $id;
@@ -41,10 +36,6 @@ class Event {
         return $this->name;
     }
 
-    #function getAbbreviatedName() {
-    #    return $this->abbrevName;
-    #}
-
     function getDate() {
         return $this->date;
     }
@@ -60,10 +51,6 @@ class Event {
     function getDescription() {
         return $this->description;
     }
-
-    #function getLocation() {
-    #    return $this->location;
-    #}
 
     function getCapacity() {
         return $this->capacity;
@@ -85,15 +72,4 @@ class Event {
         return $this->restricted_volunteers;
     }
 
-    #function getTrainingMedia() {
-    #    return $trainingMedia;
-    #}
-
-    #function getPostMedia() {
-    #    return $postMedia;
-    #}
-
-    #function getAnimalId() {
-    #    return $animalId;
-    #}
 }
