@@ -754,8 +754,10 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
         $emergency_contact_phone_type, $emergency_contact_relation, $type,
         $school_affiliation, $tshirt_size, $how_you_heard_of_stepva,
         $preferred_feedback_method, $hobbies, $professional_experience,
-        $disability_accomodation_needs, $training_complete, $training_date, $orientation_complete,
-        $orientation_date, $background_complete, $background_date, $skills, $networks, $contributions, $photo_release, $photo_release_notes
+        $disability_accomodation_needs, $training_complete, $training_date,
+        $orientation_complete, $orientation_date, $background_complete,
+        $background_date, $skills, $networks, $contributions, 
+        $photo_release, $profile_feature, $identification_preference, $headshot_publish, $likeness_usage, $photo_release_notes
     ) {
         $query = "update dbpersons set 
             first_name='$first_name', last_name='$last_name', birthday='$birthday',
@@ -776,6 +778,10 @@ function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
             networks='$networks',
             contributions='$contributions',
             photo_release='$photo_release',
+            profile_feature='$profile_feature',
+            identification_preference='$identification_preference',
+            headshot_publish='$headshot_publish',
+            likeness_usage='$likeness_usage',
             photo_release_notes='$photo_release_notes'
             where id='$id'";
         $connection = connect();
