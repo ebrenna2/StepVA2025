@@ -275,15 +275,15 @@
 
             <label for="photo_release"><em>* </em>Photo Release Restrictions: Can your photo be taken and used on our website and social media?</label>
             <div class="radio-group">
-                <?php $photo_release = $person->get_photo_release()?>
-                <input type="radio" id="Restricted" name="photo_release" value="Restricted" <?php if ($photo_release == 'Restricted') echo 'checked'; ?> required><label for="photo_release">Restricted</label>
-                <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" <?php if ($photo_release == 'Not Restricted') echo 'checked'; ?> required><label for="photo_release">Not Restricted</label>
+                <?php $photo_release = $person->get_photo_release(); ?>
+                <input type="radio" id="Restricted" name="photo_release" value="Restricted" onchange="toggleRequiredTagsForPhotoReleaseDetailsSection();" <?php if ($photo_release == 'Restricted') echo 'checked'; ?> required><label for="photo_release">Restricted</label>
+                <input type="radio" id="Not Restricted" name="photo_release" value="Not Restricted" onchange="toggleRequiredTagsForPhotoReleaseDetailsSection();" <?php if ($photo_release == 'Not Restricted') echo 'checked'; ?> required><label for="photo_release">Not Restricted</label>
             </div>
 
             <!-- New Photo Release Details Section -->
             <div id="photo-release-details">
-                <label>Can your cast or crew member be featured in a profile?</label>
-                <div class="radio-group">
+                <label id="profile_feature_label">Can your cast or crew member be featured in a profile?</label>
+                <div class="radio-group" id="profile_feature_options">
                     <?php $profile_feature = $person->get_profile_feature(); ?>
                     <input type="radio" id="profile-yes" name="profile_feature" value="Yes" <?php if ($profile_feature == 'Yes') echo 'checked'; ?> required>
                     <label for="profile-yes">Yes</label>
@@ -291,18 +291,18 @@
                     <label for="profile-no">No</label>
                 </div>
 
-                <label>How would you like your cast/crew member identified?</label>
+                <label id="id_label">How would you like your cast/crew member identified?</label>
                 <div class="radio-group">
                     <?php $identification_preference = $person->get_identification_preference(); ?>
-                    <input type="radio" id="id-full-name" name="identification_preference" value="First and last name" <?php if ($identification_preference == 'First and last name') echo 'checked'; ?>>
+                    <input type="radio" id="id-full-name" name="identification_preference" value="First and last name" <?php if ($identification_preference == 'First and last name') echo 'checked'; ?> required>
                     <label for="id-full-name">First and last name</label>
-                    <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial" <?php if ($identification_preference == 'First name and last initial') echo 'checked'; ?>>
+                    <input type="radio" id="id-first-name" name="identification_preference" value="First name and last initial" <?php if ($identification_preference == 'First name and last initial') echo 'checked'; ?> required>
                     <label for="id-first-name">First name and Last initial</label>
-                    <input type="radio" id="id-initials" name="identification_preference" value="Initials only" <?php if ($identification_preference == 'Initials only') echo 'checked'; ?>>
+                    <input type="radio" id="id-initials" name="identification_preference" value="Initials only" <?php if ($identification_preference == 'Initials only') echo 'checked'; ?> required>
                     <label for="id-initials">Initials only</label>
                 </div>
 
-                <label>Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
+                <label id="headshot_label">Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?</label>
                 <div class="radio-group">
                     <?php $headshot_publish = $person->get_headshot_publish(); ?>
                     <input type="radio" id="headshot-yes" name="headshot_publish" value="Yes" <?php if ($headshot_publish == 'Yes') echo 'checked'; ?> required>
@@ -311,7 +311,7 @@
                     <label for="headshot-no">No</label>
                 </div>
 
-                <label>Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
+                <label id="likeness_label">Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.</label>
                 <div class="radio-group">
                     <?php $likeness_usage = $person->get_likeness_usage(); ?>
                     <input type="radio" id="likeness-yes" name="likeness_usage" value="Yes" <?php if ($likeness_usage == 'Yes') echo 'checked'; ?> required>
@@ -325,12 +325,71 @@
 
             <label for="photo_release_notes"><em>* </em>Photo Release Restriction Notes (or N/A)</label>
             <input type="text" id="photo_release_notes" name="photo_release_notes" value=
-                "<?php 
+                "<?php
                     echo htmlspecialchars($person->get_photo_release_notes(), ENT_QUOTES, 'UTF-8', false); 
                 ?>" 
                 required placeholder="Do you have any specific notes about your photo release status?"
             >
         </fieldset>
+
+        <script>
+
+            function toggleRequiredTagsForPhotoReleaseDetailsSection() {
+                const photoReleaseRestricted = document.getElementById("Restricted");
+
+                if (!photoReleaseRestricted.checked) {
+                    document.getElementById("profile-yes").setAttribute('required', 'required');
+                    document.getElementById("profile-no").setAttribute('required', 'required');
+                    document.getElementById("profile_feature_label").innerHTML = 
+                    "<em>*</em> Can your cast or crew member be featured in a profile?";
+
+                    document.getElementById("id-full-name").setAttribute('required', 'required');
+                    document.getElementById("id-first-name").setAttribute('required', 'required');
+                    document.getElementById("id-initials").setAttribute('required', 'required');
+                    document.getElementById("id_label").innerHTML = 
+                    "<em>*</em> How would you like your cast/crew member identified?";
+
+                    document.getElementById("headshot-yes").setAttribute('required', 'required');
+                    document.getElementById("headshot-no").setAttribute('required', 'required');
+                    document.getElementById("headshot_label").innerHTML = 
+                    "<em>*</em> Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?";
+
+                    document.getElementById("likeness-yes").setAttribute('required', 'required');
+                    document.getElementById("likeness-no").setAttribute('required', 'required');
+                    document.getElementById("likeness-filter").setAttribute('required', 'required');
+                    document.getElementById("likeness_label").innerHTML = 
+                    "<em>*</em> Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.";
+
+                } else { // If Photo release is restricted
+                    document.getElementById("profile-yes").removeAttribute('required', 'required');
+                    document.getElementById("profile-no").removeAttribute('required', 'required');
+                    document.getElementById("profile_feature_label").innerHTML = 
+                    "Can your cast or crew member be featured in a profile?";
+
+                    document.getElementById("id-full-name").removeAttribute('required', 'required');
+                    document.getElementById("id-first-name").removeAttribute('required', 'required');
+                    document.getElementById("id-initials").removeAttribute('required', 'required');
+                    document.getElementById("id_label").innerHTML = 
+                    "How would you like your cast/crew member identified?";
+
+                    document.getElementById("headshot-yes").removeAttribute('required', 'required');
+                    document.getElementById("headshot-no").removeAttribute('required', 'required');
+                    document.getElementById("headshot_label").innerHTML = 
+                    "Can we publish your cast/crew member’s head shot with their profile (on STEP VA’s website, Facebook, and Instagram)?";
+
+                    document.getElementById("likeness-yes").removeAttribute('required', 'required');
+                    document.getElementById("likeness-no").removeAttribute('required', 'required');
+                    document.getElementById("likeness-filter").removeAttribute('required', 'required');
+                    document.getElementById("likeness_label").innerHTML = 
+                    "Can we use your cast/crew member’s likeness (photos or video clips) on show marketing materials? This includes social media posts, video shorts, flyers, etc.";
+                }
+            }
+
+            window.onload = function () {
+                toggleRequiredTagsForPhotoReleaseDetailsSection();
+            }
+            
+        </script>
 
         <fieldset class="section-box">
             <legend>Volunteer Training</legend>
@@ -469,14 +528,14 @@
             <label>What is your preferred contact method?</label>
             <div class="radio-group">
                 <?php $preferred_feedback_method = $person->get_preferred_feedback_method();?>
-                <input type="radio" id="text" name="preferred_feedback_method" value="text" <?php if ($preferred_feedback_method == 'text') echo 'checked'; ?> required>
+                <input type="radio" id="text" name="preferred_feedback_method" value="text" <?php if ($preferred_feedback_method == 'text') echo 'checked'; ?>>
                 <label for="text">Text</label>
                 
-                <input type="radio" id="email" name="preferred_feedback_method" value="email" <?php if ($preferred_feedback_method == 'email') echo 'checked'; ?> required>
+                <input type="radio" id="email" name="preferred_feedback_method" value="email" <?php if ($preferred_feedback_method == 'email') echo 'checked'; ?>>
                 <label for="email">Email</label>
                 
                 <input type="radio" id="no-preference" name="preferred_feedback_method" value="no-preference" 
-                <?php if ($preferred_feedback_method == 'no-preference') echo 'checked'; ?> required>
+                <?php if ($preferred_feedback_method == 'no-preference') echo 'checked'; ?>>
                 <label for="no-preference">No preference</label>
             </div>
 
