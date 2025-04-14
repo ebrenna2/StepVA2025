@@ -49,12 +49,12 @@ if ($_SESSION['access_level'] >= 4 && $_SESSION['_id'] === 'vmsroot') {
 } elseif ($_SESSION['access_level'] == 1) {
     // Check the user's role
     $role = $person->get_type();
-    if ($role === 'participant') {
+    if ($person->get_type() === 'participant') {
         // Redirect family leaders and participants to participantPortal.php
         error_log("index.php: Redirecting family leader/participant to participantPortal.php");
         header('Location: participantPortal.php');
         die();
-    } elseif ($role === 'volunteer') {
+    } elseif ($person->get_type() === 'volunteer') {
         // Redirect volunteers to volunteerPortal.php
         error_log("index.php: Redirecting volunteer to volunteerPortal.php");
         header('Location: volunteerPortal.php');
