@@ -55,22 +55,7 @@ function add_event($event) {
     return false;
 }
 
-/*function fetch_event_name_by_id($id) {
-    $connection = connect();
-    $id = mysqli_real_escape_string($connection, $id);
-    $query = "select name from dbevents where id = '$id'";
-    $result = mysqli_query($connection, $query);
-    $event = mysqli_fetch_assoc($result);
-    if ($event) {
-        require_once('include/output.php');
-        $event = hsc($event);
-        mysqli_close($connection);
-        return $event;
-    }
-    mysqli_close($connection);
-    return null;
-}*/
-
+// Function to put in a sign up request
 function request_event_signup($eventID, $account_name, $role, $notes) {
     $connection = connect();
     $query1 = "SELECT id FROM dbevents WHERE name LIKE '$eventID'";
@@ -103,6 +88,8 @@ function request_event_signup($eventID, $account_name, $role, $notes) {
         }
     return $value;
 }
+
+// Function to sign up for an event
 function sign_up_for_event($eventID, $account_name, $role, $notes) {
     $connection = connect();
     $query1 = "SELECT id FROM dbevents WHERE name LIKE '$eventID'";
@@ -172,6 +159,7 @@ function fetch_event_signups($eventID) {
     return $signups;
 }
 
+// Return events that have sign ups
 function get_signed_up_events_by($userID) {
     $connection = connect();
     $query = "
@@ -193,7 +181,7 @@ function get_signed_up_events_by($userID) {
     return $events; 
 }
 
-
+// Return pending users for a specific event
 function fetch_pending($eventID) {
     $connection = connect();
     $query = "SELECT username, role, notes FROM dbpendingsignups WHERE eventname = '$eventID'";
@@ -211,6 +199,7 @@ function fetch_pending($eventID) {
     return $signups;
 }
 
+// Function to return all usernames of pending sign ups
 function fetch_all_pending() {
     $connection = connect();
     $query = "SELECT eventname, username, role, notes FROM dbpendingsignups";
@@ -228,6 +217,7 @@ function fetch_all_pending() {
     return $signups;
 }
 
+// Function to retrun all the names of pending users
 function all_pending_names() {
     $connection = connect();
     $query = "SELECT eventname FROM dbpendingsignups";
@@ -257,6 +247,7 @@ function all_pending_names() {
     return $event_names;
 }
 
+// Function to return all pending users
 function all_pending_ids() {
     $connection = connect();
     $query = "SELECT eventname FROM dbpendingsignups";
@@ -275,6 +266,7 @@ function all_pending_ids() {
     return $signups;
 }
 
+// Function to remove a user from an event
 function remove_user_from_event($event_id, $user_id) {    
     $query = "DELETE FROM dbeventpersons WHERE eventID LIKE '$event_id' AND userID LIKE '$user_id'";
     $connection = connect();
@@ -284,6 +276,7 @@ function remove_user_from_event($event_id, $user_id) {
     return $result;
 }
 
+// Function to remove an user from a pending event
 function remove_user_from_pending_event($event_id, $user_id) {    
     $query = "DELETE FROM dbpendingsignups WHERE eventname = '$event_id' AND username = '$user_id'";
     $connection = connect();
@@ -402,6 +395,7 @@ function update_event_date($id, $new_event_date) {
 	return $result;
 }
 
+// Function to make an event
 function make_an_event($result_row) {
 	/*
 	 ($en, $v, $sd, $description, $ev))
@@ -421,6 +415,7 @@ function make_an_event($result_row) {
     return $theEvent;
 }
 
+// Return all events
 function get_all_events() {
     $con=connect();
     $query = "SELECT * FROM dbevents" . 
@@ -435,6 +430,7 @@ function get_all_events() {
     return $theEvents;
  }
  
+ // Return events sorted by date and that are not archived
  function get_all_events_sorted_by_date_not_archived() {
     $con=connect();
     $query = "SELECT * FROM dbevents" .
@@ -450,6 +446,7 @@ function get_all_events() {
     return $theEvents;
  }
 
+ // Return all events sorted by a date and that are archived
  function get_all_events_sorted_by_date_and_archived() {
     $con=connect();
     $query = "SELECT * FROM dbevents" .
@@ -482,6 +479,7 @@ function getonlythose_dbEvents($name, $day, $venue) {
    return $theEvents;
 }
 
+// Return events in a date range
 function fetch_events_in_date_range($start_date, $end_date) {
     $connection = connect();
     $start_date = mysqli_real_escape_string($connection, $start_date);
@@ -508,6 +506,7 @@ function fetch_events_in_date_range($start_date, $end_date) {
     return $events;
 }
 
+// Returns events on a date
 function fetch_events_on_date($date) {
     $connection = connect();
     $date = mysqli_real_escape_string($connection, $date);
@@ -527,6 +526,7 @@ function fetch_events_on_date($date) {
     return $events;
 }
 
+// Function to return an event with a specific id
 function fetch_event_by_id($id) {
     $connection = connect();
     $id = mysqli_real_escape_string($connection, $id);
@@ -543,6 +543,7 @@ function fetch_event_by_id($id) {
     return null;
 }
 
+// Function to create an event
 function create_event($event) {
     $connection = connect();
     $name = $event["name"];
@@ -602,6 +603,7 @@ function create_event($event) {
     return $id;
 }
 
+// Function to set a recurring event
 function set_recurring($event) {
     $recurring = $event["recurring"];
     $recurrence = isset($event["recurrence"]) ? $event["recurrence"] : "Daily";  // Default to "Daily"
@@ -705,7 +707,7 @@ function get_restricted_volunteers_limit($eventID) {
     return (int)$row['restricted_volunteers']; // Return the restricted volunteers limit
 }
 
-
+// Function to add services to an event
 function add_services_to_event($eventID, $serviceIDs) {
     $connection = connect();
     foreach($serviceIDs as $serviceID) {
@@ -720,48 +722,32 @@ function add_services_to_event($eventID, $serviceIDs) {
     return $id;
 }
 
+// Function to update the details of an event
 function update_event($eventID, $eventDetails) {
     $connection = connect();
     $id = $eventDetails["id"];
     $name = $eventDetails["name"];
-    #$abbrevName = $eventDetails["abbrev-name"];
     $date = $eventDetails["date"];
     $startTime = $eventDetails["start-time"];
-    #$restricted = $eventDetails["restricted"];
     $endTime = $eventDetails["end-time"];
     $description = $eventDetails["description"];
     $capacity = $eventDetails["capacity"];
-    #$completed = $eventDetails["completed"];
-    #$event_type = $eventDetails["event_type"];
-    #$restricted_signup = $eventDetails["restricted_signup"];
     $location = $eventDetails["location"];
-    //$services = $eventDetails["service"];
-    
-    #$completed = $eventDetails["completed"];
-    #$query = "
-       # update dbEvents set name='$name', abbrevName='$abbrevName', date='$date', startTime='$startTime', restricted='$restricted', description='$description', locationID='$location', completed='$completed'
-       # where id='$eventID'
-    #";
-   # $query = "
-    #    update dbevents set id='$id', name='$name', date='$date', startTime='$startTime', endTime='$endTime', description='$description', capacity='$capacity', completed='$completed', event_type='$event_type', restricted_signup='$restricted_signup'
-    #    where id='$eventID'
-    #";
     $query = "
         update dbevents set id='$id', name='$name', date='$date', startTime='$startTime', endTime='$endTime', description='$description', location='$location', capacity=$capacity
         where id='$eventID'
     ";
     $result = mysqli_query($connection, $query);
-    // update_services_for_event($eventID, $services);
     mysqli_commit($connection);
     mysqli_close($connection);
     return $result;
 }
 
+// Another function to update an event
 function update_event2($eventID, $eventDetails) {
     $connection = connect();
     $id = $eventDetails["id"];
     $name = $eventDetails["name"];
-    #$abbrevName = $eventDetails["abbrevName"];
     $date = $eventDetails["date"];
     $startTime = $eventDetails["startTime"];
     $endTime = $eventDetails["endTime"];
@@ -770,21 +756,17 @@ function update_event2($eventID, $eventDetails) {
     $completed = $eventDetails["completed"];
     $event_type = $eventDetails["event_type"];
     $restricted_signup = $eventDetails["restricted_signup"];
-    #$query = "
-    #    update dbEvents set name='$name', abbrevName='$abbrevName', date='$date', startTime='$startTime', endTime='$endTime', description='$description', locationID='$location', capacity='$capacity', animalId='$animalID', completed='$completed'
-    #    where id='$eventID'
-    #";
     $query = "
         update dbevents set id='$id', name='$name', date='$date', startTime='$startTime', endTime='$endTime', description='$description', capacity='$capacity', completed='$completed', event_type='$event_type', restricted_signup='$restricted_signup'
         where id='$eventID'
     ";
     $result = mysqli_query($connection, $query);
-    //update_services_for_event($eventID, $services);
     mysqli_commit($connection);
     mysqli_close($connection);
     return $result;
 }
 
+// Function to edit services for an event
 function update_services_for_event($eventID, $serviceIDs) {
     $connection = connect();
 
@@ -811,6 +793,7 @@ function update_services_for_event($eventID, $serviceIDs) {
     return;
 }
 
+// Returns all events that are within a name that a user entered
 function find_event($nameLike) {
     $connection = connect();
     $query = "
@@ -826,6 +809,7 @@ function find_event($nameLike) {
     return $all;
 }
 
+// Function to fetch all events within a date range
 function fetch_events_in_date_range_as_array($start_date, $end_date) {
     $connection = connect();
     $start_date = mysqli_real_escape_string($connection, $start_date);
@@ -843,6 +827,7 @@ function fetch_events_in_date_range_as_array($start_date, $end_date) {
     return $events;
 }
 
+// Function to return all events
 function fetch_all_events() {
     $connection = connect();
     $query = "select * from dbevents
@@ -857,19 +842,7 @@ function fetch_all_events() {
     return $events;
 }
 
-// function get_animal($id) {
-//     $connection = connect();
-//     $query = "select * from dbanimals
-//               where id='$id'";
-//     $result = mysqli_query($connection, $query);
-//     if (!$result) {
-//         return [];
-//     }
-//     $animal = mysqli_fetch_all($result, MYSQLI_ASSOC);
-//     mysqli_close($connection);
-//     return $animal;
-// }
-
+// Getter for the description of an event
 function get_description($id) {
     $connection = connect();
     $query = "select description from dbevents
@@ -883,7 +856,7 @@ function get_description($id) {
     return $description;
 }
   
-
+// Getter for the location of an event
 function get_location($id) {
     $connection = connect();
     $query = "select * from dblocations
@@ -897,6 +870,7 @@ function get_location($id) {
     return $location;
 }
 
+// Getter for the services associated with an event
 function get_services($eventID) {
     $connection = connect();
     $query = "select * from dbservices AS serv JOIN dbeventsservices AS es ON es.serviceID = serv.id
@@ -910,6 +884,7 @@ function get_services($eventID) {
     return $services;
 }
 
+// Get media function for post and training getter functions
 function get_media($id, $type) {
     $connection = connect();
     $query = "select * from dbeventmedia
@@ -923,14 +898,17 @@ function get_media($id, $type) {
     return $media;
 }
 
+// Getter for training media
 function get_event_training_media($id) {
     return get_media($id, 'training');
 }
 
+// Getter for post media
 function get_post_event_media($id) {
     return get_media($id, 'post');
 }
 
+// Function used by the two attach media functions
 function attach_media($eventID, $type, $url, $format, $description) {
     $query = "insert into dbeventmedia
               (eventID, type, url, format, description)
@@ -944,14 +922,17 @@ function attach_media($eventID, $type, $url, $format, $description) {
     return true;
 }
 
+// Function to attach a training video to an event (Not in current use)
 function attach_event_training_media($eventID, $url, $format, $description) {
     return attach_media($eventID, 'training', $url, $format, $description);
 }
 
+// Function to attach a post media to an event (Not in current use)
 function attach_post_event_media($eventID, $url, $format, $description) {
     return attach_media($eventID, 'post', $url, $format, $description);
 }
 
+// Function to remove media that was attcahed to an event (Not in current use)
 function detach_media($mediaID) {
     $query = "delete from dbeventmedia where id='$mediaID'";
     $connection = connect();
@@ -963,6 +944,7 @@ function detach_media($mediaID) {
     return false;
 }
 
+// Function to cancel an event
 function delete_event($id) {
     $query = "delete from dbevents where id='$id'";
     $connection = connect();
@@ -972,6 +954,7 @@ function delete_event($id) {
     return $result;
 }
 
+// Function to canel a sign up for a user
 function cancel_event($event_id, $account_name) {
     $query = "DELETE from dbeventpersons where userID LIKE '$account_name' AND eventID LIKE $event_id";
     $connection = connect();
@@ -981,6 +964,7 @@ function cancel_event($event_id, $account_name) {
     return $result;
 }
 
+// Function to approve a sign up request
 function approve_signup($event_id, $account_name, $position, $notes) {
     $query = "DELETE from dbpendingsignups where username = '$account_name' AND eventname = $event_id";
     $connection = connect();
@@ -998,6 +982,7 @@ function approve_signup($event_id, $account_name, $position, $notes) {
     return $result2;
 }
 
+// Function to reject a user from signing up for an account
 function reject_signup($event_id, $account_name, $position, $notes) {
     $query = "DELETE from dbpendingsignups where username = '$account_name' AND eventname = '$event_id'";
     $connection = connect();
@@ -1007,125 +992,7 @@ function reject_signup($event_id, $account_name, $position, $notes) {
     return $result;
 }
 
-// function complete_event($id) {
-//     $event = retrieve_event2($id);
-//     $animal = get_animal($event["animalID"])[0];
-//     $date = $event["date"];
-//     $event["completed"] = "yes";
-
-//     $services = get_services($event["id"]);
-//     $length = count($services);
-
-//     for ($i = 0; $i < $length; $i++) { 
-//         $check = $services[$i]['name'];
-//         $dur = $services[$i]['duration_years'];
-//         if(stripos($check, "spay") !== false || stripos($check, "neuter") !== false){
-//             $animal["spay_neuter_done"] = "yes";
-//             $animal["spay_neuter_date"] = $date;
-//         }
-//         else if(stripos($check, "rabie") !== false){
-//             $animal["rabies_given_date"] = $date;
-//             $animal["rabies_due_date"] = date('Y-m-d', strtotime($date."+".$dur." years"));
-//         }
-//         else if(stripos($check, "heartworm") !== false){
-//             $animal["heartworm_given_date"] = $date;
-//             $animal["heartworm_due_date"] = date('Y-m-d', strtotime($date."+".$dur." years"));
-//         }
-//         else if(stripos($check, "distemper 1") !== false){
-//             $animal["distemper1_given_date"] = $date;
-//             $animal["distemper1_due_date"] = date('Y-m-d', strtotime($date."+".$dur." years"));
-//         }
-//         else if(stripos($check, "distemper 2") !== false){
-//             $animal["distemper2_given_date"] = $date;
-//             $animal["distemper2_due_date"] = date('Y-m-d', strtotime($date."+".$dur." years"));
-//         }
-//         else if(stripos($check, "distemper 3") !== false){
-//             $animal["distemper3_given_date"] = $date;
-//             $animal["distemper3_due_date"] = date('Y-m-d', strtotime($date."+".$dur." years"));
-//         }
-//         else if(stripos($check, "microchip") !== false){
-//             $animal["microchip_done"] = "yes";
-//         }
-//         else{
-//             $animal["notes"] = $animal["notes"]." | ".$check.": ".$date;
-//         }
-    
-//     }
-// //    var_dump($event);
-//     $result = update_animal2($animal);
-//     $result = update_event2($event["id"], $event);
-//     return $result;
-// }
-
-// function update_animal2($animal) {
-//     $connection = connect();
-//     $id = $animal['id'];
-// 	$odhsid = $animal["odhs_id"];
-//     $name = $animal["name"];
-// 	$breed = $animal["breed"];
-//     $age = $animal["age"];
-//     $gender = $animal["gender"];
-//     $notes = $animal["notes"];
-//     $spay_neuter_done = $animal["spay_neuter_done"];
-// 	$spay_neuter_date = $animal["spay_neuter_date"];
-//     if (empty($animal["spay_neuter_date"])) {
-//         $spay_neuter_date = '0000-00-00';
-//     }
-//     $rabies_given_date = $animal["rabies_given_date"];
-//     if (empty($animal["rabies_given_date"])) {
-//         $rabies_given_date = '0000-00-00';
-//     }
-// 	$rabies_due_date = $animal["rabies_due_date"];
-//     if (empty($animal["rabies_due_date"])) {
-//         $rabies_due_date = '0000-00-00';
-//     }
-//     $heartworm_given_date = $animal["heartworm_given_date"];
-//     if (empty($animal["heartworm_given_date"])) {
-//         $heartworm_given_date = '0000-00-00';
-//     }
-// 	$heartworm_due_date = $animal["heartworm_due_date"];
-//     if (empty($animal["heartworm_due_date"])) {
-//         $heartworm_due_date = '0000-00-00';
-//     }
-// 	$distemper1_given_date = $animal["distemper1_given_date"];
-//     if (empty($animal["distemper1_given_date"])) {
-//         $distemper1_given_date = '0000-00-00';
-//     }
-// 	$distemper1_due_date = $animal["distemper1_due_date"];
-//     if (empty($animal["distemper1_due_date"])) {
-//         $distemper1_due_date = '0000-00-00';
-//     }
-// 	$distemper2_given_date = $animal["distemper2_given_date"];
-//     if (empty($animal["distemper2_given_date"])) {
-//         $distemper2_given_date = '0000-00-00';
-//     }
-// 	$distemper2_due_date = $animal["distemper2_due_date"];
-//     if (empty($animal["distemper2_due_date"])) {
-//         $distemper2_due_date = '0000-00-00';
-//     }
-// 	$distemper3_given_date = $animal["distemper3_given_date"];
-//     if (empty($animal["distemper3_given_date"])) {
-//         $distemper3_given_date = '0000-00-00';
-//     }
-// 	$distemper3_due_date = $animal["distemper3_due_date"];
-//     if (empty($animal["distemper3_due_date"])) {
-//         $distemper3_due_date = '0000-00-00';
-//     }
-// 	$microchip_done = $animal["microchip_done"];
-//     $query = "
-//         UPDATE dbanimals set odhs_id='$odhsid', name='$name', breed='$breed', age='$age', gender='$gender', notes='$notes', spay_neuter_done='$spay_neuter_done', spay_neuter_date='$spay_neuter_date', rabies_given_date='$rabies_given_date', rabies_due_date='$rabies_due_date', heartworm_given_date='$heartworm_given_date', heartworm_due_date='$heartworm_due_date', distemper1_given_date='$distemper1_given_date', distemper1_due_date='$distemper1_due_date', distemper2_given_date='$distemper2_given_date', distemper2_due_date='$distemper2_due_date', distemper3_given_date='$distemper3_given_date', distemper3_due_date='$distemper3_due_date', microchip_done='$microchip_done'
-//         where id='$id'
-//         ";
-//     $result = mysqli_query($connection, $query);
-//     if (!$result) {
-//         return null;
-//     }
-//     mysqli_commit($connection);
-//     mysqli_close($connection);
-//     return $id;
-// }
-
-
+// Function to chcek if there are pending sign ups for an event
 function check_if_pending_sign_up($eventID, $userID) {
     $connection = connect();
     
